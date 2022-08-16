@@ -1,0 +1,7 @@
+.vagrant
+.vscode
+installer
+tools
+Dockerfile
+Vagrantfile
+docker-compose.yml

@@ -11,6 +11,13 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/*.code-snippets
+.history/
+*.vsix
+.history
+.ionide
+.vscode/*.code-snippets
 *.code-workspace
 MedShakeEHR-base.zip
 secrets.yml
+.env
