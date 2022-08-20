@@ -1,7 +1,5 @@
 .vagrant
 .vscode
 installer
-tools
-Dockerfile
+tools/vagrant
 Vagrantfile
-docker-compose.yml

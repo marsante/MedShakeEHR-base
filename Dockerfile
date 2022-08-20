@@ -1,12 +1,14 @@
 # https://hub.docker.com/_/composer
 FROM composer:2.0 as build
 ENV VRELEASE v7.1.1
-COPY . /var/www/html/
+COPY --chown=www-data:www-data composer.json /var/www/html/composer.json
+COPY --chown=www-data:www-data public_html/composer.json /var/www/html/public_html/composer.json
+# RUN curl -fsSL -o /tmp/msehr.tar.gz https://github.com/MedShake/MedShakeEHR-base/archive/"$VRELEASE".tar.gz && \
+# tar -xf /tmp/msehr.tar.gz -C /var/www/html --strip-components=1
 WORKDIR /var/www/html/
 RUN composer install -o --ignore-platform-req php && cd public_html && composer install -o
-COPY --chown=www-data:www-data tools/docker/MEDSHAKEEHRPATH-docker /var/www/html/public_html/MEDSHAKEEHRPATH
 
-# https://hub.docker.com/_/php
+# # https://hub.docker.com/_/php
 FROM php:7.4-apache
 ENV PHPSTAGE production
 ARG DEBIAN_FRONTEND=noninteractive
@@ -73,6 +75,8 @@ RUN set -ex; \
 
 WORKDIR /var/www/html/
 COPY --from=build --chown=www-data:www-data /var/www/html ./
+COPY --chown=www-data:www-data ./ /var/www/html
+COPY --chown=www-data:www-data tools/docker/MEDSHAKEEHRPATH-docker /var/www/html/public_html/MEDSHAKEEHRPATH
 COPY --chown=1000:1000 tools/docker/vhost-docker /etc/apache2/sites-available/000-default.conf
 COPY tools/docker/msehr.entrypoint /usr/local/bin/
 ENTRYPOINT ["msehr.entrypoint"] 
