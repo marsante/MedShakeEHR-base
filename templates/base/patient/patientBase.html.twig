@@ -1,7 +1,7 @@
 {#
  # This file is part of MedShakeEHR.
  #
- # Copyright (c) 2018
+ # Copyright (c) 2018-2021
  # Bertrand Boutillier <b.boutillier@gmail.com>
  # http://www.medshake.net
  #
@@ -23,8 +23,9 @@
  # Template > patient : dossier patient, structure de base étendue
  # par fichiers patient.html.twig des dossiers modules
  #
- # @author Bertrand Boutillier <b.boutillier@gmail.com>
- # @contrib fr33z00 <https://github.com/fr33z00>
+ # @author  Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib fr33z00             <https://github.com/fr33z00>
+ # @contrib DEMAREST Maxime     <maxime@indelog.fr>
  #}
 
 {% extends "page.html.twig" %}
@@ -78,7 +79,6 @@
 {% block jsFiles %}
   {{ parent() }}
   <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/tinymce/tinymce/tinymce.min.js?{{ modules.base }}"></script>
-  <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/tinymce/tinymce/jquery.tinymce.min.js?{{ modules.base }}"></script>
   <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/dimsemenov/magnific-popup/dist/jquery.magnific-popup.min.js?{{ modules.base }}"></script>
   <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/mattbryson/touchswipe-jquery-plugin/jquery.touchSwipe.min.js?{{ modules.base }}"></script>
 
@@ -150,6 +150,24 @@
       {% include('inc-ajax-patientAdminData.html.twig') %}
     </div>
 
+    {# univtag patient #}
+    {% if page.univTagsListHtml is not empty %}
+    <div class="card">
+      <div class="card-header d-flex flex-row justify-content-between">
+        <h5>Étiquette du patient</h5>
+        {% if page.univTags.typeDroitAjoRet %}
+        <div class="custom-control custom-switch">
+          <input id="univTagsSetTag" type="checkbox" class="custom-control-input" onclick="getTagsList({{ page.univTags.typeID }}, {{ page.univTags.toID }}, (this.checked ? 'select' : 'show'));" autocomplete="off">
+          <label class="custom-control-label" for="univTagsSetTag">Séléctioner des étiquettes</label>
+        </div>
+        {% endif %}
+      </div>
+      <div class="univTagsContainer" data-typeID="{{ page.univTags.typeID }}" class="card-body p-1">
+        {{ page.univTagsListHtml }}
+      </div>
+    </div>
+    {% endif %}
+
 {% endblock %}
 
 {% block modals %}
@@ -165,6 +183,9 @@
 
 {# modal changer la date d'une ligne d'historique #}
 {% include 'inc-patientModal-changerDateEffet.html.twig' %}
+
+{# modal d'ajout de mot suivi #}
+{% include 'inc-patientModal-motSuivi.html.twig' %}
 
 {# modal phonecapture #}
 {% if config.optionGeActiverPhonecapture == 'true' %}
