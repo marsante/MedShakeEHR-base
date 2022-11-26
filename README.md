@@ -85,7 +85,7 @@ NB: Le point et l'espace avant la commande sont obligatoires pour permettre la b
 8- Launch the application (create + start)
 8- Lancer l'application (create + start)
 
-> ./docker-compose up
+> ./docker-compose-entrypoint
 
 9- An EHR instance is ready :
 9- Vous avez une instance de EHR de disponible :
