@@ -229,7 +229,7 @@ msehrInstall() {
     su www-data -s/bin/bash -c 'composer install --no-interaction --no-cache -o'
     echo "$msehrPath
     " > "$msehrPath"/public_html/MEDSHAKEEHRPATH
-    su www-data -s/bin/bash -c  "php $msehrPath/public_html/install.php -N -s localhost -d $msehrDbName -u $mysqlUser -p $mysqlUserPswd -r https -D $msehrDom"
+    su www-data -s/bin/bash -c  "php $msehrPath/public_html/install.php -N -s localhost -d $msehrDbName -u $mysqlUser -p $mysqlUserPswd -r https -D $msehrDom -o localhost"
 
     selectRemoveInstallFiles
 }  
