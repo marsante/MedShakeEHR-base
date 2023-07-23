@@ -57,7 +57,7 @@ class msTools
 
 		if (empty($routeAbrev) or !array_key_exists($routeAbrev, $routes)) {
 			$routeAbrev = 'root';
-			$routes[$routeAbrev]=['/','/'];
+			$routes[$routeAbrev] = ['/', '/'];
 		}
 
 		if ($type == '301') {
@@ -198,6 +198,36 @@ class msTools
 	}
 
 	/**
+	 * Obtenir un nom de mois en français à partir du nom anglais
+	 *
+	 * @param string $englishMonth
+	 * @return string
+	 */
+	public static function getFrenchMonthName($englishMonth)
+	{
+		$mois = [
+			'January' => 'Janvier',
+			'February' => 'Février',
+			'March' => 'Mars',
+			'April' => 'Avril',
+			'May' => 'Mai',
+			'June' => 'Juin',
+			'July' => 'Juillet',
+			'August' => 'Août',
+			'September' => 'Septembre',
+			'October' => 'Octobre',
+			'November' => 'Novembre',
+			'December' => 'Décembre'
+		];
+
+		if (isset($mois[$englishMonth])) {
+			return $mois[$englishMonth];
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Valider une chaîne comme étant une expression régulière
 	 * @param  string  $string expression
 	 * @return boolean         TRUE / FALSE
@@ -266,8 +296,8 @@ class msTools
 	{
 		if (is_array($array)) {
 			array_walk_recursive($array, function (&$item, $key) {
-				if (!mb_detect_encoding($item, 'utf-8', true)) {
-					$item = utf8_encode($item);
+				if (!mb_detect_encoding($item, 'UTF-8', true)) {
+					$item = mb_convert_encoding($item, 'UTF-8', mb_detect_encoding($item, null, false));
 				}
 			});
 		}
@@ -284,8 +314,8 @@ class msTools
 	{
 		if (!$destination) $destination = $source;
 		$contenu = file_get_contents($source);
-		if (!mb_detect_encoding($contenu, 'utf-8', true)) {
-			$contenu = utf8_encode($contenu);
+		if (!mb_detect_encoding($contenu, 'UTF-8', true)) {
+			$contenu = mb_convert_encoding($contenu, 'UTF-8', mb_detect_encoding($contenu, null, false));
 			return (bool)file_put_contents($destination, $contenu);
 		} elseif ($destination != $source) {
 			return (bool)file_put_contents($destination, $contenu);
@@ -586,13 +616,13 @@ class msTools
 		}
 	}
 
-/**
- * Encoder / décoder en AES-256
- *
- * @param string $action
- * @param string $string
- * @return void
- */
+	/**
+	 * Encoder / décoder en AES-256
+	 *
+	 * @param string $action
+	 * @param string $string
+	 * @return void
+	 */
 	public static function encryptDecryptAES256($action, $string)
 	{
 		global $p;
