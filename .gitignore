@@ -20,3 +20,4 @@ config/config.yml
 upgrade/*
 !upgrade/base
 !upgrade/base/*
+.env

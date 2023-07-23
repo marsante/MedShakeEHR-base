@@ -1,75 +1,78 @@
-# We start from a Docker in Docker container
-FROM docker:dind
-ENV INITSYSTEM on
+# https://hub.docker.com/_/php
+FROM php:8.2-apache-bullseye
+ENV PHPSTAGE production
+ARG DEBIAN_FRONTEND=noninteractive
+RUN set -ex; \
+    \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        ghostscript \
+        git \
+        imagemagick \
+        mariadb-client \
+        pdftk-java \
+    ; \
+    rm -rf /var/lib/apt/lists/*
+RUN set -ex; \
+    \
+    savedAptMark="$(apt-mark showmanual)"; \
+    \
+    apt-get -y update;\
+    apt-get install -y --no-install-recommends \
+    libc-client-dev \
+    libcurl4-openssl-dev \
+    libgpgme11-dev \
+    libkrb5-dev \
+    libmagickwand-dev \
+    libonig-dev \
+    libyaml-dev \
+    libzip-dev \
+    && \
+    pecl install gnupg && \
+    pecl install imagick && \
+    pecl install yaml && \
+    docker-php-ext-enable gnupg imagick yaml; \
+    PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
+    docker-php-ext-install \
+    bcmath \
+    curl \
+    dom \
+    gd \
+    imap \
+    intl \
+    mbstring \
+    pdo_mysql \
+    soap \
+    xml \
+    zip && \
+    apt-mark auto '.*' > /dev/null; \
+    apt-mark manual $savedAptMark; \
+    ldd "$(php -r 'echo ini_get("extension_dir");')"/*.so \
+        | awk '/=>/ { print $3 }' \
+        | sort -u \
+        | xargs -r dpkg-query -S \
+        | cut -d: -f1 \
+        | sort -u \
+        | xargs -rt apt-mark manual; \
+    rm -r /tmp/pear; \
+    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+    rm -rf /var/lib/apt/lists/*; \
+    a2enmod rewrite headers ssl; \
+    rm -rf /usr/src/*; \
+    mv "$PHP_INI_DIR/php.ini-$PHPSTAGE" "$PHP_INI_DIR/php.ini" && \
+    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 20M/' "$PHP_INI_DIR/php.ini" && \
+	sed -i 's/post_max_size = 8M/post_max_size = 20M/' "$PHP_INI_DIR/php.ini" && \
+	sed -i 's/;max_input_vars = 1000/max_input_vars = 20000/' "$PHP_INI_DIR/php.ini"
 
-LABEL description="MedShake EHR All-In-One container"
-LABEL maintainer="bugeaud@gmail.com"
-
-# Set some environement variables required
-ENV APP_PATH /app
-ENV MEDSHAKEEHRPATH $APP_PATH/MedShakeEHR-base/
-ENV SCREENDIR ~/ehr/screen/
-
-# Create the application directory from the local
-ADD . $MEDSHAKEEHRPATH
-#WORKDIR $MEDSHAKEEHRPATH
-
-# Create the mount point to avoid right errors
-#RUN mkdir $SCREENDIR -m 700
-
-# Check system is fresh and clean
-RUN apk update && apk upgrade
-
-# Install OpenRC's Init & Python package manager
-#RUN apk add screen  py-pip
-RUN apk add py-pip screen
-
-# Make sure PIP is up-to-date
-RUN pip install --upgrade pip
-
-# Install docker-compose package & supervisord
-RUN pip install docker-compose supervisor
-
-#RUN pwd
-
-# Make sure the Docker is there as "service"
-#RUN rc-update add docker boot
-
-# See what is in RC Init
-#RUN rc-status --all
-
-# Then, actually, simply run it right now
-#RUN service docker start
-
-# Move to the application
-WORKDIR $MEDSHAKEEHRPATH
-
-#RUN dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375
-# Config docker compose as a service
-RUN docker-compose config --service
-
-# Create the sub-containers
-#RUN docker-compose up --build -d
-#RUN docker-compose up --build --no-start
-
-# Create the sub-containers
-#RUN docker-compose create
-
-#COPY docker-compose-entrypoint.sh /usr/local/bin/
-#ENTRYPOINT ["docker-compose-entrypoint.sh"]
-#CMD []
-
-RUN mkdir -p /var/log/docker-compose
-COPY docker-compose-screenrc /etc/docker-compose-screenrc
-
-# Document the exposed port. Note that 443 is for future use.
-EXPOSE 80/tcp
-EXPOSE 8080/tcp
-#EXPOSE 3606/tcp
-EXPOSE 443/tcp
-
-VOLUME ~/ehr/
-#VOLUME ~/ehr/screen
-
-# Create the screen lauching a docker daemon and a docker compose from known UNIX socket location
-ENTRYPOINT ["screen", "-c", "/etc/docker-compose-screenrc"]
+COPY --from=composer:2.5 /usr/bin/composer /usr/local/bin/composer
+COPY ./tools/docker/config/vhost-docker /etc/apache2/sites-available/000-default.conf
+ENV VRELEASE v8.0.1
+RUN curl -fsSL -o /tmp/msehr.tar.gz https://github.com/MedShake/MedShakeEHR-base/archive/"$VRELEASE".tar.gz && \
+mkdir /usr/src/medshakeehr && \
+tar -xf /tmp/msehr.tar.gz -C /usr/src/medshakeehr --strip-components=1 && \
+rm /tmp/msehr.tar.gz
+COPY ./tools/docker/config/MEDSHAKEEHRPATH-docker /usr/src/medshakeehr/public_html/MEDSHAKEEHRPATH
+VOLUME /var/www/html/
+COPY ./tools/docker/msehr.entrypoint /usr/local/bin/
+ENTRYPOINT ["msehr.entrypoint"] 
+CMD ["apache2-foreground"]
