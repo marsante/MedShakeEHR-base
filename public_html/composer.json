@@ -1,134 +1,8 @@
 {
     "config": {
-      "vendor-dir":"thirdparty",
-      "allow-plugins": {
-            "robloach/component-installer": true,
-            "composer/installers": true,
-            "oomphinc/composer-installers-extender": true
-        }
+      "vendor-dir":"thirdparty"
     },
     "repositories": [
-
-        {
-            "type": "package",
-            "package": {
-                "name": "mattbryson/touchswipe-jquery-plugin",
-                "version": "1.6.18",
-                "source": {
-                    "url": "https://github.com/mattbryson/touchswipe-jquery-plugin.git",
-                    "type": "git",
-                    "reference": "1.6.18"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "fezvrasta/popper.js",
-                "version": "v1.14.4",
-                "source": {
-                    "url": "https://github.com/fezvrasta/popper.js.git",
-                    "type": "git",
-                    "reference": "v1.14.4"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "dennyferra/typewatch",
-                "version": "3.0.0",
-                "source": {
-                    "url": "https://github.com/dennyferra/typewatch.git",
-                    "type": "git",
-                    "reference": "3.0.0"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "jquery/jquery",
-                "version": "3.6.1",
-                "source": {
-                    "url": "https://github.com/jquery/jquery.git",
-                    "type": "git",
-                    "reference": "3.6.1"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "danielm/uploader",
-                "version": "v1.0.2",
-                "source": {
-                    "url": "https://github.com/danielm/uploader.git",
-                    "type": "git",
-                    "reference": "v1.0.2"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "swisnl/jquery-contextmenu",
-                "version": "2.5.0",
-                "source": {
-                    "url": "https://github.com/swisnl/jquery-contextmenu.git",
-                    "type": "git",
-                    "reference": "2.5.0"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "lrsjng/kjua",
-                "version": "v0.1.2",
-                "source": {
-                    "url": "https://github.com/lrsjng/kjua.git",
-                    "type": "git",
-                    "reference": "v0.1.2"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "chaijs/chai",
-                "version": "1.9.0",
-                "source": {
-                    "url": "https://github.com/chaijs/chai.git",
-                    "type": "git",
-                    "reference": "1.9.0"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "jquery/jquery-mousewheel",
-                "version": "3.1.9",
-                "source": {
-                    "url": "https://github.com/jquery/jquery-mousewheel.git",
-                    "type": "git",
-                    "reference": "3.1.9"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "mochajs/mocha",
-                "version": "1.17.1",
-                "source": {
-                    "url": "https://github.com/mochajs/mocha.git",
-                    "type": "git",
-                    "reference": "1.17.1"
-                }
-            }
-        },
         {
             "type": "package",
             "package": {
@@ -142,40 +16,34 @@
             }
         },
         {
-            "type": "package",
-            "package": {
-                "name": "joequery/stupid-table-plugin",
-                "version": "1.1.3",
-                "source": {
-                    "url": "https://github.com/joequery/stupid-table-plugin.git",
-                    "type": "git",
-                    "reference": "1.1.3"
-                }
-            }
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     ],
 
     "require": {
-        "mattbryson/touchswipe-jquery-plugin": "1.6.18",
-        "fezvrasta/popper.js": "v1.14.4",
-        "twbs/bootstrap": "4.4.1",
-        "eonasdan/bootstrap-datetimepicker": "4.17.47",
-        "moment/moment": "2.29.4",
+        "npm-asset/jquery-touchswipe": "1.6.19",
+        "npm-asset/bootstrap": "^4.6.2",
+        "npm-asset/tempusdominus-bootstrap-4": "5.39.2",
         "dimsemenov/magnific-popup": "1.1.0",
-        "dennyferra/typewatch": "3.0.0",
-        "tinymce/tinymce": "6.3.1",
-        "jquery/jquery": "3.6.1",
-        "danielm/uploader": "v1.0.2",
+        "npm-asset/jquery.typewatch": "3.0.2",
+        "tinymce/tinymce": "^7.6.1",
+        "npm-asset/jquery": "^3.7.1",
+        "npm-asset/dm-file-uploader": "1.0.2",
         "brinley/jsignature": "2.1.3",
-        "fullcalendar/fullcalendar": "3.10.5",
-        "swisnl/jquery-contextmenu": "2.5.0",
-        "lrsjng/kjua": "v0.1.2",
-        "chaijs/chai": "1.9.0",
-        "jquery/jquery-mousewheel": "3.1.9",
-        "mochajs/mocha": "1.17.1",
-        "joequery/stupid-table-plugin": "1.1.3",
+        "npm-asset/fullcalendar": "3.10.5",
+        "npm-asset/moment": "^2.10",
+        "npm-asset/jquery-contextmenu": "2.9.2",
+        "npm-asset/kjua": "^0.10.0",
+        "npm-asset/jquery-mousewheel": "3.1.13",
+        "npm-asset/stupid-table-plugin": "1.1.3",
         "thebingservices/codemirror": "v5.10.0",
         "fortawesome/font-awesome": "^5.13",
         "fr33z00/panzoom": "v3.2.2.1+1Touch"
+    },
+
+    "require-dev": {
+        "npm-asset/chai": "1.9.0",
+        "npm-asset/mocha": "3.0.0"
     }
 }
