@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -122,8 +123,8 @@
 	<div role="tabpanel" class="tab-pane active" id="types">
 
     <div class="row mt-3">
-      <div class="col text-right">
-        <button type="button" class="btn btn-primary reset-modal" data-toggle="modal" data-target="#modalNewType">
+      <div class="col text-end">
+        <button type="button" class="btn btn-primary reset-modal" data-bs-toggle="modal" data-bs-target="#modalNewType">
           <i class="fas fa-plus"></i> Nouveau type
         </button>
       </div>
@@ -175,7 +176,7 @@
         </td>
 				<td>{{ w.durationLife }}</td>
 				<td>{{ w.description }}</td>
-				<td class="text-right">
+				<td class="text-end">
           <div class="btn-group">
 					  <button type="button" class="btn btn-light btn-sm edit-by-prim-key" aria-label="Editer" data-id="{{ w.id }}" data-table="data_types" data-form="formModalNewType" data-modal="modalNewType">
 					  <span class="fas fa-pencil-alt" aria-hidden="true"></span>
@@ -202,13 +203,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold" id="myModalLabel">Création / édition type</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title fw-bold" id="myModalLabel">Création / édition type</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 	  	    {{ f.errorsBloc() }}
 			<form id="formModalNewType" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/ajax/configDataTypeCreate/" data-groupe="{{ page.groupe }}">
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -225,7 +226,7 @@
 				}) }}
 				</div>
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -243,7 +244,7 @@
 				</div>
 
 				{% if page.groupe not in ["typecs"] %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -262,7 +263,7 @@
 				{% endif %}
 
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -279,7 +280,7 @@
 				}) }}
 				</div>
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.select ({
 					'select' : {
 						'name' : 'cat',
@@ -296,7 +297,7 @@
 				}) }}
 				</div>
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -315,7 +316,7 @@
 			</div>
 
 
-        <div class="form-group">
+        <div class="mb-3">
         {{ f.select ({
           'select' : {
             'name' : 'module',
@@ -333,7 +334,7 @@
         </div>
 
 				{% if page.groupe not in ["typecs", "courrier"] %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -352,7 +353,7 @@
 				{% endif %}
 
 				{% if page.groupe not in ["typecs", "courrier"] %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -371,7 +372,7 @@
 				{% endif %}
 
         {% if page.groupe == "typecs" %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -390,7 +391,7 @@
 				{% endif %}
 
         {% if page.groupe == "typecs" and config.optionGeActiverRegistres == 'true' %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.select ({
             'select' : {
               'name' : 'validationRules',
@@ -409,7 +410,7 @@
         {% endif %}
 
         {% if page.groupe == "courrier" %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -426,7 +427,7 @@
 					}) }}
 					</div>
 
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -446,7 +447,7 @@
 
 
 				{% if page.groupe not in ["typecs", "courrier"] %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.select ({
 						'select' : {
 							'name' : 'formType',
@@ -464,7 +465,7 @@
 					}) }}
 					</div>
         {% elseif page.groupe == "typecs" %}
-          <div class="form-group">
+          <div class="mb-3">
           {{ f.select ({
             'select' : {
               'name' : 'formType',
@@ -484,7 +485,7 @@
 				{% endif %}
 
         {% if page.groupe == "typecs" %}
-          <div class="form-group">
+          <div class="mb-3">
           {{ f.select ({
               'select' : {
                 'name' : 'placeholder',
@@ -503,7 +504,7 @@
         {% endif %}
 
 				{% if page.groupe == "typecs" %}
-					<div class="form-group">
+					<div class="mb-3">
 						{{ f.input ({
 							'input' : {
 								'type' : 'text',
@@ -519,7 +520,7 @@
 						}) }}
 					</div>
 				{% else %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.textarea ({
 						'textarea' : {
 							'name' : 'formValues',
@@ -536,7 +537,7 @@
 					</div>
 				{% endif %}
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'number',
@@ -557,7 +558,7 @@
 			</form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Abandonner</button>
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Abandonner</button>
         <button type="button" class="btn btn-primary modal-save" data-form="formModalNewType" data-modal="modalNewType">Sauvegarder</button>
       </div>
     </div>

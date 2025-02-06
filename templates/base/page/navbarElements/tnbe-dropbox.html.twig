@@ -23,6 +23,7 @@
  # Template > navbar élément boite de dépôt (dropbox)
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% if config.optionGeActiverDropbox == 'true' %}
@@ -38,7 +39,7 @@
      {% else %}
        Boite de dépôt
        {% if page.dropboxNbFiles > 0 and config.designTopMenuDropboxCountDisplay == 'true' %}
-         <span class="badge badge-light badgeBoiteDepot">{{ page.dropboxNbFiles }}</span>
+         <span class="badge text-bg-light badgeBoiteDepot">{{ page.dropboxNbFiles }}</span>
        {% endif %}
      {% endif %}
    </a>

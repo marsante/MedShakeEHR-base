@@ -23,6 +23,7 @@
  # LAP > monographie > mises en garde et précautions d'emploi
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
  <p class="lead">{{ page.contreindications.contreIndic|length }} mise{% if page.contreindications.contreIndic|length > 1 %}s{% endif %} en garde et précaution{% if page.contreindications.contreIndic|length > 1 %}s{% endif %} d'emploi</p>
@@ -34,7 +35,7 @@
 {% for tab in page.contreindications.contreIndic %}
 
     <div class="card mb-3">
-        <div class="card-header" role="tab" id="heading{{ loop.index }}{{ rand }}" data-toggle="collapse" data-parent="#accordion{{ rand }}" data-target="#collapse{{ loop.index }}{{ rand }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}{{ rand }}" style="cursor: pointer">
+        <div class="card-header" role="tab" id="heading{{ loop.index }}{{ rand }}" data-bs-toggle="collapse" data-parent="#accordion{{ rand }}" data-bs-target="#collapse{{ loop.index }}{{ rand }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}{{ rand }}" style="cursor: pointer">
 
 
 

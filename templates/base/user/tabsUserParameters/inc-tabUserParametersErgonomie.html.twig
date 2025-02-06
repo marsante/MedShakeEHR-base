@@ -23,84 +23,85 @@
  # Template > userParameters : tab ergonomie et design
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 {% import "macroForm.html.twig" as f %}
 <h3>Ergonomie et design</h3>
 
 <form class="checkboxFixValue" method="post" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/user/actions/userParametersErgonomie/">
-  <div class="form-row">
+  <div class="row">
     <div class="col-12 col-md-4">
 
       <div class="card my-4">
-        <div class="card-header font-weight-bold">
+        <div class="card-header fw-bold">
           Menu général supérieur
         </div>
         <div class="card-body">
-          <div class="form-group">
+          <div class="mb-3">
             <label for="designTopMenuStyleID">Aspect du menu général supérieur</label>
-            <select id="designTopMenuStyleID" name="designTopMenuStyle" class="custom-select custom-select-sm">
+            <select id="designTopMenuStyleID" name="designTopMenuStyle" class="form-select form-select-sm">
               <option value="textes" {% if page.ergonomie.params.designTopMenuStyle == 'textes' %} selected="selected" {% endif %}>Textes</option>
               <option value="icones" {% if page.ergonomie.params.designTopMenuStyle == 'icones' %} selected="selected" {% endif %}>Icônes</option>
             </select>
           </div>
 
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" value="true" id="designTopMenuInboxCountDisplayID" name="designTopMenuInboxCountDisplay" {% if page.ergonomie.params.designTopMenuInboxCountDisplay == 'true' %} checked="checked" {% endif %} autocomplete="off">
-            <label class="custom-control-label" for="designTopMenuInboxCountDisplayID">Afficher le nombre de nouveaux messages dans la boite de réception</label>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" value="true" id="designTopMenuInboxCountDisplayID" name="designTopMenuInboxCountDisplay" {% if page.ergonomie.params.designTopMenuInboxCountDisplay == 'true' %} checked="checked" {% endif %} autocomplete="off">
+            <label class="form-check-label" for="designTopMenuInboxCountDisplayID">Afficher le nombre de nouveaux messages dans la boite de réception</label>
           </div>
 
-          <div class="custom-control custom-checkbox">
+          <div class="form-check">
             <input
               type="checkbox" value="true"
-              class="custom-control-input"
+              class="form-check-input"
               id="designTopMenuTransmissionsCountDisplayID"
               name="designTopMenuTransmissionsCountDisplay"
               {% if page.ergonomie.params.designTopMenuTransmissionsCountDisplay == 'true' %}
               checked="checked"
               {% endif %}
               autocomplete="off">
-            <label class="custom-control-label" for="designTopMenuTransmissionsCountDisplayID">Afficher le nombre de transmissions non lues</label>
+            <label class="form-check-label" for="designTopMenuTransmissionsCountDisplayID">Afficher le nombre de transmissions non lues</label>
           </div>
 
           {% if config.optionGeActiverDropbox == 'true' %}
-          <div class="custom-control custom-checkbox">
+          <div class="form-check">
             <input
               type="checkbox" value="true"
-              class="custom-control-input"
+              class="form-check-input"
               id="designTopMenuDropboxCountDisplayID"
               name="designTopMenuDropboxCountDisplay"
               {% if page.ergonomie.params.designTopMenuDropboxCountDisplay == 'true' %}
               checked="checked"
               {% endif %}
               autocomplete="off">
-            <label class="custom-control-label" for="designTopMenuDropboxCountDisplayID">Afficher le nombre de fichiers dans la boite de dépôt</label>
+            <label class="form-check-label" for="designTopMenuDropboxCountDisplayID">Afficher le nombre de fichiers dans la boite de dépôt</label>
           </div>
           {% endif %}
 
-          <div class="custom-control custom-checkbox">
+          <div class="form-check">
             <input
               type="checkbox" value="true"
-              class="custom-control-input"
+              class="form-check-input"
               id="designTopMenuTransmissionsColorIconeImportantID"
               name="designTopMenuTransmissionsColorIconeImportant"
               {% if page.ergonomie.params.designTopMenuTransmissionsColorIconeImportant == 'true' %}
               checked="checked"
               {% endif %}
               autocomplete="off">
-            <label class="custom-control-label" for="designTopMenuTransmissionsColorIconeImportantID">Colorer l'icône transmission si transmission importante non lue</label>
+            <label class="form-check-label" for="designTopMenuTransmissionsColorIconeImportantID">Colorer l'icône transmission si transmission importante non lue</label>
           </div>
 
-          <div class="custom-control custom-checkbox">
+          <div class="form-check">
             <input
               type="checkbox" value="true"
-              class="custom-control-input"
+              class="form-check-input"
               id="designTopMenuTransmissionsColorIconeUrgentID"
               name="designTopMenuTransmissionsColorIconeUrgent"
               {% if page.ergonomie.params.designTopMenuTransmissionsColorIconeUrgent == 'true' %}
               checked="checked"
               {% endif %}
               autocomplete="off">
-            <label class="custom-control-label" for="designTopMenuTransmissionsColorIconeUrgentID">Colorer l'icône transmission si transmission urgente non lue</label>
+            <label class="form-check-label" for="designTopMenuTransmissionsColorIconeUrgentID">Colorer l'icône transmission si transmission urgente non lue</label>
           </div>
         </div>
       </div>

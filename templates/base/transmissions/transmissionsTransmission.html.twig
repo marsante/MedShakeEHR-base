@@ -23,6 +23,7 @@
  # Transmissions, transmission
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -61,12 +62,12 @@
         {% endif %}
 
     </div>
-    <div class="col text-right">
+    <div class="col text-end">
       {% if user.id == page.transmission.fromID %}
         <div class="btn-group">
           <button class="btn btn-secondary editerTransmission" data-transmissionid="{{ page.transmissionID }}"><i class="fas fa-pencil-alt"></i> Editer</button>
-          <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="sr-only">Toggle Dropdown</span>
+          <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="visually-hidden">Toggle Dropdown</span>
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item editerTransmission" href="#" data-transmissionid="{{ page.transmissionID }}">Éditer</a>
@@ -84,7 +85,7 @@
           <tr>
             <td class="border-top-0">Auteur</td>
             <td class="border-top-0">{{ page.transmission.identiteAuteur }}</td>
-            <td class="border-top-0 text-right">Créée
+            <td class="border-top-0 text-end">Créée
               {% if page.transmission.registerDate|date('Ymd') != "now"|date('Ymd') %}
                 le {{ page.transmission.registerDate|date('d/m/Y H:i') }}
               {% else %}
@@ -103,13 +104,13 @@
           </tr>
           <tr class="{% if page.transmission.priorite == 10 %}table-danger{% elseif page.transmission.priorite == 5 %}table-warning{% endif %}">
             <td>Sujet</td>
-            <td colspan="2" class="font-weight-bold">{{ page.transmission.sujet }}</td>
+            <td colspan="2" class="fw-bold">{{ page.transmission.sujet }}</td>
           </tr>
           <tr>
             <td>Concerne</td>
-            <td colspan="2" class="font-weight-bold">
+            <td colspan="2" class="fw-bold">
               {% if page.transmission.aboutID > 0 %}
-                <a target="_blank" class="btn btn-sm btn-outline-secondary  mr-1" href="/patient/{{ page.transmission.aboutID }}/">
+                <a target="_blank" class="btn btn-sm btn-outline-secondary  me-1" href="/patient/{{ page.transmission.aboutID }}/">
                   <i class="fas fa-folder-open"></i>
                 </a>
                 {{ page.transmission.identiteAbout }}
@@ -125,12 +126,12 @@
                     {{ desti.identiteDestinataire }}
 
                     {% if page.transmission.updateDate > desti.dateLecture %}
-                      <i class="fas fa-eye-slash font-weight-bold text-danger" title="non lu par le destinataire"></i>
+                      <i class="fas fa-eye-slash fw-bold text-danger" title="non lu par le destinataire"></i>
                     {% else %}
-                      <i class="far fa-eye font-weight-bold text-success toChangeOnUpdate" title="lu par le destinataire"></i>
+                      <i class="far fa-eye fw-bold text-success toChangeOnUpdate" title="lu par le destinataire"></i>
                     {% endif %}
                     {% if desti.statut == 'checked' %}
-                        <i class="fas fa-clipboard-check font-weight-bold text-success toRemoveOnUpdate" title="Considérée comme traitée par le destinataire"></i>
+                        <i class="fas fa-clipboard-check fw-bold text-success toRemoveOnUpdate" title="Considérée comme traitée par le destinataire"></i>
                     {% endif %}
 
                   </li>
@@ -156,7 +157,7 @@
   <div class="collapse" id="transmissionRepondre">
     <div class="card card-body my-4">
       <form>
-        <div class="form-group">
+        <div class="mb-3">
           <input id="formRepSujetID" value="{{ page.transmissionID }}" type="hidden" autocomplete="off">
           <input id="formRepReponseID" value="" type="hidden" autocomplete="off">
           <label for="texteReponse">Réponse</label>
@@ -168,7 +169,7 @@
   </div>
 
   <div class="my-4">
-    <button class="btn btn-secondary" data-toggle="collapse" href="#transmissionRepondre"><i class="fas fa-reply"></i> Répondre</button>
+    <button class="btn btn-secondary" data-bs-toggle="collapse" href="#transmissionRepondre"><i class="fas fa-reply"></i> Répondre</button>
 
   </div>
 {% endblock %}

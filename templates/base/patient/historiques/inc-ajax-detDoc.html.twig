@@ -24,32 +24,33 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 <td></td>
 <td colspan="4" class="py-4">
 
-  <div class="nav nav-tabs font-weight-bold" id="docLinkBlock{{ page.doc.uniqid }}" role="tablist">
-    <a class="nav-item nav-link active" id="docViewLink{{ page.doc.uniqid }}" data-toggle="pill" href="#docViewPanel{{ page.doc.uniqid }}" >
-      <i class="fas fa-file mr-1"></i> Document {{ page.doc.ext }} ({{ page.doc.filesize }})
+  <div class="nav nav-tabs fw-bold" id="docLinkBlock{{ page.doc.uniqid }}" role="tablist">
+    <a class="nav-item nav-link active" id="docViewLink{{ page.doc.uniqid }}" data-bs-toggle="pill" href="#docViewPanel{{ page.doc.uniqid }}" >
+      <i class="fas fa-file me-1"></i> Document {{ page.doc.ext }} ({{ page.doc.filesize }})
     </a>
     {% if page.bioHprim %}
-      <a class="nav-item nav-link" id="hprimViewLink{{ page.doc.uniqid }}" data-toggle="pill" href="#hprimViewPanel{{ page.doc.uniqid }}" >
-        <i class="fas fa-vial mr-1"></i> Données HPRIM
+      <a class="nav-item nav-link" id="hprimViewLink{{ page.doc.uniqid }}" data-bs-toggle="pill" href="#hprimViewPanel{{ page.doc.uniqid }}" >
+        <i class="fas fa-vial me-1"></i> Données HPRIM
       </a>
     {% endif %}
     {% if page.texte %}
-      <a class="nav-item nav-link" id="msgViewLink{{ page.doc.uniqid }}" data-toggle="pill" href="#msgViewPanel{{ page.doc.uniqid }}" >
+      <a class="nav-item nav-link" id="msgViewLink{{ page.doc.uniqid }}" data-bs-toggle="pill" href="#msgViewPanel{{ page.doc.uniqid }}" >
         {% if page.doc.origine == 'externe' %}
-          <i class="fas fa-envelope-open mr-1"></i> Message associé
+          <i class="fas fa-envelope-open me-1"></i> Message associé
         {% else %}
-          <i class="fas fa-info mr-1"></i>  Informations
+          <i class="fas fa-info me-1"></i>  Informations
         {% endif %}
       </a>
     {% endif %}
   </div>
 
-  <div class="tab-content  border-left p-4" id="docContentBlock{{ page.doc.uniqid }}">
+  <div class="tab-content  border-start p-4" id="docContentBlock{{ page.doc.uniqid }}">
 
     <div class="tab-pane fade show active" id="docViewPanel{{ page.doc.uniqid }}" role="tabpanel" aria-labelledby="docViewLink{{ page.doc.uniqid }}">
       <div class="row">
@@ -71,7 +72,7 @@
                 </div>
               </div>
               {% endif %}
-              <div class="col text-right my-2">
+              <div class="col text-end my-2">
                 <a class="btn btn-outline-secondary btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/{{ page.doc.href }}" target="_blank">
                 <i class="fas fa-external-link-alt"></i>
                   Ouvrir dans un onglet
@@ -94,7 +95,7 @@
               </div>
             </div>
           {% else %}
-            <div class="d-block text-left my-3">
+            <div class="d-block text-start my-3">
               <p>Ce type de fichier n'est pas prévisualisable dans un navigateur</p>
               <a class="btn btn-secondary" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/{{ page.doc.href }}" target="_blank">
               <i class="fas fa-external-link-alt"></i>

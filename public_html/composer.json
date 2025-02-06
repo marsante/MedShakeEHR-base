@@ -23,7 +23,7 @@
 
     "require": {
         "npm-asset/jquery-touchswipe": "1.6.19",
-        "npm-asset/bootstrap": "^4.6.2",
+        "npm-asset/bootstrap": "^5.3.3",
         "npm-asset/tempusdominus-bootstrap-4": "5.39.2",
         "dimsemenov/magnific-popup": "1.1.0",
         "npm-asset/jquery.typewatch": "3.0.2",

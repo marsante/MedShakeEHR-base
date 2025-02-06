@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -83,12 +84,12 @@
             </p>
             {% endif %}
           </div>
-          <div class="col text-right">
-            <button type="button" class="btn btn-primary reset-modal" data-toggle="modal" data-target="#modalNewCat">
+          <div class="col text-end">
+            <button type="button" class="btn btn-primary reset-modal" data-bs-toggle="modal" data-bs-target="#modalNewCat">
                 <i class="fas fa-plus"></i> Nouvel acte
             </button>
             {% if config.apiCcamNgapUrl is not empty %}
-              <a href="/configuration/actes-base/rapport-maj/" class="btn btn-outline-secondary ml-1" onclick="return confirm('L\'opération de mise à jour automatique depuis le serveur d\'actes peut être très longue.\nSouhaitez-vous poursuivre ?\nSi oui, confirmez et patientez jusqu\'au chargement du rapport de mise à jour');"><i class="fas fa-cloud-download-alt"></i> Tout mettre à jour</a>
+              <a href="/configuration/actes-base/rapport-maj/" class="btn btn-outline-secondary ms-1" onclick="return confirm('L\'opération de mise à jour automatique depuis le serveur d\'actes peut être très longue.\nSouhaitez-vous poursuivre ?\nSi oui, confirmez et patientez jusqu\'au chargement du rapport de mise à jour');"><i class="fas fa-cloud-download-alt"></i> Tout mettre à jour</a>
             {% endif %}
           </div>
         </div>
@@ -96,7 +97,7 @@
         <nav>
           <div class="nav nav-tabs mb-4" id="nav-typesActes" role="tablist">
           {% for typeActe in page.typesActes %}
-            <a class="nav-item nav-link{% if loop.index == 1 %} active{% endif %}" id="nav-typesActesTab-{{ typeActe }}" data-toggle="tab" href="#nav-typesActes-{{ typeActe }}">
+            <a class="nav-item nav-link{% if loop.index == 1 %} active{% endif %}" id="nav-typesActesTab-{{ typeActe }}" data-bs-toggle="tab" href="#nav-typesActes-{{ typeActe }}">
             {% if typeActe == 'mCCAM' %}Modificateurs CCAM{% else %}{{ typeActe }}{% endif %}
             </a>
           {% endfor %}
@@ -138,7 +139,7 @@
                             <td>{{ w.nbUtilisation }}</td>
                             <td>{{ w.type }}</td>
 
-                            <td  class="text-right">
+                            <td  class="text-end">
                               <div class="btn-group">
                                 {% if w.type == 'CCAM' %}
                                 <a class="btn btn-light btn-sm" role="button" href="https://www.ameli.fr/accueil-de-la-ccam/trouver-un-acte/fiche-abregee.php?code={{ w.code }}" target="CCAM" title="Voir sur le site de la CCAM">
@@ -174,9 +175,9 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold" id="myModalLabel">Création / édition</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <h4 class="modal-title fw-bold" id="myModalLabel">Création / édition</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
         </button>
       </div>
       <div class="modal-body">
@@ -184,39 +185,39 @@
         {{ f.errorsBloc() }}
 
         <form id="formModalNewCat" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/ajax/configActesBaseCreate/">
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'type', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : {'NGAP' : 'NGAP', 'CCAM' : 'CCAM', 'mCCAM' : 'Modificateur CCAM','Libre' : 'Libre'}, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Type du code', } }) }}
           </div>
-          <div class="form-row align-items-end">
-            <div class="form-group col-3">
+          <div class="row align-items-end">
+            <div class="mb-3 col-3">
               {{ f.input ({ 'input' : { 'type' : 'text', 'name' : 'code', 'placeholder' : 'code NGAP ou CCAM', 'class' : 'form-control', 'autocomplete' : 'off' }, 'label' : { 'position' : 'before', 'label' : 'Code', } }) }}
             </div>
-            <div class="form-group col-2">
+            <div class="mb-3 col-2">
               {{ f.input ({ 'input' : { 'type' : 'text', 'name' : 'activite', 'value':'1', 'class' : 'form-control', 'autocomplete' : 'off' }, 'label' : { 'position' : 'before', 'label' : 'Activité', } }) }}
             </div>
-            <div class="form-group col-2">
+            <div class="mb-3 col-2">
               {{ f.input ({ 'input' : { 'type' : 'text', 'name' : 'phase', 'value':'0', 'class' : 'form-control', 'autocomplete' : 'off' }, 'label' : { 'position' : 'before', 'label' : 'Phase', } }) }}
             </div>
-            <div class="form-group col-4">
+            <div class="mb-3 col-4">
               {{ f.select ({ 'select' : { 'name' : 'codeProf', 'values': page.codeProf , 'class' : 'form-control', 'autocomplete' : 'off' }, 'label' : { 'position' : 'before', 'label' : 'Grille NGAP', } }) }}
             </div>
-            <div class="form-group col-3 text-right">
+            <div class="mb-3 col-3 text-end">
               <button type="button" class="btn btn-secondary importFromCCAM" title="Importer / mettre à jour depuis le site de la CCAM">
                 <i class="fas fa-search"></i>
                 Rechercher</button>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.input ({ 'input' : { 'type' : 'text', 'name' : 'label', 'placeholder' : 'description', 'class' : 'form-control', 'autocomplete' : 'off' }, 'label' : { 'position' : 'before', 'label' : 'Label', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'tarifUnit', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : {'euro' : '€', 'pourcent' : '%'}, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Unité tarif', } }) }}
           </div>
 
-          <div class="form-row">
-            <div class="form-group col-12">
+          <div class="row">
+            <div class="mb-3 col-12">
               {{ f.textarea ({
                         'textarea' : {
                           'name' : 'dataYaml',
@@ -236,6 +237,6 @@
 
                   </form>
                 </div>
-                <div class="modal-footer"> <button type="button" class="btn btn-light" data-dismiss="modal">Abandonner</button> <button type="button" class="btn btn-primary modal-save" data-form="formModalNewCat" data-modal="modalNewCat">Sauvegarder</button> </div> </div>
+                <div class="modal-footer"> <button type="button" class="btn btn-light" data-bs-dismiss="modal">Abandonner</button> <button type="button" class="btn btn-primary modal-save" data-form="formModalNewCat" data-modal="modalNewCat">Sauvegarder</button> </div> </div>
                         </div> </div>
 {% endblock %}

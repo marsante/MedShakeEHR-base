@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #
 #}
 
@@ -31,20 +32,20 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold">Choisir un examen</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title fw-bold">Choisir un examen</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form>
-          <div class="form-group">
+          <div class="mb-3">
             <label for="titreActu" class="control-label">Liste des études DICOM trouvées :</label>
-            <select class="custom-select" id="listeDicomStudies"></select>
+            <select class="form-select" id="listeDicomStudies"></select>
 
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
         <button type="button" class="btn btn-primary" id="listeDicomStudiesSubmit">Rapatrier</button>
       </div>
     </div>

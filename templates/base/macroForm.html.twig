@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {# input #}
@@ -38,7 +39,7 @@
 	    <div class="custom-control custom-{{ v.input.type }}">
 	      <input
 					type="checkbox"
-					class="custom-control-input {{ v.input.class|trim }}"
+					class="form-check-input {{ v.input.class|trim }}"
 
 					id="{{ v.input.id }}"
 					{% if v.input.value  == "true" %} checked="checked" {% endif %}
@@ -59,7 +60,7 @@
 					{% if v.input.datatypeid %} data-typeid="{{ v.input.datatypeid }}" {% endif %}
 					{% if v.input.internalName %} data-internalName="{{ v.input.internalName }}" {% endif %}
 					{{ v.input.add }} >
-	      <label class="custom-control-label {{ v.label.class }}" for="{{ v.input.id }}" title="{{ v.input.name }}">{{ v.label.label|e }}</label>
+	      <label class="form-check-label {{ v.label.class }}" for="{{ v.input.id }}" title="{{ v.input.name }}">{{ v.label.label|e }}</label>
 	    </div>
 
 			{% if v.input.after %}
@@ -202,7 +203,7 @@
 	{% endif %}
 
 	<select title="{{ v.select.internalName }} / {{ v.select.datatypeid }}"
-	class="custom-select{% if v.select.class %} {{ v.select.class }}{% if v.select.error %} inputErreur{% endif %}{% endif %}"
+	class="form-select{% if v.select.class %} {{ v.select.class }}{% if v.select.error %} inputErreur{% endif %}{% endif %}"
 	{% if v.select.id %} id="{{ v.select.id }}" {% endif %}
 	{% if v.select.name %} name="{{ v.select.name }}" {% endif %}
 	{% if v.select.datatypeid %} data-typeid="{{ v.select.datatypeid }}" {% endif %}
@@ -269,13 +270,13 @@
 		{% endif %}
 
 		{% for key,value in v.radio.values %}
-			<div class="custom-control custom-radio">
-				<input type="radio" id="{{ v.radio.id }}{{ loop.index }}" name="{{ v.radio.name }}" value="{{ key|e('html_attr') }}" class="custom-control-input"
+			<div class="form-check">
+				<input type="radio" id="{{ v.radio.id }}{{ loop.index }}" name="{{ v.radio.name }}" value="{{ key|e('html_attr') }}" class="form-check-input"
                         {% if v.radio.disabled %} disabled="{{ v.radio.disabled }}" {% endif %}
                         {% if v.radio.required %} required="{{ v.radio.required }}" {% endif %}
                         {% if v.radio.valueDefaut == key %} checked="checked" {% endif %} autocomplete="off"
                         {% if v.radio.tabindex is not empty %} tabindex="{{ v.radio.tabindex }}" {% endif %}>
-				<label class="custom-control-label" for="{{ v.radio.id }}{{ loop.index }}">{{ value|e }}</label>
+				<label class="form-check-label" for="{{ v.radio.id }}{{ loop.index }}">{{ value|e }}</label>
 			</div>
 		{% endfor %}
 
@@ -289,19 +290,19 @@
 		<div class="d-flex flex-wrap">
 		{# si un label existe #}
 		{% if v.label.label != '' and 'brAfter' not in v.label.class %}
-		  <div class="flex-grow-1 {% if v.label.class %}{{ v.label.class }}{% endif %} mr-2"
+		  <div class="flex-grow-1 {% if v.label.class %}{{ v.label.class }}{% endif %} me-2"
 			{% if v.radio.id %} for="{{ v.radio.id }}" {% endif %}>{{ v.label.label|e }}
 		  </div>
 		{% endif %}
 
 		{% for key,value in v.radio.values %}
-			<div class="custom-control custom-radio custom-control-inline">
-			  <input type="radio" id="{{ v.radio.id }}{{ loop.index }}" name="{{ v.radio.name }}" value="{{ key|e('html_attr') }}" class="custom-control-input"
+			<div class="form-check custom-control-inline">
+			  <input type="radio" id="{{ v.radio.id }}{{ loop.index }}" name="{{ v.radio.name }}" value="{{ key|e('html_attr') }}" class="form-check-input"
                       {% if v.radio.disabled %} disabled="{{ v.radio.disabled }}" {% endif %}
                       {% if v.radio.required %} required="{{ v.radio.required }}" {% endif %}
                       {% if v.radio.valueDefaut == key %} checked="checked" {% endif %} autocomplete="off"
                       {% if v.radio.tabindex is not empty %} tabindex="{{ v.radio.tabindex }}" {% endif %}>
-			  <label class="custom-control-label" for="{{ v.radio.id }}{{ loop.index }}">{{ value|e }}</label>
+			  <label class="form-check-label" for="{{ v.radio.id }}{{ loop.index }}">{{ value|e }}</label>
 			</div>
 		{% endfor %}
 		</div>
@@ -532,7 +533,7 @@
 
 
 							{% if el.value.formType in ['text','email','tel','password', 'number', 'range','reset'] %}
-								<div class="form-group">
+								<div class="mb-3">
 								{{ f.input ({
 									'input' : {
 										'type' : el.value.formType,
@@ -583,7 +584,7 @@
 									}) }}
 
 								{% elseif el.value.formType in ['checkbox', 'switch'] %}
-									<div class="form-group">
+									<div class="mb-3">
 									{{ f.input ({
 										'input' : {
 											'type' : el.value.formType,
@@ -608,7 +609,7 @@
 									</div>
 
 							{% elseif el.value.formType == "textarea" %}
-								<div class="form-group">
+								<div class="mb-3">
 								{{ f.textarea ({
 									'textarea' : {
 										'name' : el.value.name,
@@ -635,7 +636,7 @@
 								</div>
 
 							{% elseif el.value.formType == "select" %}
-								<div class="form-group">
+								<div class="mb-3">
 								{{ f.select ({
 									'select' : {
 										'name' : el.value.name,
@@ -664,7 +665,7 @@
 								</div>
 
 								{% elseif el.value.formType == "radio" %}
-									<div class="form-group">
+									<div class="mb-3">
 									{{ f.radio ({
 										'radio' : {
 											'name' : el.value.name,
@@ -689,7 +690,7 @@
 									</div>
 
 							{% elseif el.value.formType == "date" %}
-								<div class="form-group">
+								<div class="mb-3">
 								{{ f.input ({
 									'input' : {
 										'type' : 'text',
@@ -755,9 +756,9 @@
 	<div class="alert alert-danger alert-dismissible" role="alert" {% if display == 'none' %}style="display: none"{% endif %}>
 		<div class="d-flex align-items-center">
 			<i class="fas fa-exclamation fa-fw fa-3x"></i>
-			<div class="ml-4">
+			<div class="ms-4">
 				Merci de considérer les informations suivantes et de corriger les champs concernés :
-				<ul class="list-style-position-inside my-0 pl-0">
+				<ul class="list-style-position-inside my-0 ps-0">
 					{% for message in validationErrorsMsg %}
 				    {% if message %}<li>{{ message }}</li>{% endif %}
 					{% endfor %}
@@ -765,8 +766,8 @@
 			</div>
 		</div>
 		{% if dismiss %}
-			<button type="button" class="close cleanSessionFormWarning" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
+			<button type="button" class="close cleanSessionFormWarning" data-bs-dismiss="alert" aria-label="Close">
+				
 			</button>
 		{% endif %}
 	</div>
@@ -778,15 +779,15 @@
 	<div class="alert alert-danger alert-dismissible d-none cleanAndHideOnModalHide" role="alert">
 		<div class="d-flex align-items-center">
 			<i class="fas fa-exclamation fa-3x"></i>
-			<div class="ml-4">
+			<div class="ms-4">
 				Merci de considérer les informations suivantes et de corriger les champs concernés :
-				<ul class="list-style-position-inside my-0 pl-0">
+				<ul class="list-style-position-inside my-0 ps-0">
 				</ul>
 			</div>
 		</div>
 		{% if dismiss %}
 			<button type="button" class="close cleanSessionFormWarning" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
+				
 			</button>
 		{% endif %}
 	</div>

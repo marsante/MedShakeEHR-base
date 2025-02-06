@@ -386,7 +386,7 @@ if ($template != '') : ?>
 					<form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" class="form-inline">
 						<input name="bienvenue" type="hidden" />
 						<?php if (isset($_GET['v'])) { ?><input name="v" type="hidden" value="<?= $_GET['v'] ?>" /> <?php } ?>
-						<input id="dest" class="form-control mr-2" name="destination" type="text" value="<?= dirname(getcwd()) ?>" />
+						<input id="dest" class="form-control me-2" name="destination" type="text" value="<?= dirname(getcwd()) ?>" />
 						<button type="submit" class="btn btn-light" onclick="document.querySelector('#inst').style.display='none';document.querySelector('.svgcontainer').className+=' svganim';">Suivant</button>
 					</form>
 				</div>

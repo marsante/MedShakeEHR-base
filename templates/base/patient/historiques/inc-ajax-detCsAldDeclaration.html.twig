@@ -23,13 +23,14 @@
  # Template > patient : details sur un règlement pour l'historique
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 <td></td>
 <td colspan="4" class="py-4">
 
     <div class="card">
-        <div class="card-header font-weight-bold">{{ page.dataAld.aldNumber.aldLabel }}</div>
+        <div class="card-header fw-bold">{{ page.dataAld.aldNumber.aldLabel }}</div>
         <table class="table table-sm table-striped table-hover">
             <tbody>
                 {% if page.dataAld.aldCIM10 %}

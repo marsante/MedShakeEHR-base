@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -133,7 +134,7 @@
 
       {% if k == 0 %}
         <div class="card mb-3">
-          <div class="card-header font-weight-bold">Donné actuel du rendez-vous</div>
+          <div class="card-header fw-bold">Donné actuel du rendez-vous</div>
           <div class="card-body">
             <p>Données actuelles présente dans l'agenda</p>
           </div>
@@ -181,7 +182,7 @@
       {% else %}
 
         <div class="card mb-3">
-          <div class="card-header font-weight-bold">{% if v.operation is not defined %}
+          <div class="card-header fw-bold">{% if v.operation is not defined %}
             Nouveau
           {% elseif v.operation == 'missing' and v.olddata.absente == 'non' %}
             Marquage patient absent

@@ -23,6 +23,7 @@
  # Template > Config : edition d'un user template
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
  #}
 
@@ -94,9 +95,9 @@ $(document).ready(function() {
 
 <form class="col-md-12"  method="post" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/actions/configUserTemplatesSave/">
 
-  <div class="form-row">
+  <div class="row">
 
-    <div class="form-group col-4">
+    <div class="mb-3 col-4">
 
       {{ f.input ({
         'input' : {
@@ -116,7 +117,7 @@ $(document).ready(function() {
 
     </div>
 
-    <div class="form-group col-5">
+    <div class="mb-3 col-5">
 
       {{ f.input ({
         'input' : {
@@ -137,7 +138,7 @@ $(document).ready(function() {
 
 
 
-  <div class="form-group">
+  <div class="mb-3">
   {{ f.textarea ({
     'textarea' : {
       'name' : 'code',

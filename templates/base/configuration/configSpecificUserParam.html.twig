@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -70,9 +71,9 @@
   <div class="row">
     {% if page.userTemplates|length > 0 %}
       <div class="col {% if page.userParams|length > 0 %}offset-2{% endif %}">
-        <form class="form-inline" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/actions/configUserApplyTemplate/" method="post">
+        <form class="d-flex align-items-center" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/actions/configUserApplyTemplate/" method="post">
           <input type="hidden" name="userID" value="{{ page.userID }}">
-          <select class="custom-select my-1 mr-sm-2" name="p_template">
+          <select class="form-select my-1 me-sm-2" name="p_template">
             {% for val in page.userTemplates %}
               <option value="{{ val }}" {% if val == config.optionGeLoginCreationDefaultTemplate %}selected="selected"{% endif %}>{{ val }}</option>
             {% endfor %}
@@ -81,8 +82,8 @@
         </form>
       </div>
     {% endif %}
-    <div class="col text-right">
-      <button class="btn btn-primary addParam" type="button" data-toggle="modal" data-target="#modalAddParam"><i class="fas fa-plus"></i> Nouveau paramètre</button>
+    <div class="col text-end">
+      <button class="btn btn-primary addParam" type="button" data-bs-toggle="modal" data-bs-target="#modalAddParam"><i class="fas fa-plus"></i> Nouveau paramètre</button>
     </div>
   </div>
 
@@ -93,7 +94,7 @@
         <ul class="nav nav-pills flex-column">
           {% for k,v in page.userParams %}
             <li class="nav-item" role="presentation">
-              <a class="nav-link{% if loop.first %} active{% endif %}" href="#cat{{ k|replace({' ':'_', '\'':'_'}) }}" aria-controls="cat{{ k }}" role="tab" data-toggle="tab">{{ k }}</a>
+              <a class="nav-link{% if loop.first %} active{% endif %}" href="#cat{{ k|replace({' ':'_', '\'':'_'}) }}" aria-controls="cat{{ k }}" role="tab" data-bs-toggle="tab">{{ k }}</a>
             </li>
           {% endfor %}
         </ul>
@@ -168,7 +169,7 @@
                         }) }}
                       {% endif %}
                     </td>
-                    <td class="text-right">
+                    <td class="text-end">
                       <div class="btn-group">
                         <button class="btn btn-light btn-sm removeParam" type="button">
                           <span class="fas fa-times"></span>
@@ -196,16 +197,16 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title font-weight-bold">Nouveau paramètre</h4>
+          <h4 class="modal-title fw-bold">Nouveau paramètre</h4>
         </div>
           <form id="formNewParam" class="ajaxForm reload" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/ajax/configUserParamCreate/" method="post">
            <div class="modal-body">
             <input type="hidden" name="userID" value="{{ page.userID }}" autocomplete="off"/>
             <div class="row">
               <div class="col-md-6">
-                <div class="form-group">
+                <div class="mb-3">
                   <label for="paramCat">Catégorie</label>
-                  <select id="paramCat" class="custom-select" name="paramCat" autocomplete="off">
+                  <select id="paramCat" class="form-select" name="paramCat" autocomplete="off">
                     {% for k,v in page.availableCats %}
                       <option value="{{ k }}" {% if loop.first %} selected{% endif %}>{{ v }}</option>
                     {% endfor %}
@@ -215,7 +216,7 @@
               <div class="col-md-6">
                 <label>Paramètre</label>
                 {% for saniCat,cat in page.availableCats %}
-                  <select class="custom-select paramselect" name="paramNameInCat{{ saniCat }}"{% if not loop.first %} style="display:none"{% endif %} autocomplete="off">
+                  <select class="form-select paramselect" name="paramNameInCat{{ saniCat }}"{% if not loop.first %} style="display:none"{% endif %} autocomplete="off">
                     {% set first = true %}
                     {% for p in page.availableParams %}
                       {% if p.saniCat == saniCat %}
@@ -229,7 +230,7 @@
             </div>
             <p id="description" class="p-2 bg-light" >Description : {{ (page.availableParams|first).description }}</p>
             <p id="type" class="p-2 bg-light">type : {{ (page.availableParams|first).type }}</p>
-            <div class="form-group row">
+            <div class="mb-3 row">
               <div class="col-12">
                 <label>Valeur</label>
                 <input class="form-control" type="text" name="paramValue" autocomplete="off"/>
@@ -237,7 +238,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-light" data-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
             <button type="submit" class="btn btn-primary">Valider</button>
           </div>
         </form>

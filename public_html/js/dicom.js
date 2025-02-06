@@ -23,6 +23,7 @@
  * Fonctions JS pour les pages dicom
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val
  */
 
 $(document).ready(function() {
@@ -62,10 +63,10 @@ $(document).ready(function() {
 
     if (status == 'unchecked') {
       $(this).attr('data-status', 'checked');
-      $(this).html('<i class="fas fa-square mr-1"></i> Tout déselectionner');
+      $(this).html('<i class="fas fa-square me-1"></i> Tout déselectionner');
     } else {
       $(this).attr('data-status', 'unchecked');
-      $(this).html('<i class="fas fa-check-square mr-1"></i> Tout sélectionner');
+      $(this).html('<i class="fas fa-check-square me-1"></i> Tout sélectionner');
     }
 
   });

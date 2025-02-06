@@ -23,12 +23,13 @@
  # Template > userParameters : lister les prescriptions types
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
  #}
 
  <div class="row">
-   <div class="col text-right">
-     <button type="button" class="btn btn-primary btn-sm nouvelle-pres" data-toggle="modal" data-target="#modalNewPres"><i class="fas fa-plus"></i>
+   <div class="col text-end">
+     <button type="button" class="btn btn-primary btn-sm nouvelle-pres" data-bs-toggle="modal" data-bs-target="#modalNewPres"><i class="fas fa-plus"></i>
          Nouvelle prescription type
      </button>
    </div>
@@ -51,7 +52,7 @@
                      <td>{{ w.id }}</td>
                      <td>{{ w.label }}</td>
                      <td>{{ w.description }}</td>
-                     <td class="text-right">
+                     <td class="text-end">
                        <div class="btn-group">
                          <button type="button" class="btn btn-light btn-sm edit-by-prim-key" aria-label="Editer" data-id="{{ w.id }}" {% if w.toID == 0 %} disabled {% endif %} data-table="prescriptions" data-form="formModalNewPres" data-modal="modalNewPres">
                              <span class="fas fa-pencil-alt" aria-hidden="true"></span>

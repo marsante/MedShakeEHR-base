@@ -23,6 +23,7 @@
  # Template > patient : tableau des liens familiaux
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 
@@ -30,7 +31,7 @@
 
 
 <div class="card" style="margin-top : 8px">
-  <div class="card-header font-weight-bold">Liens familiaux
+  <div class="card-header fw-bold">Liens familiaux
   </div>
 
   <table class="table table-sm table-striped table-hover small">
@@ -49,7 +50,7 @@
             <a target="_blank" class="btn btn-light btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/{{ v.patientID }}/">
               <span class="fas fa-folder-open" aria-hidden="true"></span></a>
           </td>
-          <td class="font-weight-bold">{{ v.nom }}
+          <td class="fw-bold">{{ v.nom }}
             {{v.prenom }}</td>
           <td>{{ v.ddn }}</td>
           <td>{{ v.typeRelation }}</td>

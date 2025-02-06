@@ -24,6 +24,7 @@
  * Cron : synchronisation des agendas clicRDV avec l'agenda intégré
  *
  * @author fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
 
 // pour le configurateur de cron

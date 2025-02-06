@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -53,7 +54,7 @@
       </ul>
     {% endif %}
 
-  <form id="dateForm" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/historiqueRappelsMail/" method="post" class="form-inline mb-4">
+  <form id="dateForm" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/historiqueRappelsMail/" method="post" class="d-flex align-items-center mb-4">
 
     <a class="btn btn-outline-secondary m-1" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/historiqueRappelsMail/{{ page.dates.precedent|date("Y-m-d") }}/{% if page.selectPrat > 0 %}{{ page.selectPrat }}/{% endif %}">
       <span class="fas fa-chevron-left" aria-hidden="true"></span>
@@ -91,7 +92,7 @@
 
       <div class="card">
 
-        <div class="card-header font-weight-bold">
+        <div class="card-header fw-bold">
           <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/historiqueRappelsSMS/{{ page.dates.emission|date("Y-m-d") }}/{% if page.selectPrat > 0 %}{{ page.selectPrat }}/{% endif %}" class="btn btn-secondary btn-sm float-right m-1">Voir rappels SMS</a>
           <h3>Mails envoyés le {{ page.dates.emission|date("d/m/Y") }}</h3>
         </div>

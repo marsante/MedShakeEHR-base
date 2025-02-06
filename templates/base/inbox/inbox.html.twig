@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -78,7 +79,7 @@
             <tr>
               <td class="bg-primary text-white" colspan="3">
                 <div class="d-flex justify-content-between align-items-center">
-                  <span><i class="fas fa-calendar-day mr-2"></i>
+                  <span><i class="fas fa-calendar-day me-2"></i>
                     <strong>{{ k|date('j') }}{% if k|date('j') == 1 %}er{% endif %} {{ trans_mois[k|date('m')] }} {{ k|date('Y') }}</strong>
                   </span>
                   {% if loop.index == 1 %}
@@ -94,7 +95,7 @@
             {% for mail in mails %}
               <tr class="small mailClicView{% if parentLoop == '1' and loop.index == '1' %} table-success{% elseif mail.archived == 'c' %} table-warning{% endif %}" data-mailid="{{ mail.id }}" data-status="{{ mail.archived }}">
                 {% if mail.isValidHprim %}
-                  <td class="font-weight-bold">
+                  <td class="fw-bold">
                     {{ mail.hprimIdentite|e }}
                   </td>
                   <td>
@@ -108,7 +109,7 @@
 
                 <td>
                   {% if mail.pjNombre > 0 %}
-                    <span class="badge badge-primary">{{ mail.pjNombre }}</span>
+                    <span class="badge text-bg-primary">{{ mail.pjNombre }}</span>
                   {% endif %}
                 </td>
               </tr>

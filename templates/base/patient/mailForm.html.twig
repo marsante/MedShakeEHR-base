@@ -24,13 +24,14 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% import "macroForm.html.twig" as f %}
 {# Formulaire de synthèse #}
-<div class="jumbotron col-md-12">
-    <button id="cleanNewMail" type="button" class="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+<div class="bg-light mb-4 rounded-2 py-5 px-3 col-md-12">
+    <button id="cleanNewMail" type="button" class="btn-close" aria-label="Close">
+        
     </button>
 
     {% if page.form.addHidden.mailType == 'ns' %}
@@ -82,7 +83,7 @@
               <small>(Taille :
                 {{ page.doc.filesize|e }})</small>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-auto text-end">
               <a class="btn btn-secondary btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/{{ page.doc.url }}" target="_blank" title="Voir">
                 <i class="fas fa-external-link-alt"></i>
                 Voir

@@ -23,6 +23,7 @@
  # Template > people : voir les infos sur un registre
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -60,7 +61,7 @@
   <div class="col-12 col-md-6">
     <div class="card mb-4">
       <div class="card-header d-flex justify-content-between">
-        <div class=" font-weight-bold">
+        <div class=" fw-bold">
           <i class="fas fa-archive fa-fw fa-lg text-secondary"></i>
           Informations registre
         </div>
@@ -88,14 +89,14 @@
 
     {% if config.optionGeActiverGroupes == 'true' %}
       <div class="card mb-4">
-          <div class="card-header font-weight-bold d-flex justify-content-between">
-            <div  class="font-weight-bold">
+          <div class="card-header fw-bold d-flex justify-content-between">
+            <div  class="fw-bold">
               <i class="fas fa-user-graduate fa-fw fa-lg text-secondary"></i>
               Administrateurs
             </div>
             <div>
               {% if config.droitRegistrePeutGererAdministrateurs == 'true' %}
-                <a href="#" class="text-muted cursor-pointer" data-toggle="collapse" data-target=".collapseGroupeGestion" title="Modifier"><i class="fas fa-pencil-alt fa-fw"></i></a>
+                <a href="#" class="text-muted cursor-pointer" data-bs-toggle="collapse" data-bs-target=".collapseGroupeGestion" title="Modifier"><i class="fas fa-pencil-alt fa-fw"></i></a>
               {% endif %}
               {% if user.rank == 'admin' %}
                 <a class="text-muted" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/historiqueRelations/relationRegistrePraticien/{{ page.registreDataID }}/" title="Historique">
@@ -109,8 +110,8 @@
 
             {% if config.droitRegistrePeutGererAdministrateurs == 'true' %}
             <div class="collapseGroupeGestion collapse">
-              <form class="form-inline my-2 d-flex">
-                <div class="form-group flex-grow-1">
+              <form class="d-flex align-items-center my-2 d-flex">
+                <div class="mb-3 flex-grow-1">
                   <div class="input-group input-group-sm flex-grow-1">
                     <input class="form-control form-control-sm flex-grow-1 searchPeopleID" type="text" placeholder="nom du praticien" data-ajax="getRelationsPraticiens" autocomplete="off"/>
                     {{ f.select ({
@@ -120,12 +121,12 @@
                       'valueDefaut' : el.value.preValue,
                       'autocomplete' : 'off' } }) }}
                     <div class="input-group-append">
-                      <button type="submit" class="btn btn-sm btn-secondary addRelation" data-typeRelation="relationRegistrePraticien" data-peopleID="{{ page.registreDataID }}"><i class="fas fa-plus mr-1"></i> Ajouter</button>
+                      <button type="submit" class="btn btn-sm btn-secondary addRelation" data-typeRelation="relationRegistrePraticien" data-peopleID="{{ page.registreDataID }}"><i class="fas fa-plus me-1"></i> Ajouter</button>
                     </div>
                   </div>
                 </div>
                 {% if config.droitDossierPeutCreerPraticien == 'true' %}
-                  <a class="btn btn-sm btn-outline-secondary ml-4" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/groupe/create/"><i class="fas fa-user-md mr-1"></i> Nouvel utilisateur</a>
+                  <a class="btn btn-sm btn-outline-secondary ms-4" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/groupe/create/"><i class="fas fa-user-md me-1"></i> Nouvel utilisateur</a>
                 {% endif %}
               </form>
             </div>
@@ -137,7 +138,7 @@
             </tbody>
           </table>
 
-          <div class="card-footer text-right">
+          <div class="card-footer text-end">
             &nbsp;
           </div>
         </div>
@@ -146,12 +147,12 @@
 
     <div class="card mb-4">
       <div class="card-header d-flex justify-content-between">
-        <div class="font-weight-bold">
+        <div class="fw-bold">
           <i class="fas fa-hospital-alt fa-fw fa-lg text-secondary"></i> Groupes
         </div>
         <div>
           {% if config.droitRegistrePeutGererGroupes == 'true' %}
-          <a href="#" class="text-muted cursor-pointer" data-toggle="collapse" data-target=".collapseGroupesGestion" title="Modifier"><i class="fas fa-pencil-alt fa-fw"></i></a>
+          <a href="#" class="text-muted cursor-pointer" data-bs-toggle="collapse" data-bs-target=".collapseGroupesGestion" title="Modifier"><i class="fas fa-pencil-alt fa-fw"></i></a>
 
           <a class="text-muted" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/historiqueRelations/relationGroupeRegistre/{{ page.registreDataID }}/" title="Historique">
             <i class="fas fa-history fa-fw"></i>
@@ -164,8 +165,8 @@
 
         {% if config.droitRegistrePeutGererGroupes == 'true' %}
         <div class="collapseGroupesGestion collapse">
-          <form class="form-inline my-2 d-flex">
-            <div class="form-group flex-grow-1">
+          <form class="d-flex align-items-center my-2 d-flex">
+            <div class="mb-3 flex-grow-1">
               <div class="input-group input-group-sm flex-grow-1">
                 <input class="form-control form-control-sm flex-grow-1 searchPeopleID" type="text" placeholder="nom du groupe" data-ajax="getRelationsGroupes" autocomplete="off"/>
                 {{ f.select ({
@@ -175,12 +176,12 @@
                   'valueDefaut' : el.value.preValue,
                   'autocomplete' : 'off' } }) }}
                 <div class="input-group-append">
-                  <button type="submit" class="btn btn-sm btn-secondary addRelation" data-typeRelation="relationGroupeRegistre" data-peopleID="{{ page.registreDataID }}"><i class="fas fa-plus mr-1"></i> Ajouter</button>
+                  <button type="submit" class="btn btn-sm btn-secondary addRelation" data-typeRelation="relationGroupeRegistre" data-peopleID="{{ page.registreDataID }}"><i class="fas fa-plus me-1"></i> Ajouter</button>
                 </div>
               </div>
             </div>
             {% if config.droitGroupePeutCreerGroupe == 'true' %}
-              <a class="btn btn-sm btn-outline-secondary ml-4" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/groupe/create/"><i class="fas fa-hospital-alt mr-1"></i> Nouveau groupe</a>
+              <a class="btn btn-sm btn-outline-secondary ms-4" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/groupe/create/"><i class="fas fa-hospital-alt me-1"></i> Nouveau groupe</a>
             {% endif %}
           </form>
         </div>
@@ -192,7 +193,7 @@
         </tbody>
       </table>
 
-      <div class="card-footer text-right">
+      <div class="card-footer text-end">
         &nbsp;
       </div>
     </div>

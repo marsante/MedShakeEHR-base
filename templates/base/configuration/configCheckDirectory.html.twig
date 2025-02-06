@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 {% extends "page.html.twig" %}
 {% import "macroForm.html.twig" as f %}
@@ -112,7 +113,7 @@
                 <th>
                     Variable
                 </th>
-                <th class="text-right w-15">
+                <th class="text-end w-15">
                     Valeur
                 </th>
             </tr>
@@ -121,7 +122,7 @@
           {% for var, val in page.varPHP %}
             <tr>
                 <td>{{ var }}</td>
-                <td class="text-right {% if val.valBrute < page.recoVarPHP[var] %}bg-warning{% endif %}">
+                <td class="text-end {% if val.valBrute < page.recoVarPHP[var] %}bg-warning{% endif %}">
                   {{ val.val }}
                 </td>
             </tr>

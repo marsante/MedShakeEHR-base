@@ -23,6 +23,7 @@
  # Template > patient :  onglet biométrie, données cardio
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% import "macroForm.html.twig" as f %}
@@ -32,7 +33,7 @@
     <thea class="thead-light">
       <tr>
         <th>
-          <select id="selectAnneeHistoBiometrieCardio" class="custom-select custom-select-sm w-50 font-weight-bold">
+          <select id="selectAnneeHistoBiometrieCardio" class="form-select form-select-sm w-50 fw-bold">
             {% for annee in page.distinctYears %}
               <option {% if annee == page.selectedYear %} selected="selected" {% endif %}>{{ annee }}</option>
             {% endfor %}
@@ -46,7 +47,7 @@
     </thead>
     <tbody>
       {% for mois, moisdata in page.histoData %}
-        <tr class="table-primary font-weight-bold">
+        <tr class="table-primary fw-bold">
           <td colspan="5">{{ mois|capitalize }}</td>
         </tr>
         {% for date, datadate in moisdata %}

@@ -23,11 +23,12 @@
  # Template > dropbox : voir doc
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 <div class="card mb-3">
-  <div class="card-header font-weight-bold">
-    <i class="fas fa-user fa-fw fa-lg text-muted mr-1"></i>
+  <div class="card-header fw-bold">
+    <i class="fas fa-user fa-fw fa-lg text-muted me-1"></i>
     Patient</div>
   <div class="card-body">
 
@@ -124,7 +125,7 @@
           </div>
         </form>
       </div>
-      <div class="col col-6 my-3 text-right">
+      <div class="col col-6 my-3 text-end">
         <button class="btn btn-outline-primary" onclick="document.getElementById('creerPatient_doctitre').value = $('#titreOptionnel').val();document.getElementById('CreerPatient').submit();" value="Nouveau patient" title="Créer un nouveau patient avec les informations issues du fichier et le classer en même temps dans son dossier"><i class="fas fa-user-plus"></i> Créer patient et classer</button>
       </div>
     </div>
@@ -137,13 +138,13 @@
     <input type="hidden" name="box" value="{{ page.boxParams.id }}"/>
     <input type="hidden" class="form-control" id="idConfirmPatientID" name="patientID" value="{{ page.patientsPossibles.0.id }}">
 
-    <div class="form-group col-8 mb-0">
+    <div class="mb-3 col-8 mb-0">
       <label for="titreOptionnel">Titre (optionnel)</label>
       {# le js dans onchange="" permet de récupérer le titre du document avec la dans le champ hidden "dropboxDocTitle" du formulaire "CreerPatient" #}
       <input type="text" id="titreOptionnel" name="titre" class="form-control mb-0" placeholder="Titre du document" value="{{ page.boxParams.filesDefaultTitle }}" onchange="document.getElementById('creerPatient_doctitre').value = this.value;">
     </div>
 
-    <div class="col-4 text-right">
+    <div class="col-4 text-end">
         <button type="submit" id="submitBoutonClasser" class="btn btn-danger {% if page.patientsPossibles.0.id <= 0 %} d-none{% endif %}">Classer dans le dossier #<span id="submitIndicID">{{ page.patientsPossibles.0.id }}</span>
         </button>
     </div>
@@ -152,8 +153,8 @@
 </form>
 
 <div class="card mb-3">
-  <div class="card-header font-weight-bold">
-    <i class="fas fa-user fa-fw fa-lg text-muted mr-1"></i>
+  <div class="card-header fw-bold">
+    <i class="fas fa-user fa-fw fa-lg text-muted me-1"></i>
     Document</div>
   <div class="card-body">
     {% if page.fileData.display == '1' %}

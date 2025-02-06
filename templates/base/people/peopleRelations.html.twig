@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -82,10 +83,10 @@ Relations du patient  {{ page.patient.firstname }}
 <div class="row">
   <div class="col-12 col-xl-6 mb-4">
     <div class="card col-12 p-0">
-      <div class="card-header font-weight-bold"><i class="fas fa-user-md fa-fw fa-lg text-secondary"></i> Praticiens</div>
+      <div class="card-header fw-bold"><i class="fas fa-user-md fa-fw fa-lg text-secondary"></i> Praticiens</div>
       <div class="card-body">
-        <form class="form-inline my-2 d-flex">
-          <div class="form-group flex-grow-1">
+        <form class="d-flex align-items-center my-2 d-flex">
+          <div class="mb-3 flex-grow-1">
             <div class="input-group flex-grow-1">
               <input class="form-control flex-grow-1 searchPeopleID" type="text" placeholder="Identité" data-ajax="getRelationsPraticiens" autocomplete="off"/>
               {{ f.select ({
@@ -95,13 +96,13 @@ Relations du patient  {{ page.patient.firstname }}
                 'valueDefaut' : el.value.preValue,
                 'autocomplete' : 'off' } }) }}
               <div class="input-group-append">
-                <button type="submit" class="btn btn-primary addRelation" data-typeRelation="relationPatientPraticien" data-peopleID="{{ page.patient.id }}"><i class="fas fa-plus mr-1"></i> Ajouter</button>
+                <button type="submit" class="btn btn-primary addRelation" data-typeRelation="relationPatientPraticien" data-peopleID="{{ page.patient.id }}"><i class="fas fa-plus me-1"></i> Ajouter</button>
               </div>
             </div>
           </div>
           {% if config.droitDossierPeutCreerPraticien == 'true' %}
-          <div class="form-group">
-            <button type="button" class="btn btn-outline-secondary float-right ml-4" data-toggle="modal" data-target="#newPro"><i class="fas fa-user-md mr-1"></i> Nouveau praticien</button>
+          <div class="mb-3">
+            <button type="button" class="btn btn-outline-secondary float-end ms-4" data-bs-toggle="modal" data-bs-target="#newPro"><i class="fas fa-user-md me-1"></i> Nouveau praticien</button>
           </div>
           {% endif %}
         </form>
@@ -127,9 +128,9 @@ Relations du patient  {{ page.patient.firstname }}
 
 	<div class="col-12 col-xl-6 mb-4">
 		<div class="card col-12 p-0">
-			<div class="card-header font-weight-bold"><i class="fas fa-sitemap fa-fw fa-lg text-secondary mr-1"></i> Liens familiaux</div>
+			<div class="card-header fw-bold"><i class="fas fa-sitemap fa-fw fa-lg text-secondary me-1"></i> Liens familiaux</div>
       <div class="card-body">
-        <form class="form-inline d-flex">
+        <form class="d-flex align-items-center d-flex">
             <div class="input-group my-2 flex-grow-1">
               <input class="form-control searchPeopleID" type="text" placeholder="Identité" data-ajax="getRelationsPatients" autocomplete="off" />
               {{ f.select ({
@@ -139,7 +140,7 @@ Relations du patient  {{ page.patient.firstname }}
                 'valueDefaut' : el.value.preValue,
                 'autocomplete' : 'off' } }) }}
               <div class="input-group-append">
-                <button type="submit" class="btn btn-primary addRelation" data-typeRelation="relationPatientPatient" data-peopleID="{{ page.patient.id }}"><i class="fas fa-plus mr-1"></i> Ajouter</button>
+                <button type="submit" class="btn btn-primary addRelation" data-typeRelation="relationPatientPatient" data-peopleID="{{ page.patient.id }}"><i class="fas fa-plus me-1"></i> Ajouter</button>
               </div>
             </div>
         </form>

@@ -24,6 +24,7 @@
  #
  # @author fr33z00 <https://github.com/fr33z00>
  # @contrib Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 
@@ -34,14 +35,14 @@
   <div class="col-md-2">
     <ul class="nav nav-pills flex-column">
       <li class="nav-item">
-        <a href="#pa" aria-controls="pa" class="nav-link active" role="tab" data-toggle="tab">Horaires</a>
+        <a href="#pa" aria-controls="pa" class="nav-link active" role="tab" data-bs-toggle="tab">Horaires</a>
       </li>
       <li class="nav-item">
-        <a href="#pt" aria-controls="pt" class="nav-link" role="tab" data-toggle="tab">Types de consultations</a>
+        <a href="#pt" aria-controls="pt" class="nav-link" role="tab" data-bs-toggle="tab">Types de consultations</a>
       </li>
       {% if page.useClicRDV %}
         <li class="nav-item">
-          <a href="#pc" aria-controls="pc" class="nav-link" role="tab" data-toggle="tab">Paramètres ClicRDV</a>
+          <a href="#pc" aria-controls="pc" class="nav-link" role="tab" data-bs-toggle="tab">Paramètres ClicRDV</a>
         </li>
       {% endif %}
     </ul>
@@ -149,7 +150,7 @@
             </tr>
           {% endfor %}
         </table>
-        <p class="text-right">
+        <p class="text-end">
           <input class="btn btn-primary mt-2" type="submit" value="Valider">
         </p>
     </form>
@@ -193,12 +194,12 @@
                 <input class="form-control form-control-sm" name="desc_{{ k }}" type="text" value="{{ v.descriptif }}" autocomplete="off">
               </td>
               <td>
-                <div class="input-group input-group-sm" data-toggle="false">
+                <div class="input-group input-group-sm" data-bs-toggle="false">
                   <input class="form-control" name="back_{{ k }}" type="color" value="{{ v.backgroundColor }}" autocomplete="off">
                 </div>
               </td>
               <td>
-                <div class="input-group input-group-sm" data-toggle="false">
+                <div class="input-group input-group-sm" data-bs-toggle="false">
                   <input class="form-control" name="border_{{ k }}" type="color" value="{{ v.borderColor }}" autocomplete="off">
                 </div>
               </td>
@@ -206,19 +207,19 @@
                 <input class="form-control form-control-sm" name="duree_{{ k }}" type="text" value="{{ v.duree }}" autocomplete="off">
               </td>
               <td>
-                <select name="utilisable_{{ k }}" class="custom-select custom-select-sm utilisable">
+                <select name="utilisable_{{ k }}" class="form-select form-select-sm utilisable">
                   <option value="oui" {% if v.utilisable is not defined or v.utilisable == 'oui' %}selected{% endif %}>oui</option>
                   <option value="non" {% if v.utilisable == 'non' %}selected{% endif %}>non</option>
                 </select>
               </td>
-              <td class="text-muted text-right">
+              <td class="text-muted text-end">
                 <i class="fas fa-arrows-alt" title="Attraper pour déplacer et ordonner"></i>
               </td>
             </tr>
             {% endfor %}
             </tbody>
           </table>
-          <p class="text-right">
+          <p class="text-end">
             <input class="btn btn-primary mt-2" type="submit" value="Valider">
           </p>
       </form>

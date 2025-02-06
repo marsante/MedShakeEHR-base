@@ -23,22 +23,23 @@
  # LAP > monographie > pharmacologie
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
- <ul class="nav nav-tabs font-weight-bold" role="tablist" style="margin-bottom : 2em;">
+ <ul class="nav nav-tabs fw-bold" role="tablist" style="margin-bottom : 2em;">
   <li class="nav-item">
-    <a class="nav-link active" href="#pharmacodynamie" role="tab" data-toggle="tab">Propriétés pharmacodynamiques</a>
+    <a class="nav-link active" href="#pharmacodynamie" role="tab" data-bs-toggle="tab">Propriétés pharmacodynamiques</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#pharmacocinetique" role="tab" data-toggle="tab">Propriétés pharmacocinétiques</a>
+    <a class="nav-link" href="#pharmacocinetique" role="tab" data-bs-toggle="tab">Propriétés pharmacocinétiques</a>
   </li>
   {% if page['pharmacodynamie']['detEtioSpe'] is defined %}
     <li class="nav-item">
-      <a class="nav-link" href="#agentetio" role="tab" data-toggle="tab">Agent étiologique / Spectre antiinfectieux</a>
+      <a class="nav-link" href="#agentetio" role="tab" data-bs-toggle="tab">Agent étiologique / Spectre antiinfectieux</a>
     </li>
   {% endif %}
   <li class="nav-item">
-    <a class="nav-link" href="#securitePreCLinique" role="tab" data-toggle="tab">Sécurité préclinique</a>
+    <a class="nav-link" href="#securitePreCLinique" role="tab" data-bs-toggle="tab">Sécurité préclinique</a>
   </li>
 </ul>
 
@@ -69,7 +70,7 @@
       <ul class="nav nav-pills" role="tablist" style="margin-bottom : 2em;">
       {% for etioSpe in page.pharmacodynamie.etioSpe %}
             <li class="nav-item">
-              <a class="nav-link{% if loop.index == 1 %} active{% endif %}" href="#fiche{{ page['pharmacodynamie']['detEtioSpe'][etioSpe['codefic']][2][0]['valetio'] }}" aria-controls="home" role="pill" data-toggle="pill">{{ page['pharmacodynamie']['detEtioSpe'][etioSpe['codefic']][2][0]['textetio'] }}</a>
+              <a class="nav-link{% if loop.index == 1 %} active{% endif %}" href="#fiche{{ page['pharmacodynamie']['detEtioSpe'][etioSpe['codefic']][2][0]['valetio'] }}" aria-controls="home" role="pill" data-bs-toggle="pill">{{ page['pharmacodynamie']['detEtioSpe'][etioSpe['codefic']][2][0]['textetio'] }}</a>
             </li>
         {% endfor %}
       </ul>

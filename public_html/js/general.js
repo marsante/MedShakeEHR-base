@@ -24,6 +24,7 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
 $(document).ready(function() {
 
@@ -486,8 +487,8 @@ function alert_popup(severity, message) {
   $("#alert_section").append('\
     <div class="alert alert-' + severity + ' alert-to-remove fade show col-md-auto pl-4" role="alert">\
       <strong>' + titre[severity] + ' </strong>' + message +
-    '<button type="button" class="pl-2 close" data-dismiss="alert" aria-label="Close">\
-        <span aria-hidden="true">&times;</span>\
+    '<button type="button" class="ps-2 close" data-bs-dismiss="alert" aria-label="Close">\
+        \
       </button>\
     </div>');
   if (severity == 'info' || severity == 'success') {

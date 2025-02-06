@@ -24,12 +24,13 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% import "macroForm.html.twig" as f %}
 {# Formulaire de synthèse #}
-<div class="jumbotron col-md-12">
-<button id="cleanNewCourrier" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<div class="bg-light mb-4 rounded-2 py-5 px-3 col-md-12">
+<button id="cleanNewCourrier" type="button" class="btn-close" aria-label="Close"></button>
 
 <form id="invisible_form" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}{{ page.courrier.actionForm }}" method="post" target="_blank" data-patientID="{{ page.patient.id }}">
   <input id="courrierBodyID" name="courrierBody" type="hidden" value="" />

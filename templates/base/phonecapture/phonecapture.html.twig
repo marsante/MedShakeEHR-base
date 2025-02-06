@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 <!DOCTYPE html>
@@ -95,7 +96,7 @@
           <div class="col-1 p-0">
             <button onClick="window.location.reload()" class="btn btn-danger btn-sm"><i class="fas fa-sync"></i></button>
           </div>
-          <div class="col-11 pl-2 pr-0">
+          <div class="col-11 ps-2 pe-0">
             Prat.: {{ page.data.prat.lastname|default(page.data.prat.birthname) }} {{ page.data.prat.firstname }}<br>
             Patient: <strong>{{ page.data.patient.lastname|default(page.data.patient.birthname) }} {{ page.data.patient.firstname }}</strong> ({{ page.data.patient.dicomPatientID }})
           </div>

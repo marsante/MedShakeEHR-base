@@ -23,6 +23,7 @@
  # Template > lap : modal de gestion des prescriptions types
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 
@@ -30,19 +31,19 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold">Enregistrement d'une prescription type</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title fw-bold">Enregistrement d'une prescription type</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
-          <div class="form-group">
+          <div class="mb-3">
             <label for="ordoTypeName">Nom de la prescription type</label>
             <input type="text" class="form-control" id="ordoTypeName" placeholder="Nom de la prescription type" autocomplete="off">
             <small class="form-text text-muted">Ce nom est celui qui apparaitra dans le menu de sélection</small>
           </div>
-          <div class="form-group">
+          <div class="mb-3">
             <label for="ordoTypeCat">Cartégorie</label>
-            <select id="ordoTypeCat" class="custom-select" autocomplete="off">
+            <select id="ordoTypeCat" class="form-select" autocomplete="off">
             </select>
             <small class="form-text text-muted">Le classement de la prescription dans sa catégorie est alphabétique</small>
           </div>
@@ -50,7 +51,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Abandonner</button>
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Abandonner</button>
         <button id="modalLapPresPreSaveDo" type="button" class="btn btn-primary">Enregistrer</button>
       </div>
     </div>

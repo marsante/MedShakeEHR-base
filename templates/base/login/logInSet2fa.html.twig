@@ -23,6 +23,7 @@
  # Template > login set2fa
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -83,7 +84,7 @@ $(document).ready(function() {
 {% block body %}
 <h1>Mise en place de l'authentification à double facteurs pour votre compte</h1>
 
-<div class="alert alert-danger my-3 font-weight-bold d-flex justify-content-between align-items-center" role="alert">
+<div class="alert alert-danger my-3 fw-bold d-flex justify-content-between align-items-center" role="alert">
   <i class="fas fa-exclamation-triangle fa-2x"></i>
   <span>Ne quitter pas cette page sans avoir suivi scrupuleusement toutes les instructions, vous ne pourriez définitvement plus vous reconnecter à l'application !</span>
   <i class="fas fa-exclamation-triangle fa-2x"></i>
@@ -107,7 +108,7 @@ $(document).ready(function() {
 
       <h3>Actions à entreprendre</h3>
       <p>
-        <ol class="pl-3">
+        <ol class="ps-3">
           <li>Téléchargez une application OTP (one-time password) pour votre smartphone. Vous pouvez par exemple choisir FreeOTP, application libre et open source mais vous trouverez des dizaines d'autres applications de ce type. Attention de n'utilisez qu'une application dont vous êtes certain de la provenance et de la sécurité !</li>
           <li>Initialisez l'application et assurez-vous de lui permettre l'accès à l'appareil photo.</li>
           <li>Flashez le QR code présent à l'écran</li>

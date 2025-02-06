@@ -23,18 +23,19 @@
  # Template > patient : recherche CIM 10
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 <div id="searchCIM10" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold">Rechercher CIM 10</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title fw-bold">Rechercher CIM 10</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form>
-          <div class="form-group">
+          <div class="mb-3">
             <label for="texteRechercheCIM10">Recherche par mot clé</label>
             <input type="text" autocomplete="off" class="form-control" id="texteRechercheCIM10" placeholder="mot clé">
           </div>
@@ -42,7 +43,7 @@
         <div id="codeCIM10trouves" class="row"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
       </div>
     </div>
   </div>

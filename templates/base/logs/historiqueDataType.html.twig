@@ -23,6 +23,7 @@
  # Template > logs: historique data type
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -77,7 +78,7 @@
           </a>
           {{ v.patientPrenom }} {{ v.patientNom }}
           {% if v.toID in config.statsExclusionPatientsArray %}
-            <span class="badge badge-danger">Patient test</span>
+            <span class="badge text-bg-danger">Patient test</span>
           {% endif %}
         </td>
         <td>{{ v.pratPrenom }} {{ v.pratNom }}</td>

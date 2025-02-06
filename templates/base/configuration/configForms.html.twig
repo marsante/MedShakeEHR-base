@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -82,8 +83,8 @@ $(document).ready(function() {
 		<div role="tabpanel" class="tab-pane active" id="types">
 
       <div class="row mt-3">
-        <div class="col text-right">
-          <button type="button" class="btn btn-primary reset-modal" data-toggle="modal" data-target="#modalNewType">
+        <div class="col text-end">
+          <button type="button" class="btn btn-primary reset-modal" data-bs-toggle="modal" data-bs-target="#modalNewType">
             <i class="fas fa-plus"></i> Nouveau formulaire
           </button>
         </div>
@@ -113,7 +114,7 @@ $(document).ready(function() {
             <td>{{ w.internalName }}</td>
             <td>{{ w.name }}</td>
             <td>{{ w.description }}</td>
-            <td class="text-right">
+            <td class="text-end">
               <div class="btn-group">
                 <a class="btn btn-light btn-sm btn-edit" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/forms/edit/{{ w.id }}/">
                   <span class="fas fa-pencil-alt" aria-hidden="true"></span>
@@ -139,8 +140,8 @@ $(document).ready(function() {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold" id="myModalLabel">Création formulaire</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title fw-bold" id="myModalLabel">Création formulaire</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
@@ -148,7 +149,7 @@ $(document).ready(function() {
 
 			<form id="formModalNewType" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/ajax/configFormCreate/">
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -164,7 +165,7 @@ $(document).ready(function() {
 				}) }}
 				</div>
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -181,7 +182,7 @@ $(document).ready(function() {
 				</div>
 
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -197,7 +198,7 @@ $(document).ready(function() {
 				}) }}
 				</div>
 
-        <div class="form-group">
+        <div class="mb-3">
         {{ f.select ({
           'select' : {
             'name' : 'module',
@@ -213,7 +214,7 @@ $(document).ready(function() {
         }) }}
         </div>
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.select ({
 					'select' : {
 						'name' : 'cat',
@@ -233,7 +234,7 @@ $(document).ready(function() {
 			</form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Abandonner</button>
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Abandonner</button>
         <button type="button" class="btn btn-primary modal-save" data-form="formModalNewType" data-modal="modalNewType">Sauvegarder</button>
       </div>
     </div>

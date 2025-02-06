@@ -24,6 +24,7 @@
  #
  # @author fr33z00 <https://github.com/fr33z00>
  # @contrib Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 {% import "macroForm.html.twig" as f %}
 <div class="row">
@@ -32,15 +33,15 @@
     <ul class="nav nav-pills flex-column">
       {% if config.optionGeActiverLapInterne == 'true' %}
       <li class="nav-item">
-        <a class="nav-link  active" href="#lapMedics" data-toggle="tab">Paramétrage du LAP</a>
+        <a class="nav-link  active" href="#lapMedics" data-bs-toggle="tab">Paramétrage du LAP</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#lapSams" data-toggle="tab">SAM</a>
+        <a class="nav-link" href="#lapSams" data-bs-toggle="tab">SAM</a>
       </li>
       {% endif %}
       {% if config.administratifPeutAvoirPrescriptionsTypes == 'true' %}
       <li class="nav-item">
-        <a id="prescriptionsTypesButton" class="nav-link{% if config.optionGeActiverLapInterne != 'true' %} active{% endif %}" href="#prescriptionsTypes" data-toggle="tab">Prescriptions types</a>
+        <a id="prescriptionsTypesButton" class="nav-link{% if config.optionGeActiverLapInterne != 'true' %} active{% endif %}" href="#prescriptionsTypes" data-bs-toggle="tab">Prescriptions types</a>
       </li>
       {% endif %}
     </ul>
@@ -75,7 +76,7 @@
               <tr>
                 <td>Choix par défaut du menu de recherche des médicaments</td>
                 <td>
-                  <select class="form-control" name="lapSearchDefaultType" autocomplete="off">
+                  <select class="form-select" name="lapSearchDefaultType" autocomplete="off">
                     <option {% if page.lap.params.lapSearchDefaultType == 'dci' %} selected="selected"{% endif %}  value="dci">Médicaments virtuels (DCI)</option>
                     <option {% if page.lap.params.lapSearchDefaultType == 'dcispe' %} selected="selected"{% endif %} value="dcispe">Médicaments virtuels + Spécialités commerciales</option>
                     <option {% if page.lap.params.lapSearchDefaultType == 'spe' %} selected="selected"{% endif %} value="spe">Spécialités commerciales</option>
@@ -87,7 +88,7 @@
               <tr>
                 <td>Ordre de tris par défaut des recherches de médicaments à prescrire</td>
                 <td>
-                  <select class="form-control" name="lapSearchResultsSortBy" autocomplete="off">
+                  <select class="form-select" name="lapSearchResultsSortBy" autocomplete="off">
                     <option {% if page.lap.params.lapSearchResultsSortBy == 'nom' %} selected="selected"{% endif %}  value="nom">Nom de spécialité</option>
                     <option {% if page.lap.params.lapSearchResultsSortBy == 'prixUcd' %} selected="selected"{% endif %} value="prixUcd">Prix estimatif par UCD</option>
                   </select>
@@ -158,10 +159,10 @@
 
         <ul class="nav nav-tabs mb-3">
           <li class="nav-item">
-            <a class="nav-link active" href="#catPrescrip" role="tab" data-toggle="tab">Catégories</a>
+            <a class="nav-link active" href="#catPrescrip" role="tab" data-bs-toggle="tab">Catégories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#presType" aria-controls="presType" role="presType" data-toggle="tab">Prescriptions types hors LAP</a>
+            <a class="nav-link" href="#presType" aria-controls="presType" role="presType" data-bs-toggle="tab">Prescriptions types hors LAP</a>
           </li>
         </ul>
 

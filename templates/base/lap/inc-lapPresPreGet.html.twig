@@ -23,6 +23,7 @@
  # Template > lap : prescriptions types
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 
@@ -32,11 +33,11 @@
       <div class="card mb-1">
         <div class="card-body p-2">
           <span class="card-title">{{ cat.label }}
-          <span class="badge float-right">{{ cat.enfants }}</span><br>
+          <span class="badge float-end">{{ cat.enfants }}</span><br>
           {% if cat.description %}<small class="card-subtitle mb-2 text-muted">{{ cat.description }}</small>{% endif %}
 
           {% if cat.enfants > 0 %}
-          <select class="custom-select custom-select-sm small presTypeSelect">
+          <select class="form-select form-select-sm small presTypeSelect">
             <option> </option>
             {% for k, pres in page['pres'][cat.id] %}
               <option value="{{ pres.id }}">{{ pres.label }}</option>

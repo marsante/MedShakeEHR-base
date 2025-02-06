@@ -26,6 +26,7 @@
  # @author  Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00             <https://github.com/fr33z00>
  # @contrib DEMAREST Maxime     <maxime@indelog.fr>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -155,9 +156,9 @@
     {% if page.univTagsListHtml is not empty %}
       {% if page.univTags.typeDroitAjoRet %}
 
-        <div class="custom-control custom-switch mt-n4 text-right">
-          <input id="univTagsSetTag" type="checkbox" class="custom-control-input" onclick="getTagsList({{ page.univTags.typeID }}, {{ page.univTags.toID }}, (this.checked ? 'select' : 'show'));" autocomplete="off">
-          <label class="custom-control-label" for="univTagsSetTag"><i class="fas fa-tags fa-fw"></i></label>
+        <div class="form-check form-switch mt-n4 text-end">
+          <input id="univTagsSetTag" type="checkbox" class="form-check-input" onclick="getTagsList({{ page.univTags.typeID }}, {{ page.univTags.toID }}, (this.checked ? 'select' : 'show'));" autocomplete="off">
+          <label class="form-check-label" for="univTagsSetTag"><i class="fas fa-tags fa-fw"></i></label>
         </div>
       {% endif %}
       <div class="univTagsContainer" data-typeID="{{ page.univTags.typeID }}">

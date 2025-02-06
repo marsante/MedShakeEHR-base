@@ -23,6 +23,7 @@
  # Template > patient : modal d'alerte
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 
@@ -30,15 +31,15 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold">Alerte du système d'aide à la décision indexée par médicament (SAM)</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title fw-bold">Alerte du système d'aide à la décision indexée par médicament (SAM)</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
       </div>
       <div class="modal-footer">
-        <button id="modAlerteSamBloquerPourPatient" type="button" class="btn btn-light" data-dismiss="modal">Ne plus voir pour ce patient</button>
-        <button id="modAlerteSamFermer" type="button" class="btn btn-danger" data-dismiss="modal">C'est noté !</button>
+        <button id="modAlerteSamBloquerPourPatient" type="button" class="btn btn-light" data-bs-dismiss="modal">Ne plus voir pour ce patient</button>
+        <button id="modAlerteSamFermer" type="button" class="btn btn-danger" data-bs-dismiss="modal">C'est noté !</button>
       </div>
     </div>
   </div>

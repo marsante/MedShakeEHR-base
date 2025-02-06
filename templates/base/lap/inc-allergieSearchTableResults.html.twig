@@ -23,6 +23,7 @@
  # Template > lap : tableau des résultats de recherche allergie
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 
@@ -34,7 +35,7 @@
       <tr>
         <td>{{ code }}</td>
         <td>{{ label }}</td>
-        <td class="text-right">
+        <td class="text-end">
           <button type="button" data-parentID="{{ page.parentID }}" data-code="{{ code }}" data-label="{{ label }}" class="btn btn-light btn-sm addAllergieToPatient">
             <span class="fas fa-arrow-circle-down" aria-hidden="true"></span></button>
         </form>

@@ -23,6 +23,7 @@
  # Template > Outils > export data
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -75,8 +76,8 @@
       <h3>Choisir le formulaire concerné par l'export</h3>
       <form>
         <div class="row">
-          <div class="form-group col-10">
-            <select autocomplete="off" id="formID" name="formID" class="custom-select">
+          <div class="mb-3 col-10">
+            <select autocomplete="off" id="formID" name="formID" class="form-select">
               {% for catID, forms in page.listeForms %}
                 <optgroup label="{{ page['listeCats'][catID]['label']|e('html_attr') }}">
                   {% for form in forms %}
@@ -86,7 +87,7 @@
               {% endfor %}
             </select>
           </div>
-          <div class="form-group col-2">
+          <div class="mb-3 col-2">
             <button id="exportDataChoisirFormButton" type="submit" class="btn btn-primary">Choisir</button>
           </div>
         </div>
@@ -102,7 +103,7 @@
         <div class="col-12 col-lg-4">
 
           <div class="card my-4 bg-secondary text-white">
-            <div class="card-header font-weight-bold">{{ page.dataTypeinfos.label }}</div>
+            <div class="card-header fw-bold">{{ page.dataTypeinfos.label }}</div>
             <div class="card-body">
               Formulaire source : {{ page.formInfos.name }} (#{{ page.formInfos.id }})<br>
               Exploité sous : {{ page.dataTypeinfos.catLabel }} > {{ page.dataTypeinfos.label }}
@@ -122,9 +123,9 @@
           </div>
 
           <div class="card my-4 bg-light">
-            <div class="card-header font-weight-bold">Options</div>
+            <div class="card-header fw-bold">Options</div>
             <div class="card-body">
-              <div class="form-group">
+              <div class="mb-3">
                 {{ f.select ({
                 'select' : {
                   'name' : 'option_file_format',
@@ -138,7 +139,7 @@
                 }
               }) }}
               </div>
-              <div class="form-group">
+              <div class="mb-3">
                 {{ f.select ({
           			'select' : {
           				'name' : 'option_select_type',
@@ -157,10 +158,10 @@
           </div>
 
           <div class="card my-4 bg-light">
-            <div class="card-header font-weight-bold">Plage calendaire</div>
+            <div class="card-header fw-bold">Plage calendaire</div>
             <div class="card-body">
 
-              <div class="form-group">
+              <div class="mb-3">
                 {{ f.select ({
           			'select' : {
           				'name' : 'date_type',
@@ -176,7 +177,7 @@
           		}) }}
               </div>
               <div class="row">
-                <div class="form-group col">
+                <div class="mb-3 col">
                   {{ f.input ({
                     'input' : {
                       'type' : 'text',
@@ -193,7 +194,7 @@
                   }) }}
                 </div>
 
-                <div class="form-group col">
+                <div class="mb-3 col">
                   {{ f.input ({
                     'input' : {
                       'type' : 'text',
@@ -215,8 +216,8 @@
 
           {% if config.optionGeExportPratListSelection == 'true' %}
             <div class="card my-4 bg-light selectMinOne">
-              <div class="card-header font-weight-bold">
-                <div class="float-right text-secondary">
+              <div class="card-header fw-bold">
+                <div class="float-end text-secondary">
                   <i class="far fa-check-square switchCheckAll" title="tous"></i>
                   <i class="far fa-square switchUncheckAll" title="aucun"></i>
                 </div>
@@ -227,7 +228,7 @@
                   <p class="mb-3">Sélectionner au moins 1 praticien.</p>
                 {% endif %}
                 {% for prat in page.prat %}
-                  <div class="form-group">
+                  <div class="mb-3">
                     {% if config.droitExportPeutExporterToutesDataGroupes == 'false' and prat.id != user.id %}
                       {% set disabled='disabled' %}
                     {% else %}
@@ -258,8 +259,8 @@
 
         <div class="col-12 col-lg-4">
           <div class="card my-4 bg-light">
-            <div class="card-header font-weight-bold">
-              <div class="float-right text-secondary">
+            <div class="card-header fw-bold">
+              <div class="float-end text-secondary">
                 <i class="far fa-check-square switchCheckAll" title="tous"></i>
                 <i class="far fa-square switchUncheckAll" title="aucun"></i>
               </div>
@@ -267,7 +268,7 @@
             </div>
             <div class="card-body">
               {% for type, label in page.dataFieldsAdmin %}
-                <div class="form-group">
+                <div class="mb-3">
                   {{ f.input ({
             			'input' : {
             				'type' : 'switch',
@@ -288,8 +289,8 @@
 
           {% if page.dataFieldsAdminPro is not empty %}
           <div class="card my-4 bg-light">
-            <div class="card-header font-weight-bold">
-              <div class="float-right text-secondary">
+            <div class="card-header fw-bold">
+              <div class="float-end text-secondary">
                 <i class="far fa-check-square switchCheckAll" title="tous"></i>
                 <i class="far fa-square switchUncheckAll" title="aucun"></i>
               </div>
@@ -297,7 +298,7 @@
             </div>
             <div class="card-body">
               {% for type, label in page.dataFieldsAdminPro %}
-                <div class="form-group">
+                <div class="mb-3">
                   {{ f.input ({
             			'input' : {
             				'type' : 'switch',
@@ -320,8 +321,8 @@
 
         <div class="col-12 col-lg-4">
           <div class="card my-4 bg-light">
-            <div class="card-header font-weight-bold">
-              <div class="float-right text-secondary">
+            <div class="card-header fw-bold">
+              <div class="float-end text-secondary">
                 <i class="far fa-check-square switchCheckAll" title="tous"></i>
                 <i class="far fa-square switchUncheckAll" title="aucun"></i>
               </div>
@@ -329,7 +330,7 @@
             </div>
             <div class="card-body">
               {% for type, label in page.dataFields %}
-                <div class="form-group">
+                <div class="mb-3">
                   {{ f.input ({
                   'input' : {
                     'type' : 'switch',

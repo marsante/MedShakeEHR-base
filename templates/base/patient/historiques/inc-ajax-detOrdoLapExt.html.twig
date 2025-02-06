@@ -23,20 +23,21 @@
  # Template > patient : details sur une ordonnance LAP externe pour l'historique
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 <td></td>
 <td colspan="4" class="py-4">
 
   {% set randID = random(100000, 999999) %}
 
-  <nav class="nav nav-tabs font-weight-bold">
-    <a class="nav-item nav-link active" id="pdf-tab{{ randID }}" data-toggle="tab" href="#pdf-pan{{ randID }}">
+  <nav class="nav nav-tabs fw-bold">
+    <a class="nav-item nav-link active" id="pdf-tab{{ randID }}" data-bs-toggle="tab" href="#pdf-pan{{ randID }}">
       <i class="far fa-file-pdf fa-fw"></i>
       PDF
     </a>
   </nav>
 
-  <div class="tab-content border-left p-4">
+  <div class="tab-content border-start p-4">
     <div class="tab-pane active" id="pdf-pan{{ randID }}">{{ page.pdfHtml }}</div>
   </div>
 </td>

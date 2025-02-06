@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #
  #}
 
@@ -111,7 +112,7 @@
 
             <div class="progress" style="margin-top : 20px;">
               <div class="progress-bar" role="progressbar" style="width: 00%;">
-                <span class="sr-only"></span>
+                <span class="visually-hidden"></span>
               </div>
             </div>
         </div>
@@ -131,16 +132,16 @@
 
       <ul class="nav nav-tabs mb-4" id="tabsFiles{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="twig-tab{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" data-toggle="tab" href="#twig{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" role="tab" aria-controls="twig" aria-selected="true">
+          <a class="nav-link active" id="twig-tab{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" data-bs-toggle="tab" href="#twig{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" role="tab" aria-controls="twig" aria-selected="true">
             Templates twig
-            <span class="badge badge-secondary ml-1">{{ page.listeTemplates|length }}</span>
+            <span class="badge text-bg-secondary ms-1">{{ page.listeTemplates|length }}</span>
           </a>
         </li>
         {% if page.listeAutres|length > 0  %}
         <li class="nav-item">
-          <a class="nav-link" id="autres-tab{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" data-toggle="tab" href="#autres{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" role="tab" aria-controls="autres" aria-selected="false">
+          <a class="nav-link" id="autres-tab{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" data-bs-toggle="tab" href="#autres{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" role="tab" aria-controls="autres" aria-selected="false">
             Autres fichiers
-            <span class="badge badge-secondary ml-1">{{ page.listeAutres|length }}</span>
+            <span class="badge text-bg-secondary ms-1">{{ page.listeAutres|length }}</span>
           </a>
         </li>
         {% endif %}
@@ -178,7 +179,7 @@
                           </ul>
                           {% endif %}
                         </td>
-                        <td class="text-right">
+                        <td class="text-end">
                           <div class="btn-group">
                             <a class="btn btn-light btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/templates-pdf/edit/{{ v.file|url_encode }}/{% if page.selectUser > 0 %}{{ page.selectUser }}/{% endif %}">
                               {% if page.templatesDirAutorisationEcriture == false %}
@@ -209,7 +210,7 @@
                     <th>
                         Fichier
                     </th>
-                    <th class="text-right">
+                    <th class="text-end">
                         Gérer
                     </th>
                 </tr>
@@ -219,7 +220,7 @@
                   {% if v.file %}
                     <tr>
                         <td>{{ v.file }}</td>
-                        <td class="text-right">
+                        <td class="text-end">
                           <div class="btn-group">
                             <button class="delTemplatePDF btn btn-sm btn-light" type="button" {% if v.linkedTo|length > 0 or page.templatesDirAutorisationEcriture == false %}disabled{% endif %} data-file="{{ v.file }}" data-user="{{ page.selectUser }}"><span class="fas fa-times" aria-hidden="true"></span></button>
                           </div>

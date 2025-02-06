@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -73,7 +74,7 @@
         <td>{{ w.module }}</td>
         <td>{{ w.name }}</td>
 
-        <td class="text-right">
+        <td class="text-end">
           <div class="btn-group">
             <a class="btn btn-light btn-sm{% if k=='displayforms' %} disabled{% endif %}" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/forms/preview/{{ w.id }}/">
               <span class="fas fa-eye" aria-hidden="true"></span>
@@ -97,12 +98,12 @@
 
       <div class="alert alert-warning" role="alert">Les fichiers javascript n'étant pas chargés, ce formulaire n'est pas dynamique !</div>
 
-      <div class="jumbotron col-md-12">
+      <div class="bg-light mb-4 rounded-2 py-5 px-3 col-md-12">
         {{ f.formbuilder(page.form , page.formIN ) }}
       </div>
 
       <div class="card my-3">
-        <div class="card-header" data-toggle="collapse" data-target="#collapseTemplate" style="cursor: pointer">
+        <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTemplate" style="cursor: pointer">
           <button class="btn btn-light btn-sm"><i class="far fa-plus-square"></i></button> Template d'impression
         </div>
         <div id="collapseTemplate" class="collapse card-body">
@@ -114,7 +115,7 @@
       </div>
 
       <div class="card my-3">
-        <div class="card-header" data-toggle="collapse" data-target="#collapseSql" style="cursor: pointer">
+        <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseSql" style="cursor: pointer">
           <button class="btn btn-light btn-sm">
             <i class="far fa-plus-square"></i>
           </button>
@@ -126,7 +127,7 @@
       </div>
 
       <div class="card my-3">
-        <div class="card-header" data-toggle="collapse" data-target="#collapseTools" style="cursor: pointer">
+        <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTools" style="cursor: pointer">
           <button class="btn btn-light btn-sm">
             <i class="far fa-plus-square"></i>
           </button>

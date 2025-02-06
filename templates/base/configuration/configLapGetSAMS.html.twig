@@ -23,6 +23,7 @@
  # Template > Config : rafraichir les SAMs et afficher le résultat
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -59,7 +60,7 @@
         <th>id</th>
         <th>intitulé</th>
         <th>géré</th>
-        <th class="text-right">spécialités trouvées</th>
+        <th class="text-end">spécialités trouvées</th>
       </tr>
     </thead>
     <tbody>
@@ -68,7 +69,7 @@
           <td>{{ sam.id }}</td>
           <td>{{ sam.titre }}</td>
           <td>{{ sam.methode }}</td>
-          <td class="text-right">{{ page['codesParSams'][sam.id]|length }}</td>
+          <td class="text-end">{{ page['codesParSams'][sam.id]|length }}</td>
         </tr>
       {% endfor %}
     </tbody>

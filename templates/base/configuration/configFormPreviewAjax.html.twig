@@ -23,15 +23,16 @@
  # Template > Config : aperçu des formulaires
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% import "macroForm.html.twig" as f %}
 <div class="alert alert-warning" role="alert">
   <p class="m-0">
-    <i class="fas fa-exclamation-circle fa-3x mr-3 float-left"></i>
+    <i class="fas fa-exclamation-circle fa-3x me-3 float-start"></i>
     Le javascript n'est pas chargé, le formulaire n'est pas dynamique !<br>L'aperçu est mis à jour après chaque enregistrement.
   </p>
 </div>
-<div class="jumbotron col-md-12">
+<div class="bg-light mb-4 rounded-2 py-5 px-3 col-md-12">
   {{ f.formbuilder(page.form , page.formIN ) }}
 </div>

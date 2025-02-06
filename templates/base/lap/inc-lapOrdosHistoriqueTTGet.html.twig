@@ -23,6 +23,7 @@
  # Template > lap : historique des tt
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 
@@ -32,8 +33,8 @@
   <thead>
     <tr>
       <th class="text-center  border-top-0">DÉBUT</th>
-      <th class="text-center font-weight-bold  border-top-0" style="width : 95px">
-        <select id="selectHistoTTAnnee" class="custom-select">
+      <th class="text-center fw-bold  border-top-0" style="width : 95px">
+        <select id="selectHistoTTAnnee" class="form-select">
         {% for annee in page.histoTTannees %}
           <option {% if annee == page.histoTTannee %}selected="selected"{% endif %}>{{ annee }}</option>
         {% endfor %}
@@ -46,7 +47,7 @@
   {% for mois, jours in page.histoTT %}
     <thead>
       <tr class="table-primary">
-        <td colspan="3" class="font-weight-bold text-capitalize text-center">{{ mois }}</td>
+        <td colspan="3" class="fw-bold text-capitalize text-center">{{ mois }}</td>
       </tr>
     </thead>
     <tbody>
@@ -59,7 +60,7 @@
                   {% if medic.ordonnanceID > 0 %}
                     <li data-ordonnanceid="{{ medic.ordonnanceID }}" class="voirOrdonnance" style="cursor: pointer;">
                     {% elseif medic.value.prescripteurInitialTT %}
-                      <li data-toggle="tooltip" data-placement="top" title="Prescripteur externe : {{ medic.value.prescripteurInitialTT }}">
+                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="Prescripteur externe : {{ medic.value.prescripteurInitialTT }}">
                       {% else %}
                       <li>
                       {% endif %}
@@ -68,15 +69,15 @@
                         :
                         {{ medic.value.posoHumanCompleteTab|join('<br>') }}</small>
                       {% if medic.ligneData.isALD == 'true' %}
-                        <span class="badge badge-danger">ald</span>{% endif %}
+                        <span class="badge text-bg-danger">ald</span>{% endif %}
                       {% if medic.ligneData.isChronique == 'true' %}
-                        <span class="badge badge-secondary">chronique</span>{% endif %}
+                        <span class="badge text-bg-secondary">chronique</span>{% endif %}
                     </li>
                   {% endfor %}
                 </ul>
               {% endif %}
             </td>
-            <td class="font-weight-bold text-center table-info">{{ jour }}</td>
+            <td class="fw-bold text-center table-info">{{ jour }}</td>
             <td>
               {% if medics.stop %}
                 <ul style="line-height : 1.7">
@@ -84,7 +85,7 @@
                     {% if medic.ordonnanceID > 0 %}
                       <li data-ordonnanceid="{{ medic.ordonnanceID }}" class="voirOrdonnance" style="cursor: pointer;">
                       {% elseif medic.value.prescripteurInitialTT %}
-                        <li data-toggle="tooltip" data-placement="top" title="Prescripteur externe : {{ medic.value.prescripteurInitialTT }}">
+                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Prescripteur externe : {{ medic.value.prescripteurInitialTT }}">
                         {% else %}
                         <li>
                         {% endif %}
@@ -93,9 +94,9 @@
                           :
                           {{ medic.value.posoHumanCompleteTab|join('<br>') }}</small>
                         {% if medic.ligneData.isALD == 'true' %}
-                          <span class="badge badge-danger">ald</span>{% endif %}
+                          <span class="badge text-bg-danger">ald</span>{% endif %}
                         {% if medic.ligneData.isChronique == 'true' %}
-                          <span class="badge badge-secondary">chronique</span>{% endif %}
+                          <span class="badge text-bg-secondary">chronique</span>{% endif %}
                       </li>
                     {% endfor %}
                   </ul>

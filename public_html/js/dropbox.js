@@ -23,6 +23,7 @@
  * Fonctions JS pour dropbox
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val
  */
 
 $(document).ready(function() {
@@ -76,7 +77,7 @@ $(document).ready(function() {
   });
 
   // tab changement
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+  $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
     viewDoc($(e.target.hash).find('li.list-group-item').first());
     $(e.relatedTarget.hash).find('li.list-group-item').removeClass('list-group-item-success'); // previous active tab
   });

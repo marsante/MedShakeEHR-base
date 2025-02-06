@@ -23,26 +23,27 @@
  # Template > patient : details sur une ligne générique pour l'historique
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 <td></td>
 <td colspan="4" class="py-4">
 
   {% set randID = random(100000, 999999) %}
 
-  <nav class="nav nav-tabs font-weight-bold">
+  <nav class="nav nav-tabs fw-bold">
     {% if page.txtVersion %}
-      <a class="nav-item nav-link active" id="tab-tab{{ randID }}" data-toggle="tab" href="#tab-pan{{ randID }}">
+      <a class="nav-item nav-link active" id="tab-tab{{ randID }}" data-bs-toggle="tab" href="#tab-pan{{ randID }}">
         <i class="far fa-file-alt fa-fw"></i> Texte
       </a>
     {% endif %}
     {% if page.pdfVersion %}
-      <a class="nav-item nav-link {% if page.txtVersion is not defined  %}active{% endif %}" id="pdf-tab{{ randID }}" data-toggle="tab" href="#pdf-pan{{ randID }}">
+      <a class="nav-item nav-link {% if page.txtVersion is not defined  %}active{% endif %}" id="pdf-tab{{ randID }}" data-bs-toggle="tab" href="#pdf-pan{{ randID }}">
         <i class="far fa-file-pdf fa-fw"></i> PDF
       </a>
     {% endif %}
   </nav>
 
-  <div class="tab-content border-left p-4">
+  <div class="tab-content border-start p-4">
     {% if page.txtVersion %}
       <div class="tab-pane active" id="tab-pan{{ randID }}">
         <div style="min-height: 200px;">

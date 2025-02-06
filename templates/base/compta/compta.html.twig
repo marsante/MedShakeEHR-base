@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -67,16 +68,16 @@
 </h1>
 
 
-<form id="periodeForm" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/compta/" method="post" class="form-inline" style="margin : 30px 0;">
-    <button class="btn btn-light refresh mr-sm-2 mb-2" type="button">
+<form id="periodeForm" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/compta/" method="post" class="d-flex align-items-center" style="margin : 30px 0;">
+    <button class="btn btn-light refresh me-sm-2 mb-2" type="button">
       <span class="fas fa-sync-alt"></span>
     </button>
   {% if page.pratsAuto|length > 1 %}
-    <div class="input-group mr-sm-2 mb-2">
+    <div class="input-group me-sm-2 mb-2">
       <div class="input-group-prepend">
         <span class="input-group-text" style="width:45px;padding-left:15px"><i class="fas fa-user-md"></i></span>
       </div>
-      <select name="prat" class="custom-select">
+      <select name="prat" class="form-select">
         {% for prat in page.pratsAuto %}
           <option value="{{ prat.id }}" {% if prat.id in page.pratsSelect %}selected="selected"{% endif %}
           >{{ prat.prenom }} {{ prat.nom }}</option>
@@ -87,11 +88,11 @@
     <input type="hidden" name="prat" value="{% for prat in page.pratsAuto %}{{ prat.id }}{% endfor %}" />
   {% endif %}
 
-  <div class="input-group mr-sm-2 mb-2">
+  <div class="input-group me-sm-2 mb-2">
     <div class="input-group-prepend">
       <span class="input-group-text" style="width:45px;padding-left:17px"><i class="fas fa-bolt"></i></span>
     </div>
-    <select id="periodeQuickSelectID" name="periodeQuickSelect" class="custom-select" autocomplete="off" />
+    <select id="periodeQuickSelectID" name="periodeQuickSelect" class="form-select" autocomplete="off" />
       <option value="none" selected>Selection rapide</option>
       {% for k,v in page.periode.quickOptions %}
         <option value="{{ k }}">{{ v }}</option>
@@ -99,7 +100,7 @@
     </select>
   </div>
 
-  <div id="beginPeriodeIDB" class="input-group date datepick mr-sm-2 mb-2">
+  <div id="beginPeriodeIDB" class="input-group date datepick me-sm-2 mb-2">
     <div class="input-group-prepend">
       <span class="input-group-text" style="width:45px">du: </span>
     </div>
@@ -109,7 +110,7 @@
     </div>
   </div>
 
-  <div id="endPeriodeIDB" class="input-group date datepick mr-sm-2 mb-2">
+  <div id="endPeriodeIDB" class="input-group date datepick me-sm-2 mb-2">
     <div class="input-group-prepend">
       <span class="input-group-text" style="width:45px">au: </span>
     </div>
@@ -119,7 +120,7 @@
     </div>
   </div>
 
-  <div class="input-group mr-sm-2 mb-2">
+  <div class="input-group me-sm-2 mb-2">
     <div class="input-group-prepend">
       <span class="input-group-text" style="width:85px">impayés</span>
     </div>
@@ -130,7 +131,7 @@
     </div>
   </div>
 
-  <div class="input-group mr-sm-2 mb-2">
+  <div class="input-group me-sm-2 mb-2">
     <div class="input-group-prepend">
       <span class="input-group-text" style="width:85px">bilan</span>
     </div>
@@ -154,7 +155,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 id="nomPatient" class="modal-title font-weight-bold"></h4>
+        <h4 id="nomPatient" class="modal-title fw-bold"></h4>
       </div>
       <div class="modal-body">
 
@@ -171,7 +172,7 @@
           <input title=" / " name="dejaEspeces" value="" type="hidden">
           <div class="row">
             <div class="col-md-4">
-              <div class="form-group">
+              <div class="mb-3">
                 <label class="control-label" for="id_regleCheque_id">Chèque
                 </label>
                 <div class="input-group">
@@ -183,7 +184,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="form-group">
+              <div class="mb-3">
                 <label class="control-label" for="id_regleCB_id">CB
                 </label>
                 <div class="input-group">
@@ -195,7 +196,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="form-group">
+              <div class="mb-3">
                 <label class="control-label" for="id_regleEspeces_id">Espèces
                 </label>
                 <div class="input-group">
@@ -209,7 +210,7 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group">
+              <div class="mb-3">
                 <label class="control-label" for="id_regleIdentiteCheque_id">Identité payeur
                 </label>
                 <input title="regleIdentiteCheque / 205" id="id_regleIdentiteCheque_id" name="regleIdentiteCheque" placeholder="si différent patient" class="form-control" autocomplete="off" data-internalname="regleIdentiteCheque" type="text">
@@ -218,7 +219,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-light" data-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
           <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>
       </form>

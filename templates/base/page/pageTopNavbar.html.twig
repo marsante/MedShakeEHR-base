@@ -24,11 +24,12 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 {% import "macroForm.html.twig" as f %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="z-index:100">
-  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#top-navbar">
+  <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#top-navbar">
     <span class="navbar-toggler-icon"></span>
   </button>
   <a href="" class="navbar-brand">{{ config.designAppName }}</a>
@@ -38,7 +39,7 @@
 
       {# Menu de navigation / peut être supprimé #}
       {% if noMenuInBar is empty %}
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav me-auto">
 
           {# génération du menu principal #}
           {% if page.topNavBarSections is not empty %}
@@ -54,14 +55,14 @@
           {% endif %}
 
           {% if user.rank == 'admin' and config.systemState == "maintenance" %}
-            <form class="form-inline">
-              <div class="dropdown ml-4">
-                <button class="btn btn-sm btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <form class="d-flex align-items-center">
+              <div class="dropdown ms-4">
+                <button class="btn btn-sm btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Mode maintenance actif
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/actions/configToggleSystemState/"><i class="fas fa-sign-out-alt fa-fw text-muted mr-1"></i> Sortir du mode maintenance</a>
-                  <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/"><i class="fas fa-cogs fa-fw text-muted mr-1"></i> Accès configuration</a>
+                  <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/actions/configToggleSystemState/"><i class="fas fa-sign-out-alt fa-fw text-muted me-1"></i> Sortir du mode maintenance</a>
+                  <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/"><i class="fas fa-cogs fa-fw text-muted me-1"></i> Accès configuration</a>
                   <div class="dropdown-divider"></div>
                   <div class="dropdown-item disabled">Seuls les administrateurs peuvent parcourir le logiciel.<br>Les autres utilisateurs sont renvoyés vers une page d'attente.</div>
                 </div>
@@ -70,7 +71,7 @@
           {% endif %}
         </ul>
 
-        <ul class="nav navbar-nav ml-md-auto">
+        <ul class="nav navbar-nav ms-md-auto">
           {% include('tnbe-userDropdownMenu.html.twig') %}
         </ul>
       {% endif %}

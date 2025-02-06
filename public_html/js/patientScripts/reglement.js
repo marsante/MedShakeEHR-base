@@ -24,6 +24,7 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
 
 var factureActuelle = [];
@@ -280,47 +281,47 @@ function construireLigneTableauActes(index, value) {
   }
 
   //acte
-  tabLigne = '<tr><td class="font-weight-bold row' + index + '" >' + index + '</td>';
+  tabLigne = '<tr><td class="fw-bold row' + index + '" >' + index + '</td>';
   // label
-  tabLigne += '<td class="text-left text-secondary">' + (value['label'] == null ? '' : '<span title="' + value['label'] + '"><i class="far fa-question-circle"></i></span>') + '</td>';
+  tabLigne += '<td class="text-start text-secondary">' + (value['label'] == null ? '' : '<span title="' + value['label'] + '"><i class="far fa-question-circle"></i></span>') + '</td>';
 
   // code asso
-  tabLigne += '<td' + tabColHide + '>' + (value['type'] == 'NGAP' ? '' : '<input class="form-control form-control-sm text-right codeAsso" value="' + value['codeAsso'] + '">') + '</td>';
+  tabLigne += '<td' + tabColHide + '>' + (value['type'] == 'NGAP' ? '' : '<input class="form-control form-control-sm text-end codeAsso" value="' + value['codeAsso'] + '">') + '</td>';
   // valeur de base
   tabLigne += '<td class="text-center"><span class="baseActeValue">' + value['base'] + '</span>€</td>';
   // pourcents & quantité
   if (value['code'] == 'IK' || index == 'IK') {
-    tabLigne += '<td class="text-right"' + tabColHide + '><div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text">x</span></div><input class="form-control text-right ikNombre" value="' + value['ikNombre'] + '"></div></td>")';
+    tabLigne += '<td class="text-end"' + tabColHide + '><div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text">x</span></div><input class="form-control text-end ikNombre" value="' + value['ikNombre'] + '"></div></td>")';
   } else if(value['type'] == 'NGAP') {
-    tabLigne += '<td class="text-right"' + tabColHide + '> \
+    tabLigne += '<td class="text-end"' + tabColHide + '> \
       <div class="input-group input-group-sm"> \
         <div class="input-group-prepend"> \
           <span class="input-group-text">x</span> \
         </div>\
-        <input class="form-control text-right modulationActe d-none" value="' + value['pourcents'] + '">\
-        <input class="form-control text-right quantiteActe" value="' + value['quantite'] + '"> \
+        <input class="form-control text-end modulationActe d-none" value="' + value['pourcents'] + '">\
+        <input class="form-control text-end quantiteActe" value="' + value['quantite'] + '"> \
       </div> \
       </td>")';
   } else {
-    tabLigne += '<td class="text-right"' + tabColHide + '> \
+    tabLigne += '<td class="text-end"' + tabColHide + '> \
       <div class="input-group input-group-sm"> \
-        <input class="form-control text-right modulationActe" value="' + value['pourcents'] + '"> \
-        <input class="form-control text-right quantiteActe d-none" value="' + value['quantite'] + '"> \
+        <input class="form-control text-end modulationActe" value="' + value['pourcents'] + '"> \
+        <input class="form-control text-end quantiteActe d-none" value="' + value['quantite'] + '"> \
         <div class="input-group-append"> \
           <span class="input-group-text">%</span> \
         </div> \
       </div></td>")';
   }
   // modifs ccam
-  tabLigne += '<td class="text-right"' + tabColHide + '>' + (value['type'] == 'NGAP' ? '' : '<input class="form-control form-control-sm text-right modifsCCAM" maxlength="4" value="' + value['modifsCCAM'] + '">') + '</td>")';
+  tabLigne += '<td class="text-end"' + tabColHide + '>' + (value['type'] == 'NGAP' ? '' : '<input class="form-control form-control-sm text-end modifsCCAM" maxlength="4" value="' + value['modifsCCAM'] + '">') + '</td>")';
   // total sécu
   tabLigne += '<td class="text-center"' + tabColHide + '><span class="add2TarifSum">' + value['tarif'] + '</span>€</td>';
   // colonne vide
   tabLigne += '<td></td>';
   // dépassement
-  tabLigne += '<td class="text-right"><div class="input-group input-group-sm"><input class="form-control text-right add2DepaSum" value="' + value['depassement'] + '"><div class="input-group-append"><span class="input-group-text">€</span></div></div></td>';
+  tabLigne += '<td class="text-end"><div class="input-group input-group-sm"><input class="form-control text-end add2DepaSum" value="' + value['depassement'] + '"><div class="input-group-append"><span class="input-group-text">€</span></div></div></td>';
   // code qualif
-  tabLigne += '<td class="text-right"' + tabColHide + '><select class="custom-select custom-select-sm codeQualif" autocomplete="off">';
+  tabLigne += '<td class="text-end"' + tabColHide + '><select class="form-select form-select-sm codeQualif" autocomplete="off">';
   tabLigne += '<option ' + (value['codeQualif'] == '' ? 'selected' : '') + ' title="Aucun Qualificatif" value=""></option>';
   tabLigne += '<option ' + (value['codeQualif'] == 'A' ? 'selected' : '') + ' title="Depassement Autorise" value="A">DA</option>';
   tabLigne += '<option ' + (value['codeQualif'] == 'E' ? 'selected' : '') + ' title="Exigence particuliere du malade" value="E">DE</option>';
@@ -329,9 +330,9 @@ function construireLigneTableauActes(index, value) {
   tabLigne += '<option ' + (value['codeQualif'] == 'N' ? 'selected' : '') + ' title="Acte a ne pas rembourser en AMO" value="N">NR</option>';
   tabLigne += '</select></td>';
   //total ligne
-  tabLigne += '<td class="text-right font-weight-bold total"><span class="totalLigne">' + value['total'] + '</span>€</td>';
+  tabLigne += '<td class="text-end fw-bold total"><span class="totalLigne">' + value['total'] + '</span>€</td>';
   // sup ligne
-  tabLigne += '<td class="removeActe text-right"><button class="btn btn-sm btn-light"><i class="far fa-trash-alt"></i></button></td>';
+  tabLigne += '<td class="removeActe text-end"><button class="btn btn-sm btn-light"><i class="far fa-trash-alt"></i></button></td>';
   tabLigne += '</tr>';
   return tabLigne;
 }

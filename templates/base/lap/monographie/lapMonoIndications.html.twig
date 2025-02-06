@@ -23,6 +23,7 @@
  # LAP > monographie > indications
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
  <p class="lead">{{ page['indications']['indSpe']|length }} indication{% if page['indications']['indSpe']|length > 1 %}s{% endif %}</p>
@@ -40,14 +41,14 @@
    {% set speSmr = page['indications']['smrSpe'][indication.codeind] %}
 
    <div class="card mb-3">
-       <div class="card-header" role="tab" id="heading{{ loop.index }}{{ rand }}" data-toggle="collapse" data-parent="#accordion{{ rand }}" data-target="#collapse{{ loop.index }}{{ rand }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}{{ rand }}" style="cursor: pointer">
+       <div class="card-header" role="tab" id="heading{{ loop.index }}{{ rand }}" data-bs-toggle="collapse" data-parent="#accordion{{ rand }}" data-bs-target="#collapse{{ loop.index }}{{ rand }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}{{ rand }}" style="cursor: pointer">
 
        <h4 class="card-title">
           {{ indicDet['7']['0']['libcourt'] }}
 
           {% if speSmr is not empty %}
             {% for smr in speSmr|slice(-1, 1) %}
-             <small><span class="badge badge-info float-right">SMR : {{ smr.textsmr }}</span></small>
+             <small><span class="badge text-bg-info float-end">SMR : {{ smr.textsmr }}</span></small>
             {% endfor %}
           {% endif %}
 

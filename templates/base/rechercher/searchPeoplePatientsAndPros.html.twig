@@ -25,6 +25,7 @@
  # @author  Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00             <https://github.com/fr33z00>
  # @contrib DEMAREST Maxime     <maxime@indelog.fr>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -78,7 +79,7 @@ associer patient
       </div>
     {% endif %}
 
-    <div class="form-row align-items-center">
+    <div class="row align-items-center">
 
       <div class="col-auto">
         {{ f.input ({
@@ -152,17 +153,17 @@ associer patient
       </div>
 
       <div class="col-auto">
-          <div class="custom-control custom-checkbox justify-content-start
+          <div class="form-check justify-content-start
           {% if page.porp != 'patient' and config.droitDossierPeutVoirUniquementPatientsPropres != 'true' %}
               d-none
           {% endif %}
           ">
-          <input type="checkbox" class="custom-control-input searchupdate" id="patientsPropres">
-          <label style="justify-content: left" class="custom-control-label" for="patientsPropres">Patients propres uniquement</label>
+          <input type="checkbox" class="form-check-input searchupdate" id="patientsPropres">
+          <label style="justify-content: left" class="form-check-label" for="patientsPropres">Patients propres uniquement</label>
           </div>
       </div>
 
-      <div class="col-auto ml-auto">
+      <div class="col-auto ms-auto">
         {% if page.porp in ['patient', 'today'] %}
           {% if page.porp == 'patient' and config.optionGeActiverVitaleLecture =='true' %}
             <button type="button" class="btn btn-success lireCpsVitale"><i class="fas fa-user"></i> Vitale</button>
@@ -171,11 +172,11 @@ associer patient
           <div class="btn-group  my-xl-1">
             <a class="btn btn-primary" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/create/"><i class="fas fa-plus"></i> Nouveau patient</a>
             {% if config.droitDossierPeutSupPatient == 'true' %}
-              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only">Toggle Dropdown</span>
+              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
               </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/people/deleted/"><i class="fas fa-trash-restore fa-fw text-muted mr-1"></i>Récupérer un dossier supprimé</a>
+              <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/people/deleted/"><i class="fas fa-trash-restore fa-fw text-muted me-1"></i>Récupérer un dossier supprimé</a>
               </div>
             {% endif %}
           </div>
@@ -183,13 +184,13 @@ associer patient
         {% elseif page.porp == 'pro' and config.droitDossierPeutCreerPraticien == 'true' %}
 
           <div class="btn-group my-lg-1">
-            <a class="btn btn-primary float-right" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/pro/create/"><i class="fas fa-plus"></i> Nouveau praticien</a>
+            <a class="btn btn-primary float-end" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/pro/create/"><i class="fas fa-plus"></i> Nouveau praticien</a>
             {% if config.droitDossierPeutSupPraticien == 'true' %}
-              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only">Toggle Dropdown</span>
+              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
               </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/people/deleted/"><i class="fas fa-trash-restore fa-fw text-muted mr-1"></i>Récupérer un dossier supprimé</a>
+              <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/people/deleted/"><i class="fas fa-trash-restore fa-fw text-muted me-1"></i>Récupérer un dossier supprimé</a>
               </div>
             {% endif %}
           </div>

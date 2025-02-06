@@ -24,22 +24,23 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 <td></td>
 <td colspan="4" class="py-4">
 
   {% set randID = random(100000, 999999) %}
 
-  <nav class="nav nav-tabs font-weight-bold">
-    <a class="nav-item nav-link active" id="tab-tab{{ randID }}" data-toggle="tab" href="#tab-pan{{ randID }}">
+  <nav class="nav nav-tabs fw-bold">
+    <a class="nav-item nav-link active" id="tab-tab{{ randID }}" data-bs-toggle="tab" href="#tab-pan{{ randID }}">
       <i class="fas fa-list-alt  fa-fw"></i>
       Liste</a>
-    <a class="nav-item nav-link" id="pdf-tab{{ randID }}" data-toggle="tab" href="#pdf-pan{{ randID }}">
+    <a class="nav-item nav-link" id="pdf-tab{{ randID }}" data-bs-toggle="tab" href="#pdf-pan{{ randID }}">
       <i class="far fa-file-pdf fa-fw"></i>
       PDF</a>
   </nav>
 
-  <div class="tab-content border-left p-4">
+  <div class="tab-content border-start p-4">
 
     <div class="tab-pane active" id="tab-pan{{ randID }}">
       <div style="min-height: 200px;">

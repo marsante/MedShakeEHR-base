@@ -23,6 +23,7 @@
  # Template > lap : tableau des résultats détaillés de recherche de médicaments
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 
@@ -57,11 +58,11 @@
               <td >
                 {{ medic.sp_nom|trim('§') }}
                 {% if medic.statutDelivrance.rh == 'OUI' or medic.statutDelivrance.ph == 'OUI' or  medic.statutDelivrance.puh == 'OUI' or medic.statutDelivrance.sp == 'OUI' or medic.statutDelivrance.ps == 'OUI' or medic.statutDelivrance.prep_h == 'OUI' or medic.statutDelivrance.atu == 'OUI' %}
-                  <span class="badge badge-warning" title="Ce médicament est à prescription / délivrance restreinte, consultez la monographie pour les détails"><span class="fas fa-exclamation-triangle"></span></span>
+                  <span class="badge text-bg-warning" title="Ce médicament est à prescription / délivrance restreinte, consultez la monographie pour les détails"><span class="fas fa-exclamation-triangle"></span></span>
                 {% endif %}
 
                 {% if pres.reservhop != 'NON' %}
-                  <span class="badge badge-primary" title="Ce médicament est à prescription hospitalière, consultez la monographie pour les détails">H</span>
+                  <span class="badge text-bg-primary" title="Ce médicament est à prescription hospitalière, consultez la monographie pour les détails">H</span>
                 {% endif %}
                 {% if pres.pre_adm %}
                   <br>{{ pres.pre_adm }}
@@ -72,7 +73,7 @@
               <td >
                 <ul class="list-unstyled small">
                 {% for suba in medic.suba %}
-                    <li><a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/lap/monographie/sub/{{ suba.codesubst }}/1/" target="_blank" class="font-weight-bold">{{ suba.libsubst }}</a> 
+                    <li><a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/lap/monographie/sub/{{ suba.codesubst }}/1/" target="_blank" class="fw-bold">{{ suba.libsubst }}</a> 
                     {% if suba.dosesubst > 0 and config.theriaqueMode != 'BDPM'  %}
                       {{ suba.dosesubst|number_format(2, ',', '') }} {{ suba.udosesubst }}
                     {% elseif config.theriaqueMode == 'BDPM' %}
@@ -85,7 +86,7 @@
                 <ul class="list-unstyled small">
                 {% for sube in medic.sube %}
                  {% if sube.effetnotoire == 'O' %}
-                    <li><a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/lap/monographie/sub/{{ sube.codesubst }}/1/" target="_blank" class="font-weight-bold">{{ sube.libsubst }}</a> {% if sube.dosesubst > 0 %}{{ sube.dosesubst|number_format(2, ',', '') }} {{ sube.udosesubst }}{% endif %}</li>
+                    <li><a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/lap/monographie/sub/{{ sube.codesubst }}/1/" target="_blank" class="fw-bold">{{ sube.libsubst }}</a> {% if sube.dosesubst > 0 %}{{ sube.dosesubst|number_format(2, ',', '') }} {{ sube.udosesubst }}{% endif %}</li>
                   {% endif %}
                 {% endfor %}
                 </ul>
@@ -93,13 +94,13 @@
 
               <td >
               {% if pres.pre_nat %}
-                <span class="badge badge-secondary">{{ pres.pre_nat }}</span>
+                <span class="badge text-bg-secondary">{{ pres.pre_nat }}</span>
               {% endif %}
               </td>
 
               <td  data-sort-value="{{ medic.prixEstim|number_format(5, '.', '') }}" class="sendToPrescription">
                 {% if medic.prixEstim %}
-                  <span class="badge badge-secondary" title="{{ medic.prixEstim }}€">{{ medic.prixEstim|number_format(2, ',', ' ') }}€</span>
+                  <span class="badge text-bg-secondary" title="{{ medic.prixEstim }}€">{{ medic.prixEstim|number_format(2, ',', ' ') }}€</span>
                 {% endif %}
               </td>
 
@@ -108,7 +109,7 @@
 
             <td class="sendToPrescription">
               {% if pres.rbtVille not in ['0 %'] %}
-                <span class="badge badge-secondary">{{ pres.rbtVille }}</span>
+                <span class="badge text-bg-secondary">{{ pres.rbtVille }}</span>
               {% endif %}
             </td>
 

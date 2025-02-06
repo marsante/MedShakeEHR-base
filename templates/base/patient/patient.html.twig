@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "patientBase.html.twig" %}
@@ -38,28 +39,28 @@
     {{ parent() }}
 
     {# Onglets #}
-    <ul class="nav nav-tabs font-weight-bold my-3 text-uppercase">
+    <ul class="nav nav-tabs fw-bold my-3 text-uppercase">
       <li class="nav-item">
-        <a id="ongletDossierMedical" class="nav-link active" href="#tabDossierMedical" aria-controls="tabDossierMedical" aria-selected="true" role="tab" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-notes-medical fa-lg mr-2"></i>Dossier médical</a>
+        <a id="ongletDossierMedical" class="nav-link active" href="#tabDossierMedical" aria-controls="tabDossierMedical" aria-selected="true" role="tab" data-bs-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-notes-medical fa-lg me-2"></i>Dossier médical</a>
       </li>
       <li class="nav-item">
-        <a id="ongletBio" class="nav-link" href="#tabBio" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-vial fa-lg mr-2"></i>Biologie</a>
+        <a id="ongletBio" class="nav-link" href="#tabBio" data-bs-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-vial fa-lg me-2"></i>Biologie</a>
       </li>
       <li class="nav-item">
-        <a id="ongletGraph" class="nav-link" href="#tabGraph" aria-controls="tabGraph" aria-selected="true" role="tab" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-chart-line fa-lg mr-2"></i>Biométrie</a>
+        <a id="ongletGraph" class="nav-link" href="#tabGraph" aria-controls="tabGraph" aria-selected="true" role="tab" data-bs-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-chart-line fa-lg me-2"></i>Biométrie</a>
       </li>
       {% if config.optionGeActiverLapInterne == 'true' %}
       <li class="nav-item">
-        <a id="ongletLAP" class="nav-link" href="#tabLAP" aria-controls="tabLAP" aria-selected="false" role="tab" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-pills fa-lg mr-2"></i>LAP</a>
+        <a id="ongletLAP" class="nav-link" href="#tabLAP" aria-controls="tabLAP" aria-selected="false" role="tab" data-bs-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-pills fa-lg me-2"></i>LAP</a>
       </li>
       {% endif %}
       {% if config.dicomHost != '' %}
         <li class="nav-item">
-          <a id="ongletDicom" class="nav-link" href="#tabDicom" aria-controls="tabDicom" aria-selected="false" role="tab" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="far fa-images fa-lg mr-2"></i>Imagerie</a>
+          <a id="ongletDicom" class="nav-link" href="#tabDicom" aria-controls="tabDicom" aria-selected="false" role="tab" data-bs-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="far fa-images fa-lg me-2"></i>Imagerie</a>
         </li>
       {% endif %}
       <li class="nav-item">
-        <a id="ongletLiensPatient" class="nav-link" href="#tabLiensPatient" aria-controls="tabLiensPatient" aria-selected="false" role="tab" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-link fa-lg mr-2"></i>Liens du patient</a>
+        <a id="ongletLiensPatient" class="nav-link" href="#tabLiensPatient" aria-controls="tabLiensPatient" aria-selected="false" role="tab" data-bs-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-link fa-lg me-2"></i>Liens du patient</a>
       </li>
     </ul>
 

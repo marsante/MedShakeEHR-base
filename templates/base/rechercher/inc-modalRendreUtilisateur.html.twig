@@ -23,6 +23,7 @@
  # Template > listing patient / prat : rendre utilisateur
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 
@@ -32,14 +33,14 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold">Rendre utilisateur du logiciel</h4>
+        <h4 class="modal-title fw-bold">Rendre utilisateur du logiciel</h4>
       </div>
       <div class="modal-body">
         {{ f.errorsBloc(false) }}
         {{ f.formbuilder(page.formModal , page.formModalIN , session) }}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
         <button type="button" class="btn btn-primary modal-save" data-form="formName_{{ page.formModalIN }}" data-modal="modalRendreUtilisateur">Valider</button>
       </div>
     </div>

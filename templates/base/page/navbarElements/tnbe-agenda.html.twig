@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% if config.optionGeActiverAgenda == 'true' %}
@@ -55,7 +56,7 @@
    {% endfor %}
   {% elseif page.agendaUsers %}
    <li class="nav-item dropdown"{% if config.designTopMenuTooltipDisplay == 'true' %} title="Agendas"{% endif %}>
-     <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">
+     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">
        {% if config.designTopMenuStyle == 'icones' %}
          <i class="fas fa-calendar-alt fa-lg d-none d-lg-inline"></i>
          <span class="d-lg-none">

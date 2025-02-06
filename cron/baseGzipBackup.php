@@ -24,6 +24,7 @@
  * Cron : sauvegarde de la base
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val
  */
 
 // pour le configurateur de cron

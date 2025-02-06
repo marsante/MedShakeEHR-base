@@ -23,6 +23,7 @@
  * Fonctions JS pour les paramètres utilisateur : onglet agenda
  *
  * @author fr33z00 <https://www.github.com/fr33z00>
+ * contrib Michaël Val
  */
 
 var gotGroups = false;
@@ -91,12 +92,12 @@ $(document).ready(function() {
                   <input class="form-control form-control-sm" name="desc_new' + id + '" type="text" placeholder="ex: consultation classique" value="" autocomplete="off">\
                 </td>\
                 <td>\
-                  <div class="input-group input-group-sm cpnew" data-toggle="false">\
+                  <div class="input-group input-group-sm cpnew" data-bs-toggle="false">\
                     <input class="form-control" name="back_new' + id + '" type="color" value="#2196f3" placeholder="ex: #2196f3" autocomplete="off">\
                   </div>\
                 </td>\
                 <td>\
-                  <div class="input-group input-group-sm cpnew" data-toggle="false">\
+                  <div class="input-group input-group-sm cpnew" data-bs-toggle="false">\
                     <input class="form-control" name="border_new' + id + '" type="color" value="#1e88e5" placeholder="ex: #1e88e5" autocomplete="off">\
                   </div>\
                 </td>\
@@ -104,12 +105,12 @@ $(document).ready(function() {
                   <input class="form-control form-control-sm" name="duree_new' + id + '" type="text" value="" placeholder="ex: 20" autocomplete="off">\
                 </td>\
                 <td>\
-                  <select name="utilisable_new' + id + '" class="custom-select custom-select-sm utilisable">\
+                  <select name="utilisable_new' + id + '" class="form-select form-select-sm utilisable">\
                     <option value="oui" selected>oui</option>\
                     <option value="non">non</option>\
                   </select>\
                 </td>\
-                <td class="text-muted text-right">\
+                <td class="text-muted text-end">\
                   <i class="fas fa-arrows-alt" title="Attraper pour déplacer et ordonner"></i>\
                 </td>\
               </tr>\
@@ -134,7 +135,7 @@ $(document).ready(function() {
   for (var idx in clicRdvConsultsRel) {
     if (!k)
       $('#pc input[type=submit]').parent().parent().before('<h4 class="consults">Correspondances de consultations</h4>');
-    $('#pc input[type=submit]').parent().parent().before('<div class="row consults"><div class="col-md-3"><label class="control-label" for="id_clicRdvConsultId' + k + '_id">' + clicRdvConsultsRel[idx][1] + ' (clicRdv)</label><div class="form-group"></div></div></div>');
+    $('#pc input[type=submit]').parent().parent().before('<div class="row consults"><div class="col-md-3"><label class="control-label" for="id_clicRdvConsultId' + k + '_id">' + clicRdvConsultsRel[idx][1] + ' (clicRdv)</label><div class="mb-3"></div></div></div>');
     $('#id_clicRdvConsultId_id').clone()
       .attr('id', 'id_clicRdvConsultId' + k + '_id')
       .attr('name', 'p_clicRdvConsultId' + k)
@@ -291,7 +292,7 @@ function updateConsultList() {
 function addConsult(idx, consult) {
   if (idx == '0' || idx == 0)
     $('#pc input[type=submit]').parent().parent().before('<h4 class="consults">Correspondances de consultations</h4>');
-  $('#pc input[type=submit]').parent().parent().before('<div class="row consults"><div class="col-md-3"><label class="control-label" for="id_clicRdvConsultId' + idx + '_id">' + consult.name + ' (clicRdv)</label><div class="form-group"></div></div></div>');
+  $('#pc input[type=submit]').parent().parent().before('<div class="row consults"><div class="col-md-3"><label class="control-label" for="id_clicRdvConsultId' + idx + '_id">' + consult.name + ' (clicRdv)</label><div class="mb-3"></div></div></div>');
   $('#id_clicRdvConsultId_id').clone()
     .attr('id', 'id_clicRdvConsultId' + idx + '_id')
     .attr('name', 'p_clicRdvConsultId' + idx)

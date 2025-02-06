@@ -23,6 +23,7 @@
  # Template > Config : gestion des templates de paramétrage utilisateur
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
  #}
 
@@ -86,7 +87,7 @@
             <input type="file" name="files[]" multiple="multiple" title="Cliquer pour ajouter">
             <div class="progress" style="margin-top : 20px;">
               <div class="progress-bar" role="progressbar" style="width: 00%;">
-                <span class="sr-only"></span>
+                <span class="visually-hidden"></span>
               </div>
             </div>
         </div>
@@ -110,7 +111,7 @@
               <th>
                   Fichier
               </th>
-              <th class="text-right">
+              <th class="text-end">
                   Gérer
               </th>
           </tr>
@@ -120,7 +121,7 @@
             {% if v.file %}
               <tr>
                   <td>{{ v.file }}</td>
-                  <td class="text-right">
+                  <td class="text-end">
                     <div class="btn-group">
                       <a class="btn btn-light btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/user-templates/edit/{{ v.file|url_encode }}/{% if page.selectUser > 0 %}{{ page.selectUser }}/{% endif %}">
                         {% if page.templatesDirAutorisationEcriture == false %}

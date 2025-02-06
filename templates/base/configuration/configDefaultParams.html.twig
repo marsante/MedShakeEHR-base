@@ -24,6 +24,7 @@
  #
  # @author fr33z00 <https://github.com/fr33z00>
  # @contrib Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -56,7 +57,7 @@
         <ul class="nav nav-pills flex-column">
           {% for cat in page.cats %}
             <li class="nav-item">
-              <a class="nav-link{% if loop.first %} active{% endif %}" href="#{{ cat|replace({' ':'_', '\'':'_'}) }}" aria-controls="{{ cat }}" role="tab" data-toggle="tab" onclick="$('.cats').hide();$('.{{ cat|replace({' ':'_', '\'':'_'}) }}').show();">{{ cat }}</a>
+              <a class="nav-link{% if loop.first %} active{% endif %}" href="#{{ cat|replace({' ':'_', '\'':'_'}) }}" aria-controls="{{ cat }}" role="tab" data-bs-toggle="tab" onclick="$('.cats').hide();$('.{{ cat|replace({' ':'_', '\'':'_'}) }}').show();">{{ cat }}</a>
             </li>
           {% endfor %}
         </ul>

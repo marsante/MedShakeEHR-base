@@ -23,6 +23,7 @@
  # Template > page forbidden
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -30,7 +31,7 @@
 {% block title %}Cette page n'existe pas{% endblock %}
 
 {% block body %}
-  <div style="height: 85vh;" class="jumbotron d-flex align-items-center m-0">
+  <div style="height: 85vh;" class="bg-light mb-4 rounded-2 py-5 px-3 d-flex align-items-center m-0">
     <div class="container text-center text-danger">
       <i class="fas fa-exclamation-circle fa-10x"></i><br>
       <p class="h3 mt-3">Cette page semble ne pas exister !</p>

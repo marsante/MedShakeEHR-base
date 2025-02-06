@@ -24,6 +24,7 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
 
  var inhibdates = false;
@@ -69,7 +70,7 @@
  
 	 //mettre en route les tooltip bootstrap
 	 $(function() {
-		 $('[data-toggle="tooltip"]').tooltip()
+		 $('[data-bs-toggle="tooltip"]').tooltip()
 	 })
  
 	 $("#periodeQuickSelectID").on("change", function(e) {

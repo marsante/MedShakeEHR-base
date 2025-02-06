@@ -59,7 +59,7 @@ $(document).ready(function() {
     dir = $.fn.stupidtable.dir;
     arrow = data.direction === dir.ASC ? "fa-chevron-up" : "fa-chevron-down";
 
-    th.eq(data.column).append('<span class="ml-1 arrow fa ' + arrow + '"></span>');
+    th.eq(data.column).append('<span class="ms-1 arrow fa ' + arrow + '"></span>');
 
   });
 
@@ -104,7 +104,7 @@ function lapOutilsSearchPres(el) {
     data: el.parents("form").serialize(),
     dataType: "json",
     success: function(data) {
-      html = '<div class="row mb-2"><div class="col text-right"><button class="btn btn-secondary btn-sm" onclick="exportTableToCSV(\'#tableResultatsReMulti\',\'recherche.csv\')">Exporter en CSV</button></div></div>';
+      html = '<div class="row mb-2"><div class="col text-end"><button class="btn btn-secondary btn-sm" onclick="exportTableToCSV(\'#tableResultatsReMulti\',\'recherche.csv\')">Exporter en CSV</button></div></div>';
       html += '<div class="row"><div class="col">';
       html += '<table id="tableResultatsReMulti" class="table table-hover table-sm small">';
       html += '<thead class="thead-light"><tr>';

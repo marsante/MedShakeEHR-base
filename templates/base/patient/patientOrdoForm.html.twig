@@ -24,13 +24,14 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% import "macroForm.html.twig" as f %}
 {# Formulaire de synthèse #}
-<div class="jumbotron col-md-12">
-    <button id="cleanNewOrdo" type="button" class="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+<div class="bg-light mb-4 rounded-2 py-5 px-3 col-md-12">
+    <button id="cleanNewOrdo" type="button" class="btn-close" aria-label="Close">
+        
     </button>
 
     <h3>Nouvelle ordonnance</h3>
@@ -39,10 +40,10 @@
     <div class="row" style="margin-bottom : 30px">
         {% for k, v in page.menusPrescriptions %}
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="control-label" for="selectActe{{ loop.index }}">{{ k }}
                     </label>
-                    <select class="custom-select selectPrescriptionStarter" id="selectPrescription{{ loop.index }}ID" name="selectPrescription{{ loop.index }}" autocomplete="off">
+                    <select class="form-select selectPrescriptionStarter" id="selectPrescription{{ loop.index }}ID" name="selectPrescription{{ loop.index }}" autocomplete="off">
                         <option value=''></option>
                         {% for val in v %}
                             <option value="{{ val.id }}" {% if val.id == page.formActes.prevalue %} selected="selected" {% endif %}>{{ val.optionmenu }}</option>
@@ -60,20 +61,20 @@
         <input type="hidden" name="asUserID" value="{{ page.ordo.asUserID }}" />
         <div class="row">
             <div class="col-auto">
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="control-label">Modèle impression
                     </label>
-                    <select class="custom-select" name="ordoTypeImpression" autocomplete="off">
+                    <select class="form-select" name="ordoTypeImpression" autocomplete="off">
                         <option value="standard">standard</option>
                         <option value="ald"{% if page.courrier.modeprint == 'ald' %} selected="selected"{% endif %}>ALD</option>
                     </select>
                 </div>
             </div>
             <div class="col-auto">
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="control-label">Imprimer le nombre de lignes de prescription
                     </label>
-                    <select class="custom-select" name="ordoImpressionNbLignes" autocomplete="off">
+                    <select class="form-select" name="ordoImpressionNbLignes" autocomplete="off">
                         <option value="o" {% if page.courrier.ordoImpressionNbLignes == 'o' %} selected="selected"{% endif %}>oui</option>
                         <option value="n" {% if page.courrier.ordoImpressionNbLignes == 'n' %} selected="selected"{% endif %}>non</option>
                     </select>

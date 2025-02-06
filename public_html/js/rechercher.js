@@ -24,6 +24,7 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
 
  $(document).ready(function() {
@@ -228,7 +229,7 @@
       success: function(data) {
         el = source.closest('tr').find('a.ouvrirDossier');
         if (data.type == 'pro') {
-          source.html('<i class="fas fa-user-slash fa-fw text-muted mr-1"></i> Retirer de la liste Praticiens');
+          source.html('<i class="fas fa-user-slash fa-fw text-muted me-1"></i> Retirer de la liste Praticiens');
           el.addClass('btn-info');
           el.removeClass('btn-secondary');
           el.find('i.fas').removeClass('fa-user');
@@ -236,7 +237,7 @@
         } else {
           el.removeClass('btn-info');
           el.addClass('btn-secondary');
-          source.html('<i class="fas fa-user-md fa-fw text-muted mr-1"></i> Ajouter de la liste Praticiens');
+          source.html('<i class="fas fa-user-md fa-fw text-muted me-1"></i> Ajouter de la liste Praticiens');
           el.find('i.fas').addClass('fa-user');
           el.find('i.fas').removeClass('fa-user-md');
         };

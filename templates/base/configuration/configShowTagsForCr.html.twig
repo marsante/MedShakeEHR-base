@@ -25,6 +25,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -51,7 +52,7 @@
     <tbody>
       {% for k,v in page.tabTags %}
         <tr>
-          <td class="font-weight-bold table-primary" colspan="4">
+          <td class="fw-bold table-primary" colspan="4">
             {% if k =='calc' %}Tags calculés{% else %}{{ v.catName }}{% endif %}
           </td>
         </tr>

@@ -24,13 +24,14 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 {% import "macroForm.html.twig" as f %}
 
 <div class="row mb-4">
-  <div class="col-10 pl-0">
-    <span class="mr-2">Préparer une acquisition</span>
-    <button class="btn btn-outline-secondary prepareEcho mr-2" title="Préparer l'acquisition d'images pour ce patient via un appareil d'examen">
+  <div class="col-10 ps-0">
+    <span class="me-2">Préparer une acquisition</span>
+    <button class="btn btn-outline-secondary prepareEcho me-2" title="Préparer l'acquisition d'images pour ce patient via un appareil d'examen">
       <i class="fas fa-radiation fa-lg fa-fw"></i> Appareil
     </button>
     {% if config.optionGeActiverPhonecapture == 'true' %}
@@ -40,7 +41,7 @@
     {% endif %}
 
   </div>
-    <div class="col-2 text-right pr-0">
+    <div class="col-2 text-end pe-0">
       <button class="btn btn-outline-secondary tabDicomRefresh" title="Rafraîchir la liste"><i class="fas fa-sync-alt"></i> Rafraîchir</button>
     </div>
 

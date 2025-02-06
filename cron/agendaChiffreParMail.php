@@ -24,6 +24,7 @@
  * Cron : envoyer les agendas futurs chiffrés (GPG) par mail
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val
  */
 
 // pour le configurateur de cron

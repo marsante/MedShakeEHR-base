@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -123,7 +124,7 @@
   <ul class="nav flex-column nav-pills" role="tablist">
     {% for v in page.print %}
     <li role="presentation" class="nav-item">
-      <a class="nav-link{% if loop.first %} active{% endif %}" href="#print{{ v.id }}" aria-controls="print{{ v.id }}" role="tab" data-toggle="tab">{{ v.creationDate }}</a>
+      <a class="nav-link{% if loop.first %} active{% endif %}" href="#print{{ v.id }}" aria-controls="print{{ v.id }}" role="tab" data-bs-toggle="tab">{{ v.creationDate }}</a>
     </li>
     {% endfor %}
   </ul>
@@ -137,7 +138,7 @@
         <div class="col-6 col-xl-4 ">
                 Auteur : {{ v.identiteAuteur }}
         </div>
-        <div class="col-6 col-xl-4  text-right">
+        <div class="col-6 col-xl-4  text-end">
           <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/makepdf/{{ v.toID }}/fromHistory/{{ v.id }}/" class="btn btn-sm btn-outline-secondary" target="_blank"><i class="far fa-file-pdf"></i> Voir la version PDF</a>
         </div>
       </div>

@@ -24,6 +24,7 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
 
 ////////////////////////////////////////////////////////////////////////
@@ -127,7 +128,7 @@ $(document).ready(function() {
 
     defaultView: 'agendaWeek',
     locale: 'fr',
-    themeSystem: 'bootstrap4',
+    themeSystem: 'bootstrap5',
     hiddenDays: hiddenDays,
     customButtons: {
       smallCalendar: {
@@ -270,7 +271,7 @@ $(document).ready(function() {
         $("#patientInfo").find("select").prop("disabled", true);
         $("#motif").val(eventClicked.motif);
         $("#type").val(eventClicked.type);
-        $("#duree").html('<i class="far fa-clock mr-2"></i>' + $("#type").children("option:selected").attr("data-duree") + "mn");
+        $("#duree").html('<i class="far fa-clock me-2"></i>' + $("#type").children("option:selected").attr("data-duree") + "mn");
         $("#eventColor").css('color', $("#type").children("option:selected").attr("data-color"));
         $('#datepicker input').val(eventClicked.start.format('DD/MM/YYYY à HH:mm'));
         $('#nettoyer').show();
@@ -367,7 +368,7 @@ $(document).ready(function() {
 
         var duree = $("#type option:first").attr('data-duree');
         selected_period.end = moment(start).add(duree, 'm');
-        $("#duree").html('<i class="far fa-clock mr-2"></i> ' + duree + "mn");
+        $("#duree").html('<i class="far fa-clock me-2"></i> ' + duree + "mn");
 
         $("#eventColor").css('color', $("#type option:first").attr("data-color"));
         $('#titreRdv').html('Nouveau rendez-vous');
@@ -541,7 +542,7 @@ $(document).ready(function() {
   ///////// modal : observation des actions
 
   $("#type").on("change", function(e) {
-    $("#duree").html('<i class="far fa-clock mr-2"></i>' + $(this).children("option:selected").attr("data-duree") + "mn");
+    $("#duree").html('<i class="far fa-clock me-2"></i>' + $(this).children("option:selected").attr("data-duree") + "mn");
     $("#eventColor").css('color', $(this).children("option:selected").attr("data-color"));
     selected_period.end = getEnd(selected_period.start);
     if (selected_event) {

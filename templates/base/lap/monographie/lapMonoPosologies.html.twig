@@ -23,6 +23,7 @@
  # LAP > monographie > posologies
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
  <p class="lead">{{ page['posologies']['posoFiches']|length }} {% if page['posologies']['posoFiches']|length > 1 %}schémas posologiques{% else %}schéma posologique{% endif %}</p>
@@ -33,7 +34,7 @@
 
    {% for posologie in page['posologies']['posoFiches'] %}
    <div class="card mb-3">
-     <div class="card-header" role="tab" id="heading{{ posologie.nofic }}{{ rand }}" data-toggle="collapse" data-parent="#accordion{{ rand }}" data-target="#collapse{{ posologie.nofic }}{{ rand }}" aria-expanded="true" aria-controls="collapse{{ posologie.nofic }}{{ rand }}" style="cursor: pointer">
+     <div class="card-header" role="tab" id="heading{{ posologie.nofic }}{{ rand }}" data-bs-toggle="collapse" data-parent="#accordion{{ rand }}" data-bs-target="#collapse{{ posologie.nofic }}{{ rand }}" aria-expanded="true" aria-controls="collapse{{ posologie.nofic }}{{ rand }}" style="cursor: pointer">
 
        <h4 class="card-title">
           Schéma posologique n°{{ loop.index }}

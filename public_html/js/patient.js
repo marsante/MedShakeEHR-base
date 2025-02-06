@@ -24,6 +24,7 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
 
 ////////////////////////////////////////////////////////////////////////
@@ -826,8 +827,8 @@ $(document).ready(function() {
             else
               $tr.after(data.html);
           } else {
-            $('#historique tbody').prepend('<tr class="anneeHistorique table-primary" data-toggle="collapse" data-target=".historiqueMedicalComplet .trLigneExamen[data-annee=' + moment().format("YYYY") + ']" aria-expanded="true" aria-controls="annee' + moment().format("YYYY") + '">\
-              <td class="pl-3">\
+            $('#historique tbody').prepend('<tr class="anneeHistorique table-primary" data-bs-toggle="collapse" data-bs-target=".historiqueMedicalComplet .trLigneExamen[data-annee=' + moment().format("YYYY") + ']" aria-expanded="true" aria-controls="annee' + moment().format("YYYY") + '">\
+              <td class="ps-3">\
                 <span class="far fa-minus-square"></span>\
                 <span class="far fa-plus-square" style="display:none"></span>\
               </td>\
@@ -1551,13 +1552,13 @@ function toogleImportant(el) {
     dataType: "html",
     success: function() {
       if (importanceActu == 'n') {
-        el.html('<i class="fas fa-exclamation-triangle fa-fw text-muted mr-1"></i> Rendre non important');
+        el.html('<i class="fas fa-exclamation-triangle fa-fw text-muted me-1"></i> Rendre non important');
         el.attr('data-importanceActu', 'y');
         el.closest('tr').addClass(el.closest('tr').hasClass('trReglement') ? 'table-danger' : 'table-info');
       }
       if (importanceActu == 'y') {
         el.closest('tr').removeClass('table-info').removeClass('table-danger');
-        el.html('<i class="fas fa-exclamation-triangle fa-fw text-muted mr-1"></i> Marquer important');
+        el.html('<i class="fas fa-exclamation-triangle fa-fw text-muted me-1"></i> Marquer important');
         el.attr('data-importanceActu', 'n');
       }
     },
@@ -1642,7 +1643,7 @@ function showObjetDet(element, timed) {
 
   if (destination.length == 0) {
     if (element.closest('tr').attr('data-typeName') == 'lapOrdonnance') {
-      ligne.after('<tr class="detObjet' + objetID + ' detObjet" style="background : transparent"><td></td><td colspan="4" class="placeForOrdoLap py-4"><div class="text-right"><button class="btn btn-secondary btn-sm renouvToutesLignes mb-1" type="button" title="Renouveler"><i class="fas fa-sync-alt" aria-hidden="true"></i> Tout renouveler</button></div><div class="alert alert-primary font-weight-bold" role="alert">Prescriptions ALD</div><div class="ald conteneurPrescriptionsALD"></div><div class="alert alert-dark font-weight-bold" role="alert">Prescriptions standards</div><div style="min-height:15px;" class="conteneurPrescriptionsG"></div></td></tr>');
+      ligne.after('<tr class="detObjet' + objetID + ' detObjet" style="background : transparent"><td></td><td colspan="4" class="placeForOrdoLap py-4"><div class="text-end"><button class="btn btn-secondary btn-sm renouvToutesLignes mb-1" type="button" title="Renouveler"><i class="fas fa-sync-alt" aria-hidden="true"></i> Tout renouveler</button></div><div class="alert alert-primary fw-bold" role="alert">Prescriptions ALD</div><div class="ald conteneurPrescriptionsALD"></div><div class="alert alert-dark fw-bold" role="alert">Prescriptions standards</div><div style="min-height:15px;" class="conteneurPrescriptionsG"></div></td></tr>');
       voirOrdonnanceMode = 'voirOrdonnance';
       getOrdonnance(objetID, "." + zone + " .detObjet" + objetID + ' td.placeForOrdoLap');
     } else {

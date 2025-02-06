@@ -23,22 +23,23 @@
  # Template > userParameters : tab administratif
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 {% import "macroForm.html.twig" as f %}
 <h3>Règlages administratifs</h3>
 
 <form class="ajaxForm checkboxFixValue" method="post" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/user/ajax/userParametersAdministratif/">
-  <div class="form-row">
+  <div class="row">
     <div class="col-12 col-md-4">
 
       <div class="card my-4">
-        <div class="card-header font-weight-bold">
+        <div class="card-header fw-bold">
           Facturation des actes
         </div>
         <div class="card-body">
-          <div class="form-group">
+          <div class="mb-3">
             <label for="administratifSecteurHonorairesCcamID">Grille tarifaire CCAM : <span class="text-danger">choisir une option sup. ou égale à 3</span></label>
-            <select id="administratifSecteurHonorairesCcamID" name="administratifSecteurHonorairesCcam" class="custom-select custom-select-sm">
+            <select id="administratifSecteurHonorairesCcamID" name="administratifSecteurHonorairesCcam" class="form-select form-select-sm">
               <option value="0" {% if page.reglement.params.administratifSecteurHonorairesCcam == '0' %} selected="selected"{% endif %}>0 : Tous secteurs</option>
               <option value="1" {% if page.reglement.params.administratifSecteurHonorairesCcam == '1' %} selected="selected"{% endif %}>1 : Secteur 1 / adhérent / SF</option>
               <option value="2" {% if page.reglement.params.administratifSecteurHonorairesCcam == '2' %} selected="selected"{% endif %}>2 : Hors secteur 1 / hors adhérent</option>
@@ -59,18 +60,18 @@
             </select>
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             <label for="administratifSecteurHonorairesNgapID">Grille tarifaire NGAP</label>
-            <select id="administratifSecteurHonorairesNgapID" name="administratifSecteurHonorairesNgap" class="custom-select custom-select-sm">
+            <select id="administratifSecteurHonorairesNgapID" name="administratifSecteurHonorairesNgap" class="form-select form-select-sm">
               {% for code,label in page.codeProf %}
                 <option value="{{ code }}" {% if page.reglement.params.administratifSecteurHonorairesNgap == code %} selected="selected"{% endif %}>{{ label }}</option>
               {% endfor %}
             </select>
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             <label for="administratifSecteurGeoTarifaireID">Zone géographique de tarification</label>
-            <select id="administratifSecteurGeoTarifaireID" name="administratifSecteurGeoTarifaire" class="custom-select custom-select-sm">
+            <select id="administratifSecteurGeoTarifaireID" name="administratifSecteurGeoTarifaire" class="form-select form-select-sm">
               <option value="metro" {% if page.reglement.params.administratifSecteurGeoTarifaire == 'metro' %} selected="selected"{% endif %}>Métropole</option>
               <option value="971" {% if page.reglement.params.administratifSecteurGeoTarifaire == '971' %} selected="selected"{% endif %}>GUADELOUPE</option>
               <option value="972" {% if page.reglement.params.administratifSecteurGeoTarifaire == '972' %} selected="selected"{% endif %}>MARTINIQUE</option>
@@ -80,17 +81,17 @@
             </select>
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             <label for="administratifSecteurIKID">Tarification des IK</label>
-            <select id="administratifSecteurIKID" name="administratifSecteurIK" class="custom-select custom-select-sm">
+            <select id="administratifSecteurIKID" name="administratifSecteurIK" class="form-select form-select-sm">
               <option value="plaine" {% if page.reglement.params.administratifSecteurIK == 'plaine' %} selected="selected"{% endif %}>Plaine</option>
               <option value="montagne" {% if page.reglement.params.administratifSecteurIK == 'montagne' %} selected="selected"{% endif %}>Montagne</option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="mb-3">
             <label for="administratifReglementFormulairesID">Formulaire(s) de règlement à utiliser</label>
 
-            <select class="custom-select" multiple id="administratifReglementFormulairesID" name="administratifReglementFormulaires[]" autocomplete="off">
+            <select class="form-select" multiple id="administratifReglementFormulairesID" name="administratifReglementFormulaires[]" autocomplete="off">
               {% for rform in page.reglement.possibleForms %}
                 <option value="{{ rform.name }}" {% if rform.name in page.reglement.params.administratifReglementFormulaires %}selected{% endif %}>{{ rform.module}} - {{ rform.description}}</option>
               {% endfor %}

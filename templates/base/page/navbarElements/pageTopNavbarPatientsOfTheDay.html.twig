@@ -23,6 +23,7 @@
  # Template > POTD dropdown menu
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 
@@ -43,6 +44,6 @@
 {% endfor %}
 <div class="dropdown-divider"></div>
 <a {% if page.targetMenuPOTD == '_blank' %}target="_blank"{% endif %} class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/todays/">
-  <i class="fas fa-list-ul fa-fw text-muted mr-1"></i>
+  <i class="fas fa-list-ul fa-fw text-muted me-1"></i>
   Afficher la liste
 </a>

@@ -23,6 +23,7 @@
  # Template > logs: historique valeur data type dans contexte patient & instance
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -68,10 +69,10 @@
         </td>
         <td>
           {% if v.deleted == 'y' %}
-            <span class="badge badge-danger">deleted</span>
+            <span class="badge text-bg-danger">deleted</span>
           {% endif %}
           {% if v.outdated == 'y' %}
-            <span class="badge badge-secondary">outdated</span>
+            <span class="badge text-bg-secondary">outdated</span>
           {% endif %}
         </td>
         <td>{{ v.registerDate }}</td>

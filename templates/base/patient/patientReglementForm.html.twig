@@ -24,12 +24,13 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% import "macroForm.html.twig" as f %}
-<div class="jumbotron col-md-12">
-    <button id="cleanNewReglement" type="button" class="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+<div class="bg-light mb-4 rounded-2 py-5 px-3 col-md-12">
+    <button id="cleanNewReglement" type="button" class="btn-close" aria-label="Close">
+        
     </button>
 
     {% if page.form.addHidden.objetID > 0 %}
@@ -41,10 +42,10 @@
     <div class="row mb-3">
         {% for k, v in page.menusActes %}
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="control-label" for="selectActe{{ loop.index }}">{{ k }}
                     </label>
-                    <select class="custom-select selectActeStarter" id="selectActe{{ loop.index }}ID" name="selectActe{{ loop.index }}" autocomplete="off">
+                    <select class="form-select selectActeStarter" id="selectActe{{ loop.index }}ID" name="selectActe{{ loop.index }}" autocomplete="off">
                         <option value=''></option>
                         {% for val in v %}
                             <option value="{{ val.id }}"
@@ -62,14 +63,14 @@
     </div>
 
     <div id="detFacturation" class="card col-md-12 px-0 mb-3" style="display: none;">
-      <div class="card-header text-center font-weight-bold">Facturation à appliquer</div>
+      <div class="card-header text-center fw-bold">Facturation à appliquer</div>
 
       <table class="table table-sm mb-0">
         <thead>
           <tr>
             <th class="">acte</th>
-            <th class="text-left"></th>
-            <th class="text-left" {% if page.form.addHidden.reglementForm == 'baseReglementLibre' %} style="display : none"{% else %} style="width : 100px;"{% endif %}>code asso.</th>
+            <th class="text-start"></th>
+            <th class="text-start" {% if page.form.addHidden.reglementForm == 'baseReglementLibre' %} style="display : none"{% else %} style="width : 100px;"{% endif %}>code asso.</th>
             <th class="text-center">base</th>
             {% if page.formIN != 'baseReglementLibre' %}
               <th class="pourcents text-center" style="width : 100px;">quantité</th>
@@ -81,9 +82,9 @@
               <th class="text-center" style="width : 120px;">modulation</th>
             {% else %}
               <th class="text-center" style="width : 120px;">dépassement</th>
-              <th class="text-right" style="width : 80px;"></th>
+              <th class="text-end" style="width : 80px;"></th>
             {% endif %}
-            <th class="text-right">total</th>
+            <th class="text-end">total</th>
             <th class=""></th>
           </tr>
         </thead>

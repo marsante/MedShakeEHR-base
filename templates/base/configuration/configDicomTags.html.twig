@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
  {% extends "page.html.twig" %}
@@ -66,10 +67,10 @@
     <tbody>
      {% for k,v in page.tags %}
       <tr class="{% if v.0.typeName|length > 0 or v.1.typeName|length > 0 %}table-success{% else %}table-warning{% endif %}">
-       <td colspan="6" class="font-weight-bold">
+       <td colspan="6" class="fw-bold">
          {{ k }}&nbsp;&nbsp;&nbsp;&nbsp;{{ v.0.dicomCodeMeaning }}
        </td>
-       <td> <button type="button" data-dicomtag="{{ k }}" data-dicomcodemeaning="{{ v.0.dicomCodeMeaning }}" class="btn btn-light btn-sm float-right m-1 reset-modal mb-4 addtomodaldicom" data-toggle="modal" data-target="#modalNewType">
+       <td> <button type="button" data-dicomtag="{{ k }}" data-dicomcodemeaning="{{ v.0.dicomCodeMeaning }}" class="btn btn-light btn-sm float-end m-1 reset-modal mb-4 addtomodaldicom" data-bs-toggle="modal" data-bs-target="#modalNewType">
         <span class="fas fa-plus" aria-hidden="true"></span>
         </button></td>
       </tr>
@@ -78,7 +79,7 @@
       <tr id="typeID  {{ t.typeID }}">
         <td>&nbsp;
         </td>
-        <td class="font-weight-bold">
+        <td class="fw-bold">
           {{ t.typeName }}
         </td>
         <td>
@@ -94,7 +95,7 @@
           {{ t.roundDecimal }}
         </td>
 
-        <td class="text-right">
+        <td class="text-end">
           <div class="btn-group">
             <button type="button" class="btn btn-light btn-sm edit-by-prim-key" aria-label="Editer" data-id="{{ t.id }}" data-table="dicomTags" data-form="formModalNewType" data-modal="modalNewType">
             <span class="fas fa-pencil-alt" aria-hidden="true"></span>
@@ -122,15 +123,15 @@
      <div class="modal-dialog" role="document">
        <div class="modal-content">
          <div class="modal-header">
-           <h4 class="modal-title font-weight-bold" id="myModalLabel">Création / édition</h4>
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <h4 class="modal-title fw-bold" id="myModalLabel">Création / édition</h4>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
          <div class="modal-body">
 
    	  		{{ f.errorsBloc() }}
 
    			<form id="formModalNewType" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/ajax/configTagDicomCreate/" data-groupe="{{ page.groupe }}">
-   				<div class="form-group">
+   				<div class="mb-3">
    				{{ f.input ({
    					'input' : {
    						'type' : 'text',
@@ -146,7 +147,7 @@
    				}) }}
    				</div>
 
-          <div class="form-group">
+          <div class="mb-3">
    				{{ f.input ({
    					'input' : {
    						'type' : 'text',
@@ -162,7 +163,7 @@
    				}) }}
    				</div>
 
-   				<div class="form-group">
+   				<div class="mb-3">
    				{{ f.input ({
    					'input' : {
    						'type' : 'text',
@@ -178,7 +179,7 @@
    				}) }}
    				</div>
 
-   				<div class="form-group">
+   				<div class="mb-3">
    				{{ f.select ({
    					'select' : {
    						'name' : 'returnValue',
@@ -195,7 +196,7 @@
    				</div>
 
 
-   				<div class="form-group">
+   				<div class="mb-3">
    				{{ f.input ({
    					'input' : {
    						'type' : 'number',
@@ -217,7 +218,7 @@
    			</form>
          </div>
          <div class="modal-footer">
-           <button type="button" class="btn btn-light" data-dismiss="modal">Abandonner</button>
+           <button type="button" class="btn btn-light" data-bs-dismiss="modal">Abandonner</button>
            <button type="button" class="btn btn-primary modal-save" data-form="formModalNewType" data-modal="modalNewType">Sauvegarder</button>
          </div>
        </div>

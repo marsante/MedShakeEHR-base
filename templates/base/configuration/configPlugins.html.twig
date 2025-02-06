@@ -23,6 +23,7 @@
  # Template > Config : plugins
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -80,7 +81,7 @@
         </thead>
         <tbody>
           {% for m in page.plugins %}
-            <tr data-toggle="collapse" data-target="#{{ m.name }}">
+            <tr data-bs-toggle="collapse" data-bs-target="#{{ m.name }}">
               <td>
                 {% if page.pluginsInfosGen[m.name]['nom'] %}
                   {{ page.pluginsInfosGen[m.name]['nom'] }}
@@ -90,8 +91,8 @@
                 {{ m.name }}
               </td>
               <td>{{ m.version }}</td>
-              <td class="text-right">
-                <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#{{ m.name }}">
+              <td class="text-end">
+                <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#{{ m.name }}">
                   <i class="fas fa-info fa-fw"></i>
                 </button>
               </td>

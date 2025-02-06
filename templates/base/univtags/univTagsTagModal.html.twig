@@ -22,6 +22,7 @@
  # Template > Config : Modal pour la création et la modificaton des tags universelle
  #
  # @author DEMAREST Maxime <maxime@indelog.fr>
+ # @contrib Michaël Val
  #}
 
 <div id="modalUnivTag" class="modal fade" tabindex="-1" role="dialog">
@@ -40,20 +41,20 @@
           {% else %}
               <h5 class="modal-title">Nouvelle étiquette {{ page.univTags.typeName }}</h5>
           {% endif %}
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
-          <div class="form-group">
-            <label class="font-weight-bold">Nom</label>
+          <div class="mb-3">
+            <label class="fw-bold">Nom</label>
             <input name="name" type="text" class="form-control" placeholder="Nom de l'étiquette" title="Nom de l'étiquette..." required="required" maxlength="64" value="{{ page.univTags.tagProp.name|default('') }}" {{ page.univTags.typeDroitCreSup ? '' : 'disabled' }}>
           </div>
-          <div class="form-group">
-            <label class="font-weight-bold">Description</label>
+          <div class="mb-3">
+            <label class="fw-bold">Description</label>
             <input name="description" type="text" class="form-control" placeholder="Description de l'étiquette" title="Description de l'étiquette..." required="required" maxlength="64" value="{{ page.univTags.tagProp.description|default('') }}" {{ page.univTags.typeDroitCreSup ? '' : 'disabled' }}>
           </div>
-          <div class="form-group ">
-            <label class="font-weight-bold">Couleur</label>
+          <div class="mb-3 ">
+            <label class="fw-bold">Couleur</label>
             <input name="color" type="color" value="{{ page.univTags.tagProp.color|default('#B6B6B6') }}" class="form-control" autocomplete="off" {{ page.univTags.typeDroitCreSup ? '' : 'disabled' }}>
           </div>
         </div>
@@ -62,7 +63,7 @@
           {% if page.univTags.tagID %}
               <button type="button" class="btn btn-danger" title="Suprime cette étiquette" onclick="formUnivTagValid(this, 1) "{{ page.univTags.typeDroitCreSup ? '' : 'disabled' }}>Suprimer</button>
           {% endif %}
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Abandoner</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abandoner</button>
           <button type="button" class="btn btn-primary" onclick="formUnivTagValid(this)" {{ page.univTags.typeDroitCreSup ? '' : 'disabled' }}>Valider</button>
         </div>
     

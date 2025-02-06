@@ -23,6 +23,7 @@
  # Template > dropbox
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -53,27 +54,27 @@
 
         <ul class="nav nav-tabs" id="dropboxes" role="tablist">
           {% for boxname, boxparams in page.dropBoxesParams %}
-            <li class="nav-item font-weight-bold">
-              <a class="nav-link{% if loop.index0 == 0 %} active{% endif %} d-flex justify-content-between align-items-center" id="{{ boxname }}-tab" data-toggle="tab" href="#{{ boxname }}" role="tab">
+            <li class="nav-item fw-bold">
+              <a class="nav-link{% if loop.index0 == 0 %} active{% endif %} d-flex justify-content-between align-items-center" id="{{ boxname }}-tab" data-bs-toggle="tab" href="#{{ boxname }}" role="tab">
                 <span>{{ boxparams.name }}</span>
-                {% if page.dropBoxesContent[boxname]|length > 0 %}<span class="badge badge-light ml-2"  data-box="{{ boxname }}">{{ page.dropBoxesContent[boxname]|length }}</span>{% endif %}
+                {% if page.dropBoxesContent[boxname]|length > 0 %}<span class="badge text-bg-light ms-2"  data-box="{{ boxname }}">{{ page.dropBoxesContent[boxname]|length }}</span>{% endif %}
               </a>
             </li>
           {% endfor %}
         </ul>
-        <div class="tab-content border-right border-left border-bottom" id="dropBoxContent">
+        <div class="tab-content border-end border-start border-bottom" id="dropBoxContent">
           {% for boxname, boxparams in page.dropBoxesParams %}
             <div class="tab-pane fade{% if loop.index0 == 0 %} show active{% endif %}" id="{{ boxname }}" role="tabpanel" aria-labelledby="{{ boxname }}-tab">
 
               <ul class="list-group list-group-flush">
                 {% for file in page.dropBoxesContent[boxname] %}
                   <li class="list-group-item d-flex justify-content-start align-items-center cursor-pointer selectFile{% if loop.parent.loop.index0 == 0 and loop.index0 == 0 %} list-group-item-success{% endif %}" data-box="{{ boxname }}" data-filename="{{ file.filename }}">
-                    <i class="far fa-file-pdf fa-3x mr-3"></i>
+                    <i class="far fa-file-pdf fa-3x me-3"></i>
                     <div>
-                      <span class="font-weight-bold">{{ file.filename }}</span><br>
+                      <span class="fw-bold">{{ file.filename }}</span><br>
                       <small>{{ file.size }} - {{ file.date|date('d/m/Y H:i') }}</small>
                     </div>
-                    <div class="poubelle ml-auto d-none">
+                    <div class="poubelle ms-auto d-none">
                       <a class="btn btn-sm btn-light" href="#" role="button"><i class="fas fa-trash"></i></a>
                     </div>
                   </li>

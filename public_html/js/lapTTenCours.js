@@ -23,6 +23,7 @@
  * Fonctions JS autour du traitement en cours pour le lap
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val
  */
 
 /**
@@ -261,7 +262,7 @@ function construireTTenCours() {
     });
   }
   $(function() {
-    $('[data-toggle="popover"]').popover()
+    $('[data-bs-toggle="popover"]').popover()
   })
   refreshTheSamsZone('ttencours', samsInTTenCours);
   testSamsAndDisplay();

@@ -23,6 +23,7 @@
  # LAP > monographie sur base Thériaque : fiche excipient
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 <h1>{{ page.sub.subId.sau_nom }} <small>(excipient)</small></h1>
@@ -33,14 +34,14 @@
 
     {% if page.sub.subId2.sac_noma is not empty %}
     <tr>
-      <td class="font-weight-bold">Terme en langue anglaise</td>
+      <td class="fw-bold">Terme en langue anglaise</td>
       <td>{{ page.sub.subId2.sac_noma }}</td>
     </tr>
     {% endif %}
 
     {% if page.sub.detExp.3 is not empty %}
     <tr>
-      <td class="font-weight-bold">Classe(s) chimique(s)</td>
+      <td class="fw-bold">Classe(s) chimique(s)</td>
       <td>
         <ul class="list-unstyled">
         {% for data in page.sub.detExp.3 %}
@@ -53,7 +54,7 @@
 
     {% if page.sub.detExp.4 is not empty %}
     <tr>
-      <td class="font-weight-bold">Nature(s)</td>
+      <td class="fw-bold">Nature(s)</td>
       <td>
         <ul class="list-unstyled">
         {% for data in page.sub.detExp.4 %}
@@ -66,7 +67,7 @@
 
     {% if page.sub.detExp.2 is not empty %}
     <tr>
-      <td class="font-weight-bold">Fonctions(s)</td>
+      <td class="fw-bold">Fonctions(s)</td>
       <td>
         <ul class="list-unstyled">
         {% for data in page.sub.detExp.2 %}
@@ -78,12 +79,12 @@
     {% endif %}
 
     <tr>
-      <td class="font-weight-bold">Effet notoire</td>
+      <td class="fw-bold">Effet notoire</td>
       <td>{% if page.sub.subId.sau_effetnotoire == 'O' %}OUI{% else %}NON{% endif %}</td>
     </tr>
     {% if page.sub.detExp.1 is not empty %}
     <tr>
-      <td class="font-weight-bold">Voie(s)</td>
+      <td class="fw-bold">Voie(s)</td>
       <td>
         <ul class="list-unstyled">
         {% for data in page.sub.detExp.1 %}
@@ -103,7 +104,7 @@
 
     {% if page.sub.subId.cdf_nom is not empty %}
     <tr>
-      <td class="font-weight-bold">Référence(s) officielle(s)</td>
+      <td class="fw-bold">Référence(s) officielle(s)</td>
       <td>{{ page.sub.subId.cdf_nom }}
         {% if page.sub.subId.sau_doc_date|length > 10 %}{{ page.sub.subId.sau_doc_date|date("d/m/Y") }}{% else %}{{ page.sub.subId.sau_doc_date }}{% endif %}
       </td>

@@ -25,6 +25,7 @@
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
  # @contrib DEMAREST Maxime <maxime@indelog.fr>
+ # @contrib Michaël Val
  #}
 
 {% if page.porp == 'registre' %}
@@ -79,7 +80,7 @@
       {% endif %}
     {% endfor %}
 
-    <td class="text-right">
+    <td class="text-end">
       {% if page['outputType'][patientID]['type'] == 'registre' %}
         {% include('inc-listing-registre.html.twig') %}
       {% elseif page['outputType'][patientID]['type'] == 'groupe' %}

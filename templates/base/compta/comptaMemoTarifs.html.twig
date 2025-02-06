@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -68,11 +69,11 @@
               <th>Code</th>
               <th>Label</th>
               {% if page.secteurs[k] != '' %}
-                <th class="text-right">Tarif&nbsp;SS</th>
-                <th class="text-right">Dépassement</th>
-                <th class="text-right">Total</th>
+                <th class="text-end">Tarif&nbsp;SS</th>
+                <th class="text-end">Dépassement</th>
+                <th class="text-end">Total</th>
               {% else %}
-                <th class="text-right">Tarif</th>
+                <th class="text-end">Tarif</th>
               {% endif %}
               <th></th>
 
@@ -84,23 +85,23 @@
                 <td>
                   {{ w.syntheseActes }}
                 </td>
-                <td {% if w.flagImportant == '1' %} class="font-weight-bold" {% endif %}>
+                <td {% if w.flagImportant == '1' %} class="fw-bold" {% endif %}>
                   {{ w.label }}
                 </td>
-                <td class="text-right">
+                <td class="text-end">
                   {{ w.tarif|number_format(2, '.', ' ') }}
                 </td>
                 {% if page.secteurs[k] != '' %}
-                  <td class="text-right">
+                  <td class="text-end">
                     {{ w.depassement|number_format(2, '.', ' ') }}
                   </td>
-                  <td class="text-right">
+                  <td class="text-end">
                     {{ w.total|number_format(2, '.', ' ') }}
                   </td>
                 {% endif %}
-                <td class="text-right">
+                <td class="text-end">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-light btn-sm" data-toggle="collapse" aria-label="Editer" data-target=".details{{ w.id }}" id="details{{ w.id }}">
+                    <button type="button" class="btn btn-light btn-sm" data-bs-toggle="collapse" aria-label="Editer" data-bs-target=".details{{ w.id }}" id="details{{ w.id }}">
                       <span class="fas fa-search-plus" aria-hidden="true"></span>
                     </button>
                   </div>
@@ -121,14 +122,14 @@
                       {{ det.modifsCCAM }}
                     {% endif %}
                   </td>
-                  <td class="text-right">
+                  <td class="text-end">
                     {{ det.tarif|number_format(2, '.', '')  }}
                   </td>
                   {% if page.secteurs[k] != '' %}
-                    <td class="text-right">
+                    <td class="text-end">
                       {{ det.depassement|number_format(2, '.', '')  }}
                     </td>
-                    <td class="text-right">
+                    <td class="text-end">
                       {{ (det.tarif + det.depassement)|number_format(2, '.', '')  }}
                     </td>
                   {% endif %}

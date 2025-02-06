@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -96,13 +97,13 @@
           <td>{{ v.identiteUser|e }}</td>
           <td>{{ v.dateDeleted|e }}</td>
           <td>{{ v.motif|e }}</td>
-          <td class="text-right">
+          <td class="text-end">
             <div class="btn-group">
               <button type="button" class="btn btn-primary btn-sm unmarkDeleted" data-patientID="{{ v.id }}" title="Réactiver ce dossier">
                 <i class="fas fa-trash-restore"></i>
               </button>
               {% if config.optionGeDestructionDataDossierPatient == 'true' %}
-                <button type="button" class="btn btn-danger btn-sm destroyPeople" data-patientID="{{ v.id }}" data-patientIdentite="{{ v.identiteDossier|e }}" title="Suppression totale et irréversible de ce dossier" data-toggle="modal" data-target="#modalpeopleDestroy">
+                <button type="button" class="btn btn-danger btn-sm destroyPeople" data-patientID="{{ v.id }}" data-patientIdentite="{{ v.identiteDossier|e }}" title="Suppression totale et irréversible de ce dossier" data-bs-toggle="modal" data-bs-target="#modalpeopleDestroy">
                   <i class="fas fa-trash"></i>
                 </button>
               {% endif %}
@@ -124,19 +125,19 @@
       <div class="modal-content">
         <form id="formDestroyePeople" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/people/ajax/peopleDestroy/" method="post">
           <div class="modal-header">
-            <h5 class="modal-title font-weight-bold">Détruire un dossier</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+            <h5 class="modal-title fw-bold">Détruire un dossier</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              
             </button>
           </div>
           <div class="modal-body">
             {{ f.errorsBloc }}
             <div class="alert alert-danger" role="alert">
-              <p class="font-weight-bold">Vous demandez la destruction du dossier #<span id="peopleNumber"></span>  - <span id="peopleIdentity"></span></p>
+              <p class="fw-bold">Vous demandez la destruction du dossier #<span id="peopleNumber"></span>  - <span id="peopleIdentity"></span></p>
               <div class="d-flex justify-content-between align-items-center">
                 <span>
                   <p class="mb-0">Cette destruction est :</p>
-                  <ul class="list-style-position-inside pl-0 pt-0" >
+                  <ul class="list-style-position-inside ps-0 pt-0" >
                     <li>totale</li>
                     <li>irréversible</li>
                     <li>sans sauvegarde automatique préalable</li>
@@ -148,7 +149,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Détruire définitivement</button>
           </div>
         </form>

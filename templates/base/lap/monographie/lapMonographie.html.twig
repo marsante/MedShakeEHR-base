@@ -23,6 +23,7 @@
  # LAP > monographie sur base Thériaque
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% set noMenuInBar = 'ok' %}
@@ -57,61 +58,61 @@
     <div class="col-md-2">
       <ul class="nav nav-pills flex-column" role="tablist">
         <li class="nav-item">
-          <a  class="nav-link{% if page.section == 'administratif' %} active{% endif %}" href="#administratif" role="tab" aria-controls="administratif" data-toggle="pill">Renseignements administratifs</a>
+          <a  class="nav-link{% if page.section == 'administratif' %} active{% endif %}" href="#administratif" role="tab" aria-controls="administratif" data-bs-toggle="pill">Renseignements administratifs</a>
         </li>
         <li class="nav-item" {% if page.section == 'mvgeneriques' %} class="active"{% endif %}>
-          <a class="nav-link" href="#mvgeneriques" role="tab" aria-controls="mvgeneriques" data-toggle="pill">Médicaments virtuels / Génériques</a>
+          <a class="nav-link" href="#mvgeneriques" role="tab" aria-controls="mvgeneriques" data-bs-toggle="pill">Médicaments virtuels / Génériques</a>
         </li>
         <li class="nav-item" {% if page.section == 'formesPharma' %} class="active"{% endif %}>
-          <a class="nav-link" href="#formesPharma" role="tab" aria-controls="formes pharmaceutiques" data-toggle="pill">Forme(s) pharmaceutique(s)</a>
+          <a class="nav-link" href="#formesPharma" role="tab" aria-controls="formes pharmaceutiques" data-bs-toggle="pill">Forme(s) pharmaceutique(s)</a>
         </li>
         <li class="nav-item" {% if page.section == 'composition' %} class="active"{% endif %}>
-          <a class="nav-link" href="#composition" role="tab" data-toggle="pill">Composition</a>
+          <a class="nav-link" href="#composition" role="tab" data-bs-toggle="pill">Composition</a>
         </li>
         <li class="nav-item" {% if page.section == 'classifications' %} class="active"{% endif %}>
-          <a class="nav-link" href="#classifications" role="tab" data-toggle="pill">Classifications</a>
+          <a class="nav-link" href="#classifications" role="tab" data-bs-toggle="pill">Classifications</a>
         </li>
         <li class="nav-item" {% if page.section == 'pharmacologie' %} class="active"{% endif %}>
-          <a class="nav-link" href="#pharmacologie" role="tab" data-toggle="pill">Pharmacologie</a>
+          <a class="nav-link" href="#pharmacologie" role="tab" data-bs-toggle="pill">Pharmacologie</a>
         </li>
         <li class="nav-item" {% if page.section == 'recommandations' %} class="active"{% endif %}>
-          <a class="nav-link" href="#recommandations" role="tab" data-toggle="pill">Recommandations</a>
+          <a class="nav-link" href="#recommandations" role="tab" data-bs-toggle="pill">Recommandations</a>
         </li>
         <li class="nav-item" {% if page.section == 'presentations' %} class="active"{% endif %}>
-          <a class="nav-link" href="#presentations" role="tab" data-toggle="pill">Présentations</a>
+          <a class="nav-link" href="#presentations" role="tab" data-bs-toggle="pill">Présentations</a>
         </li>
         <li class="nav-item" {% if page.section == 'indications' %} class="active"{% endif %}>
-          <a class="nav-link" href="#indications" role="tab" data-toggle="pill">Indications</a>
+          <a class="nav-link" href="#indications" role="tab" data-bs-toggle="pill">Indications</a>
         </li>
         <li class="nav-item" {% if page.section == 'nonindications' %} class="active"{% endif %}>
-          <a class="nav-link" href="#nonindications" role="tab" data-toggle="pill">Non-indications</a>
+          <a class="nav-link" href="#nonindications" role="tab" data-bs-toggle="pill">Non-indications</a>
         </li>
         <li class="nav-item" {% if page.section == 'contreindications' %} class="active"{% endif %}>
-          <a class="nav-link" href="#contreindications" role="tab" data-toggle="pill">Contre-indications</a>
+          <a class="nav-link" href="#contreindications" role="tab" data-bs-toggle="pill">Contre-indications</a>
         </li>
         <li class="nav-item" {% if page.section == 'mgpe' %} class="active"{% endif %}>
-          <a class="nav-link" href="#mgpe" role="tab" data-toggle="pill">Mises en garde et précautions d'emploi</a>
+          <a class="nav-link" href="#mgpe" role="tab" data-bs-toggle="pill">Mises en garde et précautions d'emploi</a>
         </li>
         <li class="nav-item" {% if page.section == 'noncontreindications' %} class="active"{% endif %}>
-          <a class="nav-link" href="#noncontreindications" role="tab" data-toggle="pill">Non contre-indications</a>
+          <a class="nav-link" href="#noncontreindications" role="tab" data-bs-toggle="pill">Non contre-indications</a>
         </li>
         <li class="nav-item" {% if page.section == 'interactions' %} class="active"{% endif %}>
-          <a class="nav-link" href="#interactions" role="tab" data-toggle="pill">Interactions médicamenteuses</a>
+          <a class="nav-link" href="#interactions" role="tab" data-bs-toggle="pill">Interactions médicamenteuses</a>
         </li>
         <li class="nav-item" {% if page.section == 'posologies' %} class="active"{% endif %}>
-          <a class="nav-link" href="#posologies" role="tab" data-toggle="pill">Posologies</a>
+          <a class="nav-link" href="#posologies" role="tab" data-bs-toggle="pill">Posologies</a>
         </li>
         <li class="nav-item" {% if page.section == 'modeAdministration' %} class="active"{% endif %}>
-          <a class="nav-link" href="#modeAdministration" role="tab" data-toggle="pill">Mode d’administration<br>Manipulation / Incompatibilités</a>
+          <a class="nav-link" href="#modeAdministration" role="tab" data-bs-toggle="pill">Mode d’administration<br>Manipulation / Incompatibilités</a>
         </li>
         <li class="nav-item" {% if page.section == 'grossesse' %} class="active"{% endif %}>
-          <a class="nav-link" href="#grossesse" role="tab" data-toggle="pill">Grossesse / Allaitement</a>
+          <a class="nav-link" href="#grossesse" role="tab" data-bs-toggle="pill">Grossesse / Allaitement</a>
         </li>
         <li class="nav-item" {% if page.section == 'effetsindesirables' %} class="active"{% endif %}>
-          <a class="nav-link" href="#effetsindesirables" role="tab" data-toggle="pill">Effets indesirables</a>
+          <a class="nav-link" href="#effetsindesirables" role="tab" data-bs-toggle="pill">Effets indesirables</a>
         </li>
         <li class="nav-item" {% if page.section == 'conduite' %} class="active"{% endif %}>
-          <a class="nav-link" href="#conduite" role="tab" data-toggle="pill">Conduite de véhicules</a>
+          <a class="nav-link" href="#conduite" role="tab" data-bs-toggle="pill">Conduite de véhicules</a>
         </li>
       </ul>
     </div>

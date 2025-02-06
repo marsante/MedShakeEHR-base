@@ -24,6 +24,7 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
 
 $(document).ready(function() {
@@ -167,7 +168,7 @@ function getRelationsPatientPatientsTab(patientID) {
             </td>\
             <td>' + value.identiteComplete + '</td>\
             <td>' + value.birthdate + ' - ' + value.ageCalcule + '</td><td>' + value.typeRelation + '</td>\
-            <td class="text-right">\
+            <td class="text-end">\
               <div class="btn-group">\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + patientID + '" data-withID="' + value.peopleID + '"><i class="fas fa-times fa-fw"></i>\
                 </button>\
@@ -219,7 +220,7 @@ function getRelationsPatientPraticiensTab(patientID) {
                 </a>\
               </td>\
               <td>' + ((value.titre) ? (value.titre + ' ') : '') + value.identiteUsuelle + '</td><td>' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + patientID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
                 </button>\
@@ -268,7 +269,7 @@ function getRelationsGroupePraticiensTab(groupeID) {
                 </a>\
               </td>\
               <td>' + ((value.titre) ? (value.titre + ' ') : '') + value.identiteUsuelle + '</td><td class="small">' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
               ' + ((lienSup == 'true') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + groupeID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
@@ -280,7 +281,7 @@ function getRelationsGroupePraticiensTab(groupeID) {
       } else {
         $('#bodyTabRelationGroupePraticiens').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Aucun praticien dans ce groupe\
             </td>\
           </tr>');
@@ -313,11 +314,11 @@ function getRelationsPraticienGroupesTab(pratID) {
           $('#bodyTabRelationPraticienGroupes').append('\
             <tr class="voirDossier cursor-pointer">\
               <td>\
-                <a class="btn btn-light btn-sm mr-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
+                <a class="btn btn-light btn-sm me-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
                   <i class="fas fa-hospital-alt fa-fw"></i>\
                 </a>\
               ' + value.groupname + '</td><td class="small">' + value.city + ' (' + value.country + ')</td><td class="small">' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
               ' + ((value.currentUserStatus == 'admin' || value.currentUserRank == 'admin') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + pratID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
@@ -330,7 +331,7 @@ function getRelationsPraticienGroupesTab(pratID) {
         $('form.assignMyOwnGroups').removeClass('d-none');
         $('#bodyTabRelationPraticienGroupes').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Ce praticien n\'intègre aucun groupe\
             </td>\
           </tr>');
@@ -363,11 +364,11 @@ function getRelationsPatientGroupesTab(patientID) {
           $('#bodyTabRelationPatientGroupes').append('\
             <tr class="voirDossier cursor-pointer">\
               <td>\
-                <a class="btn btn-light btn-sm mr-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
+                <a class="btn btn-light btn-sm me-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
                   <i class="fas fa-hospital-alt fa-fw"></i>\
                 </a>\
               ' + value.groupname + '</td><td class="small">' + value.city + ' (' + value.country + ')</td>\
-              <td class="text-right">\
+              <td class="text-end">\
               ' + ((value.currentUserRank == 'admin') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + patientID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
@@ -380,7 +381,7 @@ function getRelationsPatientGroupesTab(patientID) {
         $('form.assignMyOwnGroups').removeClass('d-none');
         $('#bodyTabRelationPatientGroupes').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Ce patient n\'intègre aucun groupe\
             </td>\
           </tr>');
@@ -414,11 +415,11 @@ function getRelationsRegistreGroupesTab(registreID) {
           $('#bodyTabRelationRegistreGroupes').append('\
             <tr class="voirDossier cursor-pointer">\
               <td>\
-                <a class="btn btn-light btn-sm mr-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
+                <a class="btn btn-light btn-sm me-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
                   <i class="fas fa-hospital-alt fa-fw"></i>\
                 </a>\
               ' + value.groupname + '</td><td class="small">' + value.city + ' (' + value.country + ')</td><td class="small">' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
               ' + ((lienSup == 'true') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + registreID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
@@ -430,7 +431,7 @@ function getRelationsRegistreGroupesTab(registreID) {
       } else {
         $('#bodyTabRelationRegistreGroupes').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Ce praticien n\'intègre aucun groupe\
             </td>\
           </tr>');
@@ -469,7 +470,7 @@ function getRelationsRegistrePraticiensTab(registreID) {
                 </a>\
               </td>\
               <td>' + ((value.titre) ? (value.titre + ' ') : '') + value.identiteUsuelle + '</td><td class="small">' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
                 ' + ((lienSup == 'true') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + registreID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
@@ -481,7 +482,7 @@ function getRelationsRegistrePraticiensTab(registreID) {
       } else {
         $('#bodyTabRelationRegistrePraticiens').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Aucun administrateur désigné pour ce registre\
             </td>\
           </tr>');
@@ -516,11 +517,11 @@ function getRelationsGroupeRegistresTab(groupeID) {
           $('#bodyTabRelationGroupeRegistres').append('\
             <tr class="voirDossier cursor-pointer">\
               <td>\
-                <a class="btn btn-light btn-sm mr-3" role="button" href="' + urlBase + '/registre/' + value.peopleID + '/">\
+                <a class="btn btn-light btn-sm me-3" role="button" href="' + urlBase + '/registre/' + value.peopleID + '/">\
                   <i class="fas fa-archive fa-fw"></i>\
                 </a>\
               ' + value.registryname + '</td><td class="small">' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
               ' + ((lienSup == 'true') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + groupeID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
@@ -532,7 +533,7 @@ function getRelationsGroupeRegistresTab(groupeID) {
       } else {
         $('#bodyTabRelationGroupeRegistres').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Ce groupe n\'est autorisé pour aucun registre\
             </td>\
           </tr>');

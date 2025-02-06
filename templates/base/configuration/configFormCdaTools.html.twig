@@ -23,6 +23,7 @@
  # Template > Config : outils CDA
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -34,7 +35,7 @@
   <script defer="defer" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/configurationCdaTools.js?{{ modules.base }}"></script>
 
   <script>
-  var menuSelect = '<select class="custom-select custom-select-sm clinicalDocumentCode" autocomplete="off"> \
+  var menuSelect = '<select class="form-select form-select-sm clinicalDocumentCode" autocomplete="off"> \
     <option></option> \
     {% for jdv in page.jdvClinicalDocumentCode %} \
       <option value="{{ jdv.code }}"> \
@@ -67,10 +68,10 @@
 
   <ul class="nav nav-tabs" id="tabNav" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="actes-tab" data-toggle="tab" href="#actes-pan">Actes possibles</a>
+      <a class="nav-link active" id="actes-tab" data-bs-toggle="tab" href="#actes-pan">Actes possibles</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="code-tab" data-toggle="tab" href="#code-pan">Code</a>
+      <a class="nav-link" id="code-tab" data-bs-toggle="tab" href="#code-pan">Code</a>
     </li>
   </ul>
 
@@ -97,7 +98,7 @@
                         <td>{{ var }}</td>
                       {% endfor %}
                       <td>
-                        <select id="select{{ k }}" class="custom-select custom-select-sm" autocomplete="off">
+                        <select id="select{{ k }}" class="form-select form-select-sm" autocomplete="off">
                           <option></option>
                           {% for code, acte in page.actesPossibles %}
                             <option value="{{ code }}" {% if page['deja'][v.clef] == code %} selected="selected" {% endif %}>
@@ -120,8 +121,8 @@
 
           <div class="row">
             <div class="col">
-              <div class="form-group">
-                <label for="generatedCode" class="font-weight-bold">Code généré à copier-coller</label>
+              <div class="mb-3">
+                <label for="generatedCode" class="fw-bold">Code généré à copier-coller</label>
                 <textarea class="form-control" id="generatedCode" rows="25" autocomplete="off"></textarea>
               </div>
             </div>
@@ -147,7 +148,7 @@
                       <td class="codeSystem">{{ data.serviceEventCode.codeSystem }}</td>
                       <td class="displayName">{{ data.serviceEventCode.displayName }}</td>
                       <td>
-                        <select id="select{{ code }}" class="custom-select custom-select-sm clinicalDocumentCode" autocomplete="off">
+                        <select id="select{{ code }}" class="form-select form-select-sm clinicalDocumentCode" autocomplete="off">
                           <option></option>
                           {% for jdv in page.jdvClinicalDocumentCode %}
                             <option value="{{ jdv.code }}" {% if jdv.code == data.clinicalDocumentCode %} selected="selected" {% endif %}>
@@ -174,7 +175,7 @@
             <div class="col-10 col-md-2">
               <textarea id="searchCcam" rows="1" class="form-control form-control-sm" autocomplete="off" placeholder="Code acte CCAM (1 par ligne)"></textarea>
             </div>
-            <div class="col-1 text-left">
+            <div class="col-1 text-start">
               <button class="btn btn-sm btn-primary" id="searchCcamGo">
                 <i class="fas fa-search-plus"></i> Ajouter
               </button>
@@ -182,8 +183,8 @@
           </div>
           <div class="row">
             <div class="col">
-              <div class="form-group">
-                <label for="generatedCodeActes" class="font-weight-bold">Code généré à copier-coller</label>
+              <div class="mb-3">
+                <label for="generatedCodeActes" class="fw-bold">Code généré à copier-coller</label>
                 <textarea class="form-control" id="generatedCodeActes" rows="25" autocomplete="off"></textarea>
               </div>
             </div>

@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -78,8 +79,8 @@
   <div role="tabpanel" class="tab-pane active" id="prescriptions">
 
     <div class="row mt-3">
-      <div class="col text-right">
-        <button type="button" class="btn btn-primary reset-modal" data-toggle="modal" data-target="#modalNewCat">
+      <div class="col text-end">
+        <button type="button" class="btn btn-primary reset-modal" data-bs-toggle="modal" data-bs-target="#modalNewCat">
           <i class="fas fa-plus"></i>
           Nouvelle prescription
         </button>
@@ -109,7 +110,7 @@
               <td>{{ w.id }}</td>
               <td>{{ w.label }}</td>
               <td>{{ w.description }}</td>
-              <td class="text-right">
+              <td class="text-end">
                 <div class="btn-group">
                   <button type="button" class="btn btn-light btn-sm edit-by-prim-key" aria-label="Editer" data-id="{{ w.id }}" data-table="prescriptions" data-form="formModalNewCat" data-modal="modalNewCat">
                     <span class="fas fa-pencil-alt" aria-hidden="true"></span>
@@ -139,9 +140,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold" id="myModalLabel">Création / édition</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <h4 class="modal-title fw-bold" id="myModalLabel">Création / édition</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
         </button>
       </div>
       <div class="modal-body">
@@ -150,24 +151,24 @@
 
         <form id="formModalNewCat" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/ajax/configPrescriptionCreate/">
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.input ({ 'input' : { 'type' : 'text', 'name' : 'label', 'placeholder' : 'label', 'class' : 'form-control', 'autocomplete' : 'off' }, 'label' : { 'position' : 'before', 'label' : 'Label', } }) }}
           </div>
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'cat', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : page.catList, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Catégorie', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'toID', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : page.users, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Utilisateur', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.textarea ({ 'textarea' : { 'name' : 'description', 'placeholder' : 'description', 'class' : 'form-control', 'autocomplete' : 'off', 'rows' : '8' }, 'label' : { 'position' : 'before', 'label' : 'Prescription', } }) }}
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Abandonner</button>
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Abandonner</button>
         <button type="button" class="btn btn-primary modal-save" data-form="formModalNewCat" data-modal="modalNewCat">Sauvegarder</button>
       </div>
     </div>

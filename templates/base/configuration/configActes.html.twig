@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -81,8 +82,8 @@
   <div role="tabpanel" class="tab-pane active" id="prescriptions">
 
   <div class="row mt-3">
-    <div class="col text-right">
-      <button type="button" class="btn btn-primary reset-modal" data-toggle="modal" data-target="#modalNewCat">
+    <div class="col text-end">
+      <button type="button" class="btn btn-primary reset-modal" data-bs-toggle="modal" data-bs-target="#modalNewCat">
         <i class="fas fa-plus"></i> Nouvelle facture
       </button>
     </div>
@@ -108,11 +109,11 @@
         <th>Label court</th>
         <th>Utilisation</th>
         {% if page.secteurs[k] != '' %}
-          <th class="text-right">Tarif&nbsp;SS</th>
-          <th class="text-right">Dépassement</th>
-          <th class="text-right">Total</th>
+          <th class="text-end">Tarif&nbsp;SS</th>
+          <th class="text-end">Dépassement</th>
+          <th class="text-end">Total</th>
         {% else %}
-          <th class="text-right">Tarif</th>
+          <th class="text-end">Tarif</th>
         {% endif %}
         <th></th>
       </tr>
@@ -124,20 +125,20 @@
         <td>
           {{ w.syntheseActes }}
         </td>
-        <td{% if w.flagImportant == 1 %} class="font-weight-bold"{% endif %}>
+        <td{% if w.flagImportant == 1 %} class="fw-bold"{% endif %}>
           {{ w.label }}
-          {% if w.active == 'non' %}<span class="badge badge-danger ml-2">off</span>{% endif %}
+          {% if w.active == 'non' %}<span class="badge text-bg-danger ms-2">off</span>{% endif %}
         </td>
         <td>{{ w.shortLabel }}</td>
         <td>{{ page['utilisationParFacture'][w.id] }}</td>
-        <td class="text-right">{{ (w.tarif + w.majoModifCCAM)|number_format(2, '.', ' ') }}</td>
+        <td class="text-end">{{ (w.tarif + w.majoModifCCAM)|number_format(2, '.', ' ') }}</td>
         {% if page.secteurs[k] != '' %}
-          <td class="text-right">{{ w.depassement|number_format(2, '.', ' ') }}</td>
-          <td class="text-right">{{ w.total|number_format(2, '.', ' ') }}</td>
+          <td class="text-end">{{ w.depassement|number_format(2, '.', ' ') }}</td>
+          <td class="text-end">{{ w.total|number_format(2, '.', ' ') }}</td>
         {% endif %}
-        <td  class="text-right">
+        <td  class="text-end">
           <div class="btn-group">
-            <button type="button" class="btn btn-light btn-sm" data-toggle="collapse" data-target=".details{{ w.id }}" aria-label="Voir détails" id="details{{ w.id }}">
+            <button type="button" class="btn btn-light btn-sm" data-bs-toggle="collapse" data-bs-target=".details{{ w.id }}" aria-label="Voir détails" id="details{{ w.id }}">
                 <span class="fas fa-search-plus" aria-hidden="true"></span>
             </button>
 
@@ -171,15 +172,15 @@
         </td>
         <td></td>
         <td></td>
-        <td class="text-right">
+        <td class="text-end">
           {{ det.tarif|number_format(2, '.', '')  }}
           {% if det.majoModifCCAM > 0 %}
             + {{ det.majoModifCCAM }}
           {% endif %}
         </td>
         {% if page.secteurs[k] != '' %}
-          <td class="text-right">{{ det.depassement|number_format(2, '.', '')  }}</td>
-          <td class="text-right">{{ det.total|number_format(2, '.', '')  }}</td>
+          <td class="text-end">{{ det.depassement|number_format(2, '.', '')  }}</td>
+          <td class="text-end">{{ det.total|number_format(2, '.', '')  }}</td>
         {% endif %}
         <td colspan="2"></td>
       </tr>
@@ -198,9 +199,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold" id="myModalLabel">Création / édition</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <h4 class="modal-title fw-bold" id="myModalLabel">Création / édition</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
         </button>
       </div>
       <div class="modal-body">
@@ -209,42 +210,42 @@
 
         <form id="formModalNewCat" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/ajax/configActesCreate/">
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.input ({ 'input' : { 'type' : 'text', 'name' : 'label', 'placeholder' : 'intitulé', 'class' : 'form-control', 'autocomplete' : 'off' }, 'label' : { 'position' : 'before', 'label' : 'Label', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.input ({ 'input' : { 'type' : 'text', 'name' : 'shortLabel', 'placeholder' : 'intitulé court', 'class' : 'form-control', 'autocomplete' : 'off' }, 'label' : { 'position' : 'before', 'label' : 'Label court', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'cat', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : page.catList, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Catégorie', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'toID', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : page.users, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Utilisateur', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.textarea ({ 'textarea' : {'name' : 'details', 'placeholder' : 'détails', 'class' : 'form-control', 'autocomplete' : 'off', 'rows': '8' }, 'label' : { 'position' : 'before', 'label' : 'Détails', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'flagCmu', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : {'0' : 'Non', '1' : 'Oui'}, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Acte pour patient CMU', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'flagImportant', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : {'0' : 'Non', '1' : 'Oui'}, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Acte important', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'active', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : {'oui' : 'Oui', 'non' : 'Non'}, 'valueDefaut': 'oui' }, 'label' : { 'position' : 'before', 'label' : 'Facture active pour utilisateurs', } }) }}
           </div>
 
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Abandonner</button>
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Abandonner</button>
         <button type="button" class="btn btn-primary modal-save" data-form="formModalNewCat" data-modal="modalNewCat">Sauvegarder</button>
       </div>
     </div>

@@ -23,6 +23,7 @@
  # Template > lap : tableau des allergies
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 
@@ -32,7 +33,7 @@
     <tbody>
       {% for id, aller in page.patientAllergies.allergiesData %}
         <tr class="tr{{ id }} table-danger">
-          <td data-toggle="collapse" data-target="#atcdDet{{ id }}lap" style="cursor: pointer">
+          <td data-bs-toggle="collapse" data-bs-target="#atcdDet{{ id }}lap" style="cursor: pointer">
             {{ aller.libelle }}
             <div id="atcdDet{{ id }}lap" class="collapse">
               <table class="table table-sm" style="margin-top:8px;">

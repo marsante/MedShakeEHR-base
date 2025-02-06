@@ -23,6 +23,7 @@
  # Template > Outils > fax autonome
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -97,31 +98,31 @@
           <input type="file" name="files[]" multiple="multiple" title="Cliquer pour ajouter">
           <div class="progress my-3">
             <div class="progress-bar" role="progressbar" style="width: 00%;">
-              <span class="sr-only"></span>
+              <span class="visually-hidden"></span>
             </div>
           </div>
         </div>
 
-        <div class="jumbotron">
+        <div class="bg-light mb-4 rounded-2 py-5 px-3">
           <form action="/outils/actions/outilsFaxSend/" method="post">
             <div class="row">
               <div class="col">
-                <div class="form-group">
+                <div class="mb-3">
                   <label for="id_mailToEcofaxName_id">Destinataire du fax
                   </label>
                   <input type="text" title="mailToEcofaxName / 484" id="id_mailToEcofaxName_id" name="mailToEcofaxName" class="form-control form-control-sm " autocomplete="off" required="required" data-internalname="mailToEcofaxName"/>
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                   <label for="id_mailToEcofaxNumber_id">Numéro de fax du destinataire
                   </label>
                   <input type="text" title="mailToEcofaxNumber / 481" id="id_mailToEcofaxNumber_id" name="mailToEcofaxNumber" class="form-control form-control-sm " autocomplete="off" required="required"  data-internalname="mailToEcofaxNumber"/>
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                   <label for="actionAfterSend">Action après l'envoi
                   </label>
-                  <select name="actionAfterSend" class="custom-select custom-select-sm" autocomplete="off">
+                  <select name="actionAfterSend" class="form-select form-select-sm" autocomplete="off">
                     <option value="cleanDoc">Envoyer un autre document</option>
                     <option value="sameDoc">Envoyer le même document</option>
                   </select>

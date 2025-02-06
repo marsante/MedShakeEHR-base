@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
   <table id="recettes" class="table table-sm mb-0 table-hover table-striped" style="min-width:1105px">
@@ -33,23 +34,23 @@
               <th></th>
               <th>Date</th>
               <th>Patient</th>
-              <th class="text-right">Actes</th>
+              <th class="text-end">Actes</th>
               {% if page.secteur %}
-                <th class="text-right">CMU / TP</th>
+                <th class="text-end">CMU / TP</th>
               {% else %}
                 <th style="width:0"></th>
               {% endif %}
-              <th class="text-right">Montant facturé</th>
-              <th class="text-right">Chèque</th>
-              <th class="text-right">CB</th>
-              <th class="text-right">Espèces</th>
+              <th class="text-end">Montant facturé</th>
+              <th class="text-end">Chèque</th>
+              <th class="text-end">CB</th>
+              <th class="text-end">Espèces</th>
               {% if page.secteur %}
-                <th class="text-right">TP</th>
+                <th class="text-end">TP</th>
               {% else %}
                 <th style="width:0"></th>
               {% endif %}
-              <th class="text-right">Payé</th>
-              <th class="text-right">Impayé</th>
+              <th class="text-end">Payé</th>
+              <th class="text-end">Impayé</th>
               <th></th>
           </tr>
         {% endif %}
@@ -75,47 +76,47 @@
                       {% if reg.regleIdentiteCheque %}réglé par
                           {{ reg.regleIdentiteCheque|e }}{% endif %}
                   </td>
-                  <td class="text-right">
-                      <button type="button" class="btn  btn-sm" data-toggle="tooltip" data-placement="bottom" title="{{ reg.label|e('html_attr') }}">
+                  <td class="text-end">
+                      <button type="button" class="btn  btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ reg.label|e('html_attr') }}">
                           <span class="fas fa-question-circle" aria-hidden="true"></span>
                       </button>
                   </td>
                   {% if page.secteur %}
-                    <td class="text-right">
+                    <td class="text-end">
                         {% if reg.regleSituationPatient == 'CMU' or reg.regleSituationPatient == 'TP' %}{{ reg.regleSituationPatient|e }}{% endif %}
                     </td>
                   {% else %}
                     <td style="width:0"></td>
                   {% endif %}
-                  <td class="text-right">
+                  <td class="text-end">
                       {{ reg.regleFacture|number_format(2, '.', ' ')|e }}
                   </td>
-                  <td class="text-right">
+                  <td class="text-end">
                       {% if reg.regleCheque > 0%}{{ reg.regleCheque|number_format(2, '.', ' ')|e }}{% endif %}
                   </td>
-                  <td class="text-right">
+                  <td class="text-end">
                       {% if reg.regleCB > 0%}{{ reg.regleCB|number_format(2, '.', ' ')|e }}{% endif %}
                   </td>
-                  <td class="text-right">
+                  <td class="text-end">
                       {% if reg.regleEspeces > 0%}{{ reg.regleEspeces|number_format(2, '.', ' ')|e }}{% endif %}
                   </td>
                   {% if page.secteur %}
-                    <td class="text-right">
+                    <td class="text-end">
                         {% if reg.regleTiersPayeur > 0%}{{ reg.regleTiersPayeur|number_format(2, '.', ' ')|e }}{% endif %}
                     </td>
                   {% else %}
                     <td style="width:0"></td>
                   {% endif %}
-                  <td class="text-right">
+                  <td class="text-end">
                       {% if reg.dejaPaye > 0%}{{ reg.dejaPaye|number_format(2, '.', ' ')|e }}{% endif %}
                   </td>
-                  <td class="text-right">
+                  <td class="text-end">
                       {% if reg.regleFacture - reg.dejaPaye > 0 %}{{ (reg.regleFacture-reg.dejaPaye)|number_format(2, '.', ' ')|e }}{% endif %}
                   </td>
-                  <td class="text-right">
+                  <td class="text-end">
                       {% if reg.regleFacture - reg.dejaPaye > 0 %}
                       {% set apayer = reg.regleFacture - reg.dejaPaye %}
-                        <button class="btn btn-danger btn-sm editReglement py-0" type="button" data-objetID="{{ obj }}" data-patientID="{{ reg.toID }}" data-patientname="{{ reg.prenom|e }} {{ reg.nom|e }}" data-porteur="{{ reg.typeID }}" data-aregler="{{ apayer|number_format(2, '.', '') }}" data-dejaCheque="{{ reg.dejaPayeTab.dejaCheque }}" data-dejaCB="{{ reg.dejaPayeTab.dejaCB }}"  data-dejaEspeces="{{ reg.dejaPayeTab.dejaEspeces }}" data-toggle="modal" data-target="#modalReglement">
+                        <button class="btn btn-danger btn-sm editReglement py-0" type="button" data-objetID="{{ obj }}" data-patientID="{{ reg.toID }}" data-patientname="{{ reg.prenom|e }} {{ reg.nom|e }}" data-porteur="{{ reg.typeID }}" data-aregler="{{ apayer|number_format(2, '.', '') }}" data-dejaCheque="{{ reg.dejaPayeTab.dejaCheque }}" data-dejaCB="{{ reg.dejaPayeTab.dejaCB }}"  data-dejaEspeces="{{ reg.dejaPayeTab.dejaEspeces }}" data-bs-toggle="modal" data-bs-target="#modalReglement">
                           Saisir règlement
                         </button>
                       {% endif %}
@@ -135,18 +136,18 @@
               {% else %}
                 <th style="width:0"></th>
               {% endif %}
-              <th class="text-right">Montant facturé</th>
-              <th class="text-right">Chèque</th>
-              <th class="text-right">CB</th>
-              <th class="text-right">Espèces</th>
+              <th class="text-end">Montant facturé</th>
+              <th class="text-end">Chèque</th>
+              <th class="text-end">CB</th>
+              <th class="text-end">Espèces</th>
               {% if page.secteur %}
-                <th class="text-right">TP</th>
+                <th class="text-end">TP</th>
               {% else %}
                 <th style="width:0"></th>
               {% endif %}
-              <th class="text-right">Payé</th>
-              <th class="text-right">Impayé</th>
-              <th class="text-right"></th>
+              <th class="text-end">Payé</th>
+              <th class="text-end">Impayé</th>
+              <th class="text-end"></th>
           </tr>
           <tr>
               <th></th>
@@ -157,22 +158,22 @@
               {% else %}
                 <th style="width:0"></th>
               {% endif %}
-              <th class="text-right">Totaux</th>
-              <th class="text-right">{{ page.tabTot.regleFacture|number_format(2, '.', ' ')|e }}</th>
-              <th class="text-right">{{ page.tabTot.regleCheque|number_format(2, '.', ' ')|e }}</th>
-              <th class="text-right">{{ page.tabTot.regleCB|number_format(2, '.', ' ')|e }}</th>
-              <th class="text-right">{{ page.tabTot.regleEspeces|number_format(2, '.', ' ')|e }}</th>
+              <th class="text-end">Totaux</th>
+              <th class="text-end">{{ page.tabTot.regleFacture|number_format(2, '.', ' ')|e }}</th>
+              <th class="text-end">{{ page.tabTot.regleCheque|number_format(2, '.', ' ')|e }}</th>
+              <th class="text-end">{{ page.tabTot.regleCB|number_format(2, '.', ' ')|e }}</th>
+              <th class="text-end">{{ page.tabTot.regleEspeces|number_format(2, '.', ' ')|e }}</th>
               {% if page.secteur %}
-                <th class="text-right">{{ page.tabTot.regleTiersPayeur|number_format(2, '.', ' ')|e }}</th>
+                <th class="text-end">{{ page.tabTot.regleTiersPayeur|number_format(2, '.', ' ')|e }}</th>
               {% else %}
                 <th style="width:0"></th>
               {% endif %}
-              <th class="text-right">{{ (page.tabTot.regleCheque + page.tabTot.regleCB + page.tabTot.regleEspeces + page.tabTot.regleTiersPayeur)|number_format(2, '.', ' ')|e }}</th>
-              <th class="text-right">{{ (page.tabTot.regleFacture - (page.tabTot.regleCheque + page.tabTot.regleCB + page.tabTot.regleEspeces + page.tabTot.regleTiersPayeur))|number_format(2, '.', ' ')|e }}</th>
-              <th class="text-right">{% if page.tabReg|length > 0 %}{{ page.tabReg|length }} règlement{% if page.tabReg|length > 1 %}s{% endif %}{% endif %}</th>
+              <th class="text-end">{{ (page.tabTot.regleCheque + page.tabTot.regleCB + page.tabTot.regleEspeces + page.tabTot.regleTiersPayeur)|number_format(2, '.', ' ')|e }}</th>
+              <th class="text-end">{{ (page.tabTot.regleFacture - (page.tabTot.regleCheque + page.tabTot.regleCB + page.tabTot.regleEspeces + page.tabTot.regleTiersPayeur))|number_format(2, '.', ' ')|e }}</th>
+              <th class="text-end">{% if page.tabReg|length > 0 %}{{ page.tabReg|length }} règlement{% if page.tabReg|length > 1 %}s{% endif %}{% endif %}</th>
           </tr>
       </thead>
   </table>
-  <div class="text-right mt-2">
+  <div class="text-end mt-2">
     <button class="btn btn-outline-secondary btn-sm" onclick="exportTableToCSV('#recettes','compta.csv')">Exporter en CSV</button>
   </div>

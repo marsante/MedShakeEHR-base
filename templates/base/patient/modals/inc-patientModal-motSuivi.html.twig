@@ -23,6 +23,7 @@
  # Template > patient : modale pour ajouter et modifier un mot de suivi
  #
  # @author 2021     DEMAREST Maxime <maxime@indelog.fr>
+ # @contrib Michaël Val
  #
 #}
 {% if config.optionsDossierPatientActiverMotSuivi %}
@@ -35,20 +36,20 @@
           <input type="hidden" name="ID" value="0">
           <input type="hidden" name="toID" value="{{ page.patient.id }}">
           <input type="hidden" name="action" value="create">
-          <h4 class="modal-title font-weight-bold">
+          <h4 class="modal-title fw-bold">
             <span id="modalMotSuviTitreNouveau">Nouveau mot de suivi</span>
             <span id="modalMotSuiviTitreModifier" hidden="hidden">Modifier le mot suivi</span>
           </h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
-            <div class="form-group">
-                <label class="font-weight-bold">Mot</label>
+            <div class="mb-3">
+                <label class="fw-bold">Mot</label>
                 <textarea name="texte" type="text" class="form-control" aria-label="Mot de suivi" placeholder="Texte du mot de suivi" required="required" maxlength="224" row="3" autocomplete="off"></textarea> {# limit à 224 et non 256 car les échapement de certain caracères peuvent ajouter des caractères suplémentaires #}
             </div>
-            <div class="form-group">
-                <label class="font-weight-bold">Date et heure</label>
+            <div class="mb-3">
+                <label class="fw-bold">Date et heure</label>
                 <div class="input-group date mb-3" id="datepickMotSuivi">
                   <input type="text" class="form-control" name="dateTime">
               </div>
@@ -56,7 +57,7 @@
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Abandonner</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abandonner</button>
             <button type="submint" class="btn btn-primary">Enregister</button>
         </div>
 

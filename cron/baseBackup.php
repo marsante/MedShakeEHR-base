@@ -24,6 +24,7 @@
  * Cron : sauvegarde de la base
  *
  * @author fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
 
 // pour le configurateur de cron

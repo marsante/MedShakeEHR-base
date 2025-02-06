@@ -23,6 +23,7 @@
  # Template > Config : liste des utilisateurs
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
  #}
 
@@ -81,7 +82,7 @@
     <div class="col-3">
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {% for file, dat in page.files %}
-          <a class="nav-link {% if loop.index == 1 %}active{% endif %}" id="v-pills-home-tab{{ loop.index }}" data-toggle="pill" href="#v-pills{{ loop.index }}" role="tab" aria-controls="v-pills{{ loop.index }}" aria-selected="true">{{ file }}</a>
+          <a class="nav-link {% if loop.index == 1 %}active{% endif %}" id="v-pills-home-tab{{ loop.index }}" data-bs-toggle="pill" href="#v-pills{{ loop.index }}" role="tab" aria-controls="v-pills{{ loop.index }}" aria-selected="true">{{ file }}</a>
         {% endfor %}
       </div>
     </div>

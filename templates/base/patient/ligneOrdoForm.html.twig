@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 {% import "macroForm.html.twig" as f %}
 
@@ -32,13 +33,13 @@
 <div class="row ligneOrdo">
     <div class="col-md-12">
 
-        <div class="form-group">
+        <div class="mb-3">
             <button type="button" class="close cleanLigneOrdo" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                
             </button>
 
             <div class="row">
-                <div class="col-md-11 pl-0">
+                <div class="col-md-11 ps-0">
                   {{ f.textarea ({
                     'textarea' : {
                       'name' : ligne.formname ,

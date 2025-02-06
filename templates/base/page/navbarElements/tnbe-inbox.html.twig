@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% if config.optionGeActiverInboxApicrypt == 'true' %}
@@ -40,7 +41,7 @@
        {% else %}
          Boite de réception
          {% if page.inbox.numberOfMsg > 0 and config.designTopMenuInboxCountDisplay == 'true' %}
-           <span class="badge badge-light">{{ page.inbox.numberOfMsg }}</span>
+           <span class="badge text-bg-light">{{ page.inbox.numberOfMsg }}</span>
          {% endif %}
        {% endif %}
      </a>

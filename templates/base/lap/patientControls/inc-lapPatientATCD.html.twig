@@ -23,6 +23,7 @@
  # Template > lap : tableau des atcd
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 
@@ -36,7 +37,7 @@
           {% for atcdId, atc in atcd.atcd %}
             {% if atc.atcdStrucCIM10InLap.value != 'n' %}
               <tr class="tr{{ atcdId }} table-gray">
-                <td data-toggle="collapse" data-target="#atcdDet{{ atcdId }}lap" style="cursor: pointer">
+                <td data-bs-toggle="collapse" data-bs-target="#atcdDet{{ atcdId }}lap" style="cursor: pointer">
                   {{ atc.atcdStrucCIM10Label.value }}
                   <div id="atcdDet{{ atcdId }}lap" class="collapse">
                     <table class="table table-sm" style="margin-top:8px;">

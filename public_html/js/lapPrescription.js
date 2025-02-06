@@ -227,7 +227,7 @@ $(document).ready(function() {
     th.find(".arrow").remove();
     dir = $.fn.stupidtable.dir;
     arrow = data.direction === dir.ASC ? "fa-chevron-up" : "fa-chevron-down";
-    th.eq(data.column).append('<span class="ml-1 arrow fa ' + arrow + '"></span>');
+    th.eq(data.column).append('<span class="ms-1 arrow fa ' + arrow + '"></span>');
     //console.log("The sorting direction: " + data.direction);
     //console.log("The column index: " + data.column);
   });

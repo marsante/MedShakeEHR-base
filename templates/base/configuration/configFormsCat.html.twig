@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -65,8 +66,8 @@
 	<div role="tabpanel" class="tab-pane active" id="categories">
 
     <div class="row my-3">
-      <div class="col text-right">
-        <button type="button" class="btn btn-primary reset-modal" data-toggle="modal" data-target="#modalNewCat">
+      <div class="col text-end">
+        <button type="button" class="btn btn-primary reset-modal" data-bs-toggle="modal" data-bs-target="#modalNewCat">
           <i class="fas fa-plus"></i> Nouvelle catégorie
         </button>
       </div>
@@ -98,7 +99,7 @@
             {% endif %}
           </td>
     			<td>{{ v.description }}</td>
-    			<td class="text-right">
+    			<td class="text-end">
             <div class="btn-group">
     				  <button type="button" class="btn btn-light btn-sm edit-by-prim-key" aria-label="Editer" data-id="{{ k }}" data-table="forms_cat" data-form="formModalNewCat" data-modal="modalNewCat">
     				  <span class="fas fa-pencil-alt" aria-hidden="true"></span>
@@ -123,15 +124,15 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title font-weight-bold" id="myModalLabel">Création / édition catégorie</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title fw-bold" id="myModalLabel">Création / édition catégorie</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 
 			{{ f.errorsBloc() }}
 
 			<form id="formModalNewCat" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/ajax/configFormsCatCreate/">
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -147,7 +148,7 @@
 				}) }}
 				</div>
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -163,7 +164,7 @@
 				}) }}
 				</div>
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -182,7 +183,7 @@
 
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-light" data-dismiss="modal">Abandonner</button>
+				<button type="button" class="btn btn-light" data-bs-dismiss="modal">Abandonner</button>
 				<button type="button" class="btn btn-primary modal-save" data-form="formModalNewCat" data-modal="modalNewCat">Sauvegarder</button>
 			</div>
 		</div>

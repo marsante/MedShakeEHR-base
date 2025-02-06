@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -69,7 +70,7 @@
       {% endif %}
     </div>
     {% if config.PraticienPeutEtrePatient == 'true' %}
-      <div class="col-xl-5 col-6 text-right">
+      <div class="col-xl-5 col-6 text-end">
         <a class="btn btn-outline-secondary" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/pro/edit/{{ page.patient.id }}/">
           <span class="fas fa-pencil-alt" aria-hidden="true"></span>
           Editer infos pros
@@ -80,14 +81,14 @@
 
   <ul class="nav nav-tabs col-xl-10 col-12" id="infosTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active font-weight-bold" id="principales-tab" data-toggle="tab" href="#principales" role="tab" >Informations principales</a>
+      <a class="nav-link active fw-bold" id="principales-tab" data-bs-toggle="tab" href="#principales" role="tab" >Informations principales</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="autres-tab" data-toggle="tab" href="#autres" role="tab" ><i class="fas fa-plus"></i></a>
+      <a class="nav-link" id="autres-tab" data-bs-toggle="tab" href="#autres" role="tab" ><i class="fas fa-plus"></i></a>
     </li>
   </ul>
 
-  <div class="tab-content border-left border-bottom border-right col-xl-10 col-12 p-4  bg-light" id="myTabContent">
+  <div class="tab-content border-start border-bottom border-end col-xl-10 col-12 p-4  bg-light" id="myTabContent">
     <div class="tab-pane fade show active checkboxFixValue" id="principales" role="tabpanel">
 
         {{ f.errorFormDiv( session['form'][page.formIN]['validationErrorsMsg'] ) }}

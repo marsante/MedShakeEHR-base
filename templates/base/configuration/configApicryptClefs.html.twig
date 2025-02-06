@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @contrib fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -156,7 +157,7 @@ $(document).ready(function() {
               <th>
                 Est accessible en écriture
               </th>
-              <th class="text-right">
+              <th class="text-end">
                   Gérer
               </th>
           </tr>
@@ -167,16 +168,16 @@ $(document).ready(function() {
                   <td>
                     {{ v.file }}
                     {% if v.fileInfo.extension == 'aes' %}
-                      <button class="btn btn-sm btn-danger ml-3 dechiffrer" data-source="{{ page.repertoireClefs }}{{ v.file }}" data-destination="{{ page.repertoireClefs }}{{ v.fileInfo.filename }}">
+                      <button class="btn btn-sm btn-danger ms-3 dechiffrer" data-source="{{ page.repertoireClefs }}{{ v.file }}" data-destination="{{ page.repertoireClefs }}{{ v.fileInfo.filename }}">
                         <i class="fas fa-lock"></i> Cliquez pour déchiffrer et utiliser
                       </button>
                     {% endif %}
                   </td>
-                  <td class="text-right">{{ v.filesize }}</td>
+                  <td class="text-end">{{ v.filesize }}</td>
                   <td>{{ page.repertoireClefs }}{{ v.file }}</td>
                   <td class="{% if v.autorisationLecture == 1 %}table-success{% else %}table-danger{% endif %}">&nbsp;</td>
                   <td class="{% if v.autorisationEcriture == 1 %}table-success{% else %}table-danger{% endif %}">&nbsp;</td>
-                  <td class="text-right">
+                  <td class="text-end">
                     <div class="btn-group">
                       <button class="delApicryptClef btn btn-sm btn-light" type="button" data-file="{{ v.file }}" data-user="{{ page.selectUser }}" title="Supprimer"><i class="fas fa-trash-alt"></i></a>
                     </div>
@@ -203,7 +204,7 @@ $(document).ready(function() {
 
           <div class="progress" style="margin-top : 20px;">
             <div class="progress-bar" role="progressbar" style="width: 00%;">
-              <span class="sr-only"></span>
+              <span class="visually-hidden"></span>
             </div>
           </div>
       </div>

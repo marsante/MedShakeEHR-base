@@ -23,6 +23,7 @@
  # Template > patient : modal nouveau praticien
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 {% import "macroForm.html.twig" as f %}
@@ -30,8 +31,8 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold">Création d'un nouveau praticien</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title fw-bold">Création d'un nouveau praticien</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body checkboxFixValue">
         {{ f.errorsBloc() }}
@@ -45,7 +46,7 @@
         {% endif %}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Abandonner</button>
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Abandonner</button>
         <button type="button" class="btn btn-primary modal-save" data-modal="newPro" data-form="formName_{{ config.formFormulaireNouveauPraticien }}">Créer</button>
       </div>
     </div>

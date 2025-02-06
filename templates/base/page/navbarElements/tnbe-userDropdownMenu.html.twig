@@ -23,37 +23,38 @@
  # Template > navbar élément menu utilisateur
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 <li class="nav-item dropdown">
- <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">{{ user.prenom }}
+ <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">{{ user.prenom }}
    {{ user.nom }}
  </a>
- <div class="dropdown-menu dropdown-menu-right">
+ <div class="dropdown-menu dropdown-menu-end">
    <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/pro/edit/{{ user.id }}/">
-     <i class="fas fa-user-edit fa-fw text-muted mr-1"></i>
+     <i class="fas fa-user-edit fa-fw text-muted me-1"></i>
      Edition profil
    </a>
    <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/user/userParameters/">
-     <i class="fas fa-user-cog fa-fw text-muted mr-1"></i>
+     <i class="fas fa-user-cog fa-fw text-muted me-1"></i>
      Paramètres utilisateur
    </a>
    {% if config.optionGeActiverPhonecapture == 'true' %}
      <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/user/userPhoneCaptureAccess/">
-       <i class="fas fa-mobile-alt fa-fw text-muted mr-1"></i>
+       <i class="fas fa-mobile-alt fa-fw text-muted me-1"></i>
        Activer PhoneCapture
      </a>
    {% endif %}
    {% if user.rank == 'admin' %}
      <div role="separator" class="dropdown-divider"></div>
      <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/">
-       <i class="fas fa-cogs fa-fw text-muted mr-1"></i>
+       <i class="fas fa-cogs fa-fw text-muted me-1"></i>
        Configuration
      </a>
    {% endif %}
    <div role="separator" class="dropdown-divider"></div>
    <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/login/logOutDo/">
-     <i class="fas fa-power-off fa-fw text-muted mr-1"></i>
+     <i class="fas fa-power-off fa-fw text-muted me-1"></i>
      Déconnexion
    </a>
  </div>

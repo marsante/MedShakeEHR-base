@@ -23,6 +23,7 @@
  # Template > écran formulaire pour configuration pour install.php
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 
@@ -36,20 +37,20 @@
 		<div class="row">
 			<div class="col-md-4">
 				<h3>Paramètres généraux</h3>
-				<div class="form-group">
+				<div class="mb-3">
 					<label class="control-label">Chemin du dossier de stockage</label>
 					<input name="stockageLocation" type="text" class="form-control" autocomplete="off" required="required" value="{{ page.homepath }}stockage/"/>
 				</div>
-				<div class="form-group">
+				<div class="mb-3">
 					<label class="control-label">Chemin du dossier de sauvegarde</label>
 					<input name="backupLocation" type="text" class="form-control" autocomplete="off" required="required" value="{{ page.homepath }}backups/"/>
 				</div>
-				<div class="form-group">
+				<div class="mb-3">
 					<label class="control-label">Empreinte de sécurité pour les sessions (chaîne aléatoire)</label>
 					<input name="fingerprint" type="text" class="form-control" autocomplete="off" required="required" value="{{ page.fingerprintRandom }}"/>
 				</div>
 				<h3>Paramètres de la base de données</h3>
-				<div class="form-group">
+				<div class="mb-3">
 					<label class="control-label">Serveur SQL</label>
 					<input name="sqlServeur" type="text" class="form-control" autocomplete="off" required="required" value="localhost"/>
 				</div>
@@ -59,25 +60,25 @@
 						<label class="form-check-label">Ne pas créer la base de donnée</br>(seulement si vous avez déjà créé la base de données et l'utilisateur pour MedShakeEHR)</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="mb-3">
 				<label class="control-label">Nom utilisateur root MySQL (ne sera pas enregistré)</label>
 				<input name="sqlRootId" type="text" class="form-control" autocomplete="off" required="required" value="root"/>
 			</div>
-			<div class="form-group">
+			<div class="mb-3">
 				<label class="control-label">Mot de passe utilisateur root MySQL (ne sera pas enregistré)</label>
 				<input name="sqlRootPwd" type="password" class="form-control" autocomplete="off" required="required" value=""/>
 			</div>
-			<div class="form-group">
+			<div class="mb-3">
 				<label class="control-label">Nom de la base à utiliser</label>
 				<input name="sqlBase" type="text" pattern="[a-zA-Z0-9_]{1,64}" class="form-control" autocomplete="off" required="required" value="medshakeehr"/>
 				<small class="form-text text-muted">Caractères alphanumériques et underscore uniquement</small>
 			</div>
 			<div class="row">
-				<div class="col form-group">
+				<div class="col mb-3">
 					<label class="control-label">Nom d'utilisateur de la base à utiliser</label>
 					<input name="sqlUser" type="text" class="form-control" autocomplete="off" required="required" value=""/>
 				</div>
-				<div class="col form-group">
+				<div class="col mb-3">
 					<label class="control-label">Hote(s) de l'utilisateur</label>
 					<div class="input-group">
 						<div class="input-group-prepend">
@@ -88,11 +89,11 @@
 					<small class="form-text text-muted">localhost, %, IP ...</small>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="mb-3">
 				<label class="control-label">Mot de passe de l'utilisateur à utiliser</label>
 				<input name="sqlPass" type="text" class="form-control" autocomplete="off" required="required" value=""/>
 			</div>
-			<div class="form-group">
+			<div class="mb-3">
 				<label class="control-label">Empreinte de sécurité pour les mots de passe de la base (chaîne aléatoire)</label>
 				<input name="sqlVarPassword" type="text" class="form-control" autocomplete="off" required="required" value="{{ page.sqlVarPasswordRandom }}"/>
 			</div>

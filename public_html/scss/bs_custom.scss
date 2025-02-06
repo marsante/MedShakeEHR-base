@@ -20,10 +20,7 @@ $green: #5cb85c;
 
 $light: lighten(#000000, 96%);
 
-$theme-colors: (
-  "orange": $orange,
-  "gray": lighten(#000000, 79%),
-);
+$gray: lighten(#000000, 79%);
 
 $sizes: (
   5: 5%,
@@ -32,6 +29,6 @@ $sizes: (
   20: 20%,
 );
 
-$yiq-contrasted-threshold: 183;
+$min-contrast-ratio: 2.5;
 
 @import "../thirdparty/npm-asset/bootstrap/scss/bootstrap.scss";

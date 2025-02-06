@@ -24,6 +24,7 @@
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  # @author fr33z00 <https://github.com/fr33z00>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -80,7 +81,7 @@
         </thead>
         <tbody>
           {% for m in page.modules %}
-            <tr data-toggle="collapse" data-target="#{{ m.name }}">
+            <tr data-bs-toggle="collapse" data-bs-target="#{{ m.name }}">
               <td>
                 {% if page.modulesInfosGen[m.name]['nom'] %}
                   {{ page.modulesInfosGen[m.name]['nom'] }}
@@ -90,8 +91,8 @@
                 {{ m.name }}
               </td>
               <td>{{ m.version }}</td>
-              <td class="text-right">
-                <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#{{ m.name }}">
+              <td class="text-end">
+                <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#{{ m.name }}">
                   <i class="fas fa-info fa-fw"></i>
                 </button>
               </td>
@@ -166,7 +167,7 @@
                 {% else %}
                   <p>Pas de paramètres spécifiques.</p>
                 {% endif %}
-                <a class="btn btn-sm btn-success" data-module="m.name" href="/configuration/modules/export/{{ m.name }}/" role="button"><i class="fas fa-database mr-1"></i> Exporter le module en SQL</a>
+                <a class="btn btn-sm btn-success" data-module="m.name" href="/configuration/modules/export/{{ m.name }}/" role="button"><i class="fas fa-database me-1"></i> Exporter le module en SQL</a>
               </td>
             </tr>
           {% endfor %}

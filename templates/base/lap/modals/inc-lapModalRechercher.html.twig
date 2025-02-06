@@ -23,6 +23,7 @@
  # Template > lap : modal de recherche et prescription
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #
 #}
 
@@ -30,21 +31,21 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold">Nouvelle prescription</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title fw-bold">Nouvelle prescription</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
         {# Onglets #}
         <ul class="nav nav-tabs mb-2" role="tablist">
           <li class="nav-item">
-            <a id="recherchermedicTab" class="nav-link active" href="#recherchermedic" aria-selected="true" aria-controls="recherchermedic" role="tab" data-toggle="tab">Rechercher</a>
+            <a id="recherchermedicTab" class="nav-link active" href="#recherchermedic" aria-selected="true" aria-controls="recherchermedic" role="tab" data-bs-toggle="tab">Rechercher</a>
           </li>
           <li class="nav-item" style="display: none;">
-            <a id="prescriremedicTab" class="nav-link" href="#prescriremedic" aria-controls="prescriremedic" aria-selected="false" role="tab" data-toggle="tab">Prescrire</a>
+            <a id="prescriremedicTab" class="nav-link" href="#prescriremedic" aria-controls="prescriremedic" aria-selected="false" role="tab" data-bs-toggle="tab">Prescrire</a>
           </li>
           <li class="nav-item" style="display: none;">
-            <a id="posologiesmedicTab" class="nav-link" href="#posologiesmedic" aria-controls="posologiesmedic" aria-selected="false" role="tab" data-toggle="tab">Posologies</a>
+            <a id="posologiesmedicTab" class="nav-link" href="#posologiesmedic" aria-controls="posologiesmedic" aria-selected="false" role="tab" data-bs-toggle="tab">Posologies</a>
           </li>
         </ul>
         <div class="tab-content">
@@ -54,17 +55,17 @@
             <div class="row">
               <form id="rechercheMedic" class="col-12">
                 <div class="row">
-                  <div class="col-md-4 pr-0">
-                    <div class="form-group">
+                  <div class="col-md-4 pe-0">
+                    <div class="mb-3">
                       <label for="txtRechercheMedic">Rechercher</label>
                       <input type="text" class="form-control" id="txtRechercheMedic" autocomplete="off" placeholder="médicament, substance, code ..."/>
                       <span id="txtRechercheMedicHB" class="form-text small">Taper ici le texte de votre recherche</span>
                     </div>
                   </div>
-                  <div class="col-md-4 pl-1 pr-0">
-                    <div class="form-group">
+                  <div class="col-md-4 ps-1 pe-0">
+                    <div class="mb-3">
                       <label for="typeRechercheMedic">Dans</label>
-                      <select id="typeRechercheMedic" class="custom-select" autocomplete="off">
+                      <select id="typeRechercheMedic" class="form-select" autocomplete="off">
                         <option {% if config.lapSearchDefaultType == 'dci' %} selected="selected"{% endif %} value="dci">Médicaments virtuels (DCI)</option>
                         <option {% if config.lapSearchDefaultType == 'dcispe' %} selected="selected"{% endif %} value="dcispe">Médicaments virtuels + Spécialités commerciales</option>
                         <option {% if config.lapSearchDefaultType == 'spe' %} selected="selected"{% endif %} value="spe">Spécialités commerciales</option>
@@ -75,10 +76,10 @@
                       <span id="typeRechercheMedicHB" class="form-text small">Lieu de recherche du texte indiqué</span>
                     </div>
                   </div>
-                  <div class="col-md-4 pl-1">
-                    <div id="retourRechercheMedicBloc" class="form-group" style="display : none;">
+                  <div class="col-md-4 ps-1">
+                    <div id="retourRechercheMedicBloc" class="mb-3" style="display : none;">
                       <label for="typeRechercheMedic">Montrer</label>
-                      <select id="retourRechercheMedic" class="custom-select" autocomplete="off">
+                      <select id="retourRechercheMedic" class="form-select" autocomplete="off">
                         <option value="1">Médicaments virtuels (DCI)</option>
                         <option value="3">Médicaments virtuels + Spécialités commerciales</option>
                         <option value="0">Spécialités commerciales</option>
@@ -106,21 +107,21 @@
               <div id="prescriptionAlertMultimedic" class="alert alert-info" role="alert" style="display: none;">Quand plusieurs médicaments sont dans la même ligne de prescription, c'est le 1er qui gouverne durée, voie d'administration et consignes complémentaires.</div>
               <div class="row">
                 <div class="col-md-8">
-                  <div class="form-group">
-                    <textarea class="form-control font-weight-bold form-control-sm" rows="2" id="lapFrappePrescription" autocomplete="off" style="font-size:30px" placeholder="saisir ici la prescription"></textarea>
+                  <div class="mb-3">
+                    <textarea class="form-control fw-bold form-control-sm" rows="2" id="lapFrappePrescription" autocomplete="off" style="font-size:30px" placeholder="saisir ici la prescription"></textarea>
                   </div>
-                  <div class="form-group">
-                    <textarea class="form-control font-weight-bold form-control-sm" rows="2" id="lapConsignesPrescription" autocomplete="off" style="font-size:15px" placeholder="consignes complémentaires"></textarea>
+                  <div class="mb-3">
+                    <textarea class="form-control fw-bold form-control-sm" rows="2" id="lapConsignesPrescription" autocomplete="off" style="font-size:15px" placeholder="consignes complémentaires"></textarea>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="form-group">
-                    <select id='uniteUtilisee' class="custom-select custom-select-sm"></select>
+                  <div class="mb-3">
+                    <select id='uniteUtilisee' class="form-select form-select-sm"></select>
                   </div>
-                  <div class="form-group">
-                    <select id="voieUtilisee" class="custom-select custom-select-sm"></select>
+                  <div class="mb-3">
+                    <select id="voieUtilisee" class="form-select form-select-sm"></select>
                   </div>
-                  <div class="form-group">
+                  <div class="mb-3">
                     {% if config.theriaqueMode == 'BDPM' %}
 
                       <a class="btn btn-info btn-sm btn-block voirPosologiesExterne" target="_blank" href="" role="button"><span class="fas fa-book" aria-hidden="true"></span>
@@ -135,7 +136,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="form-group col prescriptionChampsDuree">
+                <div class="mb-3 col prescriptionChampsDuree">
                   <label class="control-label" for="beginPeriodeID">Première prise
                   </label>
                   <div id="beginPeriodeIDB" class="input-group input-group-sm mx-0 date datepick">
@@ -145,10 +146,10 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group col prescriptionChampsDuree">
+                <div class="mb-3 col prescriptionChampsDuree">
                   <label class="control-label" for="beginPeriodeID">Renouveler
                   </label>
-                  <select id="nbRenouvellements" class="custom-select custom-select-sm" autocomplete="off">
+                  <select id="nbRenouvellements" class="form-select form-select-sm" autocomplete="off">
                     <option selected="selected" value="0">ne pas renouveler</option>
                     <option value="1">renouveler 1 fois</option>
                     <option value="2">renouveler 2 fois</option>
@@ -157,7 +158,7 @@
                     <option value="5">renouveler 5 fois</option>
                   </select>
                 </div>
-                <div class="form-group col prescriptionChampsDuree prescriptionChampsEnd">
+                <div class="mb-3 col prescriptionChampsDuree prescriptionChampsEnd">
                   <label class="control-label" for="beginPeriodeID">Dernière prise
                   </label>
                   <div id="endPeriodeIDB" class="input-group input-group-sm  mx-0 date datepick">
@@ -170,7 +171,7 @@
 
               </div>
               <div class="row">
-                <div class="form-group col-md-6">
+                <div class="mb-3 col-md-6">
                   <label class="control-label" for="prescripteurInitialTT">Prescripteur
                   </label>
                   <input type="text" id="prescripteurInitialTT" class="form-control form-control-sm" autocomplete="off"/>
@@ -179,13 +180,13 @@
 
               <div id="prescriptionAlertSecabilite" class="alert alert-danger" role="alert" style="display: none;">Attention, la sécabilité telle que vous la souhaitez ne semble pas assurée !</div>
 
-              <div class="jumbotron p-4" id="prescriptionHuman">
-                  <div id="prescriptionHumanMedicName" class="font-weight-bold"></div>
+              <div class="bg-light mb-4 rounded-2 py-5 px-3 p-4" id="prescriptionHuman">
+                  <div id="prescriptionHumanMedicName" class="fw-bold"></div>
                   <div id="prescriptionHumanRecap"></div>
                   <div id="prescriptionHumanPoso"></div>
                   <div id="prescriptionHumanConsignes" class="small"></div>
               </div>
-              <div class="form-row align-items-center mb-2">
+              <div class="row align-items-center mb-2">
                 <div class="col-auto">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" id="prescriptionAldCheckbox" value="" type="checkbox" name="ald">
@@ -206,11 +207,11 @@
                 </div>
               </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                   <textarea class="form-control" rows="1" id="prescriptionMotif" autocomplete="off" placeholder="motif de prescription (non imprimé)"></textarea>
                 </div>
 
-              <div class="form-row text-right">
+              <div class="row text-end">
                 <div class="col">
                   <button type="button" class="btn btn-primary sendToOrdonnance"><i class="fas fa-plus"></i> Ajouter à l'ordonnance</button>
                   <button type="button" class="btn btn-primary sendModifToOrdonnance">Modifier la prescription</button>

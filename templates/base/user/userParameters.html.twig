@@ -24,6 +24,7 @@
  #
  # @author fr33z00 <https://github.com/fr33z00>
  # @contrib Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val
  #}
 
 {% extends "page.html.twig" %}
@@ -74,23 +75,23 @@
   {# form display #}
   <ul class="nav nav-tabs mb-3">
     <li class="nav-item">
-      <a class="nav-link active" href="#pergonomie" aria-controls="pergonomie" role="tab" data-toggle="tab">Ergonomie</a>
+      <a class="nav-link active" href="#pergonomie" aria-controls="pergonomie" role="tab" data-bs-toggle="tab">Ergonomie</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#padministratif" aria-controls="padministratif" role="tab" data-toggle="tab">Réglages administratifs</a>
+      <a class="nav-link" href="#padministratif" aria-controls="padministratif" role="tab" data-bs-toggle="tab">Réglages administratifs</a>
     </li>
     {% if page.hasAgenda %}
       <li class="nav-item">
-        <a class="nav-link" href="#pagenda" aria-controls="pagenda" role="tab" data-toggle="tab">Agenda</a>
+        <a class="nav-link" href="#pagenda" aria-controls="pagenda" role="tab" data-bs-toggle="tab">Agenda</a>
       </li>
     {% endif %}
     {% if config.optionGeActiverLapInterne == 'true' or config.administratifPeutAvoirPrescriptionsTypes == 'true' %}
     <li class="nav-item">
-      <a class="nav-link" href="#plap" aria-controls="plap" role="tab" data-toggle="tab">Prescriptions</a>
+      <a class="nav-link" href="#plap" aria-controls="plap" role="tab" data-bs-toggle="tab">Prescriptions</a>
     </li>
     {% endif %}
     <li class="nav-item">
-      <a class="nav-link" href="#pmdp" aria-controls="pmdp" role="tab" data-toggle="tab">Mot de passe</a>
+      <a class="nav-link" href="#pmdp" aria-controls="pmdp" role="tab" data-bs-toggle="tab">Mot de passe</a>
     </li>
   </ul>
 
