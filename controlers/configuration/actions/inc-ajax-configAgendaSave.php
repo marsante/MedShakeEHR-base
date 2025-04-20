@@ -25,6 +25,7 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://github.com/fr33z00>
+ * @contrib Michaël Val
  */
 
 if (!msUser::checkUserIsAdmin()) {
@@ -71,9 +72,9 @@ if ($_POST['userID'] > 0 and in_array($_POST['userID'], array_keys($autorisedUse
 				$hiddenDays[] = $d;
 			} elseif ($params[$day]['worked']) {
 				$js[] = "  {\n";
-				$js[] = "    dow: [" . $d . "],\n";
-				$js[] = "    start: '" . $params[$day]['minTime'] . ":00',\n";
-				$js[] = "    end: '" . $params[$day]['maxTime'] . ":00',\n";
+				$js[] = "    daysOfWeek: [" . $d . "],\n";
+				$js[] = "    startTime: '" . $params[$day]['minTime'] . ":00',\n";
+				$js[] = "    endTime: '" . $params[$day]['maxTime'] . ":00',\n";
 				$js[] = "  },\n";
 			}
 			$d++;

@@ -25,6 +25,7 @@
  *
  * @author fr33z00 <https://github.com/fr33z00>
  * @contrib Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val
  */
 
 //construction du répertoire
@@ -41,9 +42,9 @@ foreach ($params as $k => $v) {
 
 	$params[$k] = array('worked' => $_POST['workOn_' . $k], 'visible' => $_POST['visible_' . $k], 'minTime' => $_POST['minTime_' . $k], 'maxTime' => $_POST['maxTime_' . $k]);
 	$js[] = "  {\n";
-	$js[] = "    dow: [" . $day . "],\n";
-	$js[] = "    start: '" . $_POST['minTime_' . $k] . ":00',\n";
-	$js[] = "    end: '" . $_POST['maxTime_' . $k] . ":00',\n";
+	$js[] = "    daysOfWeek: [" . $day . "],\n";
+	$js[] = "    startTime: '" . $_POST['minTime_' . $k] . ":00',\n";
+	$js[] = "    endTime: '" . $_POST['maxTime_' . $k] . ":00',\n";
 	$js[] = "  },\n";
 	if ($_POST['visible_' . $k] != true) {
 		$hiddenDays[] = $day;
