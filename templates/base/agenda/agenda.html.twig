@@ -29,11 +29,15 @@
 
 {% extends "page.html.twig" %}
 {% block title %}Agenda - {{ config.designAppName }}{% endblock %}
-
 {% block jsFiles %}
   {{ parent() }}
-  <script defer src='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/fullcalendar/fullcalendar/dist/fullcalendar.min.js?{{ modules.base }}'></script>
-  <script defer src='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/fullcalendar/fullcalendar/dist/locale/fr.js?{{ modules.base }}'></script>
+  <script defer src='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/fullcalendar/dist/core/main.min.js?{{ modules.base }}'></script>
+  <script defer src='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/fullcalendar/dist/interaction/main.min.js?{{ modules.base }}'></script>
+  <script defer src='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/fullcalendar/dist/daygrid/main.min.js?{{ modules.base }}'></script>
+  <script defer src='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/fullcalendar/dist/timegrid/main.min.js?{{ modules.base }}'></script> 
+  <script defer src='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/fullcalendar/dist/moment/main.min.js?{{ modules.base }}'></script>   
+  <script defer src='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/fullcalendar/dist/bootstrap/main.min.js?{{ modules.base }}'></script>   
+  <script defer src='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/fullcalendar/dist/core/locales/fr.js?{{ modules.base }}'></script>
   <script defer src='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/swisnl/jquery-contextmenu/dist/jquery.contextMenu.min.js?{{ modules.base }}'></script>
   {% if config.optionGeActiverVitaleLecture =='true' %}
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/vitale_functions.js?{{ modules.base }}"></script>
@@ -63,7 +67,10 @@
 
 {% block cssFiles %}
   {{ parent() }}
-  <link href='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/fullcalendar/fullcalendar/dist/fullcalendar.min.css?{{ modules.base }}' rel='stylesheet' />
+  <link href='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/fullcalendar/dist/core/main.min.css?{{ modules.base }}' rel='stylesheet' />
+  <link href='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/fullcalendar/dist/daygrid/main.min.css?{{ modules.base }}' rel='stylesheet' />
+  <link href='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/fullcalendar/dist/bootstrap/main.min.css?{{ modules.base }}' rel='stylesheet' />
+  <link href='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/fullcalendar/dist/timegrid/main.min.css?{{ modules.base }}' rel='stylesheet' />  
   <link href='{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/swisnl/jquery-contextmenu/dist/jquery.contextMenu.min.css?{{ modules.base }}' rel='stylesheet' />
 {% endblock %}
 
