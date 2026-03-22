@@ -59,7 +59,7 @@ $(document).ready(function () {
     stepMonths: 12,
     inline: true,
     onSelect: function (dateText, inst) {
-      calendar.gotoDate(moment(dateText, "DD-MM-YYYY").toDate());
+      calendar.gotoDate(new Date(dateText.split('/').reverse().join('-')));
       $('#smallCalendar').toggle();
     }
   }));
@@ -140,9 +140,8 @@ $(document).ready(function () {
   var calendarEl = document.getElementById('calendar');
 
   calendar = new FullCalendar.Calendar(calendarEl, {
-    plugins: ['interaction', 'dayGrid', 'timeGrid', 'bootstrap'],
     themeSystem: 'bootstrap',
-    defaultView: 'timeGridWeek',
+    initialView: 'timeGridWeek',
     locale: 'fr',
     hiddenDays: hiddenDays,
     customButtons: {
@@ -153,13 +152,13 @@ $(document).ready(function () {
       },
       nextMonth: {
         click: function () {
-          $('div.popover').popover('hide');
+          $('.popover').remove(); $(".fc-event").popover('hide');
           calendar.incrementDate({ months: 1 });
         }
       },
       prevMonth: {
         click: function () {
-          $('div.popover').popover('hide');
+          $('.popover').remove(); $(".fc-event").popover('hide');
           calendar.incrementDate({ months: -1 });
         }
       },
@@ -177,21 +176,24 @@ $(document).ready(function () {
       next: 'fa-angle-right',
       nextMonth: 'fa-angle-double-right',
     },
-    header: {
+    headerToolbar: {
       left: 'smallCalendar prevMonth,prev,today,next,nextMonth synchronize',
       center: boutonsHeaderCenter,
       right: 'title'
     },
-    defaultDate: dateToGo,
-    minTime: minTime,
-    maxTime: maxTime,
+    initialDate: dateToGo,
+    slotMinTime: minTime,
+    slotMaxTime: maxTime,
     firstDay: firstDay,
     slotDuration: slotDuration,
     weekNumbers: true,
-    weekNumberTitle: 'S.',
+    weekNumberContent: function(arg) {
+      return { html: 'S.' + arg.num };
+    },
     allDaySlot: false,
     longPressDelay: 300,
     selectable: true,
+    editable: true,
     unselectCancel: '.fc-deplacer-button,.fc-cloner-button, div.alert',
     slotLabelFormat: {
       hour: 'numeric',
@@ -206,16 +208,16 @@ $(document).ready(function () {
     contentHeight: 'auto',
     eventTextColor: eventTextColor,
     eventSources: eventSources,
-    eventRender: function (info) {
+    eventDidMount: function (info) {
       var event = info.event;
       var element = $(info.el);
       element.attr('data-eventid', event.id);
-      if (event.rendering != 'background') {
+      if (event.display != 'background') {
         if (event.extendedProps.icon) {
-          element.find(".fc-content").after("<div class='faicon d-flex h-100 align-items-center justify-content-center'><i class='fa fa-10x fa-" + event.extendedProps.icon + "'></i></div>");
+          element.find(".fc-event-main, .fc-event-title").after("<div class='faicon d-flex h-100 align-items-center justify-content-center'><i class='fa fa-10x fa-" + event.extendedProps.icon + "'></i></div>");
         }
         if (selected_event && event.id == selected_event.id) {
-          element.find(".fc-bg").addClass("selected");
+          element.find(".fc-event-main, .fc-event-main-frame").addClass("selected");
         }
         element.popover({
           sanitizeFn: function (content) {
@@ -280,8 +282,8 @@ $(document).ready(function () {
       jsEvent.stopPropagation();
       selected_patient = eventClicked.extendedProps.patientid;
       selected_period = {
-        start: moment(eventClicked.start),
-        end: moment(eventClicked.end)
+        start: new Date(eventClicked.start),
+        end: eventClicked.end ? new Date(eventClicked.end) : null
       };
       selected_event = eventClicked;
       if (eventClicked.extendedProps.type == 'publicHoliday') return;
@@ -296,7 +298,10 @@ $(document).ready(function () {
         $("#type").val(eventClicked.extendedProps.type);
         $("#duree").html('<i class="far fa-clock mr-2"></i>' + $("#type").children("option:selected").attr("data-duree") + "mn");
         $("#eventColor").css('color', $("#type").children("option:selected").attr("data-color"));
-        $('#datepicker input').val(moment(eventClicked.start).format('DD/MM/YYYY à HH:mm'));
+        $('#datepicker input').val(
+          calendar.formatDate(eventClicked.start, { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' à ' +
+          calendar.formatDate(eventClicked.start, { hour: '2-digit', minute: '2-digit', hour12: false })
+        );
         $('#nettoyer').show();
         $('.lireCpsVitale').hide();
         $("#patientInfo").show();
@@ -315,14 +320,18 @@ $(document).ready(function () {
           (eventClicked.extendedProps.absent == "oui" ? '<br><strong>Absent(e)</strong>' : '')
         );
       } else if (eventClicked.extendedProps.patientid == "0") {
+        // Pour les blocs Fermé, on affiche la bulle mais on prepare les boutons
+        $(".fc-event[data-eventid=" + eventClicked.id + "]").attr('data-content', '<strong>Fermé</strong><br>' + nl2br(eventClicked.extendedProps.motif || ''));
         nettoyer();
       }
-      $(".fc-body").removeClass("cursor-move").removeClass("cursor-copy").removeClass("cursor-cell");
+      $(".fc-scrollgrid").removeClass("cursor-move").removeClass("cursor-copy").removeClass("cursor-cell");
+      // stopPropagation() empêche body-click de nettoyer les popovers → on force la suppression DOM
+      $(".popover").remove();
       $(".fc-event").popover('hide');
       $(".fc-event[data-eventid=" + eventClicked.id + "]").popover('show');
-      $(".fc-bg.selected").removeClass("selected");
+      $(".selected").removeClass("selected");
       setTimeout(function () {
-        $(jsEvent.currentTarget).find(".fc-bg").addClass("selected");
+        $(jsEvent.currentTarget).find(".fc-event-main, .fc-event-main-frame").addClass("selected");
       }, 10);
 
     },
@@ -334,15 +343,15 @@ $(document).ready(function () {
     },
     eventDrop: function (info) {
       var event = info.event;
-      var revertFunc = info.revert;
-      $('div.popover').popover('hide');
-      if (confirm("Confirmez-vous le déplacement de cet événement ?")) {
+      $(".fc-event").popover('hide');
+      fc_confirm("Confirmez-vous le déplacement de cet événement ?", function() {
         selected_event = event;
         modEvent(true);
-      } else {
-        revertFunc();
-      }
-      canRefreshEvents = true;
+        canRefreshEvents = true;
+      }, function() {
+        info.revert();
+        canRefreshEvents = true;
+      });
     },
     eventResizeStart: function (info) {
       canRefreshEvents = false;
@@ -352,19 +361,19 @@ $(document).ready(function () {
     },
     eventResize: function (info) {
       var event = info.event;
-      var revertFunc = info.revert;
-      canRefreshEvents = true;
-      $('div.popover').popover('hide');
-      if (confirm("Confirmez-vous le changement de durée de cet événement ?")) {
+      $(".fc-event").popover('hide');
+      fc_confirm("Confirmez-vous le changement de durée de cet événement ?", function() {
         selected_event = event;
         modEvent(false);
-      } else {
-        revertFunc();
-      }
+        canRefreshEvents = true;
+      }, function() {
+        info.revert();
+        canRefreshEvents = true;
+      });
     },
     select: function (info) {
-      var start = moment(info.start);
-      var end = moment(info.end);
+      var start = new Date(info.start);
+      var end = new Date(info.end);
       var jsEvent = info.jsEvent;
       canRefreshEvents = false;
       if (jsEvent) jsEvent.stopImmediatePropagation();
@@ -372,75 +381,95 @@ $(document).ready(function () {
         start: start,
         end: end
       };
-      $(".fc-body").removeClass("cursor-move").removeClass("cursor-copy").addClass("cursor-cell");
-      $(".fc-bg.selected").removeClass("selected");
+      $(".fc-scrollgrid").removeClass("cursor-move").removeClass("cursor-copy").addClass("cursor-cell");
+      $(".selected").removeClass("selected");
       if (selected_action == "clone") {
-        selected_period.end = moment(selected_period.start).add(moment(selected_event.end).diff(selected_event.start));
+        selected_period.end = new Date(selected_period.start.getTime() + (selected_event.end.getTime() - selected_event.start.getTime()));
         if (selected_patient != "0") {
           setEvent();
         } else {
           closePeriod();
         }
       } else if (selected_action == "move") {
-        selected_event.setEnd(moment(info.start).add(moment(selected_event.end).diff(selected_event.start)).toDate());
-        selected_event.setStart(info.start);
-        modEvent(true);
+        var moveStart = info.start;
+        var evEndMs = selected_event.end ? selected_event.end.getTime() : (selected_event.start.getTime() + 900000);
+        var evDuration = evEndMs - selected_event.start.getTime();
+        var moveEnd = new Date(moveStart.getTime() + evDuration);
+        fc_confirm("Confirmez-vous le déplacement de cet événement ?", function() {
+          // setDates() est atomique : évite le bug de resize quand on va vers le passé
+          selected_event.setDates(moveStart, moveEnd);
+          modEvent(true);
+        }, function() {
+          selected_action = undefined;
+        });
       } else if (selected_event) {
-        $('div.popover').popover('hide');
+        $('.popover').remove(); $(".fc-event").popover('hide');
         nettoyer();
         cleanSelectedVar();
         return;
-      } else if (end.diff(start) == moment.duration(slotDuration, "HH:mm:ss").as('milliseconds')) {
-        if (calendar_mode == 'lateral' && $("#patientInfo").is(':hidden')) {
-          return alert_popup('info', 'Sélectionnez ou créez d\'abord un patient');
-        }
-        $('div.popover').popover('hide');
-
-        var duree = $("#type option:first").attr('data-duree');
-        selected_period.end = moment(start).add(duree, 'm');
-        $("#duree").html('<i class="far fa-clock mr-2"></i> ' + duree + "mn");
-
-        $("#eventColor").css('color', $("#type option:first").attr("data-color"));
-        $('#titreRdv').html('Nouveau rendez-vous');
-        $("#type").val($("#type option")[0].value);
-
-        $('#datepicker input').val(start.format('DD/MM/YYYY à HH:mm'));
-
-        if (calendar_mode == 'modal') {
-          $("#patientSearch").show();
-          $("#patientInfo").find("input:not(.updatable),textarea:not(.updatable)").prop("readonly", true);
-          $("#patientInfo").find("select:not(.updatable)").prop("disabled", true);
-          $("#patientInfo").hide();
-          $("#patientLinksPro").hide();
-        }
-
-        $('#buttonCreer').show();
-        $('#buttonModifier').hide();
-
-        $('#creerNouveau').modal('show');
       } else {
-        $(".fc-event").popover('hide');
-        $(".fc-bg.selected").removeClass("selected");
-        $('#editerOff h4').html('Souhaitez-vous fermer cette période ?');
-        $("#editerOff textarea").val('');
-        $('#editerOff').modal('show');
+        var slotParts = slotDuration.split(':');
+        var slotMs = (parseInt(slotParts[0], 10) * 3600 + parseInt(slotParts[1], 10) * 60 + parseInt(slotParts[2], 10)) * 1000;
+        if ((end.getTime() - start.getTime()) === slotMs) {
+          if (calendar_mode == 'lateral' && $("#patientInfo").is(':hidden')) {
+            return alert_popup('info', 'Sélectionnez ou créez d\'abord un patient');
+          }
+          $('.popover').remove(); $(".fc-event").popover('hide');
+
+          var duree = $("#type option:first").attr('data-duree');
+          selected_period.end = new Date(start.getTime() + parseInt(duree, 10) * 60000);
+          $("#duree").html('<i class="far fa-clock mr-2"></i> ' + duree + "mn");
+
+          $("#eventColor").css('color', $("#type option:first").attr("data-color"));
+          $('#titreRdv').html('Nouveau rendez-vous');
+          $("#type").val($("#type option")[0].value);
+
+          $('#datepicker input').val(
+            calendar.formatDate(start, { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' à ' +
+            calendar.formatDate(start, { hour: '2-digit', minute: '2-digit', hour12: false })
+          );
+
+          if (calendar_mode == 'modal') {
+            $("#patientSearch").show();
+            $("#patientInfo").find("input:not(.updatable),textarea:not(.updatable)").prop("readonly", true);
+            $("#patientInfo").find("select:not(.updatable)").prop("disabled", true);
+            $("#patientInfo").hide();
+            $("#patientLinksPro").hide();
+          }
+
+          $('#buttonCreer').show();
+          $('#buttonModifier').hide();
+
+          $('#creerNouveau').modal('show');
+        } else {
+          $(".fc-event").popover('hide');
+          $(".selected").removeClass("selected");
+          $('#editerOff h4').html('Souhaitez-vous fermer cette période ?');
+          $("#editerOff textarea").val('');
+          $('#editerOff').modal('show');
+        }
       }
     },
     unselect: function (info) {
       canRefreshEvents = true;
       $(".fc-event").popover('hide');
-      $(".fc-body").removeClass("cursor-move").removeClass("cursor-copy").addClass("cursor-cell");
+      $(".fc-scrollgrid").removeClass("cursor-move").removeClass("cursor-copy").addClass("cursor-cell");
     },
     navLinks: true,
     navLinkDayClick: function (date, jsEvent) {
       canRefreshEvents = false;
       jsEvent.stopImmediatePropagation();
+      var d = new Date(date);
+      var minParts = minTime.split(':');
+      var maxParts = maxTime.split(':');
+      var startD = new Date(d); startD.setHours(minParts[0], minParts[1], 0);
+      var endD = new Date(d); endD.setHours(maxParts[0], maxParts[1], 0);
       selected_period = {
-        start: moment(moment(date).format('YYYY-MM-DD') + ' ' + minTime),
-        end: moment(moment(date).format('YYYY-MM-DD') + ' ' + maxTime)
+        start: startD,
+        end: endD
       };
       $(".fc-event").popover('hide');
-      $(".fc-bg.selected").removeClass("selected");
+      $(".selected").removeClass("selected");
       $('#editerOff h4').html('Souhaitez-vous fermer cette journée ?');
       $("#editerOff textarea").val('');
       $('#editerOff').modal('show');
@@ -449,8 +478,18 @@ $(document).ready(function () {
 
   calendar.render();
 
+  // Fermer les popovers à chaque interaction dans le calendrier - mousedown est exécuté
+  // AVANT que FullCalendar puisse appeler stopPropagation() sur le click
+  $(calendarEl).on('mousedown', function(e) {
+    if (!$(e.target).closest('.popover').length) {
+      $('.popover').remove();
+      $('.fc-event').popover('hide');
+    }
+  });
+
   $(".fc-next-button, .fc-prev-button").on("click", function () {
-    $(".popover").hide();
+    $('.popover').remove();
+    $(".fc-event").popover('hide');
   });
 
   //auto rafraichir les rdv agenda
@@ -487,7 +526,7 @@ $(document).ready(function () {
 
   // changer style par défaut
   $(".fc-toolbar button").removeClass('btn-primary').addClass('btn-sm btn-primary');
-  $(".fc-body").addClass("cursor-cell");
+  $(".fc-scrollgrid").addClass("cursor-cell");
 
   ////////////////////////////////////////////////////////////////////////
   ///////// observations boutons popover
@@ -495,7 +534,7 @@ $(document).ready(function () {
   $("body").on("click", ".fc-dossier-button", function (e) {
     e.stopImmediatePropagation();
     $(".fc-event").popover('hide');
-    $(".fc-bg.selected").removeClass("selected");
+    $(".selected").removeClass("selected");
     window.open(urlBase + '/patient/' + selected_event.extendedProps.patientid + '/');
     nettoyer();
     cleanSelectedVar();
@@ -506,7 +545,7 @@ $(document).ready(function () {
     // mise off des popover
     $(".fc-event").popover('hide');
 
-    $(".fc-bg.selected").removeClass("selected");
+    $(".selected").removeClass("selected");
 
     // actions sur modal
     if (calendar_mode == 'modal') {
@@ -528,7 +567,7 @@ $(document).ready(function () {
   $("body").on("click", ".fc-editer-off-button", function (e) {
     e.stopImmediatePropagation();
     $(".fc-event").popover('hide');
-    $(".fc-bg.selected").removeClass("selected");
+    $(".selected").removeClass("selected");
     $('#editerOff h4').html('Éditer le commentaire de la plage horaire fermée');
     $("#editerOff textarea").val(selected_event.extendedProps.motif);
     $('#editerOff').modal('show');
@@ -537,14 +576,14 @@ $(document).ready(function () {
 
   $("body").on("click", ".fc-cloner-button", function (e) {
     e.stopImmediatePropagation();
-    $(".fc-body").removeClass("cursor-move").addClass("cursor-copy").removeClass("cursor-cell");
+    $(".fc-scrollgrid").removeClass("cursor-move").addClass("cursor-copy").removeClass("cursor-cell");
     $(".fc-event").popover('hide');
     selected_action = "clone";
   });
 
   $("body").on("click", ".fc-deplacer-button", function (e) {
     e.stopImmediatePropagation();
-    $(".fc-body").addClass("cursor-move").removeClass("cursor-copy").removeClass("cursor-cell");
+    $(".fc-scrollgrid").addClass("cursor-move").removeClass("cursor-copy").removeClass("cursor-cell");
     $(".fc-event").popover('hide');
     selected_action = "move";
   });
@@ -552,21 +591,21 @@ $(document).ready(function () {
   $("body").on("click", ".fc-honorer-button", function (e) {
     e.stopImmediatePropagation();
     $(".fc-event").popover('hide');
-    $(".fc-bg.selected").removeClass("selected");
+    $(".selected").removeClass("selected");
     setPasVenu();
   });
 
   $("body").on("click", ".fc-enattente-button", function (e) {
     e.stopImmediatePropagation();
     $(".fc-event").popover('hide');
-    $(".fc-bg.selected").removeClass("selected");
+    $(".selected").removeClass("selected");
     setEnAttente();
   });
 
   $("body").on("click", ".fc-supprimer-button", function (e) {
     e.stopImmediatePropagation();
     $(".fc-event").popover('hide');
-    $(".fc-bg.selected").removeClass("selected");
+    $(".selected").removeClass("selected");
     deleteEvent();
   });
 
@@ -744,13 +783,13 @@ $(document).ready(function () {
 
   $("body").on("click", function (event) {
     $target = $(event.target);
-    if (!$target.closest('div.fc-view-container').length && !$target.closest('div.modal').length && !$target.closest('div.nePasNettoyer').length && !$target.closest('div.fc-left').length && !$target.closest('div.alert').length && !$target.closest('.ui-autocomplete').length) {
-      $(".fc-bg.selected").removeClass("selected");
+    if (!$target.closest('div.fc-view-harness, div.fc-header-toolbar').length && !$target.closest('div.modal').length && !$target.closest('div.nePasNettoyer').length && !$target.closest('div.alert').length && !$target.closest('.ui-autocomplete').length) {
+      $(".selected").removeClass("selected");
       nettoyer();
       cleanSelectedVar();
     }
     $(".fc-event").popover('hide');
-    $(".fc-body").removeClass("cursor-move").removeClass("cursor-copy").addClass("cursor-cell");
+    $(".fc-scrollgrid").removeClass("cursor-move").removeClass("cursor-copy").addClass("cursor-cell");
     if ($("#datepicker").data("DateTimePicker"))
       $("#datepicker").data("DateTimePicker").hide();
   });
@@ -777,7 +816,9 @@ $(document).ready(function () {
  * @return {object}       fin au format momentjs
  */
 function getEnd(start) {
-  return moment(start).add($("#type").children("option:selected").attr("data-duree"), 'm');
+  var d = new Date(start);
+  d.setMinutes(d.getMinutes() + parseInt($("#type").children("option:selected").attr("data-duree"), 10));
+  return d;
 }
 
 /**
@@ -859,22 +900,25 @@ function getHistoriquePatient(patientID) {
       $('#historiquePatientList').html('');
       if (data['historique'].length > 0) {
         $.each(data['historique'], function (index, dat) {
-          var duration = moment.duration(moment(dat['dateiso']).startOf('day').diff(moment().endOf('day')));
-          var days = Math.ceil(duration.asDays());
+          var dIso = new Date(dat['dateiso']);
+          var now = new Date();
+          var startOfDayIso = new Date(dIso.getFullYear(), dIso.getMonth(), dIso.getDate());
+          var endOfDayNow = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
+          var days = Math.floor((startOfDayIso.getTime() - endOfDayNow.getTime()) / (1000 * 3600 * 24)) + 1;
 
           chaine = '<li class="list-group-item p-1'
           if (dat['absente'] == 'oui') chaine = chaine + ' list-group-item-danger';
           if (dat['statut'] == 'deleted') chaine = chaine + ' list-group-item-warning';
-          if (moment(dat['dateiso']).isAfter()) chaine = chaine + ' font-weight-bold';
+          if (dIso > now) chaine = chaine + ' font-weight-bold';
           chaine = chaine + '">';
           if (dat['agendaID'] == selected_calendar) {
             chaine = chaine + '<button title="Voir" type="button" class="btn btn-light btn-sm moveToDate" data-date="' + dat['dateiso'] + '"><span class="far ';
-            if (moment(dat['dateiso']).isAfter()) chaine = chaine + 'fa-calendar-plus';
+            if (dIso > now) chaine = chaine + 'fa-calendar-plus';
             else chaine = chaine + 'fa-calendar';
             chaine = chaine + '" aria-hidden="true"></span></button>';
           } else {
             chaine = chaine + '<a title="Voir - rdv sur un autre agenda" href="' + urlBase + '/agenda/' + dat['agendaID'] + '/' + dat['dateJump'] + '/" class="btn btn-light btn-sm" data-date="' + dat['dateiso'] + '"><span class="fas ';
-            if (moment(dat['dateiso']).isAfter()) chaine = chaine + 'fa-calendar-plus';
+            if (dIso > now) chaine = chaine + 'fa-calendar-plus';
             else chaine = chaine + 'fa-calendar';
             chaine = chaine + '" aria-hidden="true"></span></a>';
           }
@@ -951,7 +995,7 @@ function nettoyer() {
   $('#searchPratID').attr('data-id', '');
   $('button.addRelation').attr('data-peopleID', '');
 
-  $(".fc-bg.selected").removeClass("selected");
+  $(".selected").removeClass("selected");
 
   // Supimer la liste des tags si présente
   $('.univTagsTagListe').remove();
@@ -991,16 +1035,16 @@ function setEvent(id) {
     }
     data += $('#newPatientData').serialize() + '&' + $('#formRdv').serialize();
     data += '&userID=' + selected_calendar;
-    data += '&start=' + selected_period.start.format("YYYY-MM-DD%20HH:mm:SS");
-    data += '&end=' + selected_period.end.format("YYYY-MM-DD%20HH:mm:SS");
+    data += '&start=' + encodeURIComponent(selected_period.start.getFullYear() + '-' + ('0' + (selected_period.start.getMonth() + 1)).slice(-2) + '-' + ('0' + selected_period.start.getDate()).slice(-2) + ' ' + ('0' + selected_period.start.getHours()).slice(-2) + ':' + ('0' + selected_period.start.getMinutes()).slice(-2) + ':00');
+    data += '&end=' + encodeURIComponent(selected_period.end.getFullYear() + '-' + ('0' + (selected_period.end.getMonth() + 1)).slice(-2) + '-' + ('0' + selected_period.end.getDate()).slice(-2) + ' ' + ('0' + selected_period.end.getHours()).slice(-2) + ':' + ('0' + selected_period.end.getMinutes()).slice(-2) + ':00');
   }
   // si patient connu
   else {
     data = {
       patientID: selected_patient,
       userID: selected_calendar,
-      start: selected_period.start.format("YYYY-MM-DD HH:mm:SS"),
-      end: selected_period.end.format("YYYY-MM-DD HH:mm:SS"),
+      start: selected_period.start.getFullYear() + '-' + ('0' + (selected_period.start.getMonth() + 1)).slice(-2) + '-' + ('0' + selected_period.start.getDate()).slice(-2) + ' ' + ('0' + selected_period.start.getHours()).slice(-2) + ':' + ('0' + selected_period.start.getMinutes()).slice(-2) + ':00',
+      end: selected_period.end.getFullYear() + '-' + ('0' + (selected_period.end.getMonth() + 1)).slice(-2) + '-' + ('0' + selected_period.end.getDate()).slice(-2) + ' ' + ('0' + selected_period.end.getHours()).slice(-2) + ':' + ('0' + selected_period.end.getMinutes()).slice(-2) + ':00',
       type: (selected_patient == '0' ? '[off]' : $('#type').val()),
       motif: $('#motif').val(),
     };
@@ -1033,12 +1077,14 @@ function setEvent(id) {
 function closePeriod() {
 
   if (selected_event) {
-    start = moment(selected_event.start).format("YYYY-MM-DD HH:mm:SS");
-    end = moment(selected_event.end).format("YYYY-MM-DD HH:mm:SS");
+    var seS = new Date(selected_event.start);
+    var seE = new Date(selected_event.end);
+    start = seS.getFullYear() + '-' + ('0' + (seS.getMonth() + 1)).slice(-2) + '-' + ('0' + seS.getDate()).slice(-2) + ' ' + ('0' + seS.getHours()).slice(-2) + ':' + ('0' + seS.getMinutes()).slice(-2) + ':00';
+    end = seE.getFullYear() + '-' + ('0' + (seE.getMonth() + 1)).slice(-2) + '-' + ('0' + seE.getDate()).slice(-2) + ' ' + ('0' + seE.getHours()).slice(-2) + ':' + ('0' + seE.getMinutes()).slice(-2) + ':00';
     id = selected_event.id;
   } else if (selected_period) {
-    start = selected_period.start.format("YYYY-MM-DD HH:mm:SS");
-    end = selected_period.end.format("YYYY-MM-DD HH:mm:SS");
+    start = selected_period.start.getFullYear() + '-' + ('0' + (selected_period.start.getMonth() + 1)).slice(-2) + '-' + ('0' + selected_period.start.getDate()).slice(-2) + ' ' + ('0' + selected_period.start.getHours()).slice(-2) + ':' + ('0' + selected_period.start.getMinutes()).slice(-2) + ':00';
+    end = selected_period.end.getFullYear() + '-' + ('0' + (selected_period.end.getMonth() + 1)).slice(-2) + '-' + ('0' + selected_period.end.getDate()).slice(-2) + ' ' + ('0' + selected_period.end.getHours()).slice(-2) + ':' + ('0' + selected_period.end.getMinutes()).slice(-2) + ':00';
     id = '';
   } else {
     return;
@@ -1160,8 +1206,8 @@ function modEvent(refetch) {
     type: "post",
     data: {
       eventid: selected_event.id,
-      start: moment(selected_event.start).format('YYYY-MM-DD HH:mm:SS'),
-      end: moment(selected_event.end).format('YYYY-MM-DD HH:mm:SS')
+      start: selected_event.start.getFullYear() + '-' + ('0' + (selected_event.start.getMonth() + 1)).slice(-2) + '-' + ('0' + selected_event.start.getDate()).slice(-2) + ' ' + ('0' + selected_event.start.getHours()).slice(-2) + ':' + ('0' + selected_event.start.getMinutes()).slice(-2) + ':00',
+      end: selected_event.end.getFullYear() + '-' + ('0' + (selected_event.end.getMonth() + 1)).slice(-2) + '-' + ('0' + selected_event.end.getDate()).slice(-2) + ' ' + ('0' + selected_event.end.getHours()).slice(-2) + ':' + ('0' + selected_event.end.getMinutes()).slice(-2) + ':00'
     },
     dataType: "json",
     success: function (data) {
@@ -1175,5 +1221,28 @@ function modEvent(refetch) {
       nettoyer();
       cleanSelectedVar();
     },
+  });
+}
+
+/**
+ * Affiche une modale Bootstrap de confirmation à la place de window.confirm()
+ * @param {string} message  Texte de la question
+ * @param {function} onOk   Callback si l'utilisateur confirme
+ * @param {function} onCancel  Callback si l'utilisateur annule (optionnel)
+ */
+function fc_confirm(message, onOk, onCancel) {
+  $('#confirmModalMessage').text(message);
+  $('#confirmModal').modal('show');
+  // Détacher les événements précédents pour éviter les doublons
+  $('#confirmModalOk').off('click').one('click', function() {
+    $('#confirmModal').modal('hide');
+    if (typeof onOk === 'function') onOk();
+  });
+  $('#confirmModalCancel').off('click').one('click', function() {
+    if (typeof onCancel === 'function') onCancel();
+  });
+  $('#confirmModal').one('hidden.bs.modal', function() {
+    $('#confirmModalOk').off('click');
+    $('#confirmModalCancel').off('click');
   });
 }

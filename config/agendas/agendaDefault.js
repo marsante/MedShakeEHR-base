@@ -39,19 +39,19 @@ if (!eventSources) {
       startTime: '13:00',
       endTime: '14:00',
       daysOfWeek: [1, 2, 3, 4, 5],
-      rendering: 'background',
+      display: 'background',
       className: 'fc-nonbusiness'
     }, {
       startTime: '18:00',
       endTime: maxTime,
       daysOfWeek: [1, 2, 3, 4, 5],
-      rendering: 'background',
+      display: 'background',
       className: 'fc-nonbusiness'
     }, {
       startTime: '13:00',
       endTime: maxTime,
       daysOfWeek: [6],
-      rendering: 'background',
+      display: 'background',
       className: 'fc-nonbusiness'
     }]
   }

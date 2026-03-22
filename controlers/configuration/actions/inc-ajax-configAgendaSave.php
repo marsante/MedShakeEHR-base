@@ -97,7 +97,7 @@ if ($_POST['userID'] > 0 and in_array($_POST['userID'], array_keys($autorisedUse
 					$js[] = "        startTime: '" . $params[$day]['pauseStart'] . ":00',\n";
 					$js[] = "        endTime: '" . $params[$day]['pauseEnd'] . ":00',\n";
 					$js[] = "        daysOfWeek: [" . $d . "],\n";
-					$js[] = "        rendering: 'background',\n";
+					$js[] = "        display: 'background',\n";
 					$js[] = "        className: 'fc-nonbusiness'\n";
 					$js[] = "      },\n";
 				}
