@@ -28,7 +28,7 @@
 
 {% import "macroForm.html.twig" as f %}
 {# Formulaire de synthèse #}
-<div class="jumbotron col-md-12">
+<div class="jumbotron col-lg-12">
     <button id="cleanNewMail" type="button" class="close" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -82,7 +82,7 @@
               <small>(Taille :
                 {{ page.doc.filesize|e }})</small>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-auto text-end">
               <a class="btn btn-secondary btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/{{ page.doc.url }}" target="_blank" title="Voir">
                 <i class="fas fa-external-link-alt"></i>
                 Voir

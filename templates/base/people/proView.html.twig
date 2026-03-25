@@ -100,7 +100,7 @@
 {% endif %}
 
 <div class="row mt-3">
-  <div class="col-12 col-md-6">
+  <div class="col-12 col-lg-6">
     <div class="card mb-4">
       <div class="card-header d-flex justify-content-between">
         <div class="font-weight-bold">
@@ -189,7 +189,7 @@
         {% if config.activGenBarreCode == 'true' %}
         <div class="row" data-num-row="1">
 
-          <div class="col-md-6">
+          <div class="col-lg-6">
             <div class="text-center small">
               {% if page.svgRPPS is empty %}
                 Code-barre RPPS non généré.<br/><i class="text-muted">Si le numéro est fourni, revalider le formulaire des données professionnelles va générer le code-barre.</i>
@@ -200,7 +200,7 @@
             </div>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-lg-6">
             <div class="text-center small">
               {% if page.svgADELI is empty %}
                 Code-barre ADELI non généré.<br/><i class="text-muted">Si le numéro est fourni, revalider le formulaire des données professionnelles va générer le code-barre.</i>
@@ -237,7 +237,7 @@
                 </a>
               {{ v.identiteComplete }} - {{ v.ageCalcule }}</td>
 
-              <td class="text-right">
+              <td class="text-end">
                 <a title="Éditer les relations du patient" class="btn btn-light btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/relations/{{ v.peopleID }}/">
                   <i class="fas fa-link fa-fw"></i>
                 </a>
@@ -254,7 +254,7 @@
     {% endif %}
   </div>
 
-  <div class="col-12 col-md-6">
+  <div class="col-12 col-lg-6">
     {% if config.PraticienPeutEtrePatient == 'true' %}
       <div class="card mb-4">
           <div class="card-header d-flex justify-content-between">
@@ -341,7 +341,7 @@
     				</tbody>
     			</table>
 
-          <div class="card-footer text-right">
+          <div class="card-footer text-end">
             &nbsp;
           </div>
         </div>
@@ -413,7 +413,7 @@
             </tbody>
           </table>
 
-          <div class="card-footer text-right">
+          <div class="card-footer text-end">
             &nbsp;
           </div>
         </div>

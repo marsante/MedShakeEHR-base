@@ -83,7 +83,7 @@
             </p>
             {% endif %}
           </div>
-          <div class="col text-right">
+          <div class="col text-end">
             <button type="button" class="btn btn-primary reset-modal" data-toggle="modal" data-target="#modalNewCat">
                 <i class="fas fa-plus"></i> Nouvel acte
             </button>
@@ -138,7 +138,7 @@
                             <td>{{ w.nbUtilisation }}</td>
                             <td>{{ w.type }}</td>
 
-                            <td  class="text-right">
+                            <td  class="text-end">
                               <div class="btn-group">
                                 {% if w.type == 'CCAM' %}
                                 <a class="btn btn-light btn-sm" role="button" href="https://www.ameli.fr/accueil-de-la-ccam/trouver-un-acte/fiche-abregee.php?code={{ w.code }}" target="CCAM" title="Voir sur le site de la CCAM">
@@ -200,7 +200,7 @@
             <div class="form-group col-4">
               {{ f.select ({ 'select' : { 'name' : 'codeProf', 'values': page.codeProf , 'class' : 'form-control', 'autocomplete' : 'off' }, 'label' : { 'position' : 'before', 'label' : 'Grille NGAP', } }) }}
             </div>
-            <div class="form-group col-3 text-right">
+            <div class="form-group col-3 text-end">
               <button type="button" class="btn btn-secondary importFromCCAM" title="Importer / mettre à jour depuis le site de la CCAM">
                 <i class="fas fa-search"></i>
                 Rechercher</button>

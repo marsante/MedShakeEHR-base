@@ -60,7 +60,7 @@
               <tr>
                 <th>Formulaires</th>
                 <th colspan="2" class="text-center">En base - actifs</th>
-                <th class="text-right">En base - supprimés</th>
+                <th class="text-end">En base - supprimés</th>
               </tr>
             </thead>
             <tbody>
@@ -71,15 +71,15 @@
                 {% for form in forms %}
                   <tr>
                     <td>{{ form.label }}</td>
-                    <td class="text-right">
+                    <td class="text-end">
                       {{ form.actifs }}
-                    </td class="text-right">
+                    </td class="text-end">
                     <td>
                       {% if form.actifs > 0 %}
                       <a href="/logs/historique/{{ form.name }}/" type="button" class="btn btn-light btn-sm" title="Afficher l'historique"><i class="fas fa-history"></i></a>
                       {% endif %}
                     </td>
-                    <td class="text-right">{{ form.deleted }}</td>
+                    <td class="text-end">{{ form.deleted }}</td>
                   </tr>
                 {% endfor %}
               {% endfor %}

@@ -169,7 +169,7 @@
       </div>
     </div>
     <div class="row mb-4">
-      <div class="col text-right">
+      <div class="col text-end">
 
         <div class="btn-group dropleft m-1">
             <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -190,7 +190,7 @@
 </form>
 {% elseif page.mail.archived == 'c' %}
 <div class="row mb-4">
-  <div class="col text-right">
+  <div class="col text-end">
     <form action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/inbox/actions/suppInbox/" method="post">
         <input type="hidden" name="mailID" value="{{ page.mail.id }}"/>
         <button type="submit" id="submitBoutonSupp" class="btn btn-danger m-1">Déjà classé : supprimer
@@ -226,7 +226,7 @@
               <div class="row">
                 <div class="col-auto">
                   {% if page['mail']['pjData'][kpj]['object']['display'] %}
-                    <div class="d-block text-right my-2">
+                    <div class="d-block text-end my-2">
                       <a class="btn btn-outline-secondary btn-sm" role="button" href="{{ page['mail']['pjData'][kpj]['fileRelativePath'] }}" target="_blank">
                       <i class="fas fa-external-link-alt"></i>
                         Ouvrir dans un onglet

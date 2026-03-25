@@ -156,7 +156,7 @@ $(document).ready(function() {
               <th>
                 Est accessible en écriture
               </th>
-              <th class="text-right">
+              <th class="text-end">
                   Gérer
               </th>
           </tr>
@@ -172,11 +172,11 @@ $(document).ready(function() {
                       </button>
                     {% endif %}
                   </td>
-                  <td class="text-right">{{ v.filesize }}</td>
+                  <td class="text-end">{{ v.filesize }}</td>
                   <td>{{ page.repertoireClefs }}{{ v.file }}</td>
                   <td class="{% if v.autorisationLecture == 1 %}table-success{% else %}table-danger{% endif %}">&nbsp;</td>
                   <td class="{% if v.autorisationEcriture == 1 %}table-success{% else %}table-danger{% endif %}">&nbsp;</td>
-                  <td class="text-right">
+                  <td class="text-end">
                     <div class="btn-group">
                       <button class="delApicryptClef btn btn-sm btn-light" type="button" data-file="{{ v.file }}" data-user="{{ page.selectUser }}" title="Supprimer"><i class="fas fa-trash-alt"></i></a>
                     </div>
@@ -196,7 +196,7 @@ $(document).ready(function() {
   {% if page.listeClefsAutorisationEcriture == 1 %}
 
 
-      <div id="dropZoneFichierZoneConfig"  data-destination="{{ page.repertoireClefs }}" class="col-md-9 bg-warning center-block" style="padding : 30px; border-radius : 6px">
+      <div id="dropZoneFichierZoneConfig"  data-destination="{{ page.repertoireClefs }}" class="col-lg-9 bg-warning center-block" style="padding : 30px; border-radius : 6px">
           Déposez ici le fichier de clef ou sélectionnez-le avec le bouton ci-dessous<br/>
           <input type="file" name="files[]" multiple="multiple" title="Cliquer pour ajouter">
 

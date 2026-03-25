@@ -79,7 +79,7 @@
       {% endif %}
     {% endfor %}
 
-    <td class="text-right">
+    <td class="text-end">
       {% if page['outputType'][patientID]['type'] == 'registre' %}
         {% include('inc-listing-registre.html.twig') %}
       {% elseif page['outputType'][patientID]['type'] == 'groupe' %}

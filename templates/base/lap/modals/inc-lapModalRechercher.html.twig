@@ -57,14 +57,14 @@
             <div class="row">
               <form id="rechercheMedic" class="col-12">
                 <div class="row">
-                  <div class="col-md-4 pr-0">
+                  <div class="col-lg-4 pr-0">
                     <div class="form-group">
                       <label for="txtRechercheMedic">Rechercher</label>
                       <input type="text" class="form-control" id="txtRechercheMedic" autocomplete="off" placeholder="médicament, substance, code ..."/>
                       <span id="txtRechercheMedicHB" class="form-text small">Taper ici le texte de votre recherche</span>
                     </div>
                   </div>
-                  <div class="col-md-4 pl-1 pr-0">
+                  <div class="col-lg-4 pl-1 pr-0">
                     <div class="form-group">
                       <label for="typeRechercheMedic">Dans</label>
                       <select id="typeRechercheMedic" class="custom-select" autocomplete="off">
@@ -78,7 +78,7 @@
                       <span id="typeRechercheMedicHB" class="form-text small">Lieu de recherche du texte indiqué</span>
                     </div>
                   </div>
-                  <div class="col-md-4 pl-1">
+                  <div class="col-lg-4 pl-1">
                     <div id="retourRechercheMedicBloc" class="form-group" style="display : none;">
                       <label for="typeRechercheMedic">Montrer</label>
                       <select id="retourRechercheMedic" class="custom-select" autocomplete="off">
@@ -108,7 +108,7 @@
             <form>
               <div id="prescriptionAlertMultimedic" class="alert alert-info" role="alert" style="display: none;">Quand plusieurs médicaments sont dans la même ligne de prescription, c'est le 1er qui gouverne durée, voie d'administration et consignes complémentaires.</div>
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-lg-8">
                   <div class="form-group">
                     <textarea class="form-control font-weight-bold form-control-sm" rows="2" id="lapFrappePrescription" autocomplete="off" style="font-size:30px" placeholder="saisir ici la prescription"></textarea>
                   </div>
@@ -116,7 +116,7 @@
                     <textarea class="form-control font-weight-bold form-control-sm" rows="2" id="lapConsignesPrescription" autocomplete="off" style="font-size:15px" placeholder="consignes complémentaires"></textarea>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4">
                   <div class="form-group">
                     <select id='uniteUtilisee' class="custom-select custom-select-sm"></select>
                   </div>
@@ -139,7 +139,7 @@
               </div>
               <div class="row">
                 <div class="form-group col prescriptionChampsDuree">
-                  <label class="control-label" for="beginPeriodeID">Première prise
+                  <label class="col-form-label" for="beginPeriodeID">Première prise
                   </label>
                   <div id="beginPeriodeIDB" class="input-group input-group-sm mx-0 date datepick">
                     <input type="text" id="beginPeriodeID" name="beginPeriode" class="form-control form-control-sm" autocomplete="off" value="{{ "now"|date("d/m/Y") }}"/>
@@ -149,7 +149,7 @@
                   </div>
                 </div>
                 <div class="form-group col prescriptionChampsDuree">
-                  <label class="control-label" for="beginPeriodeID">Renouveler
+                  <label class="col-form-label" for="beginPeriodeID">Renouveler
                   </label>
                   <select id="nbRenouvellements" class="custom-select custom-select-sm" autocomplete="off">
                     <option selected="selected" value="0">ne pas renouveler</option>
@@ -161,7 +161,7 @@
                   </select>
                 </div>
                 <div class="form-group col prescriptionChampsDuree prescriptionChampsEnd">
-                  <label class="control-label" for="beginPeriodeID">Dernière prise
+                  <label class="col-form-label" for="beginPeriodeID">Dernière prise
                   </label>
                   <div id="endPeriodeIDB" class="input-group input-group-sm  mx-0 date datepick">
                     <input disabled="disabled" readonly="readonly" type="text" id="endPeriodeID" name="endPeriode" class="form-control form-control-sm" autocomplete="off"/>
@@ -173,8 +173,8 @@
 
               </div>
               <div class="row">
-                <div class="form-group col-md-6">
-                  <label class="control-label" for="prescripteurInitialTT">Prescripteur
+                <div class="form-group col-lg-6">
+                  <label class="col-form-label" for="prescripteurInitialTT">Prescripteur
                   </label>
                   <input type="text" id="prescripteurInitialTT" class="form-control form-control-sm" autocomplete="off"/>
                 </div>
@@ -213,7 +213,7 @@
                   <textarea class="form-control" rows="1" id="prescriptionMotif" autocomplete="off" placeholder="motif de prescription (non imprimé)"></textarea>
                 </div>
 
-              <div class="form-row text-right">
+              <div class="form-row text-end">
                 <div class="col">
                   <button type="button" class="btn btn-primary sendToOrdonnance"><i class="fas fa-plus"></i> Ajouter à l'ordonnance</button>
                   <button type="button" class="btn btn-primary sendModifToOrdonnance">Modifier la prescription</button>

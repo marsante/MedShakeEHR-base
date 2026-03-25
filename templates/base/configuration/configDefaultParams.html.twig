@@ -52,7 +52,7 @@
   <form class="ajaxForm" method="post" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/ajax/configDefaultUsersParams/">
     <div class="row mt-3">
       {# navigation #}
-      <div class="col-md-2">
+      <div class="col-lg-2">
         <ul class="nav nav-pills flex-column">
           {% for cat in page.cats %}
             <li class="nav-item">
@@ -61,7 +61,7 @@
           {% endfor %}
         </ul>
       </div>
-      <div class="tab-content col-md-10" >
+      <div class="tab-content col-lg-10" >
         {% for cat in page.cats %}
           <div id="{{ cat|replace({' ':'_', '\'':'_'}) }}" role="tabpanel" class="tab-pane{% if loop.first %} active{% endif %}">
           </div>

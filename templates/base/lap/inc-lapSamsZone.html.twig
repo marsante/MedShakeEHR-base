@@ -26,7 +26,7 @@
  #
 #}
 
-<div class="col-md-12">
+<div class="col-lg-12">
 {% if page.zone == 'ordo' %} <span class="small">Informations SAM basées sur l'ordonnance et le traitement en cours</span>
 {% elseif page.zone == 'ttencours' %}<span class="small">Informations SAM basées sur le traitement en cours</span>
 {% endif %}
@@ -34,7 +34,7 @@
 
 {% set numberrand = random(10000) %}
 
-<div class="col-md-12 mb-3 accordion" id="accordionSams{{ numberrand }}" role="tablist" aria-multiselectable="true">
+<div class="col-lg-12 mb-3 accordion" id="accordionSams{{ numberrand }}" role="tablist" aria-multiselectable="true">
 
   {% for samID, sam in page.sams %}
     <div class="card">

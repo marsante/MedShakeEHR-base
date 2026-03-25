@@ -62,7 +62,7 @@ function getFseData(el) {
       }
 
       // présenter les actes
-      html = '<table class="table table-sm text-right">';
+      html = '<table class="table table-sm text-end">';
       html += '<thead class="thead-light"><tr> \
       <th class="text-left" colspan="2">Actes - modificateurs</th> \
       <th ></th> \

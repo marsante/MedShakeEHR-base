@@ -81,7 +81,7 @@
   <div role="tabpanel" class="tab-pane active" id="prescriptions">
 
   <div class="row mt-3">
-    <div class="col text-right">
+    <div class="col text-end">
       <button type="button" class="btn btn-primary reset-modal" data-toggle="modal" data-target="#modalNewCat">
         <i class="fas fa-plus"></i> Nouvelle facture
       </button>
@@ -108,11 +108,11 @@
         <th>Label court</th>
         <th>Utilisation</th>
         {% if page.secteurs[k] != '' %}
-          <th class="text-right">Tarif&nbsp;SS</th>
-          <th class="text-right">Dépassement</th>
-          <th class="text-right">Total</th>
+          <th class="text-end">Tarif&nbsp;SS</th>
+          <th class="text-end">Dépassement</th>
+          <th class="text-end">Total</th>
         {% else %}
-          <th class="text-right">Tarif</th>
+          <th class="text-end">Tarif</th>
         {% endif %}
         <th></th>
       </tr>
@@ -130,12 +130,12 @@
         </td>
         <td>{{ w.shortLabel }}</td>
         <td>{{ page['utilisationParFacture'][w.id] }}</td>
-        <td class="text-right">{{ (w.tarif + w.majoModifCCAM)|number_format(2, '.', ' ') }}</td>
+        <td class="text-end">{{ (w.tarif + w.majoModifCCAM)|number_format(2, '.', ' ') }}</td>
         {% if page.secteurs[k] != '' %}
-          <td class="text-right">{{ w.depassement|number_format(2, '.', ' ') }}</td>
-          <td class="text-right">{{ w.total|number_format(2, '.', ' ') }}</td>
+          <td class="text-end">{{ w.depassement|number_format(2, '.', ' ') }}</td>
+          <td class="text-end">{{ w.total|number_format(2, '.', ' ') }}</td>
         {% endif %}
-        <td  class="text-right">
+        <td  class="text-end">
           <div class="btn-group">
             <button type="button" class="btn btn-light btn-sm" data-toggle="collapse" data-target=".details{{ w.id }}" aria-label="Voir détails" id="details{{ w.id }}">
                 <span class="fas fa-search-plus" aria-hidden="true"></span>
@@ -171,15 +171,15 @@
         </td>
         <td></td>
         <td></td>
-        <td class="text-right">
+        <td class="text-end">
           {{ det.tarif|number_format(2, '.', '')  }}
           {% if det.majoModifCCAM > 0 %}
             + {{ det.majoModifCCAM }}
           {% endif %}
         </td>
         {% if page.secteurs[k] != '' %}
-          <td class="text-right">{{ det.depassement|number_format(2, '.', '')  }}</td>
-          <td class="text-right">{{ det.total|number_format(2, '.', '')  }}</td>
+          <td class="text-end">{{ det.depassement|number_format(2, '.', '')  }}</td>
+          <td class="text-end">{{ det.total|number_format(2, '.', '')  }}</td>
         {% endif %}
         <td colspan="2"></td>
       </tr>

@@ -27,14 +27,14 @@
 #}
 
 
-<div class="col-md-12">
+<div class="col-lg-12">
   {% if page.allergieCode is not empty %}
   <table class="table table-sm table-hover">
     {% for code, label in page.allergieCode %}
       <tr>
         <td>{{ code }}</td>
         <td>{{ label }}</td>
-        <td class="text-right">
+        <td class="text-end">
           <button type="button" data-parentID="{{ page.parentID }}" data-code="{{ code }}" data-label="{{ label }}" class="btn btn-light btn-sm addAllergieToPatient">
             <span class="fas fa-arrow-circle-down" aria-hidden="true"></span></button>
         </form>

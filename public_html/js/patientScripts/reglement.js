@@ -149,11 +149,11 @@ $(document).ready(function() {
   $("#newReglement").on("change", ".regleFacture", function(e) {
     val = $(".regleFacture").val();
     if (val > 0 || val < 0) {
-      $(".regleFacture").closest("div.form-group").removeClass('has-success');
-      $(".regleFacture").closest("div.form-group").addClass('has-error');
+      $(".regleFacture").closest("div.mb-3").removeClass('has-success');
+      $(".regleFacture").closest("div.mb-3").addClass('has-error');
     } else {
-      $(".regleFacture").closest("div.form-group").removeClass('has-error');
-      $(".regleFacture").closest("div.form-group").addClass('has-success');
+      $(".regleFacture").closest("div.mb-3").removeClass('has-error');
+      $(".regleFacture").closest("div.mb-3").addClass('has-success');
     }
   });
 
@@ -501,7 +501,7 @@ function setDefautTarifEtDepa() {
  * @return {void}
  */
 function calcResteDu() {
-  $(".regleTiersPayeur").parents(".form-group").children("label").html('Tiers');
+  $(".regleTiersPayeur").parents(".mb-3").children("label").html('Tiers');
   cas = $(".regleSituationPatient" + " option:selected").val() || 'G';
   tarif = parseFloat($(".regleTarifCejour").val());
   depassement = parseFloat($(".regleDepaCejour").val());
@@ -522,7 +522,7 @@ function calcResteDu() {
     reste = Math.round((total - tiers) * 100) / 100;
     $(".regleTiersPayeur").val(tiers);
     $(".regleFacture").val(total).change();
-    $(".regleTiersPayeur").parents(".form-group").children("label").html('Tiers (reste à payer : ' + reste + '€)');
+    $(".regleTiersPayeur").parents(".mb-3").children("label").html('Tiers (reste à payer : ' + reste + '€)');
   } else if (cas == 'TP ALD') {
     total = parseFloat(tarif);
     $(".regleTiersPayeur").val(total);
@@ -533,7 +533,7 @@ function calcResteDu() {
     reste = Math.round((total - tiers) * 100) / 100;
     $(".regleTiersPayeur").val(tiers);
     $(".regleFacture").val(total).change();
-    $(".regleTiersPayeur").parents(".form-group").children("label").html('Tiers (reste à payer : ' + reste + '€)');
+    $(".regleTiersPayeur").parents(".mb-3").children("label").html('Tiers (reste à payer : ' + reste + '€)');
   }
 
 }

@@ -35,10 +35,10 @@
 				{{ v.input.before }}
 			{% endif %}
 
-	    <div class="custom-control custom-{{ v.input.type }}">
+	    <div class="form-check form-{{ v.input.type }}">
 	      <input
 					type="checkbox"
-					class="custom-control-input {{ v.input.class|trim }}"
+					class="form-check-input {{ v.input.class|trim }}"
 
 					id="{{ v.input.id }}"
 					{% if v.input.value  == "true" %} checked="checked" {% endif %}
@@ -59,7 +59,7 @@
 					{% if v.input.datatypeid %} data-typeid="{{ v.input.datatypeid }}" {% endif %}
 					{% if v.input.internalName %} data-internalName="{{ v.input.internalName }}" {% endif %}
 					{{ v.input.add }} >
-	      <label class="custom-control-label {{ v.label.class }}" for="{{ v.input.id }}" title="{{ v.input.name }}">{{ v.label.label|e }}</label>
+	      <label class="form-check-label {{ v.label.class }}" for="{{ v.input.id }}" title="{{ v.input.name }}">{{ v.label.label|e }}</label>
 	    </div>
 
 			{% if v.input.after %}
@@ -93,16 +93,12 @@
 	  {% if v.input.before %}
 	  	{{ v.input.before }}
 			{% if v.input.plusg %}
-        <div class="input-group-prepend">
   				<span class="input-group-text" id="{{v.input.id}}AddOnG">{{ v.input.plusg }}</span>
-        </div>
 			{% endif %}
 		{% elseif v.input.plus or v.input.plusg %}
 			<div class="input-group input-group-sm mx-0">
 				{% if v.input.plusg %}
-          <div class="input-group-prepend">
   					<span class="input-group-text" id="{{v.input.id}}AddOnG">{{ v.input.plusg }}</span>
-          </div>
 				{% endif %}
 
 		{% endif %}
@@ -136,9 +132,7 @@
     {% if v.input.after %}
     	{{ v.input.after }}
 		{% elseif v.input.plus %}
-      <div class="input-group-append">
   			<span class="input-group-text" id="{{v.input.id}}AddOn">{{ v.input.plus }}</span>
-      </div>
 		{% endif %}
 
 		{% if v.input.before %}
@@ -188,21 +182,17 @@
 	{% if v.select.before %}
 		{{ v.select.before }}
 		{% if v.select.plusg %}
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="{{v.select.id}}AddOnG">{{ v.select.plusg }}</span>
-			</div>
+			<span class="input-group-text" id="{{v.select.id}}AddOnG">{{ v.select.plusg }}</span>
 		{% endif %}
 	{% elseif v.select.plus or v.select.plusg %}
 		<div class="input-group input-group-sm mx-0">
 			{% if v.select.plusg %}
-				<div class="input-group-prepend">
-					<span class="input-group-text" id="{{v.select.id}}AddOnG">{{ v.select.plusg }}</span>
-				</div>
+				<span class="input-group-text" id="{{v.select.id}}AddOnG">{{ v.select.plusg }}</span>
 			{% endif %}
 	{% endif %}
 
 	<select title="{{ v.select.internalName }} / {{ v.select.datatypeid }}"
-	class="custom-select{% if v.select.class %} {{ v.select.class }}{% if v.select.error %} inputErreur{% endif %}{% endif %}"
+	class="form-select{% if v.select.class %} {{ v.select.class }}{% if v.select.error %} inputErreur{% endif %}{% endif %}"
 	{% if v.select.id %} id="{{ v.select.id }}" {% endif %}
 	{% if v.select.name %} name="{{ v.select.name }}" {% endif %}
 	{% if v.select.datatypeid %} data-typeid="{{ v.select.datatypeid }}" {% endif %}
@@ -235,9 +225,7 @@
 	</select>
 
 	{% if v.select.plus %}
-		<div class="input-group-append">
-			<span class="input-group-text" id="{{v.select.id}}AddOn">{{ v.select.plus }}</span>
-		</div>
+		<span class="input-group-text" id="{{v.select.id}}AddOn">{{ v.select.plus }}</span>
 	{% endif %}
 	{% if v.select.plus or v.select.plusg %}
 		</div>
@@ -269,13 +257,13 @@
 		{% endif %}
 
 		{% for key,value in v.radio.values %}
-			<div class="custom-control custom-radio">
-				<input type="radio" id="{{ v.radio.id }}{{ loop.index }}" name="{{ v.radio.name }}" value="{{ key|e('html_attr') }}" class="custom-control-input"
+			<div class="form-check">
+				<input type="radio" id="{{ v.radio.id }}{{ loop.index }}" name="{{ v.radio.name }}" value="{{ key|e('html_attr') }}" class="form-check-input"
                         {% if v.radio.disabled %} disabled="{{ v.radio.disabled }}" {% endif %}
                         {% if v.radio.required %} required="{{ v.radio.required }}" {% endif %}
                         {% if v.radio.valueDefaut == key %} checked="checked" {% endif %} autocomplete="off"
                         {% if v.radio.tabindex is not empty %} tabindex="{{ v.radio.tabindex }}" {% endif %}>
-				<label class="custom-control-label" for="{{ v.radio.id }}{{ loop.index }}">{{ value|e }}</label>
+				<label class="form-check-label" for="{{ v.radio.id }}{{ loop.index }}">{{ value|e }}</label>
 			</div>
 		{% endfor %}
 
@@ -295,13 +283,13 @@
 		{% endif %}
 
 		{% for key,value in v.radio.values %}
-			<div class="custom-control custom-radio custom-control-inline">
-			  <input type="radio" id="{{ v.radio.id }}{{ loop.index }}" name="{{ v.radio.name }}" value="{{ key|e('html_attr') }}" class="custom-control-input"
+			<div class="form-check form-check-inline">
+			  <input type="radio" id="{{ v.radio.id }}{{ loop.index }}" name="{{ v.radio.name }}" value="{{ key|e('html_attr') }}" class="form-check-input"
                       {% if v.radio.disabled %} disabled="{{ v.radio.disabled }}" {% endif %}
                       {% if v.radio.required %} required="{{ v.radio.required }}" {% endif %}
                       {% if v.radio.valueDefaut == key %} checked="checked" {% endif %} autocomplete="off"
                       {% if v.radio.tabindex is not empty %} tabindex="{{ v.radio.tabindex }}" {% endif %}>
-			  <label class="custom-control-label" for="{{ v.radio.id }}{{ loop.index }}">{{ value|e }}</label>
+			  <label class="form-check-label" for="{{ v.radio.id }}{{ loop.index }}">{{ value|e }}</label>
 			</div>
 		{% endfor %}
 		</div>
@@ -532,7 +520,7 @@
 
 
 							{% if el.value.formType in ['text','email','tel','password', 'number', 'range','reset'] %}
-								<div class="form-group">
+							<div class="mb-3">
 								{{ f.input ({
 									'input' : {
 										'type' : el.value.formType,
@@ -583,7 +571,7 @@
 									}) }}
 
 								{% elseif el.value.formType in ['checkbox', 'switch'] %}
-									<div class="form-group">
+								<div class="mb-3">
 									{{ f.input ({
 										'input' : {
 											'type' : el.value.formType,
@@ -608,7 +596,7 @@
 									</div>
 
 							{% elseif el.value.formType == "textarea" %}
-								<div class="form-group">
+								<div class="mb-3">
 								{{ f.textarea ({
 									'textarea' : {
 										'name' : el.value.name,
@@ -635,7 +623,7 @@
 								</div>
 
 							{% elseif el.value.formType == "select" %}
-								<div class="form-group">
+								<div class="mb-3">
 								{{ f.select ({
 									'select' : {
 										'name' : el.value.name,
@@ -664,7 +652,7 @@
 								</div>
 
 								{% elseif el.value.formType == "radio" %}
-									<div class="form-group">
+									<div class="mb-3">
 									{{ f.radio ({
 										'radio' : {
 											'name' : el.value.name,
@@ -689,7 +677,7 @@
 									</div>
 
 							{% elseif el.value.formType == "date" %}
-								<div class="form-group">
+								<div class="mb-3">
 								{{ f.input ({
 									'input' : {
 										'type' : 'text',
@@ -719,7 +707,7 @@
 										'helpTxt': el.value.helpTxt,
 									}
 								}) }}
-								<span id="id_{{ el.value.internalName }}_idHelp" class="help-block"></span>
+								<span id="id_{{ el.value.internalName }}_idHelp" class="form-text text-muted"></span>
 								</div>
 
 							{% elseif el.value.formType == "submit" %}

@@ -167,7 +167,7 @@ function getRelationsPatientPatientsTab(patientID) {
             </td>\
             <td>' + value.identiteComplete + '</td>\
             <td>' + value.birthdate + ' - ' + value.ageCalcule + '</td><td>' + value.typeRelation + '</td>\
-            <td class="text-right">\
+            <td class="text-end">\
               <div class="btn-group">\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + patientID + '" data-withID="' + value.peopleID + '"><i class="fas fa-times fa-fw"></i>\
                 </button>\
@@ -219,7 +219,7 @@ function getRelationsPatientPraticiensTab(patientID) {
                 </a>\
               </td>\
               <td>' + ((value.titre) ? (value.titre + ' ') : '') + value.identiteUsuelle + '</td><td>' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + patientID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
                 </button>\
@@ -268,7 +268,7 @@ function getRelationsGroupePraticiensTab(groupeID) {
                 </a>\
               </td>\
               <td>' + ((value.titre) ? (value.titre + ' ') : '') + value.identiteUsuelle + '</td><td class="small">' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
               ' + ((lienSup == 'true') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + groupeID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
@@ -317,7 +317,7 @@ function getRelationsPraticienGroupesTab(pratID) {
                   <i class="fas fa-hospital-alt fa-fw"></i>\
                 </a>\
               ' + value.groupname + '</td><td class="small">' + value.city + ' (' + value.country + ')</td><td class="small">' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
               ' + ((value.currentUserStatus == 'admin' || value.currentUserRank == 'admin') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + pratID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
@@ -367,7 +367,7 @@ function getRelationsPatientGroupesTab(patientID) {
                   <i class="fas fa-hospital-alt fa-fw"></i>\
                 </a>\
               ' + value.groupname + '</td><td class="small">' + value.city + ' (' + value.country + ')</td>\
-              <td class="text-right">\
+              <td class="text-end">\
               ' + ((value.currentUserRank == 'admin') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + patientID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
@@ -418,7 +418,7 @@ function getRelationsRegistreGroupesTab(registreID) {
                   <i class="fas fa-hospital-alt fa-fw"></i>\
                 </a>\
               ' + value.groupname + '</td><td class="small">' + value.city + ' (' + value.country + ')</td><td class="small">' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
               ' + ((lienSup == 'true') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + registreID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
@@ -469,7 +469,7 @@ function getRelationsRegistrePraticiensTab(registreID) {
                 </a>\
               </td>\
               <td>' + ((value.titre) ? (value.titre + ' ') : '') + value.identiteUsuelle + '</td><td class="small">' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
                 ' + ((lienSup == 'true') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + registreID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\
@@ -520,7 +520,7 @@ function getRelationsGroupeRegistresTab(groupeID) {
                   <i class="fas fa-archive fa-fw"></i>\
                 </a>\
               ' + value.registryname + '</td><td class="small">' + value.typeRelationTxt + '</td>\
-              <td class="text-right">\
+              <td class="text-end">\
               ' + ((lienSup == 'true') ? ('\
                 <button class="btn btn-light btn-sm removeRelation" type="button" data-peopleID="' + groupeID + '" data-withID="' + value.peopleID + '">\
                     <i class="fas fa-times fa-fw"></i>\

@@ -61,7 +61,7 @@
         {% endif %}
 
     </div>
-    <div class="col text-right">
+    <div class="col text-end">
       {% if user.id == page.transmission.fromID %}
         <div class="btn-group">
           <button class="btn btn-secondary editerTransmission" data-transmissionid="{{ page.transmissionID }}"><i class="fas fa-pencil-alt"></i> Editer</button>
@@ -84,7 +84,7 @@
           <tr>
             <td class="border-top-0">Auteur</td>
             <td class="border-top-0">{{ page.transmission.identiteAuteur }}</td>
-            <td class="border-top-0 text-right">Créée
+            <td class="border-top-0 text-end">Créée
               {% if page.transmission.registerDate|date('Ymd') != "now"|date('Ymd') %}
                 le {{ page.transmission.registerDate|date('d/m/Y H:i') }}
               {% else %}

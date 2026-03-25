@@ -54,7 +54,7 @@
 
   <div class="row">
 
-    <div class=" col-md-4">
+    <div class=" col-lg-4">
     {% for k,v in page.tabTypes %}
       <h2 class="mb-2" id="cat{{ v.0.cat }}">{{ v.0.catLabel }}</h2>
       <table class="table table-sm mb-0 table-hover mb-3">
@@ -73,7 +73,7 @@
         <td>{{ w.module }}</td>
         <td>{{ w.name }}</td>
 
-        <td class="text-right">
+        <td class="text-end">
           <div class="btn-group">
             <a class="btn btn-light btn-sm{% if k=='displayforms' %} disabled{% endif %}" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/forms/preview/{{ w.id }}/">
               <span class="fas fa-eye" aria-hidden="true"></span>
@@ -89,7 +89,7 @@
     {% endfor %}
     </div>
 
-    <div class=" col-md-8">
+    <div class=" col-lg-8">
 
       <h1 class="mb-4">Aperçu du formulaire #{{ page.formData.id }}
         <small>{{ page.formData.name }}</small>
@@ -97,7 +97,7 @@
 
       <div class="alert alert-warning" role="alert">Les fichiers javascript n'étant pas chargés, ce formulaire n'est pas dynamique !</div>
 
-      <div class="jumbotron col-md-12">
+      <div class="jumbotron col-lg-12">
         {{ f.formbuilder(page.form , page.formIN ) }}
       </div>
 

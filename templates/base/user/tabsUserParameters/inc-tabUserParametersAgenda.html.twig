@@ -31,7 +31,7 @@
 
 {% import "macroForm.html.twig" as f %}
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-lg-2">
     <ul class="nav nav-pills flex-column">
       <li class="nav-item">
         <a href="#pa" aria-controls="pa" class="nav-link active" role="tab" data-toggle="tab">Horaires</a>
@@ -47,7 +47,7 @@
     </ul>
   </div>
 
-  <div class="col-md-9">
+  <div class="col-lg-9">
    <div class="tab-content" >
 
     {# plages de l'agenda #}
@@ -149,7 +149,7 @@
             </tr>
           {% endfor %}
         </table>
-        <p class="text-right">
+        <p class="text-end">
           <input class="btn btn-primary mt-2" type="submit" value="Valider">
         </p>
     </form>
@@ -211,14 +211,14 @@
                   <option value="non" {% if v.utilisable == 'non' %}selected{% endif %}>non</option>
                 </select>
               </td>
-              <td class="text-muted text-right">
+              <td class="text-muted text-end">
                 <i class="fas fa-arrows-alt" title="Attraper pour déplacer et ordonner"></i>
               </td>
             </tr>
             {% endfor %}
             </tbody>
           </table>
-          <p class="text-right">
+          <p class="text-end">
             <input class="btn btn-primary mt-2" type="submit" value="Valider">
           </p>
       </form>

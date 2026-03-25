@@ -47,7 +47,7 @@
   {% endif %}
 
   <div class="row mt-3">
-    <div class="col-lg-10 col-md-12">
+    <div class="col-xl-10 col-lg-12">
 
       {% if page.tabRegNC %}
       <div class="card mb-4">
@@ -105,7 +105,7 @@
 
                   <td>{{ reg.dejaPaye|e }}€</td>
                   <td>{{ reg.resteAPaye }}€</td>
-                  <td class="text-right">
+                  <td class="text-end">
                     <button class="btn btn-danger btn-sm editReglement py-0" type="button" data-objetID="{{ obj }}" data-patientID="{{ reg.toID }}" data-patientname="{{ reg.prenom|e }} {{ reg.nom|e }}" data-porteur="{{ reg.typeID }}" data-aregler="{{ reg.resteAPaye|number_format(2, '.', '') }}" data-dejaCheque="{{ reg.dejaPayeTab.dejaCheque }}" data-dejaCB="{{ reg.dejaPayeTab.dejaCB }}"  data-dejaEspeces="{{ reg.dejaPayeTab.dejaEspeces }}" data-toggle="modal" data-target="#modalReglement">
                       Saisir règlement
                     </button>
@@ -206,9 +206,9 @@
           <input title=" / " name="dejaCB" value="" type="hidden">
           <input title=" / " name="dejaEspeces" value="" type="hidden">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-lg-4">
               <div class="form-group">
-                <label class="control-label" for="id_regleCheque_id">Chèque
+                <label class="col-form-label" for="id_regleCheque_id">Chèque
                 </label>
                 <div class="input-group">
                   <input title="regleCheque / 193" id="id_regleCheque_id" name="regleCheque" class="form-control checkAmount" autocomplete="off" data-internalname="regleCheque" type="text">
@@ -218,9 +218,9 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4">
               <div class="form-group">
-                <label class="control-label" for="id_regleCB_id">CB
+                <label class="col-form-label" for="id_regleCB_id">CB
                 </label>
                 <div class="input-group">
                   <input title="regleCB / 194" id="id_regleCB_id" name="regleCB" class="form-control checkAmount" autocomplete="off" data-internalname="regleCB" type="text">
@@ -230,9 +230,9 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4">
               <div class="form-group">
-                <label class="control-label" for="id_regleEspeces_id">Espèces
+                <label class="col-form-label" for="id_regleEspeces_id">Espèces
                 </label>
                 <div class="input-group">
                   <input title="regleEspeces / 195" id="id_regleEspeces_id" name="regleEspeces" class="form-control checkAmount" autocomplete="off" data-internalname="regleEspeces" type="text">
@@ -244,9 +244,9 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-12">
               <div class="form-group">
-                <label class="control-label" for="id_regleIdentiteCheque_id">Identité payeur
+                <label class="col-form-label" for="id_regleIdentiteCheque_id">Identité payeur
                 </label>
                 <input title="regleIdentiteCheque / 205" id="id_regleIdentiteCheque_id" name="regleIdentiteCheque" placeholder="si différent patient" class="form-control" autocomplete="off" data-internalname="regleIdentiteCheque" type="text">
               </div>

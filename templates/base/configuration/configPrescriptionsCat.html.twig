@@ -68,7 +68,7 @@
     <div role="tabpanel" class="tab-pane active" id="categories">
 
       <div class="row my-3">
-        <div class="col text-right">
+        <div class="col text-end">
           <button type="button" class="btn btn-primary reset-modal" data-toggle="modal" data-target="#modalNewCat">
             <i class="fas fa-plus"></i>
             Nouvelle catégorie
@@ -102,7 +102,7 @@
                 {% endif %}
               </td>
               <td>{{ v.description }}</td>
-              <td class="text-right">
+              <td class="text-end">
                 <div class="btn-group">
                   <button type="button" class="btn btn-light btn-sm edit-by-prim-key" aria-label="Editer" data-id="{{ k }}" data-table="prescriptions_cat" data-form="formModalNewCat" data-modal="modalNewCat">
                     <span class="fas fa-pencil-alt" aria-hidden="true"></span>

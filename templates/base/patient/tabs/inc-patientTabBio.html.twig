@@ -84,12 +84,12 @@
             {% if v.typeResultat == 'N' %}
               <tr {% if  v.indicateurAnormal in ['L', 'H', 'LL', 'HH'] %} class="table-danger"{% endif %}>
                 <td class="border-left">{{ v.label }}</td>
-                <td class="border-left border-right text-right">{{ v.resultat }} {{ v.unite }}</td>
-                <td class="text-right border-right">{{ v.normaleInf }}</td>
-                <td class="border-right text-right">{{ v.normaleSup }}</td>
+                <td class="border-left border-right text-end">{{ v.resultat }} {{ v.unite }}</td>
+                <td class="text-end border-right">{{ v.normaleInf }}</td>
+                <td class="border-right text-end">{{ v.normaleSup }}</td>
                 {% if page.bioAnt %}
                   {% for antDate, ante in page.bioAnt %}
-                    <td class="border-right text-right">{{ ante[v.labelStandard]['resultat'] }} {{ ante[v.labelStandard]['unite'] }}</td>
+                    <td class="border-right text-end">{{ ante[v.labelStandard]['resultat'] }} {{ ante[v.labelStandard]['unite'] }}</td>
                   {% endfor %}
                 {% endif %}
               </tr>

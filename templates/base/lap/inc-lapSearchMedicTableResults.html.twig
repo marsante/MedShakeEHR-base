@@ -29,7 +29,7 @@
 
 
 {% if page.listeIndics|length > 0 %}
-<div class="col-md-12 modalListeIndications">
+<div class="col-lg-12 modalListeIndications">
     Choisir l'indication :<br>
   {% for indic, codes in page.listeIndics %}
     <button type="button" class="btn btn-sm btn-secondary my-1 searchIndic" data-codes="{{ codes|join(',')}}">{{ indic }}</button>
@@ -38,12 +38,12 @@
 {% endif %}
 
 {% if page.medicListeSpe|length > 0 %}
-<div class="col-md-12 text-right mb-1">
+<div class="col-lg-12 text-end mb-1">
   <button class="btn btn-light btn-sm approRecherche" data-codesSpe="{{ page.listeCodeSpeTrouve|join(',') }}">Détailler ces résultats</button>
 </div>
 {% endif %}
 
-<div class="col-md-12">
+<div class="col-lg-12">
 
   {% if page.medicListeSpe | length > 0 %}
     <table id="tabMedicaments" class="table table-sm table-hover tablesorter">

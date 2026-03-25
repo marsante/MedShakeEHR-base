@@ -770,7 +770,7 @@ function makeLigneOrdo(data, mode) {
       retour += '      <div class="small">' + nl2br(data.ligneData.consignesPrescription) + '</div>';
     }
     retour += '    </div>';
-    retour += '  <div class="col-md-2 text-right">';
+    retour += '  <div class="col-md-2 text-end">';
 
     //Actions pour mode TT en cours
     if (mode == 'TTenCours') {
@@ -877,7 +877,7 @@ function makeLigneOrdo(data, mode) {
       }
     }
     retour += '    </div>';
-    retour += '    <div class="col-md-1 text-right">';
+    retour += '    <div class="col-md-1 text-end">';
 
     //Actions pour mode TT en cours
     if (mode == 'TTenCours') {
@@ -968,7 +968,7 @@ function makeLigneOrdo(data, mode) {
 
 
 
-      retour += '<td class="col-md-2 text-right">';
+      retour += '<td class="col-md-2 text-end">';
 
       //Actions pour mode TT en cours
       if (mode == 'TTenCours') {

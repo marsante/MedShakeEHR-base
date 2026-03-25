@@ -27,7 +27,7 @@
  #}
 
  <div class="row">
-   <div class="col text-right">
+   <div class="col text-end">
      <button type="button" class="btn btn-primary btn-sm nouvelle-cat" data-toggle="modal" data-target="#modalNewCat"><i class="fas fa-plus"></i>
          Nouvelle catégorie
      </button>
@@ -59,7 +59,7 @@
                  {% endif %}
                </td>
                <td>{{ v.description }}</td>
-               <td class="text-right">
+               <td class="text-end">
                  <div class="btn-group">
                    <button type="button" class="btn btn-light btn-sm edit-by-prim-key" data-id="{{ k }}" data-table="prescriptions_cat" data-form="formModalNewCat" data-modal="modalNewCat" {% if v.toID == '0' %} disabled {% endif %}>
                        <span class="fas fa-pencil-alt" aria-hidden="true"></span>
@@ -105,7 +105,7 @@
                    {% endif %}
                  </td>
                  <td>{{ v.description }}</td>
-                 <td class="text-right">
+                 <td class="text-end">
                    <div class="btn-group">
                      <button type="button" class="btn btn-light btn-sm edit-by-prim-key" aria-label="Editer" data-id="{{ k }}" data-table="prescriptions_cat" data-form="formModalNewCat" data-modal="modalNewCat" {% if v.toID == '0' %} disabled {% endif %}>
                          <span class="fas fa-pencil-alt" aria-hidden="true"></span>

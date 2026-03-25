@@ -112,7 +112,7 @@
                 <th>
                     Variable
                 </th>
-                <th class="text-right w-15">
+                <th class="text-end w-15">
                     Valeur
                 </th>
             </tr>
@@ -121,7 +121,7 @@
           {% for var, val in page.varPHP %}
             <tr>
                 <td>{{ var }}</td>
-                <td class="text-right {% if val.valBrute < page.recoVarPHP[var] %}bg-warning{% endif %}">
+                <td class="text-end {% if val.valBrute < page.recoVarPHP[var] %}bg-warning{% endif %}">
                   {{ val.val }}
                 </td>
             </tr>
@@ -160,7 +160,7 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-lg-12">
 
             <table class="table table-sm table-hover">
               <thead class="thead-light">

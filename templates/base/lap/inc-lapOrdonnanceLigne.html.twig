@@ -30,7 +30,7 @@
 {% if page.ligne.medics | length == 1 %}
   <div class="card bg-light mb-2 p-2 ui-sortable-handle lignePrescription{% if page.ligne.ligneData.isALD == 'true' %} ald{% endif %}">
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-lg-7">
         <div class="font-weight-bold">
           {{ page.ligne.medics.0.nomUtileFinal }}
           {% if page.ligne.medics.0. isNPS == 'true' %}
@@ -54,14 +54,14 @@
         <div>{{ page.ligne.medics.0.posoHumanCompleteTab|join('<br>') }}</div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-lg-4">
         {% if page.ligne.medics.0. prescriptionMotif %}
           <div class="small">Motif de prescription :<br>
             {{ page.ligne.medics.0.prescriptionMotif|e|nl2br }}</div>
         {% endif %}
       </div>
 
-      <div class="col-md-1 text-right">
+      <div class="col-lg-1 text-end">
 
         {# editer ligne #}
         <button class="btn btn-light btn-sm editLignePrescription">
@@ -100,14 +100,14 @@
 
   <div class="card bg-light mb-2 p-2 lignePrescription{% if page.ligne.ligneData.isALD == 'true' %} ald{% endif %}">
     <div class="row" style="margin-bottom: 12px">
-      <div class="col-md-7 font-weight-bold">
+      <div class="col-lg-7 font-weight-bold">
         {{ page.ligne.medics.0.voieUtilisee|capitalize }}
         -
         {{ page.ligne.medics.0.dureeTotaleHuman }}
         :
       </div>
-      <div class="col-md-4"></div>
-      <div class="col-md-1 text-right">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-1 text-end">
 
         {# options de ligne  #}
         <div class="btn-group">
@@ -139,7 +139,7 @@
       <tbody>
         {% for medic in page.ligne.medics %}
           <tr>
-            <td class="col-md-6">
+            <td class="col-lg-6">
               <div class="font-weight-bold">
                 {{ loop.index }}
                 -
@@ -159,14 +159,14 @@
               <div>{{ medic.posoHumanCompleteTab|join('<br>') }}</div>
             </td>
 
-            <td class="col-md-4">
+            <td class="col-lg-4">
               {% if medic.prescriptionMotif %}
                 <div class="small">Motif de prescription :<br>
                   {{ medic.prescriptionMotif|e|nl2br }}</div>
               {% endif %}
             </td>
 
-            <td class="col-md-2">
+            <td class="col-lg-2">
               {# editer medic #}
               <button class="btn btn-light btn-sm editMedicLignePrescription">
                 <span class="fas fa-pencil-alt" aria-hidden="true"></span></button>

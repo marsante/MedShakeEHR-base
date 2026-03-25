@@ -124,7 +124,7 @@
           </div>
         </form>
       </div>
-      <div class="col col-6 my-3 text-right">
+      <div class="col col-6 my-3 text-end">
         <button class="btn btn-outline-primary" onclick="document.getElementById('creerPatient_doctitre').value = $('#titreOptionnel').val();document.getElementById('CreerPatient').submit();" value="Nouveau patient" title="Créer un nouveau patient avec les informations issues du fichier et le classer en même temps dans son dossier"><i class="fas fa-user-plus"></i> Créer patient et classer</button>
       </div>
     </div>
@@ -143,7 +143,7 @@
       <input type="text" id="titreOptionnel" name="titre" class="form-control mb-0" placeholder="Titre du document" value="{{ page.boxParams.filesDefaultTitle }}" onchange="document.getElementById('creerPatient_doctitre').value = this.value;">
     </div>
 
-    <div class="col-4 text-right">
+    <div class="col-4 text-end">
         <button type="submit" id="submitBoutonClasser" class="btn btn-danger {% if page.patientsPossibles.0.id <= 0 %} d-none{% endif %}">Classer dans le dossier #<span id="submitIndicID">{{ page.patientsPossibles.0.id }}</span>
         </button>
     </div>
