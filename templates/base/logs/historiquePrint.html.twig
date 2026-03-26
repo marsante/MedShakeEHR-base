@@ -106,8 +106,8 @@
     }
 
     .appercu .bordurelat {
-      border-left: 1pt solid #000;
-      border-right: 1pt solid #000;
+      border-start: 1pt solid #000;
+      border-end: 1pt solid #000;
     }
 {% endblock %}
 
@@ -123,7 +123,7 @@
   <ul class="nav flex-column nav-pills" role="tablist">
     {% for v in page.print %}
     <li role="presentation" class="nav-item">
-      <a class="nav-link{% if loop.first %} active{% endif %}" href="#print{{ v.id }}" aria-controls="print{{ v.id }}" role="tab" data-toggle="tab">{{ v.creationDate }}</a>
+      <a class="nav-link{% if loop.first %} active{% endif %}" href="#print{{ v.id }}" aria-controls="print{{ v.id }}" role="tab" data-bs-toggle="tab">{{ v.creationDate }}</a>
     </li>
     {% endfor %}
   </ul>

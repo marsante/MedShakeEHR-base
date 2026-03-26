@@ -141,7 +141,7 @@ $p['page']['formJavascript'][$p['page']['formIN']] = $formpatient->getFormJavasc
 $p['page']['form']['addHidden'] = array(
 	'patientID' => $match['params']['patient']
 );
-$formpatient->addSubmitToForm($p['page']['form'], 'btn-primary btn-block');
+$formpatient->addSubmitToForm($p['page']['form'], 'btn-primary');
 
 // Formulaire complémentaire
 $p['page']['formIN2'] = 'basePeopleComplement';

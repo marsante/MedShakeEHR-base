@@ -71,7 +71,7 @@ if ($_POST['objetID'] > 0) {
 	$form->setPrevalues($prevalues);
 }
 $p['page']['form'] = $form->getForm();
-$form->addSubmitToForm($p['page']['form'], 'btn-warning btn-lg btn-block');
+$form->addSubmitToForm($p['page']['form'], 'btn-warning btn-lg');
 
 // déterminer les secteurs tarifaires
 $hono->setSecteursTarifaires();

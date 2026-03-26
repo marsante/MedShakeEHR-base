@@ -77,7 +77,7 @@ if (method_exists($class, $method_pre)) {
 
 $p['page']['form'] = $form->getForm();
 
-if ($_POST['mode'] == 'update' or $_POST['mode'] == 'create') $form->addSubmitToForm($p['page']['form'], 'btn-warning btn-lg btn-block');
+if ($_POST['mode'] == 'update' or $_POST['mode'] == 'create') $form->addSubmitToForm($p['page']['form'], 'btn-warning btn-lg');
 
 // retrait des options d'un champ select qui doit prévenir le duplication
 if ($_POST['mode'] == 'create') {

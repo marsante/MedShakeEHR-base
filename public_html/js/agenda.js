@@ -140,23 +140,26 @@ $(document).ready(function () {
   var calendarEl = document.getElementById('calendar');
 
   calendar = new FullCalendar.Calendar(calendarEl, {
-    themeSystem: 'bootstrap',
+    themeSystem: 'bootstrap5',
     initialView: 'timeGridWeek',
     locale: 'fr',
     hiddenDays: hiddenDays,
     customButtons: {
       smallCalendar: {
+        icon: 'calendar-week',
         click: function () {
           $('#smallCalendar').toggle();
         }
       },
       nextMonth: {
+        icon: 'chevron-double-right',
         click: function () {
           $('.popover').remove(); $(".fc-event").popover('hide');
           calendar.incrementDate({ months: 1 });
         }
       },
       prevMonth: {
+        icon: 'chevron-double-left',
         click: function () {
           $('.popover').remove(); $(".fc-event").popover('hide');
           calendar.incrementDate({ months: -1 });
@@ -167,14 +170,6 @@ $(document).ready(function () {
           synchronizeEvents();
         }
       },
-    },
-    bootstrapFontAwesome: {
-      smallCalendar: 'fa-calendar-alt',
-      prevMonth: 'fa-angle-double-left',
-      prev: 'fa-angle-left',
-      synchronize: 'fa-sync-alt',
-      next: 'fa-angle-right',
-      nextMonth: 'fa-angle-double-right',
     },
     headerToolbar: {
       left: 'smallCalendar prevMonth,prev,today,next,nextMonth synchronize',
@@ -187,7 +182,7 @@ $(document).ready(function () {
     firstDay: firstDay,
     slotDuration: slotDuration,
     weekNumbers: true,
-    weekNumberContent: function(arg) {
+    weekNumberContent: function (arg) {
       return { html: 'S.' + arg.num };
     },
     allDaySlot: false,
@@ -296,7 +291,7 @@ $(document).ready(function () {
         $("#patientInfo").find("select").prop("disabled", true);
         $("#motif").val(eventClicked.extendedProps.motif);
         $("#type").val(eventClicked.extendedProps.type);
-        $("#duree").html('<i class="far fa-clock mr-2"></i>' + $("#type").children("option:selected").attr("data-duree") + "mn");
+        $("#duree").html('<i class="far fa-clock me-2"></i>' + $("#type").children("option:selected").attr("data-duree") + "mn");
         $("#eventColor").css('color', $("#type").children("option:selected").attr("data-color"));
         $('#datepicker input').val(
           calendar.formatDate(eventClicked.start, { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' à ' +
@@ -344,11 +339,11 @@ $(document).ready(function () {
     eventDrop: function (info) {
       var event = info.event;
       $(".fc-event").popover('hide');
-      fc_confirm("Confirmez-vous le déplacement de cet événement ?", function() {
+      fc_confirm("Confirmez-vous le déplacement de cet événement ?", function () {
         selected_event = event;
         modEvent(true);
         canRefreshEvents = true;
-      }, function() {
+      }, function () {
         info.revert();
         canRefreshEvents = true;
       });
@@ -362,11 +357,11 @@ $(document).ready(function () {
     eventResize: function (info) {
       var event = info.event;
       $(".fc-event").popover('hide');
-      fc_confirm("Confirmez-vous le changement de durée de cet événement ?", function() {
+      fc_confirm("Confirmez-vous le changement de durée de cet événement ?", function () {
         selected_event = event;
         modEvent(false);
         canRefreshEvents = true;
-      }, function() {
+      }, function () {
         info.revert();
         canRefreshEvents = true;
       });
@@ -395,11 +390,11 @@ $(document).ready(function () {
         var evEndMs = selected_event.end ? selected_event.end.getTime() : (selected_event.start.getTime() + 900000);
         var evDuration = evEndMs - selected_event.start.getTime();
         var moveEnd = new Date(moveStart.getTime() + evDuration);
-        fc_confirm("Confirmez-vous le déplacement de cet événement ?", function() {
+        fc_confirm("Confirmez-vous le déplacement de cet événement ?", function () {
           // setDates() est atomique : évite le bug de resize quand on va vers le passé
           selected_event.setDates(moveStart, moveEnd);
           modEvent(true);
-        }, function() {
+        }, function () {
           selected_action = undefined;
         });
       } else if (selected_event) {
@@ -418,7 +413,7 @@ $(document).ready(function () {
 
           var duree = $("#type option:first").attr('data-duree');
           selected_period.end = new Date(start.getTime() + parseInt(duree, 10) * 60000);
-          $("#duree").html('<i class="far fa-clock mr-2"></i> ' + duree + "mn");
+          $("#duree").html('<i class="far fa-clock me-2"></i> ' + duree + "mn");
 
           $("#eventColor").css('color', $("#type option:first").attr("data-color"));
           $('#titreRdv').html('Nouveau rendez-vous');
@@ -480,7 +475,7 @@ $(document).ready(function () {
 
   // Fermer les popovers à chaque interaction dans le calendrier - mousedown est exécuté
   // AVANT que FullCalendar puisse appeler stopPropagation() sur le click
-  $(calendarEl).on('mousedown', function(e) {
+  $(calendarEl).on('mousedown', function (e) {
     if (!$(e.target).closest('.popover').length) {
       $('.popover').remove();
       $('.fc-event').popover('hide');
@@ -613,7 +608,7 @@ $(document).ready(function () {
   ///////// modal : observation des actions
 
   $("#type").on("change", function (e) {
-    $("#duree").html('<i class="far fa-clock mr-2"></i>' + $(this).children("option:selected").attr("data-duree") + "mn");
+    $("#duree").html('<i class="far fa-clock me-2"></i>' + $(this).children("option:selected").attr("data-duree") + "mn");
     $("#eventColor").css('color', $(this).children("option:selected").attr("data-color"));
     selected_period.end = getEnd(selected_period.start);
     if (selected_event) {
@@ -800,10 +795,10 @@ $(document).ready(function () {
   $("#patientInfo .form-group").addClass("mt-0 mb-2");
   $("#patientInfo h3").parent().remove();
   $("#patientInfo .col-md-6").each(function (idx, element) {
-    $(element).removeClass("col-md-6").addClass(idx % 2 ? "col-lg-6 pl-lg-1" : "col-lg-6 pr-lg-1");
+    $(element).removeClass("col-md-6").addClass(idx % 2 ? "col-lg-6 ps-lg-1" : "col-lg-6 pe-lg-1");
   });
-  $("#patientInfo .col-md-4").removeClass("col-md-4").addClass("col-lg-4 pr-lg-1");
-  $("#patientInfo .col-md-8").removeClass("col-md-8").addClass("col-lg-8 pl-lg-1");
+  $("#patientInfo .col-md-4").removeClass("col-md-4").addClass("col-lg-4 pe-lg-1");
+  $("#patientInfo .col-md-8").removeClass("col-md-8").addClass("col-lg-8 ps-lg-1");
 
 });
 
@@ -1234,14 +1229,14 @@ function fc_confirm(message, onOk, onCancel) {
   $('#confirmModalMessage').text(message);
   $('#confirmModal').modal('show');
   // Détacher les événements précédents pour éviter les doublons
-  $('#confirmModalOk').off('click').one('click', function() {
+  $('#confirmModalOk').off('click').one('click', function () {
     $('#confirmModal').modal('hide');
     if (typeof onOk === 'function') onOk();
   });
-  $('#confirmModalCancel').off('click').one('click', function() {
+  $('#confirmModalCancel').off('click').one('click', function () {
     if (typeof onCancel === 'function') onCancel();
   });
-  $('#confirmModal').one('hidden.bs.modal', function() {
+  $('#confirmModal').one('hidden.bs.modal', function () {
     $('#confirmModalOk').off('click');
     $('#confirmModalCancel').off('click');
   });

@@ -35,7 +35,7 @@
 
     {% if page.ficheEi.effindg is not empty %}
     <tr>
-      <td class="font-weight-bold">Type d'effet</td>
+      <td class="fw-bold">Type d'effet</td>
       <td>
         <ul class="list-unstyled text-uppercase">
         {% for data in page.ficheEi.effindg %}
@@ -51,7 +51,7 @@
 
     {% if dataFiche.1 is not empty %}
     <tr>
-      <td class="font-weight-bold">Classe chimique</td>
+      <td class="fw-bold">Classe chimique</td>
       <td>
         <ul class="list-unstyled">
         {% for data in dataFiche.1 %}
@@ -66,7 +66,7 @@
 
     {% if dataFiche.1 is not empty %}
     <tr>
-      <td class="font-weight-bold">Classe pharmaco-thérapeutique</td>
+      <td class="fw-bold">Classe pharmaco-thérapeutique</td>
       <td>
         <ul class="list-unstyled">
         {% for data in dataFiche.1 %}
@@ -81,7 +81,7 @@
 
     {% if dataFiche.1 is not empty %}
     <tr>
-      <td class="font-weight-bold">Nature(s) des EI cliniques</td>
+      <td class="fw-bold">Nature(s) des EI cliniques</td>
       <td>
         <ul class="list-unstyled">
         {% for data in dataFiche.1 %}
@@ -96,7 +96,7 @@
 
     {% if dataFiche.1 is not empty %}
     <tr>
-      <td class="font-weight-bold">Nature(s) des EI paracliniques</td>
+      <td class="fw-bold">Nature(s) des EI paracliniques</td>
       <td>
         <ul class="list-unstyled">
         {% for data in dataFiche.1 %}
@@ -111,7 +111,7 @@
 
     {% if dataFiche.1 is not empty %}
     <tr>
-      <td class="font-weight-bold">Degré(s) de sévérité</td>
+      <td class="fw-bold">Degré(s) de sévérité</td>
       <td>
         <ul class="list-unstyled">
         {% for data in dataFiche.1 %}
@@ -126,7 +126,7 @@
 
     {% if dataFiche.1 is not empty %}
     <tr>
-      <td class="font-weight-bold">Commentaire(s) conduite à tenir</td>
+      <td class="fw-bold">Commentaire(s) conduite à tenir</td>
       <td>
         <ul class="list-unstyled">
         {% for data in dataFiche.1 %}
@@ -151,7 +151,7 @@
     {% if dataFiche.2 is not empty %}
     <tr>
       <td colspan="2">
-        <span class="font-weight-bold">Commentaires RCP</span>
+        <span class="fw-bold">Commentaires RCP</span>
         {% for data in dataFiche.2 %}
         <p>{{ data.txt|nl2br }}</p>
         {% endfor %}
@@ -161,7 +161,7 @@
 
     {% if page.ficheEi.refEffind is not empty %}
     <tr>
-      <td class="font-weight-bold">Référence(s) officielle(s)</td>
+      <td class="fw-bold">Référence(s) officielle(s)</td>
       <td>
         <ul class="list-unstyled">
         {% for data in page.ficheEi.refEffind %}

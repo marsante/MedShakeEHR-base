@@ -26,14 +26,14 @@
  #
 #}
 
-<button class="btn btn-light btn-sm addNewCS float-right" data-parentid="{{ parentTypeID }}" data-formtocall="atcdStrucDeclaration" data-mode="create" title="Ajouter un antécédent"><i class="fas fa-plus"></i></button>
+<button class="btn btn-light btn-sm addNewCS float-end" data-parentid="{{ parentTypeID }}" data-formtocall="atcdStrucDeclaration" data-mode="create" title="Ajouter un antécédent"><i class="fas fa-plus"></i></button>
 
 {% if atcd %}
   <table class="table table-sm table-hover table-bordered">
     <tbody>
       {% for atcdId, atc in atcd %}
         <tr class="tr{{ atcdId }} table-gray small">
-          <td data-toggle="collapse" data-target="#atcdDet{{ atcdId }}" style="cursor: pointer">
+          <td data-bs-toggle="collapse" data-bs-target="#atcdDet{{ atcdId }}" style="cursor: pointer">
             {{ atc.atcdStrucCIM10Label.value }}
             <div id="atcdDet{{ atcdId }}" class="collapse">
               <table class="table table-sm" style="margin-top:8px;">

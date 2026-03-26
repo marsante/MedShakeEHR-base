@@ -27,10 +27,8 @@
  #}
 
 {% import "macroForm.html.twig" as f %}
-<div class="jumbotron col-lg-12">
-    <button type="button" class="close cleanNewDocImport" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+<div class="bg-light mb-4 rounded-2 py-5 px-3 col-lg-12" style="background-color: #e9ecef;">
+    <button type="button" class="btn-close position-absolute" style="top: 1rem; right: 1rem;" aria-label="Close"></button>
 
     <h3>Importer un document dans le dossier du patient</h3>
 
@@ -43,7 +41,7 @@
 
             <div class="progress" style="margin-top : 20px;">
               <div class="progress-bar" role="progressbar" style="width: 00%;">
-                <span class="sr-only"></span>
+                <span class="visually-hidden"></span>
               </div>
             </div>
 

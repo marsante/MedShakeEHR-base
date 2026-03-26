@@ -107,7 +107,7 @@ $(document).ready(function() {
 
 
 <table class="table table-sm">
-  <thead class="thead-light">
+  <thead class="table-light">
     <tr>
       <th>
         Paramètre
@@ -142,7 +142,7 @@ $(document).ready(function() {
       <div class="alert alert-danger" role="alert">Aucune clef Apicrypt n'est chargée pour cet utilisateur.</div>
     {% else %}
       <table class="table table-sm mb-0 table-hover ">
-        <thead class="thead-light">
+        <thead class="table-light">
           <tr>
               <th colspan="2">
                   Fichier
@@ -167,7 +167,7 @@ $(document).ready(function() {
                   <td>
                     {{ v.file }}
                     {% if v.fileInfo.extension == 'aes' %}
-                      <button class="btn btn-sm btn-danger ml-3 dechiffrer" data-source="{{ page.repertoireClefs }}{{ v.file }}" data-destination="{{ page.repertoireClefs }}{{ v.fileInfo.filename }}">
+                      <button class="btn btn-sm btn-danger ms-3 dechiffrer" data-source="{{ page.repertoireClefs }}{{ v.file }}" data-destination="{{ page.repertoireClefs }}{{ v.fileInfo.filename }}">
                         <i class="fas fa-lock"></i> Cliquez pour déchiffrer et utiliser
                       </button>
                     {% endif %}
@@ -203,7 +203,7 @@ $(document).ready(function() {
 
           <div class="progress" style="margin-top : 20px;">
             <div class="progress-bar" role="progressbar" style="width: 00%;">
-              <span class="sr-only"></span>
+              <span class="visually-hidden"></span>
             </div>
           </div>
       </div>

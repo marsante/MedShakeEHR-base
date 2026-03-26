@@ -71,7 +71,7 @@
 
     {# js #}
     <script src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/jquery/jquery/dist/jquery.min.js?{{ modules.base }}"></script>
-    <script src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/twbs/bootstrap/dist/js/bootstrap.min.js?{{ modules.base }}"></script>
+    <script src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/twbs/bootstrap/dist/js/bootstrap.bundle.min.js?{{ modules.base }}"></script>
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/moment/moment/min/moment.min.js?{{ modules.base }}"></script>
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/general.js?{{ modules.base }}"></script>
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/phonecapture.js?{{ modules.base }}"></script>
@@ -96,7 +96,7 @@
           <div class="col-1 p-0">
             <button onClick="window.location.reload()" class="btn btn-danger btn-sm"><i class="fas fa-sync"></i></button>
           </div>
-          <div class="col-11 pl-2 pr-0">
+          <div class="col-11 ps-2 pe-0">
             Prat.: {{ page.data.prat.lastname|default(page.data.prat.birthname) }} {{ page.data.prat.firstname }}<br>
             Patient: <strong>{{ page.data.patient.lastname|default(page.data.patient.birthname) }} {{ page.data.patient.firstname }}</strong> ({{ page.data.patient.dicomPatientID }})
           </div>
@@ -111,12 +111,16 @@
         </div>
         <div class="row">
           <div class="col-6">
-            <button class="btn btn-success btn-lg btn-block nmt declencher"><i class="fas fa-camera"></i></button>
-            <button class="btn btn-success btn-lg btn-block nmt rafraichir"><i class="fas fa-sync-alt"></i></button>
-            <button class="btn btn-success btn-lg btn-block nmt refaire"><i class="fas fa-redo-alt"></i></button>
+            <div class="d-grid gap-2">
+              <button class="btn btn-success btn-lg nmt declencher"><i class="fas fa-camera"></i></button>
+              <button class="btn btn-success btn-lg nmt rafraichir"><i class="fas fa-sync-alt"></i></button>
+              <button class="btn btn-success btn-lg nmt refaire"><i class="fas fa-redo-alt"></i></button>
+            </div>
           </div>
           <div class="col-6">
-            <button class="btn btn-danger btn-lg btn-block nmt envoyer"><i class="fas fa-paper-plane"></i></button>
+            <div class="d-grid gap-2">
+              <button class="btn btn-danger btn-lg nmt envoyer"><i class="fas fa-paper-plane"></i></button>
+            </div>
           </div>
         </div>
       </div>
@@ -135,11 +139,12 @@
             <canvas class="prevue" style="display:none"><canvas>
           </div>
           <div class="col-3">
-            <button class="btn btn-success btn-lg btn-block nmt declencher"><i class="fas fa-camera"></i></button>
-            <button class="btn btn-success btn-lg btn-block nmt rafraichir"><i class="fas fa-sync-alt"></i></button>
-            <button class="btn btn-success btn-lg btn-block nmt refaire"><i class="fas fa-redo-alt"></i></button>
-            <br>
-            <button class="btn btn-danger btn-lg btn-block nmt envoyer"><i class="fas fa-paper-plane"></i></button>
+            <div class="d-grid gap-2">
+              <button class="btn btn-success btn-lg nmt declencher"><i class="fas fa-camera"></i></button>
+              <button class="btn btn-success btn-lg nmt rafraichir"><i class="fas fa-sync-alt"></i></button>
+              <button class="btn btn-success btn-lg nmt refaire"><i class="fas fa-redo-alt"></i></button>
+              <button class="btn btn-danger btn-lg nmt envoyer"><i class="fas fa-paper-plane"></i></button>
+            </div>
           </div>
         </div>
       </div>

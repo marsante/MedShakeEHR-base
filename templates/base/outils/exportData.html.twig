@@ -71,12 +71,12 @@
   <h1>Export de données</h1>
 
   {% if page.listeForms %}
-    <div class="card card-body my-4 bg-light">
+    <div class="card card-body my-4 bg-light" style="background-color: #e9ecef;">
       <h3>Choisir le formulaire concerné par l'export</h3>
       <form>
         <div class="row">
-          <div class="form-group col-10">
-            <select autocomplete="off" id="formID" name="formID" class="custom-select">
+          <div class="mb-3 col-10">
+            <select autocomplete="off" id="formID" name="formID" class="form-select">
               {% for catID, forms in page.listeForms %}
                 <optgroup label="{{ page['listeCats'][catID]['label']|e('html_attr') }}">
                   {% for form in forms %}
@@ -86,7 +86,7 @@
               {% endfor %}
             </select>
           </div>
-          <div class="form-group col-2">
+          <div class="mb-3 col-2">
             <button id="exportDataChoisirFormButton" type="submit" class="btn btn-primary">Choisir</button>
           </div>
         </div>
@@ -102,7 +102,7 @@
         <div class="col-12 col-xl-4">
 
           <div class="card my-4 bg-secondary text-white">
-            <div class="card-header font-weight-bold">{{ page.dataTypeinfos.label }}</div>
+            <div class="card-header fw-bold">{{ page.dataTypeinfos.label }}</div>
             <div class="card-body">
               Formulaire source : {{ page.formInfos.name }} (#{{ page.formInfos.id }})<br>
               Exploité sous : {{ page.dataTypeinfos.catLabel }} > {{ page.dataTypeinfos.label }}
@@ -117,18 +117,20 @@
                 {% endif %}
               {% endif %}
 
-              <button type="submit" class="btn btn-warning btn-block mt-4">Exporter</button>
+              <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-warning">Exporter</button>
+              </div>
             </div>
           </div>
 
           <div class="card my-4 bg-light">
-            <div class="card-header font-weight-bold">Options</div>
+            <div class="card-header fw-bold">Options</div>
             <div class="card-body">
-              <div class="form-group">
+              <div class="mb-3">
                 {{ f.select ({
                 'select' : {
                   'name' : 'option_file_format',
-                  'class' : 'custom-select-sm',
+                  'class' : 'form-select-sm',
                   'autocomplete' : 'off',
                   'values' : {'ods':'LibreOffice (.ods)', 'xlsx':'Excel (.xlsx)'},
                 },
@@ -138,11 +140,11 @@
                 }
               }) }}
               </div>
-              <div class="form-group">
+              <div class="mb-3">
                 {{ f.select ({
           			'select' : {
           				'name' : 'option_select_type',
-          				'class' : 'custom-select-sm',
+          				'class' : 'form-select-sm',
           				'autocomplete' : 'off',
           				'values' : {'selectCode':'Exporter le code', 'selectValue':'Exporter le texte'},
           			},
@@ -157,14 +159,14 @@
           </div>
 
           <div class="card my-4 bg-light">
-            <div class="card-header font-weight-bold">Plage calendaire</div>
+            <div class="card-header fw-bold">Plage calendaire</div>
             <div class="card-body">
 
-              <div class="form-group">
+              <div class="mb-3">
                 {{ f.select ({
           			'select' : {
           				'name' : 'date_type',
-          				'class' : 'custom-select-sm',
+          				'class' : 'form-select-sm',
           				'autocomplete' : 'off',
           				'values' : {'registerDate':'Date de saisie', 'creationDate':'Date effective'},
           				'valueDefaut': page.form.cat
@@ -176,7 +178,7 @@
           		}) }}
               </div>
               <div class="row">
-                <div class="form-group col">
+                <div class="mb-3 col">
                   {{ f.input ({
                     'input' : {
                       'type' : 'text',
@@ -185,7 +187,7 @@
                       'autocomplete' : 'off',
                       'class' : 'form-control-sm datepic ',
                       'before' : '<div id="before_date_start" class="input-group input-group-sm mx-0 date datepick" data-typeid="id_date_start_id">',
-                      'after' : '<div class="input-group-append"><span class="fas fa-calendar input-group-text"></span></div></div>',
+                      'after' : '<span class="fas fa-calendar input-group-text"></span></div>',
                     },
                     'label' : {
                       'label' : 'Début de période',
@@ -193,7 +195,7 @@
                   }) }}
                 </div>
 
-                <div class="form-group col">
+                <div class="mb-3 col">
                   {{ f.input ({
                     'input' : {
                       'type' : 'text',
@@ -202,7 +204,7 @@
                       'autocomplete' : 'off',
                       'class' : 'form-control-sm datepic ',
                       'before' : '<div id="before_date_end" class="input-group input-group-sm mx-0 date datepick" data-typeid="id_date_end_id">',
-                      'after' : '<div class="input-group-append"><span class="fas fa-calendar input-group-text"></span></div></div>',
+                      'after' : '<div class=<span class="fas fa-calendar input-group-text"></span></div>',
                     },
                     'label' : {
                       'label' : 'Fin de période',
@@ -215,8 +217,8 @@
 
           {% if config.optionGeExportPratListSelection == 'true' %}
             <div class="card my-4 bg-light selectMinOne">
-              <div class="card-header font-weight-bold">
-                <div class="float-right text-secondary">
+              <div class="card-header fw-bold">
+                <div class="float-end text-secondary">
                   <i class="far fa-check-square switchCheckAll" title="tous"></i>
                   <i class="far fa-square switchUncheckAll" title="aucun"></i>
                 </div>
@@ -227,7 +229,7 @@
                   <p class="mb-3">Sélectionner au moins 1 praticien.</p>
                 {% endif %}
                 {% for prat in page.prat %}
-                  <div class="form-group">
+                  <div class="mb-3">
                     {% if config.droitExportPeutExporterToutesDataGroupes == 'false' and prat.id != user.id %}
                       {% set disabled='disabled' %}
                     {% else %}
@@ -258,8 +260,8 @@
 
         <div class="col-12 col-xl-4">
           <div class="card my-4 bg-light">
-            <div class="card-header font-weight-bold">
-              <div class="float-right text-secondary">
+            <div class="card-header fw-bold">
+              <div class="float-end text-secondary">
                 <i class="far fa-check-square switchCheckAll" title="tous"></i>
                 <i class="far fa-square switchUncheckAll" title="aucun"></i>
               </div>
@@ -267,7 +269,7 @@
             </div>
             <div class="card-body">
               {% for type, label in page.dataFieldsAdmin %}
-                <div class="form-group">
+                <div class="mb-3">
                   {{ f.input ({
             			'input' : {
             				'type' : 'switch',
@@ -288,8 +290,8 @@
 
           {% if page.dataFieldsAdminPro is not empty %}
           <div class="card my-4 bg-light">
-            <div class="card-header font-weight-bold">
-              <div class="float-right text-secondary">
+            <div class="card-header fw-bold">
+              <div class="float-end text-secondary">
                 <i class="far fa-check-square switchCheckAll" title="tous"></i>
                 <i class="far fa-square switchUncheckAll" title="aucun"></i>
               </div>
@@ -297,7 +299,7 @@
             </div>
             <div class="card-body">
               {% for type, label in page.dataFieldsAdminPro %}
-                <div class="form-group">
+                <div class="mb-3">
                   {{ f.input ({
             			'input' : {
             				'type' : 'switch',
@@ -320,8 +322,8 @@
 
         <div class="col-12 col-xl-4">
           <div class="card my-4 bg-light">
-            <div class="card-header font-weight-bold">
-              <div class="float-right text-secondary">
+            <div class="card-header fw-bold">
+              <div class="float-end text-secondary">
                 <i class="far fa-check-square switchCheckAll" title="tous"></i>
                 <i class="far fa-square switchUncheckAll" title="aucun"></i>
               </div>
@@ -329,7 +331,7 @@
             </div>
             <div class="card-body">
               {% for type, label in page.dataFields %}
-                <div class="form-group">
+                <div class="mb-3">
                   {{ f.input ({
                   'input' : {
                     'type' : 'switch',

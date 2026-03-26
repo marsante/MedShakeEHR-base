@@ -40,7 +40,7 @@
 
   <h2>Type de la donnée</h2>
 
-  <div class="card card-body bg-light my-4">
+  <div class="card card-body bg-light my-4" style="background-color: #e9ecef;">
     <ul class="list-unstyled mb-0">
       <li>libellé : {{ page.dataType.label }}</li>
       <li>description : {{ page.dataType.description }}</li>
@@ -53,7 +53,7 @@
 
   <h2>Historique des valeurs</h2>
   <table class="table table-sm small">
-    <thead class="thead-light">
+    <thead class="table-light">
       <th>#</th>
       <th></th>
       <th>Du</th>
@@ -68,10 +68,10 @@
         </td>
         <td>
           {% if v.deleted == 'y' %}
-            <span class="badge badge-danger">deleted</span>
+            <span class="badge text-bg-danger">deleted</span>
           {% endif %}
           {% if v.outdated == 'y' %}
-            <span class="badge badge-secondary">outdated</span>
+            <span class="badge text-bg-secondary">outdated</span>
           {% endif %}
         </td>
         <td>{{ v.registerDate }}</td>

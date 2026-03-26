@@ -63,7 +63,7 @@
       {% for k, v in page.tabTypes %}
         <h2 id="cat{{ v.0.cat }}">{{ v.0.catLabel }}</h2>
         <table class="table table-sm mb-0 table-hover">
-          <thead class="thead-light">
+          <thead class="table-light">
             <tr>
               <th>Code</th>
               <th>Label</th>
@@ -84,7 +84,7 @@
                 <td>
                   {{ w.syntheseActes }}
                 </td>
-                <td {% if w.flagImportant == '1' %} class="font-weight-bold" {% endif %}>
+                <td {% if w.flagImportant == '1' %} class="fw-bold" {% endif %}>
                   {{ w.label }}
                 </td>
                 <td class="text-end">
@@ -100,7 +100,7 @@
                 {% endif %}
                 <td class="text-end">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-light btn-sm" data-toggle="collapse" aria-label="Editer" data-target=".details{{ w.id }}" id="details{{ w.id }}">
+                    <button type="button" class="btn btn-light btn-sm" data-bs-toggle="collapse" aria-label="Editer" data-bs-target=".details{{ w.id }}" id="details{{ w.id }}">
                       <span class="fas fa-search-plus" aria-hidden="true"></span>
                     </button>
                   </div>

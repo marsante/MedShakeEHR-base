@@ -28,7 +28,7 @@
 
 {% if page.mail.mailHeaderInfos.from %}
  <div class="card mb-3">
-     <div class="card-header font-weight-bold"><i class="fas fa-at fa-fw fa-lg text-muted mr-1"></i> Message</div>
+     <div class="card-header fw-bold"><i class="fas fa-at fa-fw fa-lg text-muted me-1"></i> Message</div>
      <div class="card-body">
        <table class="table table-sm mb-0 table-hover ">
            <thead>
@@ -51,7 +51,7 @@
 {% endif %}
 
 <div class="card mb-3">
-    <div class="card-header font-weight-bold"><i class="fas fa-user fa-fw fa-lg text-muted mr-1"></i> Patient</div>
+    <div class="card-header fw-bold"><i class="fas fa-user fa-fw fa-lg text-muted me-1"></i> Patient</div>
     <div class="card-body">
 
         <table id="tabPatients" class="table table-sm mb-0 table-hover ">
@@ -141,11 +141,9 @@
         </table>
 
         {% if page.mail.archived == 'n' %}
-        <form class="form-inline">
+        <form class="d-flex align-items-center">
           <div class="input-group my-3">
-            <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-search"></i></span>
-            </div>
             <input class="form-control" type="text" placeholder="Rechercher un autre patient" id="searchPeopleID" autocomplete="off"/>
           </div>
         </form>
@@ -159,11 +157,11 @@
     <div class="row mb-1">
       <input type="hidden" name="mailID" value="{{ page.mail.id }}"/>
 
-      <div class="form-group col-3">
+      <div class="mb-3 col-3">
           <label for="idConfirmPatientID" id="idConfirmPatientIDLabel" style="display : none" >Numéro de dossier</label>
           <input type="hidden" class="form-control" id="idConfirmPatientID" name="patientID" value="{{ page.mail.patientsPossibles.0.id }}">
       </div>
-      <div class="form-group col-9">
+      <div class="mb-3 col-9">
           <label for="titreOptionnel">Titre (optionnel)</label>
           <input type="text" id="titreOptionnel" name="titre" class="form-control" placeholder="titre du document" value="{{ page.mail.hprimExpediteur }}">
       </div>
@@ -171,8 +169,8 @@
     <div class="row mb-4">
       <div class="col text-end">
 
-        <div class="btn-group dropleft m-1">
-            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="btn-group dropstart m-1">
+            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="fas fa-wrench" aria-hidden="true"></span>
             </button>
             <div class="dropdown-menu">
@@ -202,15 +200,15 @@
 
 {% if page.mail.pjSerializeName %}
   <div class="card mb-3">
-      <div class="card-header font-weight-bold"><i class="fas fa-paperclip fa-fw fa-lg text-muted mr-1"></i> Pièces jointes</div>
+      <div class="card-header fw-bold"><i class="fas fa-paperclip fa-fw fa-lg text-muted me-1"></i> Pièces jointes</div>
       <div class="card-body">
 
         <div class="nav nav-pills" id="attachedPjLink" role="tablist">
-          <a class="nav-link btn btn-outline-primary mr-2" id="attachedPjLink0" data-toggle="pill" href="#attachedPj0" title="Masquer les pièces jointes">
+          <a class="nav-link btn btn-outline-primary me-2" id="attachedPjLink0" data-bs-toggle="pill" href="#attachedPj0" title="Masquer les pièces jointes">
             <span class="fas fa-angle-double-up" aria-hidden="true"></span>
           </a>
           {% for pj in page.mail.pjSerializeName %}
-              <a class="nav-link{% if loop.index == 1 %} active{% endif %}" id="attachedPjLink{{ loop.index }}" data-toggle="pill" href="#attachedPj{{ loop.index }}" >
+              <a class="nav-link{% if loop.index == 1 %} active{% endif %}" id="attachedPjLink{{ loop.index }}" data-bs-toggle="pill" href="#attachedPj{{ loop.index }}" >
                 <span class="fas fa-file" aria-hidden="true"></span>
                 {{ pj }}
               </a>
@@ -244,7 +242,7 @@
                       <img src="{{ page['mail']['pjData'][kpj]['fileRelativePath'] }}" alt="" class="img-fluid" style="border: 15px solid #DDD">
                     {% endif %}
                   {% else %}
-                    <div class="d-block text-left my-2">
+                    <div class="d-block text-start my-2">
                       <p>Ce type de fichier n'est pas prévisualisable dans un navigateur</p>
                       <a class="btn btn-secondary" role="button" href="{{ page['mail']['pjData'][kpj]['fileRelativePath'] }}" target="_blank">
                       <i class="fas fa-external-link-alt"></i>
@@ -264,7 +262,7 @@
 {% if page.mail.bioHprim %}
 
     <div class="card mb-3">
-        <div class="card-header font-weight-bold"><i class="fas fa-vial fa-fw fa-lg text-muted mr-1"></i> Résultats biologiques extraits du corps du message</div>
+        <div class="card-header fw-bold"><i class="fas fa-vial fa-fw fa-lg text-muted me-1"></i> Résultats biologiques extraits du corps du message</div>
         <table class="table table-sm mb-0 table-striped table-hover">
             <thead>
                 <tr>
@@ -300,7 +298,7 @@
 
 
 <div class="card mb-3">
-    <div class="card-header font-weight-bold"><i class="fas fa-envelope-open fa-fw fa-lg text-muted mr-1"></i> Corps du message</div>
+    <div class="card-header fw-bold"><i class="fas fa-envelope-open fa-fw fa-lg text-muted me-1"></i> Corps du message</div>
     <div class="card-body">
         {{ page.mail.corps|e|nl2br }}
     </div>

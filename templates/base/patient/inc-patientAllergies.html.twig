@@ -26,14 +26,14 @@
  #
 #}
 
-<button class="btn btn-light btn-sm float-right getAllergiesPanel" data-toggle="modal" data-target="#searchAllergie" data-parentid="{{ parentTypeID }}" title="Ajouter une allergie"><i class="fas fa-plus"></i></button>
+<button class="btn btn-light btn-sm float-end getAllergiesPanel" data-bs-toggle="modal" data-bs-target="#searchAllergie" data-parentid="{{ parentTypeID }}" title="Ajouter une allergie"><i class="fas fa-plus"></i></button>
 
 <table id="atcdTableauAllergieStruc" class="table table-sm table-hover table-bordered{% if allergiesData is empty %} d-none{% endif %}">
   <tbody class="addIn">
     {% if allergiesData %}
       {% for id, aller in allergiesData %}
         <tr class="tr{{ id }} table-warning small">
-          <td data-toggle="collapse" data-target="#atcdDet{{ id }}" style="cursor: pointer">
+          <td data-bs-toggle="collapse" data-bs-target="#atcdDet{{ id }}" style="cursor: pointer">
             {{ aller.libelle }}
             <div id="atcdDet{{ id }}" class="collapse">
               <table class="table table-sm" style="margin-top:8px;">

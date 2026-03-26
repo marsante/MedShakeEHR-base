@@ -107,27 +107,27 @@
       <button type="submit" class="btn btn-primary formDataSave"><i class="fas fa-save"></i> Enregistrer</button>
     </div>
 
-  <ul class="nav nav-tabs mb-4 font-weight-bold" id="navTab" role="tablist">
+  <ul class="nav nav-tabs mb-4 fw-bold" id="navTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="preview-tab" data-toggle="tab" href="#preview-pan"><i class="far fa-eye"></i> Aperçu</a>
+      <a class="nav-link active" id="preview-tab" data-bs-toggle="tab" href="#preview-pan"><i class="far fa-eye"></i> Aperçu</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="generalites-tab" data-toggle="tab" href="#generalites-pan"><i class="fas fa-cogs"></i> Paramètres généraux</a>
+      <a class="nav-link" id="generalites-tab" data-bs-toggle="tab" href="#generalites-pan"><i class="fas fa-cogs"></i> Paramètres généraux</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="structure-tab" data-toggle="tab" href="#structure-pan"><i class="fas fa-code"></i> Structure</a>
+      <a class="nav-link" id="structure-tab" data-bs-toggle="tab" href="#structure-pan"><i class="fas fa-code"></i> Structure</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="cda-tab" data-toggle="tab" href="#cda-pan"><i class="fas fa-code"></i> CDA</a>
+      <a class="nav-link" id="cda-tab" data-bs-toggle="tab" href="#cda-pan"><i class="fas fa-code"></i> CDA</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="javascript-tab" data-toggle="tab" href="#javascript-pan"><i class="fas fa-code"></i> JavaScript</a>
+      <a class="nav-link" id="javascript-tab" data-bs-toggle="tab" href="#javascript-pan"><i class="fas fa-code"></i> JavaScript</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="options-tab" data-toggle="tab" href="#options-pan"><i class="fas fa-code"></i> Options</a>
+      <a class="nav-link" id="options-tab" data-bs-toggle="tab" href="#options-pan"><i class="fas fa-code"></i> Options</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="tools-tab" data-toggle="tab" href="#tools-pan"><i class="fas fa-tools"></i> Outils</a>
+      <a class="nav-link" id="tools-tab" data-bs-toggle="tab" href="#tools-pan"><i class="fas fa-tools"></i> Outils</a>
     </li>
   </ul>
 
@@ -148,7 +148,7 @@
       			},
       		}) }}
 
-          <div class="form-group">
+          <div class="mb-3">
       		{{ f.input ({
       			'input' : {
       				'type' : 'text',
@@ -166,7 +166,7 @@
       		}) }}
       		</div>
 
-          <div class="form-group">
+          <div class="mb-3">
       		{{ f.select ({
       			'select' : {
       				'name' : 'module',
@@ -182,7 +182,7 @@
       		}) }}
       		</div>
 
-      		<div class="form-group">
+      		<div class="mb-3">
       		{{ f.input ({
       			'input' : {
       				'type' : 'text',
@@ -199,7 +199,7 @@
       		}) }}
       		</div>
 
-      		<div class="form-group">
+      		<div class="mb-3">
       		{{ f.input ({
       			'input' : {
       				'type' : 'text',
@@ -216,7 +216,7 @@
       		}) }}
       		</div>
 
-      		<div class="form-group">
+      		<div class="mb-3">
       		{{ f.select ({
       			'select' : {
       				'name' : 'cat',
@@ -232,7 +232,7 @@
       		}) }}
       		</div>
 
-      		<div class="form-group">
+      		<div class="mb-3">
       		{{ f.input ({
       			'input' : {
       				'type' : 'text',
@@ -249,7 +249,7 @@
       		}) }}
       		</div>
 
-      		<div class="form-group">
+      		<div class="mb-3">
       		{{ f.input ({
       			'input' : {
       				'type' : 'text',
@@ -270,7 +270,7 @@
     </div>
     <div class="tab-pane fade" id="structure-pan">
       <div class="row">
-    		<div class="form-group col-lg-7">
+    		<div class="mb-3 col-lg-7">
       		{{ f.textarea ({
       			'textarea' : {
               'id' : 'yamlEditor',
@@ -289,12 +289,12 @@
       		}) }}
     		</div>
 
-        <div class="col-lg-5 border-left">
+        <div class="col-lg-5 border-start">
 
-        <div class="mb-2 font-weight-bold">Types utilisables <a class="btn btn-sm btn-outline-secondary float-right mb-2" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/data-cat/medical/"><i class="fas fa-pen"></i> Modifier</a></div>
+        <div class="mb-2 fw-bold">Types utilisables <a class="btn btn-sm btn-outline-secondary float-end mb-2" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/data-cat/medical/"><i class="fas fa-pen"></i> Modifier</a></div>
 
           <table class="table table-sm mb-0 table-hover small">
-            <thead class="thead-light">
+            <thead class="table-light">
               <tr>
                 <th>#</th>
                 <th>Tag</th>
@@ -306,7 +306,7 @@
           {% for k,v in page.tabTypes %}
           <tr>
             <th colspan="4">
-              <button id="cat{{ v.0.cat }}" type="button" class="btn btn-light btn-sm" data-toggle="collapse" data-target=".cat{{ v.0.cat }}">
+              <button id="cat{{ v.0.cat }}" type="button" class="btn btn-light btn-sm" data-bs-toggle="collapse" data-bs-target=".cat{{ v.0.cat }}">
                 <span class="fas fa-search" aria-hidden="true"></span>
               </button> {{ v.0.catLabel }}
             </th>
@@ -330,11 +330,11 @@
 
     <div class="tab-pane fade" id="cda-pan">
       <div class="alert alert-secondary">
-        <p><a href="/configuration/forms/cdaTools/{{ page.formID }}/" class="btn btn-sm btn-secondary float-right" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+        <p><a href="/configuration/forms/cdaTools/{{ page.formID }}/" class="btn btn-sm btn-secondary float-end" target="_blank"><i class="fas fa-external-link-alt"></i></a>
           <strong>Outil de génération des blocs <code>actesPossibles</code> et <code>clinicalDocument/documentationOf/serviceEvent/code</code>.</strong>
           <br>NB : <code>paramConditionServiceEvent</code> doit être déjà complètement défini avec les champs concernés puis enregistré.</p>
       </div>
-      <div class="form-group">
+      <div class="mb-3">
   		{{ f.textarea ({
   			'textarea' : {
           'id' : 'cdaEditor',
@@ -355,7 +355,7 @@
     </div>
 
     <div class="tab-pane fade" id="javascript-pan">
-      <div class="form-group">
+      <div class="mb-3">
       {{ f.textarea ({
         'textarea' : {
           'id' : 'javascriptEditor',
@@ -377,7 +377,7 @@
 
     <div class="tab-pane fade" id="options-pan">
 
-      <div class="form-group">
+      <div class="mb-3">
       {{ f.textarea ({
         'textarea' : {
           'id' : 'optionsEditor',
@@ -399,8 +399,8 @@
 
     <div class="tab-pane fade" id="tools-pan">
       <div class="card my-3">
-        <div class="card-header" data-toggle="collapse" data-target="#collapseTemplate" style="cursor: pointer">
-          <i class="far fa-plus-square mr-1"></i>
+        <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTemplate" style="cursor: pointer">
+          <i class="far fa-plus-square me-1"></i>
           Template d'impression
         </div>
         <div id="collapseTemplate" class="collapse card-body">
@@ -412,8 +412,8 @@
       </div>
 
       <div class="card my-3">
-        <div class="card-header" data-toggle="collapse" data-target="#collapseSql" style="cursor: pointer">
-          <i class="far fa-plus-square mr-1"></i>
+        <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseSql" style="cursor: pointer">
+          <i class="far fa-plus-square me-1"></i>
           Code SQL de création
         </div>
         <div id="collapseSql" class="collapse card-body">
@@ -422,8 +422,8 @@
       </div>
 
       <div class="card my-3">
-        <div class="card-header" data-toggle="collapse" data-target="#collapseSqlUpdate" style="cursor: pointer">
-          <i class="far fa-plus-square mr-1"></i>
+        <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseSqlUpdate" style="cursor: pointer">
+          <i class="far fa-plus-square me-1"></i>
           Code SQL de mise à jour
         </div>
         <div id="collapseSqlUpdate" class="collapse card-body">
@@ -432,8 +432,8 @@
       </div>
 
       <div class="card my-3">
-        <div class="card-header" data-toggle="collapse" data-target="#collapseTools" style="cursor: pointer">
-          <i class="far fa-plus-square mr-1"></i>
+        <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTools" style="cursor: pointer">
+          <i class="far fa-plus-square me-1"></i>
           Autres outils
         </div>
         <div id="collapseTools" class="collapse card-body">

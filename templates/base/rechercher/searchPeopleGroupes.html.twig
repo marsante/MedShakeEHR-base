@@ -45,70 +45,68 @@
 {% block body %}
 <h1>Groupes</h1>
 
-<div class="card card-body bg-light my-4">
+<div class="card card-body bg-light my-4" style="background-color: #e9ecef;">
 	<div class="row ">
 
-	  <form id="formRecherchePatients" class="form-inline col-12 col-xl-9 mx-0 row my-lg-2">
-	    <div class="form-group col-12 m-0 p-0 col-xl-5">
-	      {{ f.input ({
-		      'input' : {
-			      'type' : 'text',
-			      'id' : 'd2',
-			      'name' : 'groupname',
-	          'value' : (page.patient.administrativeDatas.lastname|default(page.patient.administrativeDatas.birthname|default('')))|trim,
-			      'placeholder' : 'Nom',
-			      'class' : 'form-control col-12 searchupdate',
-			      'autocomplete' : 'off',
-			      'datatypeid' : '2'
-		      },
-		      'label' : {
-			      'position' : 'before',
-		      }
-	      }) }}
-	    </div>
+		<form id="formRecherchePatients" class="d-flex align-items-center col-12 col-xl-9 mx-0 row my-lg-2">
+		<div class="mb-3 col-12 m-0 p-0 col-xl-5">
+			{{ f.input ({
+			'input' : {
+				'type' : 'text',
+				'id' : 'd2',
+				'name' : 'groupname',
+				'value' : (page.patient.administrativeDatas.lastname|default(page.patient.administrativeDatas.birthname|default('')))|trim,
+				'placeholder' : 'Nom',
+				'class' : 'form-control col-12 searchupdate',
+				'autocomplete' : 'off',
+				'datatypeid' : '2'
+			},
+			'label' : {
+				'position' : 'before',
+			}
+			}) }}
+		</div>
 
+		<div class="col-12 my-2 my-lg-0 mx-0 p-0 ps-lg-4 col-xl-6">
+			<div class="input-group mx-0" style="max-width:100%">
+			{{ f.input ({
+				'input' : {
+				'id' : 'autreCritVal',
+				'type' : 'text',
+				'name' : 'autre',
+				'placeholder': 'Autre critère',
+				'class' : 'form-control searchupdate',
+				'autocomplete' : 'off',
+				},
+				'label' : {
+				'position' : 'before',
+				'label' : '',
+				}
+			}) }}
+			{{ f.selectOptgroup ({
+				'select' : {
+				'id' : 'autreCrit',
+				'name' : 'autre',
+				'class' : 'form-select form-control', 
+				'values' : page.tabTypes,
+				'valueDefaut' : 'birthdate',
+				'autocomplete' : 'off',
+				},
+				'label' : {
+				'position' : 'before',
+				'label' : '',
+				}
+			}) }}
+			</div>
+		</div>
+		</form>
 
-	    <div class="col-12 my-2 my-lg-0 mx-0 p-0 pl-lg-4 col-xl-6">
-	      <div class="input-group mx-0">
-	        {{ f.input ({
-	          'input' : {
-		          'id' : 'autreCritVal',
-		          'type' : 'text',
-		          'name' : 'autre',
-	            'placeholder': 'Autre critère',
-		          'class' : 'form-control searchupdate',
-							'autocomplete' : 'off',
-	          },
-	          'label' : {
-		          'position' : 'before',
-		          'label' : '',
-	          }
-	        }) }}
-	        <div class="input-group-append" style="max-width:50%">
-	          {{ f.selectOptgroup ({
-	            'select' : {
-		            'id' : 'autreCrit',
-		            'name' : 'autre',
-		            'class' : 'custom-select input-group-text form-control',
-		            'values' : page.tabTypes,
-	        	    'valueDefaut' : 'birthdate',
-								'autocomplete' : 'off',
-	            },
-	            'label' : {
-		            'position' : 'before',
-		            'label' : '',
-	            }
-	          }) }}
-	        </div>
-	      </div>
-	    </div>
-	  </form>
 
 	  <div class="col-12 col-xl-3 text-end my-lg-2">
 
 			<div class="btn-group my-lg-1">
 				{% if config.droitGroupePeutCreerGroupe == 'true' %}
-	    	<a class="btn btn-primary float-right" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/groupe/create/"><i class="fas fa-plus"></i> Nouveau groupe</a>
+	    	<a class="btn btn-primary float-end" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/groupe/create/"><i class="fas fa-plus"></i> Nouveau groupe</a>
 				{% endif %}
 			</div>
 	  </div>

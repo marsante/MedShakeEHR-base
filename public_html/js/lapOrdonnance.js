@@ -546,7 +546,7 @@ function construireOrdonnance(ordoData, tabMedicsG, tabMedicsALD, parentdestinat
   }
 
   $(function() {
-    $('[data-toggle="popover"]').popover()
+    $('[data-bs-toggle="popover"]').popover()
   })
   console.log(ordoMedicsALD);
   console.log(ordoMedicsG);
@@ -578,7 +578,7 @@ function construireHtmlLigneOrdonnance(ligne, methode, destination, parentdestin
     destination.replaceWith(nouvelleLigneOrdo);
   }
   $(function() {
-    $('[data-toggle="popover"]').popover()
+    $('[data-bs-toggle="popover"]').popover()
   })
 }
 
@@ -720,7 +720,7 @@ function makeLigneOrdo(data, mode) {
     }
     retour += ' >';
     retour += '  <div class="row">';
-    retour += '    <div class="col-md-10">';
+    retour += '    <div class="col-lg-10">';
     retour += '      <div><strong>';
     retour += '        ' + data.medics[0].nomUtileFinal + '</strong>';
     if (data.medics[0].isNPS == 'true') {
@@ -729,10 +729,10 @@ function makeLigneOrdo(data, mode) {
       retour += ']';
     }
     if (data.ligneData.isALD == 'true' && mode == 'TTenCours') {
-      retour += '        <span class="badge badge-danger">ald</span>';
+      retour += '        <span class="badge text-bg-danger">ald</span>';
     }
     if (data.ligneData.isChronique == 'true') {
-      retour += '        <span class="badge badge-secondary">chronique</span>';
+      retour += '        <span class="badge text-bg-secondary">chronique</span>';
     }
     if (testIfAldOk(data.medics[0].ald) && mode == 'editionOrdonnance' && aldActivesListe.length > 0) {
       retour += ' <span class="fas fa-check-sign text-success" aria-hidden="true" title="la base médicamenteuse confirme la prise en charge possible en ALD pour ce médicament"></span>';
@@ -741,11 +741,11 @@ function makeLigneOrdo(data, mode) {
     }
 
     if (data.medics[0].prescripteurInitialTT) {
-      retour += ' <button class="btn btn-light btn-sm" type="button" data-toggle="popover" data-container="body" data-placement="top"  title="Prescripteur" data-content="' + data.medics[0].prescripteurInitialTT + '"><span class="fas fa-user" aria-hidden="true"></span></button>';
+      retour += ' <button class="btn btn-light btn-sm" type="button" data-bs-toggle="popover" data-bs-container="body" data-bs-placement="top"  title="Prescripteur" data-bs-content="' + data.medics[0].prescripteurInitialTT + '"><span class="fas fa-user" aria-hidden="true"></span></button>';
     }
 
     if (data.medics[0].prescriptionMotif) {
-      retour += ' <button class="btn btn-light btn-sm" type="button" data-toggle="popover" data-container="body" data-placement="top"  title="Commentaire personnel" data-content="' + nl2br(data.medics[0].prescriptionMotif) + '"><span class="fas fa-comment" aria-hidden="true"></span></button>';
+      retour += ' <button class="btn btn-light btn-sm" type="button" data-bs-toggle="popover" data-bs-container="body" data-bs-placement="top"  title="Commentaire personnel" data-bs-content="' + nl2br(data.medics[0].prescriptionMotif) + '"><span class="fas fa-comment" aria-hidden="true"></span></button>';
     }
 
     retour += '      </div>';
@@ -770,7 +770,7 @@ function makeLigneOrdo(data, mode) {
       retour += '      <div class="small">' + nl2br(data.ligneData.consignesPrescription) + '</div>';
     }
     retour += '    </div>';
-    retour += '  <div class="col-md-2 text-end">';
+    retour += '  <div class="col-lg-2 text-end">';
 
     //Actions pour mode TT en cours
     if (mode == 'TTenCours') {
@@ -778,18 +778,18 @@ function makeLigneOrdo(data, mode) {
       retour += '<span class="fas fa-sync-alt" aria-hidden="true"></span></button> ';
 
       retour += '<div class="btn-group">';
-      retour += '  <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-times" aria-hidden="true"></span>';
+      retour += '  <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-times" aria-hidden="true"></span>';
       retour += '  </button>';
-      retour += '  <div class="dropdown-menu dropdown-menu-right">';
+      retour += '  <div class="dropdown-menu dropdown-menu-end">';
       retour += '    <a href="#" class="dropdown-item marquerArretEffectifCeJour">Arrêt effectif ce jour</a>';
       retour += '    <a href="#"  class="dropdown-item marquerArretEffectif">Arrết effectif à date antérieure</a>';
       retour += '  </div>';
       retour += '</div>';
 
       retour += ' <div class="btn-group">';
-      retour += '  <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-book" aria-hidden="true"></span></span>';
+      retour += '  <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-book" aria-hidden="true"></span></span>';
       retour += '  </button>';
-      retour += '  <div class="dropdown-menu dropdown-menu-right">';
+      retour += '  <div class="dropdown-menu dropdown-menu-end">';
       retour += '    <a href="#" data-speThe="' + data.medics[0].speThe + '" class="dropdown-item effetsIndesirables">Effets indésirables</a>';
       retour += '     <a href="' + urlBase + '/lap/monographie/' + data.medics[0].speThe + '/" target="_blank"  class="dropdown-item">Monographie</a>';
       retour += '  </div>';
@@ -808,10 +808,10 @@ function makeLigneOrdo(data, mode) {
 
 
       retour += '    <div class="btn-group">';
-      retour += '      <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+      retour += '      <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
       retour += '        <span class="fas fa-euro-sign" aria-hidden="true"></span>';
       retour += '      </button>';
-      retour += '      <div class="dropdown-menu dropdown-menu-right">';
+      retour += '      <div class="dropdown-menu dropdown-menu-end">';
       retour += '          <a href="#" class="dropdown-item coutMedic" disabled data-cout="' + coutMedic.math + '">Coût estimé : ';
       retour += coutMedic.texte;
       retour += '           </a>';
@@ -823,10 +823,10 @@ function makeLigneOrdo(data, mode) {
 
 
       retour += '    <div class="btn-group">';
-      retour += '      <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+      retour += '      <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
       retour += '        <span class="fas fa-wrench" aria-hidden="true"></span>';
       retour += '      </button>';
-      retour += '      <div class="dropdown-menu dropdown-menu-right">';
+      retour += '      <div class="dropdown-menu dropdown-menu-end">';
       retour += '          <a href="#" class="dropdown-item addToLigne">';
       retour += '            <span class="fas fa-plus" aria-hidden="true"></span>';
       retour += '            Ajouter un médicament à cette ligne de prescription</a>';
@@ -864,20 +864,20 @@ function makeLigneOrdo(data, mode) {
     }
     retour += '>';
     retour += '  <div class="row" style="margin-bottom: 12px">';
-    retour += '    <div class="col-md-11 font-weight-bold">';
+    retour += '    <div class="col-lg-11 fw-bold">';
     retour += '      ' + data.ligneData.voieUtilisee + ' - ' + data.ligneData.dureeTotaleHuman
     if (data.ligneData.nbRenouvellements > 0) {
       retour += ' - à renouveler ' + data.ligneData.nbRenouvellements + ' fois';
     }
     if (mode != 'voirPrescriptionType') {
       if (data.ligneData.dateDebutPrise != data.ligneData.dateFinPriseAvecRenouv) {
-        retour += ' <small class="font-weight-normal"> - ' + data.ligneData.dateDebutPrise + ' au ' + data.ligneData.dateFinPriseAvecRenouv + '</small>';
+        retour += ' <small class="fw-normal"> - ' + data.ligneData.dateDebutPrise + ' au ' + data.ligneData.dateFinPriseAvecRenouv + '</small>';
       } else {
-        retour += ' <small class="font-weight-normal"> - le ' + data.ligneData.dateDebutPrise + '</small>';
+        retour += ' <small class="fw-normal"> - le ' + data.ligneData.dateDebutPrise + '</small>';
       }
     }
     retour += '    </div>';
-    retour += '    <div class="col-md-1 text-end">';
+    retour += '    <div class="col-lg-1 text-end">';
 
     //Actions pour mode TT en cours
     if (mode == 'TTenCours') {
@@ -885,9 +885,9 @@ function makeLigneOrdo(data, mode) {
       retour += '<span class="fas fa-sync-alt" aria-hidden="true"></span></button> ';
 
       retour += '<div class="btn-group">';
-      retour += '  <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-times" aria-hidden="true"></span>';
+      retour += '  <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-times" aria-hidden="true"></span>';
       retour += '  </button>';
-      retour += '  <div class="dropdown-menu dropdown-menu-right">';
+      retour += '  <div class="dropdown-menu dropdown-menu-end">';
       retour += '    <a href="#" class="dropdown-item marquerArretEffectifCeJour">Arrêt effectif ce jour</a>';
       retour += '    <a href="#"  class="dropdown-item marquerArretEffectif">Arrết effectif à date antérieure</a>';
       retour += '  </div>';
@@ -904,10 +904,10 @@ function makeLigneOrdo(data, mode) {
     //Actions pour mode ordonnance
     else if (mode == 'editionOrdonnance') {
       retour += '      <div class="btn-group">';
-      retour += '        <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+      retour += '        <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
       retour += '          <span class="fas fa-wrench" aria-hidden="true"></span>';
       retour += '        </button>';
-      retour += '        <div class="dropdown-menu dropdown-menu-right">';
+      retour += '        <div class="dropdown-menu dropdown-menu-end">';
       retour += '            <a href="#" class="dropdown-item addToLigne">';
       retour += '              <span class="fas fa-plus" aria-hidden="true"></span>';
       retour += '              Ajouter un médicament à cette ligne de prescription</a>';
@@ -933,7 +933,7 @@ function makeLigneOrdo(data, mode) {
     $.each(data.medics, function(index, medic) {
 
       retour += '        <tr>';
-      retour += '          <td class="col-md-11">';
+      retour += '          <td class="col-lg-11">';
       retour += '            <div>';
       retour += '              ' + i++ + ' - <strong>' + medic.nomUtileFinal + '</strong>';
       if (medic.isNPS == 'true') {
@@ -942,10 +942,10 @@ function makeLigneOrdo(data, mode) {
         retour += ']';
       }
       if (data.ligneData.isALD == 'true' && mode == 'TTenCours') {
-        retour += '        <span class="badge badge-danger">ald</span>';
+        retour += '        <span class="badge text-bg-danger">ald</span>';
       }
       if (data.ligneData.isChronique == 'true') {
-        retour += ' <span class = "badge badge-secondary" >chronique</span>';
+        retour += ' <span class = "badge text-bg-secondary" >chronique</span>';
       }
 
       if (testIfAldOk(medic.ald) && mode == 'editionOrdonnance' && aldActivesListe.length > 0) {
@@ -955,11 +955,11 @@ function makeLigneOrdo(data, mode) {
       }
 
       if (medic.prescripteurInitialTT) {
-        retour += ' <button class="btn btn-light btn-sm" type="button" data-toggle="popover" data-container="body" data-placement="top"  title="Prescripteur" data-content="' + medic.prescripteurInitialTT + '"><span class="fas fa-user" aria-hidden="true"></span></button>';
+        retour += ' <button class="btn btn-light btn-sm" type="button" data-bs-toggle="popover" data-bs-container="body" data-bs-placement="top"  title="Prescripteur" data-bs-content="' + medic.prescripteurInitialTT + '"><span class="fas fa-user" aria-hidden="true"></span></button>';
       }
 
       if (medic.prescriptionMotif.length > 0) {
-        retour += ' <button class="btn btn-light btn-sm" type="button" data-toggle="popover" data-container="body" data-placement="top"  title="Commentaire personnel" data-content="' + nl2br(medic.prescriptionMotif) + '"><span class="fas fa-comment" aria-hidden="true"></span></button>';
+        retour += ' <button class="btn btn-light btn-sm" type="button" data-bs-toggle="popover" data-bs-container="body" data-bs-placement="top"  title="Commentaire personnel" data-bs-content="' + nl2br(medic.prescriptionMotif) + '"><span class="fas fa-comment" aria-hidden="true"></span></button>';
       }
 
       retour += '    </div>';
@@ -968,14 +968,14 @@ function makeLigneOrdo(data, mode) {
 
 
 
-      retour += '<td class="col-md-2 text-end">';
+      retour += '<td class="col-lg-2 text-end">';
 
       //Actions pour mode TT en cours
       if (mode == 'TTenCours') {
         retour += ' <div class="btn-group">';
-        retour += '  <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-book" aria-hidden="true"></span>';
+        retour += '  <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-book" aria-hidden="true"></span>';
         retour += '  </button>';
-        retour += '  <div class="dropdown-menu dropdown-menu-right">';
+        retour += '  <div class="dropdown-menu dropdown-menu-end">';
         retour += '    <a href="#" data-speThe="' + medic.speThe + '" class="dropdown-item effetsIndesirables">Effets indésirables</a>';
         retour += '     <a href="' + urlBase + '/lap/monographie/' + data.medics[0].speThe + '/" target="_blank"  class="dropdown-item">Monographie</a>';
         retour += '  </div>';

@@ -28,9 +28,7 @@
 
 {% import "macroForm.html.twig" as f %}
 <div class="p-5 rounded col-lg-12 mb-4 position-relative" style="background-color: #e9ecef;">
-    <button id="cleanNewReglement" type="button" class="close position-absolute" style="top: 1rem; right: 1rem;" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+    <button id="cleanNewReglement" type="button" class="btn-close position-absolute" style="top: 1rem; right: 1rem;" aria-label="Close"></button>
 
     {% if page.form.addHidden.objetID > 0 %}
         <h3>Édition du règlement</h3>
@@ -44,7 +42,7 @@
                 <div class="mb-3">
                     <label class="col-form-label" for="selectActe{{ loop.index }}">{{ k }}
                     </label>
-                    <select class="custom-select selectActeStarter" id="selectActe{{ loop.index }}ID" name="selectActe{{ loop.index }}" autocomplete="off">
+                    <select class="form-select selectActeStarter" id="selectActe{{ loop.index }}ID" name="selectActe{{ loop.index }}" autocomplete="off">
                         <option value=''></option>
                         {% for val in v %}
                             <option value="{{ val.id }}"
@@ -62,14 +60,14 @@
     </div>
 
     <div id="detFacturation" class="card col-lg-12 px-0 mb-3" style="display: none;">
-      <div class="card-header text-center font-weight-bold">Facturation à appliquer</div>
+      <div class="card-header text-center fw-bold">Facturation à appliquer</div>
 
       <table class="table table-sm mb-0">
         <thead>
           <tr>
             <th class="">acte</th>
-            <th class="text-left"></th>
-            <th class="text-left" {% if page.form.addHidden.reglementForm == 'baseReglementLibre' %} style="display : none"{% else %} style="width : 100px;"{% endif %}>code asso.</th>
+            <th class="text-start"></th>
+            <th class="text-start" {% if page.form.addHidden.reglementForm == 'baseReglementLibre' %} style="display : none"{% else %} style="width : 100px;"{% endif %}>code asso.</th>
             <th class="text-center">base</th>
             {% if page.formIN != 'baseReglementLibre' %}
               <th class="pourcents text-center" style="width : 100px;">quantité</th>
@@ -81,9 +79,9 @@
               <th class="text-center" style="width : 120px;">modulation</th>
             {% else %}
               <th class="text-center" style="width : 120px;">dépassement</th>
-              <th class="text-right" style="width : 80px;"></th>
+              <th class="text-end" style="width : 80px;"></th>
             {% endif %}
-            <th class="text-right">total</th>
+            <th class="text-end">total</th>
             <th class=""></th>
           </tr>
         </thead>

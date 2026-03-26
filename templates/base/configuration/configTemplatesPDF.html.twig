@@ -105,13 +105,13 @@
     <h2 class="mt-4 mt-xl-0">Ajouter des templates ou des images</h2>
 
     {% if page.templatesDirAutorisationEcriture == 1 %}
-        <div id="dropZoneFichierZoneConfig"  data-destination="{{ page.repertoireTemplatesPDF }}" class="col-12 bg-light center-block" style="padding : 30px; border-radius : 6px">
+        <div id="dropZoneFichierZoneConfig"  data-destination="{{ page.repertoireTemplatesPDF }}" class="col-12 bg-light center-block" style="padding : 30px; border-radius : 6px; background-color: #e9ecef;">
             Déposez ici le fichier ou sélectionnez-le avec le bouton ci-dessous<br/>
             <input type="file" name="files[]" multiple="multiple" title="Cliquer pour ajouter">
 
             <div class="progress" style="margin-top : 20px;">
               <div class="progress-bar" role="progressbar" style="width: 00%;">
-                <span class="sr-only"></span>
+                <span class="visually-hidden"></span>
               </div>
             </div>
         </div>
@@ -131,16 +131,16 @@
 
       <ul class="nav nav-tabs mb-4" id="tabsFiles{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="twig-tab{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" data-toggle="tab" href="#twig{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" role="tab" aria-controls="twig" aria-selected="true">
+          <a class="nav-link active" id="twig-tab{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" data-bs-toggle="tab" href="#twig{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" role="tab" aria-controls="twig" aria-selected="true">
             Templates twig
-            <span class="badge badge-secondary ml-1">{{ page.listeTemplates|length }}</span>
+            <span class="badge text-bg-secondary ms-1">{{ page.listeTemplates|length }}</span>
           </a>
         </li>
         {% if page.listeAutres|length > 0  %}
         <li class="nav-item">
-          <a class="nav-link" id="autres-tab{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" data-toggle="tab" href="#autres{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" role="tab" aria-controls="autres" aria-selected="false">
+          <a class="nav-link" id="autres-tab{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" data-bs-toggle="tab" href="#autres{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" role="tab" aria-controls="autres" aria-selected="false">
             Autres fichiers
-            <span class="badge badge-secondary ml-1">{{ page.listeAutres|length }}</span>
+            <span class="badge text-bg-secondary ms-1">{{ page.listeAutres|length }}</span>
           </a>
         </li>
         {% endif %}
@@ -151,7 +151,7 @@
 
           {% if page.listeTemplates|length > 0  %}
             <table class="table table-sm mb-0 table-hover ">
-              <thead class="thead-light">
+              <thead class="table-light">
                 <tr>
                     <th>
                         Fichier
@@ -204,7 +204,7 @@
           <div class="tab-pane fade" id="autres{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}" role="tabpanel" aria-labelledby="autres{% if page.selectUser > 0 %}{{ page.selectUser }}{% endif %}-tab">
 
             <table class="table table-sm mb-0 table-hover ">
-              <thead class="thead-light">
+              <thead class="table-light">
                 <tr>
                     <th>
                         Fichier

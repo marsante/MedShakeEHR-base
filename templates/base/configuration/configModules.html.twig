@@ -71,7 +71,7 @@
     <div class="col-12 col-xl-8 mb-4">
       <h1>Modules installés</h1>
       <table class="table table-sm mb-0 table-striped table-hover">
-        <thead class="thead-light">
+        <thead class="table-light">
           <tr>
             <th>Nom</th>
             <th>Nom court</th>
@@ -82,7 +82,7 @@
         </thead>
         <tbody>
           {% for m in page.modules %}
-            <tr data-toggle="collapse" data-target="#{{ m.name }}">
+            <tr data-bs-toggle="collapse" data-bs-target="#{{ m.name }}">
               <td>
                 {% if page.modulesInfosGen[m.name]['nom'] %}
                   {{ page.modulesInfosGen[m.name]['nom'] }}
@@ -102,7 +102,7 @@
                   {% endif %}
               </td>
               <td class="text-end">
-                <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#{{ m.name }}">
+                <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#{{ m.name }}">
                   <i class="fas fa-info fa-fw"></i>
                 </button>
               </td>
@@ -112,7 +112,7 @@
                 {% if page.modulesInfosGen[m.name]['nom'] %}
                   <h5>Informations sur ce module</h5>
 
-                  <div class="card card-body my-3 bg-light">
+                  <div class="card card-body my-3 bg-light" style="background-color: #e9ecef;">
 
                     <ul class="list-unstyled mb-0">
                     {% if page.modulesInfosGen[m.name]['nom'] %}
@@ -159,7 +159,7 @@
                 <h5>Paramètres de configuration spécifiques au module {{ m.name }}</h5>
                 {% if page.modulesConfig[m.name] | length > 0 %}
                   <table class="table table-sm small">
-                    <thead class="thead-light">
+                    <thead class="table-light">
                       <th>nom</th>
                       <th>catégorie</th>
                       <th>valeur</th>
@@ -177,7 +177,7 @@
                 {% else %}
                   <p>Pas de paramètres spécifiques.</p>
                 {% endif %}
-                <a class="btn btn-sm btn-success" data-module="m.name" href="/configuration/modules/export/{{ m.name }}/" role="button"><i class="fas fa-database mr-1"></i> Exporter le module en SQL</a>
+                <a class="btn btn-sm btn-success" data-module="m.name" href="/configuration/modules/export/{{ m.name }}/" role="button"><i class="fas fa-database me-1"></i> Exporter le module en SQL</a>
               </td>
             </tr>
           {% endfor %}

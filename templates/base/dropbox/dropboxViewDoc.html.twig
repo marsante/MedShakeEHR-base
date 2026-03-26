@@ -26,8 +26,8 @@
  #}
 
 <div class="card mb-3">
-  <div class="card-header font-weight-bold">
-    <i class="fas fa-user fa-fw fa-lg text-muted mr-1"></i>
+  <div class="card-header fw-bold">
+    <i class="fas fa-user fa-fw fa-lg text-muted me-1"></i>
     Patient</div>
   <div class="card-body">
 
@@ -117,9 +117,7 @@
       <div class="col col-6">
         <form class="form">
           <div class="input-group my-3">
-            <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-search"></i></span>
-            </div>
             <input class="form-control" type="text" placeholder="Rechercher un autre patient" id="searchPeopleID" autocomplete="off"/>
           </div>
         </form>
@@ -137,7 +135,7 @@
     <input type="hidden" name="box" value="{{ page.boxParams.id }}"/>
     <input type="hidden" class="form-control" id="idConfirmPatientID" name="patientID" value="{{ page.patientsPossibles.0.id }}">
 
-    <div class="form-group col-8 mb-0">
+    <div class="mb-3 col-8 mb-0">
       <label for="titreOptionnel">Titre (optionnel)</label>
       {# le js dans onchange="" permet de récupérer le titre du document avec la dans le champ hidden "dropboxDocTitle" du formulaire "CreerPatient" #}
       <input type="text" id="titreOptionnel" name="titre" class="form-control mb-0" placeholder="Titre du document" value="{{ page.boxParams.filesDefaultTitle }}" onchange="document.getElementById('creerPatient_doctitre').value = this.value;">
@@ -152,8 +150,8 @@
 </form>
 
 <div class="card mb-3">
-  <div class="card-header font-weight-bold">
-    <i class="fas fa-user fa-fw fa-lg text-muted mr-1"></i>
+  <div class="card-header fw-bold">
+    <i class="fas fa-user fa-fw fa-lg text-muted me-1"></i>
     Document</div>
   <div class="card-body">
     {% if page.fileData.display == '1' %}
@@ -163,15 +161,21 @@
             <img id="docImageView" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/{{ page.fileData.webpath }}" style="border: 15px solid #DDD; max-width: 100%; height: auto;">
           </div>
           <div class="col-auto">
-            <button class="btn btn-sm btn-secondary rotationImage90 btn-block" data-box="{{ page.boxParams.id }}" data-filename="{{ page.fileData.filename }}" data-direction="left" title="Faire une rotation anti-horaire de 90° de l'image">
-              <i class="fas fa-level-down-alt fa-fw fa-flip-horizontal"></i>
-            </button>
-            <button class="btn btn-sm btn-secondary rotationImage90 btn-block" data-box="{{ page.boxParams.id }}" data-filename="{{ page.fileData.filename }}" data-direction="right" title="Faire une rotation horaire de 90° de l'image">
-              <i class="fas fa-level-down-alt fa-fw"></i>
-            </button>
-            <button class="btn btn-sm btn-secondary reduceImagePreviewSize btn-block"  title="Ajuster la taille de prévisualisation (original non modifié)">
-              <i class="fas fa-search-minus"></i>
-            </button>
+            <div class="d-grid gap-2">
+              <button class="btn btn-sm btn-secondary rotationImage90" data-box="{{ page.boxParams.id }}" data-filename="{{ page.fileData.filename }}" data-direction="left" title="Faire une rotation anti-horaire de 90° de l'image">
+                <i class="fas fa-level-down-alt fa-fw fa-flip-horizontal"></i>
+              </button>
+            </div>
+            <div class="d-grid gap-2">
+              <button class="btn btn-sm btn-secondary rotationImage90" data-box="{{ page.boxParams.id }}" data-filename="{{ page.fileData.filename }}" data-direction="right" title="Faire une rotation horaire de 90° de l'image">
+                <i class="fas fa-level-down-alt fa-fw"></i>
+              </button>
+            </div>
+            <div class="d-grid gap-2">
+              <button class="btn btn-sm btn-secondary reduceImagePreviewSize" title="Ajuster la taille de prévisualisation (original non modifié)">
+                <i class="fas fa-search-minus"></i>
+              </button>
+            </div>
           </div>
         </div>
       {% else %}

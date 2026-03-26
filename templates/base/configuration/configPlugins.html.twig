@@ -70,7 +70,7 @@
       <h1>Plugins installés</h1>
       {% if page.plugins|length() > 0 %}
       <table class="table table-sm mb-0 table-striped table-hover">
-        <thead class="thead-light">
+        <thead class="table-light">
           <tr>
             <th>Nom</th>
             <th>Nom court</th>
@@ -80,7 +80,7 @@
         </thead>
         <tbody>
           {% for m in page.plugins %}
-            <tr data-toggle="collapse" data-target="#{{ m.name }}">
+            <tr data-bs-toggle="collapse" data-bs-target="#{{ m.name }}">
               <td>
                 {% if page.pluginsInfosGen[m.name]['nom'] %}
                   {{ page.pluginsInfosGen[m.name]['nom'] }}
@@ -91,7 +91,7 @@
               </td>
               <td>{{ m.version }}</td>
               <td class="text-end">
-                <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#{{ m.name }}">
+                <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#{{ m.name }}">
                   <i class="fas fa-info fa-fw"></i>
                 </button>
               </td>
@@ -101,7 +101,7 @@
                 {% if page.pluginsInfosGen[m.name]['nom'] %}
                   <h5>Informations sur ce plugin</h5>
 
-                  <div class="card card-body my-3 bg-light">
+                  <div class="card card-body my-3 bg-light" style="background-color: #e9ecef;">
 
                     <ul class="list-unstyled mb-0">
                     {% if page.pluginsInfosGen[m.name]['nom'] %}

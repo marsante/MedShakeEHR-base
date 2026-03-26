@@ -28,14 +28,9 @@
 
 {% import "macroForm.html.twig" as f %}
 {# Formulaire de synthèse #}
-<div class="jumbotron col-12">
+<div class="bg-light mb-4 rounded-2 py-5 px-3 col-12 position-relative" style="background-color: #e9ecef;">
 
-  <div class="row">
-    <div class="col">
-      <button id="cleanNewCS" type="button" class="close cleanNewCS" aria-label="Close">
-        <span aria-hidden="true">&times;</span></button>
-    </div>
-  </div>
+  <button id="cleanNewCS" type="button" class="btn-close position-absolute" style="top: 1rem; right: 1rem;" aria-label="Close"></button>
 
   {{ f.formbuilder(page.form , page.formIN ) }}
 

@@ -45,7 +45,7 @@
 
     {# js #}
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/jquery/jquery/dist/jquery.min.js?{{ modules.base }}"></script>
-    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/twbs/bootstrap/dist/js/bootstrap.min.js?{{ modules.base }}"></script>
+    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/twbs/bootstrap/dist/js/bootstrap.bundle.min.js?{{ modules.base }}"></script>
 
     <script>
       var urlBase = '{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}';
@@ -62,7 +62,7 @@
 
   <body>
     <div class="container">
-    <div class="jumbotron col-lg-12">
+    <div class="bg-light mb-4 rounded-2 py-5 px-3 col-lg-12" style="background-color: #e9ecef;">
       <p>Le document est bien enregistré, merci !<br><br>
         Vous pouvez maintenant rendre cette tablette.
       </p>

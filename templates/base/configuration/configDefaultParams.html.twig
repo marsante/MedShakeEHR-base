@@ -56,7 +56,7 @@
         <ul class="nav nav-pills flex-column">
           {% for cat in page.cats %}
             <li class="nav-item">
-              <a class="nav-link{% if loop.first %} active{% endif %}" href="#{{ cat|replace({' ':'_', '\'':'_'}) }}" aria-controls="{{ cat }}" role="tab" data-toggle="tab" onclick="$('.cats').hide();$('.{{ cat|replace({' ':'_', '\'':'_'}) }}').show();">{{ cat }}</a>
+              <a class="nav-link{% if loop.first %} active{% endif %}" href="#{{ cat|replace({' ':'_', '\'':'_'}) }}" aria-controls="{{ cat }}" role="tab" data-bs-toggle="tab" onclick="$('.cats').hide();$('.{{ cat|replace({' ':'_', '\'':'_'}) }}').show();">{{ cat }}</a>
             </li>
           {% endfor %}
         </ul>
@@ -67,7 +67,7 @@
           </div>
         {% endfor %}
         <table class="table table-sm mb-0 table-hover table-striped checkboxFixValue">
-          <thead class="thead-light">
+          <thead class="table-light">
             <tr>
               <th>Paramètre</th>
               <th>Valeur</th>

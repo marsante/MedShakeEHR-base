@@ -96,7 +96,7 @@ $(document).ready(function() {
 
     //mettre en route les tooltip bootstrap
     $(function() {
-        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-bs-toggle="tooltip"]').tooltip()
     })
 
     $("#periodeQuickSelectID").on("change", function(e) {

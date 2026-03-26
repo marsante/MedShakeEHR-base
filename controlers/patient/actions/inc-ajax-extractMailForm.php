@@ -132,7 +132,7 @@ if (isset($preValues)) $form->setPrevalues($preValues);
 $form->setTypeForNameInForm('byName');
 $p['page']['form'] = $form->getForm();
 $p['page']['formJavascript'] = $form->getFormJavascript();
-$form->addSubmitToForm($p['page']['form'], 'btn-warning btn-lg btn-block', $submitLabel);
+$form->addSubmitToForm($p['page']['form'], 'btn-warning btn-lg', $submitLabel);
 
 $p['page']['form']['addHidden'] = array(
 	'patientID' => $_POST['patientID'],

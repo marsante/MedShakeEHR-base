@@ -280,7 +280,7 @@ function getRelationsGroupePraticiensTab(groupeID) {
       } else {
         $('#bodyTabRelationGroupePraticiens').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Aucun praticien dans ce groupe\
             </td>\
           </tr>');
@@ -313,7 +313,7 @@ function getRelationsPraticienGroupesTab(pratID) {
           $('#bodyTabRelationPraticienGroupes').append('\
             <tr class="voirDossier cursor-pointer">\
               <td>\
-                <a class="btn btn-light btn-sm mr-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
+                <a class="btn btn-light btn-sm me-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
                   <i class="fas fa-hospital-alt fa-fw"></i>\
                 </a>\
               ' + value.groupname + '</td><td class="small">' + value.city + ' (' + value.country + ')</td><td class="small">' + value.typeRelationTxt + '</td>\
@@ -330,7 +330,7 @@ function getRelationsPraticienGroupesTab(pratID) {
         $('form.assignMyOwnGroups').removeClass('d-none');
         $('#bodyTabRelationPraticienGroupes').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Ce praticien n\'intègre aucun groupe\
             </td>\
           </tr>');
@@ -363,7 +363,7 @@ function getRelationsPatientGroupesTab(patientID) {
           $('#bodyTabRelationPatientGroupes').append('\
             <tr class="voirDossier cursor-pointer">\
               <td>\
-                <a class="btn btn-light btn-sm mr-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
+                <a class="btn btn-light btn-sm me-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
                   <i class="fas fa-hospital-alt fa-fw"></i>\
                 </a>\
               ' + value.groupname + '</td><td class="small">' + value.city + ' (' + value.country + ')</td>\
@@ -380,7 +380,7 @@ function getRelationsPatientGroupesTab(patientID) {
         $('form.assignMyOwnGroups').removeClass('d-none');
         $('#bodyTabRelationPatientGroupes').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Ce patient n\'intègre aucun groupe\
             </td>\
           </tr>');
@@ -414,7 +414,7 @@ function getRelationsRegistreGroupesTab(registreID) {
           $('#bodyTabRelationRegistreGroupes').append('\
             <tr class="voirDossier cursor-pointer">\
               <td>\
-                <a class="btn btn-light btn-sm mr-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
+                <a class="btn btn-light btn-sm me-3" role="button" href="' + urlBase + '/groupe/' + value.peopleID + '/">\
                   <i class="fas fa-hospital-alt fa-fw"></i>\
                 </a>\
               ' + value.groupname + '</td><td class="small">' + value.city + ' (' + value.country + ')</td><td class="small">' + value.typeRelationTxt + '</td>\
@@ -430,7 +430,7 @@ function getRelationsRegistreGroupesTab(registreID) {
       } else {
         $('#bodyTabRelationRegistreGroupes').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Ce praticien n\'intègre aucun groupe\
             </td>\
           </tr>');
@@ -481,7 +481,7 @@ function getRelationsRegistrePraticiensTab(registreID) {
       } else {
         $('#bodyTabRelationRegistrePraticiens').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Aucun administrateur désigné pour ce registre\
             </td>\
           </tr>');
@@ -516,7 +516,7 @@ function getRelationsGroupeRegistresTab(groupeID) {
           $('#bodyTabRelationGroupeRegistres').append('\
             <tr class="voirDossier cursor-pointer">\
               <td>\
-                <a class="btn btn-light btn-sm mr-3" role="button" href="' + urlBase + '/registre/' + value.peopleID + '/">\
+                <a class="btn btn-light btn-sm me-3" role="button" href="' + urlBase + '/registre/' + value.peopleID + '/">\
                   <i class="fas fa-archive fa-fw"></i>\
                 </a>\
               ' + value.registryname + '</td><td class="small">' + value.typeRelationTxt + '</td>\
@@ -532,7 +532,7 @@ function getRelationsGroupeRegistresTab(groupeID) {
       } else {
         $('#bodyTabRelationGroupeRegistres').append('\
           <tr class="bg-transparent text-muted">\
-            <td class="pl-3">\
+            <td class="ps-3">\
               Ce groupe n\'est autorisé pour aucun registre\
             </td>\
           </tr>');

@@ -26,12 +26,12 @@
  #
 #}
 
-<button class="btn btn-light btn-sm addNewCS float-right" type="submit" data-parentID="0" data-formtocall="aldDeclaration" data-mode="create" title="Ajouter une ALD"><i class="fas fa-plus"></i></button>
+<button class="btn btn-light btn-sm addNewCS float-end" type="submit" data-parentID="0" data-formtocall="aldDeclaration" data-mode="create" title="Ajouter une ALD"><i class="fas fa-plus"></i></button>
 <label>ALD</label>
 <table class="table table-sm table-hover table-bordered"><tbody>
 {% for aldId, ald in page.patient.ALD %}
   <tr class="tr{{ aldId }} table-gray small">
-    <td data-toggle="collapse" data-target="#aldDet{{ aldId }}" style="cursor: pointer">
+    <td data-bs-toggle="collapse" data-bs-target="#aldDet{{ aldId }}" style="cursor: pointer">
     {{ ald.aldLabel }}
 
     <div id="aldDet{{ aldId }}"  class="collapse">

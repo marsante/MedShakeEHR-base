@@ -82,7 +82,7 @@
 
   <div class="row mt-3">
     <div class="col text-end">
-      <button type="button" class="btn btn-primary reset-modal" data-toggle="modal" data-target="#modalNewCat">
+      <button type="button" class="btn btn-primary reset-modal" data-bs-toggle="modal" data-bs-target="#modalNewCat">
         <i class="fas fa-plus"></i> Nouvelle facture
       </button>
     </div>
@@ -100,7 +100,7 @@
     </small>
   </h2>
   <table class="table table-sm mt-2 mb-4 table-hover">
-    <thead class="thead-light">
+    <thead class="table-light">
       <tr>
         <th>#</th>
         <th>Code</th>
@@ -124,9 +124,9 @@
         <td>
           {{ w.syntheseActes }}
         </td>
-        <td{% if w.flagImportant == 1 %} class="font-weight-bold"{% endif %}>
+        <td{% if w.flagImportant == 1 %} class="fw-bold"{% endif %}>
           {{ w.label }}
-          {% if w.active == 'non' %}<span class="badge badge-danger ml-2">off</span>{% endif %}
+          {% if w.active == 'non' %}<span class="badge text-bg-danger ms-2">off</span>{% endif %}
         </td>
         <td>{{ w.shortLabel }}</td>
         <td>{{ page['utilisationParFacture'][w.id] }}</td>
@@ -137,7 +137,7 @@
         {% endif %}
         <td  class="text-end">
           <div class="btn-group">
-            <button type="button" class="btn btn-light btn-sm" data-toggle="collapse" data-target=".details{{ w.id }}" aria-label="Voir détails" id="details{{ w.id }}">
+            <button type="button" class="btn btn-light btn-sm" data-bs-toggle="collapse" data-bs-target=".details{{ w.id }}" aria-label="Voir détails" id="details{{ w.id }}">
                 <span class="fas fa-search-plus" aria-hidden="true"></span>
             </button>
 
@@ -198,9 +198,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold" id="myModalLabel">Création / édition</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <h4 class="modal-title fw-bold" id="myModalLabel">Création / édition</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
         </button>
       </div>
       <div class="modal-body">
@@ -209,42 +209,42 @@
 
         <form id="formModalNewCat" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/ajax/configActesCreate/">
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.input ({ 'input' : { 'type' : 'text', 'name' : 'label', 'placeholder' : 'intitulé', 'class' : 'form-control', 'autocomplete' : 'off' }, 'label' : { 'position' : 'before', 'label' : 'Label', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.input ({ 'input' : { 'type' : 'text', 'name' : 'shortLabel', 'placeholder' : 'intitulé court', 'class' : 'form-control', 'autocomplete' : 'off' }, 'label' : { 'position' : 'before', 'label' : 'Label court', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'cat', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : page.catList, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Catégorie', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'toID', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : page.users, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Utilisateur', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.textarea ({ 'textarea' : {'name' : 'details', 'placeholder' : 'détails', 'class' : 'form-control', 'autocomplete' : 'off', 'rows': '8' }, 'label' : { 'position' : 'before', 'label' : 'Détails', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'flagCmu', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : {'0' : 'Non', '1' : 'Oui'}, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Acte pour patient CMU', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'flagImportant', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : {'0' : 'Non', '1' : 'Oui'}, 'valueDefaut': '' }, 'label' : { 'position' : 'before', 'label' : 'Acte important', } }) }}
           </div>
 
-          <div class="form-group">
+          <div class="mb-3">
             {{ f.select ({ 'select' : { 'name' : 'active', 'class' : 'form-control', 'autocomplete' : 'off', 'values' : {'oui' : 'Oui', 'non' : 'Non'}, 'valueDefaut': 'oui' }, 'label' : { 'position' : 'before', 'label' : 'Facture active pour utilisateurs', } }) }}
           </div>
 
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Abandonner</button>
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Abandonner</button>
         <button type="button" class="btn btn-primary modal-save" data-form="formModalNewCat" data-modal="modalNewCat">Sauvegarder</button>
       </div>
     </div>

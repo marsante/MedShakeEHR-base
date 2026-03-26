@@ -27,7 +27,7 @@
 #}
 <div class="row mb-2 justify-content-center">
   <div class="col-auto">
-    <select id="selectHistoOrdo" class="custom-select">
+    <select id="selectHistoOrdo" class="form-select">
     {% for annee in page.histoOrdoAnnees %}
       <option {% if annee == page.histoOrdoAnnee %}selected="selected"{% endif %}>{{ annee }}</option>
     {% endfor %}
@@ -48,7 +48,7 @@
       <tbody>
         {% for mois, v in page.ordos %}
           <tr>
-            <td colspan="4" class="table-primary font-weight-bold text-center">{{ mois|capitalize }}</td>
+            <td colspan="4" class="table-primary fw-bold text-center">{{ mois|capitalize }}</td>
           </tr>
           {% for ordo in v %}
             <tr data-ordonnanceID="{{ ordo.id }}" class="voirOrdonnance" style="cursor: pointer;">

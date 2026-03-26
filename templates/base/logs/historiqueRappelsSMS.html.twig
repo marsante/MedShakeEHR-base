@@ -53,7 +53,7 @@
       </ul>
     {% endif %}
 
-  <form id="dateForm" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/historiqueRappelsSMS/" method="post" class="form-inline mb-4">
+  <form id="dateForm" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/historiqueRappelsSMS/" method="post" class="d-flex align-items-center mb-4">
 
     <a class="btn btn-outline-secondary m-1" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/historiqueRappelsSMS/{{ page.dates.precedent|date("Y-m-d") }}/{% if page.selectPrat > 0 %}{{ page.selectPrat }}/{% endif %}">
       <span class="fas fa-step-backward" aria-hidden="true"></span>
@@ -73,9 +73,7 @@
 
     <div id="dateSel" class="input-group date datepick" >
       <input type="text" name="dateSel" class="form-control" placeholder="date d'envoi" autocomplete="off" value="{{ page.periode.end }}"/>
-      <span class="input-group-append">
         <span class="fas fa-calendar input-group-text"></span>
-      </span>
     </div>
     {% if page.selectPrat > 0 %}
       <input type="hidden" name="pratID" value="{{ page.selectPrat }}" >
@@ -89,7 +87,7 @@
     <div class="col-lg-6">
       <div class="card">
 
-        <div class="card-header font-weight-bold">
+        <div class="card-header fw-bold">
           <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/historiqueRappelsMail/{{ page.dates.emission|date("Y-m-d") }}/{% if page.selectPrat > 0 %}{{ page.selectPrat }}/{% endif %}" class="btn btn-secondary btn-sm float-right m-1">Voir rappels mail</a>
           <h3>Campagne du {{ page.dates.emission|date("d/m/Y") }}</h3>
         </div>
@@ -98,7 +96,7 @@
           <li class="list-group-item">Statut :
             {{ page.data.campaign.status }}
             /
-            {{ page.data.campaign.statusText }} {% if page.data.campaign.statusSimulate == 1 %}&nbsp<span class="font-italic">(Simulation)</span>{% endif %}</li>
+            {{ page.data.campaign.statusText }} {% if page.data.campaign.statusSimulate == 1 %}&nbsp<span class="fst-italic">(Simulation)</span>{% endif %}</li>
           <li class="list-group-item">Numéros invalides :
             {{ page.data.campaign.invalidNumbers }}</li>
           <li class="list-group-item">Nombre de SMS :
@@ -117,21 +115,21 @@
 
       <div class="card">
 
-        <div class="card-header font-weight-bold"><h3>SMS envoyés</h3>
+        <div class="card-header fw-bold"><h3>SMS envoyés</h3>
         </div>
 
         <table class="table table-sm mb-0 table-hover  table-striped">
-          <thead class="thead-light">
+          <thead class="table-light">
             <tr>
               <th>RDV</th>
               <th>Identité</th>
               <th>N°</th>
               <th>
-                <form action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/actions/majAcks/" method="post" class="form-inline">
+                <form action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/actions/majAcks/" method="post" class="d-flex align-items-center">
                   Statut
                   <input type="hidden" name="date" value="{{ page.dates.emission }}" />
                   <input type="hidden" name="pratID" value="{{ page.pratID }}" />
-                  <button type="submit" class="btn btn-light btn-sm ml-2"><span class="fas fa-sync-alt" aria-hidden="true"></span> Mettre à jour</button>
+                  <button type="submit" class="btn btn-light btn-sm ms-2"><span class="fas fa-sync-alt" aria-hidden="true"></span> Mettre à jour</button>
                 </form>
               </th>
             </tr>
@@ -145,7 +143,7 @@
                 <td>{{ v.telFrDisplay }}</td>
                 <td>
                   {% if page.data.campaign.statusSimulate == 1 %}
-                    <span class="font-italic">Simulé</span>
+                    <span class="fst-italic">Simulé</span>
                   {% else %}
                     {% if v.accRecepComment %}{{ v.accRecepComment }}
                       /

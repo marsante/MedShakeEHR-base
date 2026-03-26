@@ -167,7 +167,7 @@ if ($template != '') : ?>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
 		<title>
 			MedShakeEHR : Pre-installation</title>
@@ -385,7 +385,7 @@ if ($template != '') : ?>
 					<form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" class="form-inline">
 						<input name="bienvenue" type="hidden" />
 						<?php if (isset($_GET['v'])) { ?><input name="v" type="hidden" value="<?= $_GET['v'] ?>" /> <?php } ?>
-						<input id="dest" class="form-control mr-2" name="destination" type="text" value="<?= dirname(getcwd()) ?>" />
+						<input id="dest" class="form-control me-2" name="destination" type="text" value="<?= dirname(getcwd()) ?>" />
 						<button type="submit" class="btn btn-light" onclick="document.querySelector('#inst').style.display='none';document.querySelector('.svgcontainer').className+=' svganim';">Suivant</button>
 					</form>
 				</div>

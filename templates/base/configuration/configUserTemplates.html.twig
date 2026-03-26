@@ -81,12 +81,12 @@
     <h2 class="mt-4">Ajouter des templates</h2>
 
     {% if page.templatesDirAutorisationEcriture == 1 %}
-        <div id="dropZoneFichierZoneConfig"  data-destination="{{ page.repertoireUserTemplates }}" class="col-12 bg-light center-block" style="padding : 30px; border-radius : 6px">
+        <div id="dropZoneFichierZoneConfig"  data-destination="{{ page.repertoireUserTemplates }}" class="col-12 bg-light center-block" style="padding : 30px; border-radius : 6px; background-color: #e9ecef;">
             Déposez ici le fichier ou sélectionnez-le avec le bouton ci-dessous<br/>
             <input type="file" name="files[]" multiple="multiple" title="Cliquer pour ajouter">
             <div class="progress" style="margin-top : 20px;">
               <div class="progress-bar" role="progressbar" style="width: 00%;">
-                <span class="sr-only"></span>
+                <span class="visually-hidden"></span>
               </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
       <div class="alert alert-danger" role="alert">Aucun modèle n'est disponible.</div>
     {% else %}
       <table class="table table-sm mb-0 table-hover ">
-        <thead class="thead-light">
+        <thead class="table-light">
           <tr>
               <th>
                   Fichier

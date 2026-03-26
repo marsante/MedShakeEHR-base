@@ -32,13 +32,11 @@
 <div class="row ligneOrdo">
     <div class="col-lg-12">
 
-        <div class="form-group">
-            <button type="button" class="close cleanLigneOrdo" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="mb-3 position-relative">
+            <button type="button" class="btn-close cleanLigneOrdo position-absolute" style="top: 0; right: 0;" aria-label="Close"></button>
 
             <div class="row">
-                <div class="col-lg-11 pl-0">
+                <div class="col-lg-11 ps-0">
                   {{ f.textarea ({
                     'textarea' : {
                       'name' : ligne.formname ,

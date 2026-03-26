@@ -123,7 +123,7 @@
 
     <div class="row mt-3">
       <div class="col text-end">
-        <button type="button" class="btn btn-primary reset-modal" data-toggle="modal" data-target="#modalNewType">
+        <button type="button" class="btn btn-primary reset-modal" data-bs-toggle="modal" data-bs-target="#modalNewType">
           <i class="fas fa-plus"></i> Nouveau type
         </button>
       </div>
@@ -139,7 +139,7 @@
       </h2>
 
       <table class="table table-sm mb-0 table-hover mb-3">
-			<thead class="thead-light">
+			<thead class="table-light">
 			<tr>
 				<th>#</th>
         <th>Module</th>
@@ -202,13 +202,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title font-weight-bold" id="myModalLabel">Création / édition type</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title fw-bold" id="myModalLabel">Création / édition type</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 	  	    {{ f.errorsBloc() }}
 			<form id="formModalNewType" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/ajax/configDataTypeCreate/" data-groupe="{{ page.groupe }}">
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -225,7 +225,7 @@
 				}) }}
 				</div>
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -243,7 +243,7 @@
 				</div>
 
 				{% if page.groupe not in ["typecs"] %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -262,7 +262,7 @@
 				{% endif %}
 
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -279,7 +279,7 @@
 				}) }}
 				</div>
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.select ({
 					'select' : {
 						'name' : 'cat',
@@ -296,7 +296,7 @@
 				}) }}
 				</div>
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'text',
@@ -315,7 +315,7 @@
 			</div>
 
 
-        <div class="form-group">
+        <div class="mb-3">
         {{ f.select ({
           'select' : {
             'name' : 'module',
@@ -333,7 +333,7 @@
         </div>
 
 				{% if page.groupe not in ["typecs", "courrier"] %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -352,7 +352,7 @@
 				{% endif %}
 
 				{% if page.groupe not in ["typecs", "courrier"] %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -371,7 +371,7 @@
 				{% endif %}
 
         {% if page.groupe == "typecs" %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -390,12 +390,12 @@
 				{% endif %}
 
         {% if page.groupe == "typecs" and config.optionGeActiverRegistres == 'true' %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.select ({
             'select' : {
               'name' : 'validationRules',
               'id' : 'validationRulesID',
-              'class' : 'custom-select',
+              'class' : 'form-select',
               'values' : page.registresPossibles ,
               'autocomplete' : 'off',
               'valueDefaut': ''
@@ -409,7 +409,7 @@
         {% endif %}
 
         {% if page.groupe == "courrier" %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -426,7 +426,7 @@
 					}) }}
 					</div>
 
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.input ({
 						'input' : {
 							'type' : 'text',
@@ -446,13 +446,13 @@
 
 
 				{% if page.groupe not in ["typecs", "courrier"] %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.select ({
 						'select' : {
 							'name' : 'formType',
 							'id' : 'formTypeID',
 							'placeholder' : 'type de formulaire',
-							'class' : 'custom-select',
+							'class' : 'form-select',
               'values' : page.typesPossibles ,
 							'autocomplete' : 'off',
               'valueDefaut': ''
@@ -464,13 +464,13 @@
 					}) }}
 					</div>
         {% elseif page.groupe == "typecs" %}
-          <div class="form-group">
+          <div class="mb-3">
           {{ f.select ({
             'select' : {
               'name' : 'formType',
               'id' : 'formTypeID',
               'placeholder' : 'type de formulaire',
-              'class' : 'custom-select',
+              'class' : 'form-select',
               'values' : {'' : 'non', 'select' : 'oui'} ,
               'autocomplete' : 'off',
               'valueDefaut': ''
@@ -484,12 +484,12 @@
 				{% endif %}
 
         {% if page.groupe == "typecs" %}
-          <div class="form-group">
+          <div class="mb-3">
           {{ f.select ({
               'select' : {
                 'name' : 'placeholder',
                 'id' : 'placeholderID',
-                'class' : 'custom-select',
+                'class' : 'form-select',
                 'values' : {'n': 'non', 'o': 'oui'} ,
                 'autocomplete' : 'off',
                 'valueDefaut': ''
@@ -503,7 +503,7 @@
         {% endif %}
 
 				{% if page.groupe == "typecs" %}
-					<div class="form-group">
+					<div class="mb-3">
 						{{ f.input ({
 							'input' : {
 								'type' : 'text',
@@ -519,7 +519,7 @@
 						}) }}
 					</div>
 				{% else %}
-					<div class="form-group">
+					<div class="mb-3">
 					{{ f.textarea ({
 						'textarea' : {
 							'name' : 'formValues',
@@ -536,7 +536,7 @@
 					</div>
 				{% endif %}
 
-				<div class="form-group">
+				<div class="mb-3">
 				{{ f.input ({
 					'input' : {
 						'type' : 'number',
@@ -557,7 +557,7 @@
 			</form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Abandonner</button>
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Abandonner</button>
         <button type="button" class="btn btn-primary modal-save" data-form="formModalNewType" data-modal="modalNewType">Sauvegarder</button>
       </div>
     </div>

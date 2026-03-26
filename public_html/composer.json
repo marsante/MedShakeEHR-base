@@ -23,18 +23,6 @@
         {
             "type": "package",
             "package": {
-                "name": "fezvrasta/popper.js",
-                "version": "v1.14.4",
-                "source": {
-                    "url": "https://github.com/fezvrasta/popper.js.git",
-                    "type": "git",
-                    "reference": "v1.14.4"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
                 "name": "dennyferra/typewatch",
                 "version": "3.0.0",
                 "source": {
@@ -159,9 +147,8 @@
     ],
     "require": {
         "mattbryson/touchswipe-jquery-plugin": "1.6.18",
-        "fezvrasta/popper.js": "v1.14.4",
-        "twbs/bootstrap": "^4.6.2",
-        "eonasdan/bootstrap-datetimepicker": "^4.17.49",
+        "twbs/bootstrap": "^5.0.0",
+        "twbs/bootstrap-icons": "^1.13.1",
         "moment/moment": "^2.30.1",
         "dimsemenov/magnific-popup": "1.2.0",
         "dennyferra/typewatch": "3.0.0",
@@ -180,8 +167,10 @@
         "npm-asset/fullcalendar--daygrid": "^5",
         "npm-asset/fullcalendar--timegrid": "^5",
         "npm-asset/fullcalendar--interaction": "^5",
-        "npm-asset/fullcalendar--bootstrap": "^5",
-        "npm-asset/fullcalendar--moment": "^5"
+        "npm-asset/fullcalendar--bootstrap5": "^5",
+        "npm-asset/fullcalendar--moment": "^5",
+        "npm-asset/eonasdan--tempus-dominus": "^6.10.4"
+
     },
     "require-dev": {
         "chaijs/chai": "1.9.0",

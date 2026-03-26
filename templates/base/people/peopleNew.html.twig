@@ -82,13 +82,13 @@ registre
 		str = '';
 		if (data.length > 0) {
 			str = '<div class="card"> \
-		  	<div class="card-header font-weight-bold"> \
+		  	<div class="card-header fw-bold"> \
 		    	{{ page.porp|capitalize }}s similaires existants \
 		  	</div> \
 		  	<div class="list-group list-group-flush"> ';
 
 			$.each(data, function(index, value) {
-    		str += '<a href="'+ urlBase + '/' + value.type + '/' + value.id + '/' + '" target="_blank" class="list-group-item list-group-item-action"><i class="fas fa-external-link-alt mr-3"></i>' + value.label + '</a>';
+    		str += '<a href="'+ urlBase + '/' + value.type + '/' + value.id + '/' + '" target="_blank" class="list-group-item list-group-item-action"><i class="fas fa-external-link-alt me-3"></i>' + value.label + '</a>';
 			});
 
 	  	str += '</div> \
@@ -135,7 +135,7 @@ Nouveau registre
         <div class="alert alert-info" role="alert">
             <h5>Patient créé à partir des informations présentes dans le nom d'un fichier de la boîte de dépôt :</h5>
             <ul class="list-unstyled">
-                <li class="d-inline-block mr-4"><strong>Boîte de dépôt : </strong>{{ page.form.addHidden.dropboxBox }}</li>
+                <li class="d-inline-block me-4"><strong>Boîte de dépôt : </strong>{{ page.form.addHidden.dropboxBox }}</li>
 				<li class="d-inline-block"><strong>Nom du fichier : </strong>{{ page.form.addHidden.dropboxFilename }}</li>
                 <li class=""><strong>Titre du document : </strong>{{ page.form.addHidden.dropboxDocTitle }}</li>
             </ul>
@@ -147,7 +147,7 @@ Nouveau registre
 
 <div class="row">
 	<div class="col-xl-8 col-12">
-		<div class="card bg-light card-body checkboxFixValue searchSimilar">
+		<div class="card bg-light card-body checkboxFixValue searchSimilar" style="background-color: #e9ecef;">
 			{{ f.formbuilder(page.form , page.formIN , session) }}
 		</div>
 		{% if page['formJavascript'][page.formIN] is not empty %}
