@@ -10,6 +10,11 @@
         update_cache: true
         cache_valid_time: 3600
         upgrade: dist
+    - name: Ensure acl is installed
+      ansible.builtin.apt:
+        name: acl
+        state: present
+        update_cache: false
   roles:
     - { role: marsante.medshakeehr }
 
