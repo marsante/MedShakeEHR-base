@@ -23,57 +23,60 @@
  * Fonctions JS pour les paramètres utilisateur : onglet agenda
  *
  * @author fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
 
 var gotGroups = false;
 var gotCals = false;
 
-$(document).ready(function() {
+$(document).ready(function () {
 
   //pour agenda
-  $("body").on("click", '.date', function(e) {
+  $("body").on("click", '.date', function (e) {
     e.stopPropagation();
-    $('.date').each(function(idx, el) {
-      if ($(el).data("DateTimePicker")) $(el).data("DateTimePicker").destroy()
+
+    // Destroy all existing .date pickers
+    $('.date').each(function (idx, el) {
+      destroyTempusInstance(el);
     });
-    $(this).datetimepicker({
-      format: 'HH:mm',
-      icons: {
-        time: 'far fa-clock',
-        date: 'fa fa-calendar',
-        up: 'fa fa-chevron-up',
-        down: 'fa fa-chevron-down',
-        previous: 'fa fa-chevron-left',
-        next: 'fa fa-chevron-right',
-        today: 'fa fa-crosshairs',
-        clear: 'fa fa-trash',
-        close: 'fa fa-times'
+
+    // Initialize new picker on clicked element
+    const picker = initTempusInstance(
+      this,
+      {
+        localization: {
+          locale: 'fr',
+          format: 'HH:mm'
+        }
       }
-    });
-    $(this).data("DateTimePicker").show();
+    );
+
+    if (picker) picker.show();
   });
-  $('body').on("click", function() {
-    $('.date').each(function(idx, el) {
-      if ($(el).data("DateTimePicker")) $(el).data("DateTimePicker").destroy()
+
+  $('body').on("click", function () {
+    // Destroy all .date pickers on outside click
+    $('.date').each(function (idx, el) {
+      destroyTempusInstance(el);
     });
   });
 
   //pour les consultations
 
 
-  $( "#formName_ConfConsults tbody" ).sortable();
-  $( "#formName_ConfConsults tbody" ).disableSelection();
+  $("#formName_ConfConsults tbody").sortable();
+  $("#formName_ConfConsults tbody").disableSelection();
 
-  $("body").on("click", ".delConsult", function(e) {
+  $("body").on("click", ".delConsult", function (e) {
     e.preventDefault();
     $(this).parent().parent().remove();
   });
 
-  $("body").on("change", "select.utilisable", function(e) {
+  $("body").on("change", "select.utilisable", function (e) {
     $(this).closest("tr").toggleClass("bg-light");
   });
 
-  $("body").on("click", ".addConsult", function(e) {
+  $("body").on("click", ".addConsult", function (e) {
     e.preventDefault();
     e.stopPropagation();
     var id = (Math.random() * 100000) >> 0;
@@ -140,7 +143,7 @@ $(document).ready(function() {
       .attr('name', 'p_clicRdvConsultId' + k)
       .insertAfter('label[for="id_clicRdvConsultId' + k + '_id"]')
       .show();
-    $('#id_clicRdvConsultId' + k + '_id option').each(function(i, el) {
+    $('#id_clicRdvConsultId' + k + '_id option').each(function (i, el) {
       $(el).val($(el).val() + ':' + idx + ':' + clicRdvConsultsRel[idx][1]);
     });
     var j = 0;
@@ -154,7 +157,7 @@ $(document).ready(function() {
     k++
   }
 
-  $("#id_clicRdvUserId_id").on("keyup", function() {
+  $("#id_clicRdvUserId_id").on("keyup", function () {
     if (!$(this).val() || $(this).val() == '') {
       $('label[for="id_clicRdvGroupId_id"]').hide();
       $('#id_clicRdvGroupId_id').hide();
@@ -164,7 +167,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#id_clicRdvPassword_id").on("keyup", function() {
+  $("#id_clicRdvPassword_id").on("keyup", function () {
     $('#id_clicRdvGroupId_id').show();
     $('label[for="id_clicRdvGroupId_id"]').show();
     if ($('#id_clicRdvUserId_id').val() == '' || $('#id_clicRdvPassword_id').val() == '') {
@@ -176,7 +179,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#id_clicRdvGroupId_id").on("click", function() {
+  $("#id_clicRdvGroupId_id").on("click", function () {
     if (!gotGroups) {
       $('#id_clicRdvGroupId_id').empty();
       $('#id_clicRdvGroupId_id').append('<option value="empty">En attente de clicRDV...</option>');
@@ -188,7 +191,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#id_clicRdvGroupId_id").on("change", function() {
+  $("#id_clicRdvGroupId_id").on("change", function () {
     $('#id_clicRdvCalId_id').empty();
     $('#id_clicRdvCalId_id').show();
     $('label[for="id_clicRdvCalId_id"]').show();
@@ -199,7 +202,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#id_clicRdvCalId_id").on("click", function() {
+  $("#id_clicRdvCalId_id").on("click", function () {
     if (!gotCals) {
       $('#id_clicRdvCalId_id').empty();
       $('#id_clicRdvCalId_id').append('<option value="empty">En attente de clicRDV...</option>');
@@ -208,7 +211,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#id_clicRdvCalId_id").on("change", function() {
+  $("#id_clicRdvCalId_id").on("change", function () {
     $('.consults').remove();
     updateConsultList();
   });
@@ -224,14 +227,14 @@ function updateGroupList() {
       password: $('#id_clicRdvPassword_id').val()
     },
     dataType: "json",
-    success: function(data) {
+    success: function (data) {
       gotGroups = true;
       $('#id_clicRdvGroupId_id').empty();
       for (var i in data.records) {
         $('#id_clicRdvGroupId_id').append('<option value="' + data.records[i].id + ':' + data.records[i].name + '">' + data.records[i].name + '</option>');
       }
     },
-    error: function() {
+    error: function () {
       alert_popup("danger", 'Erreur de connexion au compte clicRDV. Vérifiez vos identifiants et votre connexion internet');
 
     }
@@ -249,7 +252,7 @@ function updateCalList() {
       groupid: $('#id_clicRdvGroupId_id').val()
     },
     dataType: "json",
-    success: function(data) {
+    success: function (data) {
       gotCals = true;
       $('#id_clicRdvCalId_id').empty();
       $('#id_clicRdvCalId_id').append('<option value="empty"> </option>');
@@ -257,7 +260,7 @@ function updateCalList() {
         $('#id_clicRdvCalId_id').append('<option value="' + data.records[i].id + ':' + (data.records[i].name || data.records[i].publicname) + '">' + (data.records[i].name || data.records[i].publicname) + '</option>');
       }
     },
-    error: function() {
+    error: function () {
       alert_popup("danger", 'Une érreur inconnue s\'est produite, impossible de récupérer les agendas sur clicRDV...');
 
     }
@@ -275,13 +278,13 @@ function updateConsultList() {
       calid: $('#id_clicRdvCalId_id').val()
     },
     dataType: "json",
-    success: function(data) {
+    success: function (data) {
       $('.consults').remove();
       for (var i in data.records) {
         addConsult(i, data.records[i]);
       }
     },
-    error: function() {
+    error: function () {
       alert_popup("danger", 'Une érreur inconnue s\'est produite, impossible de récupérer les types de consultations sur clicRDV...');
 
     }
@@ -297,7 +300,7 @@ function addConsult(idx, consult) {
     .attr('name', 'p_clicRdvConsultId' + idx)
     .insertAfter('label[for="id_clicRdvConsultId' + idx + '_id"]')
     .show();
-  $('#id_clicRdvConsultId' + idx + '_id option').each(function(i, el) {
+  $('#id_clicRdvConsultId' + idx + '_id option').each(function (i, el) {
     $(el).val($(el).val() + ':' + consult.id + ':' + consult.name);
   });
   var j = 0;

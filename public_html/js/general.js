@@ -24,8 +24,9 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
-$(document).ready(function() {
+$(document).ready(function () {
 
 
   ////////////////////////////////////////////////////////////////////////
@@ -67,7 +68,7 @@ $(document).ready(function() {
       y: "un an",
       yy: "%d ans"
     },
-    ordinal: function(number) {
+    ordinal: function (number) {
       return number + (number === 1 ? 'er' : 'ème');
     },
     week: {
@@ -79,39 +80,11 @@ $(document).ready(function() {
   ////////////////////////////////////////////////////////////////////////
   ///////// Obesrvations générales pour formulaires
 
-  //// datepicker bootstrap
-  $("body").on("click", 'div.datepick', function() {
-    var $div = $(this).closest("div.datepick");
-    var viewMode = $div.hasClass("pick-year") ? 'years' : ($div.hasClass("pick-month") ? 'months' : 'days');
-    viewMode = $div.find("input").hasClass("pick-year") ? 'years' : ($div.find("input").hasClass("pick-month") ? 'months' : viewMode);
-
-    var min = $(this).find("input").is("[min]") ? $(this).find("input").attr('min') : false;
-    var max = $(this).find("input").is("[max]") ? $(this).find("input").attr('max') : false;
-
-    $(this).datetimepicker({
-      locale: 'fr',
-      viewMode: viewMode,
-      format: 'L',
-      useCurrent: false,
-      minDate: min,
-      maxDate: max,
-      icons: {
-        time: 'far fa-clock',
-        date: 'fa fa-calendar',
-        up: 'fa fa-chevron-up',
-        down: 'fa fa-chevron-down',
-        previous: 'fa fa-chevron-left',
-        next: 'fa fa-chevron-right',
-        today: 'fa fa-crosshairs',
-        clear: 'fa fa-trash',
-        close: 'fa fa-times'
-      }
-    });
-    $div.data("DateTimePicker").toggle();
-  });
+  //// Tempus Dominus : pas de délégué ici — le clic sur l’input remonte au div.datepick où TD
+  //// attache déjà toggle() ; un second toggle() (ancien code) ouvrait puis refermait tout de suite.
 
   /// copier vers au clic
-  $("body").on("click", '.copyValueTo', function() {
+  $("body").on("click", '.copyValueTo', function () {
     if ($(this).is("[data-copyvalto]") && $(this).is("[data-copyval]")) {
       $($(this).attr('data-copyvalto')).val($(this).attr('data-copyval'));
       $($(this).attr('data-copyvalto')).trigger('change, keyup');
@@ -123,15 +96,32 @@ $(document).ready(function() {
   });
 
   // age affiché en label de l'input date de naissance
-  $(".datepick[data-internalname='birthdate']").on("dp.change", function(e) {
-    bd = moment(e.date);
-    age = moment().diff(bd, 'years');
-    $(this).prev('label').find('span.ageDynamique').remove();
-    if (age > 0) $(this).prev('label').append('<span class="ageDynamique"> - ' + age + ' ans</span>');
+  $(".datepick[data-internalname='birthdate']").each(function () {
+    const container = $(this)[0];
+    const picker = getTempusInstance(container);
+
+    if (picker) {
+      // Subscribe to change events
+      picker.subscribe(
+        tempusDominus.Namespace.events.change,
+        (e) => {
+          var raw = e.date;
+          var birthDate = raw instanceof Date ? raw
+            : (raw && typeof raw.toJSDate === 'function' ? raw.toJSDate() : (raw ? new Date(raw) : null));
+          if (!birthDate || isNaN(birthDate.getTime())) return;
+          const age = getAgeDifference(birthDate);
+
+          $(container).prev('label').find('span.ageDynamique').remove();
+          if (age > 0) {
+            $(container).prev('label').append('<span class="ageDynamique"> - ' + age + ' ans</span>');
+          }
+        }
+      );
+    }
   });
 
   // autocomplete simple
-  $("body").delegate('input.jqautocomplete', "focusin", function() {
+  $("body").delegate('input.jqautocomplete', "focusin", function () {
     $(this).autocomplete({
       source: urlBase + '/ajax/getAutocompleteFormValues/' + parseInt($(this).attr('data-typeid')) + '/' + $(this).attr('data-acTypeID') + '/',
       autoFocus: false
@@ -140,7 +130,7 @@ $(document).ready(function() {
   });
 
   //autocomplete pour la liaison code postal - > ville
-  $('body').delegate('#id_postalCodePerso_id, #id_codePostalPro_id', 'focusin', function() {
+  $('body').delegate('#id_postalCodePerso_id, #id_codePostalPro_id', 'focusin', function () {
     type = $(this).attr('data-internalname');
     if (type == 'codePostalPro') dest = 'villeAdressePro';
     else if (type == 'postalCodePerso') dest = 'city';
@@ -150,7 +140,7 @@ $(document).ready(function() {
       source: '/ajax/getAutocompleteLinkType/' + type + '/' + type + '/' + type + ':' + dest + '/',
       autoFocus: true,
       minLength: 3,
-      select: function(event, ui) {
+      select: function (event, ui) {
         sourceval = eval('ui.item.' + type);
         destival = eval('ui.item.' + dest);
         $('input[data-internalname="' + dest + '"]').val(destival).trigger('paste');
@@ -160,12 +150,12 @@ $(document).ready(function() {
     $(this).autocomplete("option", "appendTo", "#" + $(this).closest('form').attr('id'));
   });
 
-  $('body').on("autocompleteselect", 'input.jqautocomplete', function(event, ui) {
+  $('body').on("autocompleteselect", 'input.jqautocomplete', function (event, ui) {
     $(this).trigger("paste");
   });
 
   //prévention du form submit sur la touche enter
-  $('body').on('keyup keypress', 'input', function(e) {
+  $('body').on('keyup keypress', 'input', function (e) {
     var keyCode = e.keyCode || e.which;
     if (keyCode === 13) {
       e.preventDefault();
@@ -174,12 +164,12 @@ $(document).ready(function() {
   });
 
   // checkboxes dans les formulaires
-  $('body').on("click", ".checkboxFixValue input[type=checkbox]", function(e) {
+  $('body').on("click", ".checkboxFixValue input[type=checkbox]", function (e) {
     chkboxClick(e.target);
   });
 
   // enlever les erreurs en session en fermant l'alerte
-  $('body').on('click', '.cleanSessionFormWarning', function() {
+  $('body').on('click', '.cleanSessionFormWarning', function () {
     $(this).closest('div.alert').addClass('d-none');
     $('.is-invalid').removeClass('is-invalid');
     $.ajax({
@@ -205,7 +195,7 @@ $(document).ready(function() {
           targetMenuPOTD: targetMenuPOTD,
         },
         dataType: "json",
-        success: function(data) {
+        success: function (data) {
           if (data.displayMenu) {
             if (data.html != lastHtmlDataMenuPOTD) {
               console.log('refresh POTD menu');
@@ -217,7 +207,7 @@ $(document).ready(function() {
           }
           lastHtmlDataMenuPOTD = data.html;
         },
-        error: function() {}
+        error: function () { }
       });
     }
   }
@@ -227,7 +217,7 @@ $(document).ready(function() {
   ///////// Observations générales pour éléments divers
 
   //alerte confirmation
-  $('body').on('click', '.confirmBefore', function(e) {
+  $('body').on('click', '.confirmBefore', function (e) {
     if (confirm("Confirmez-vous cette action ?")) {
 
     } else {
@@ -236,20 +226,20 @@ $(document).ready(function() {
   });
 
   //click2call
-  $('body').on('mouseover', '.click2call', function(e) {
+  $('body').on('mouseover', '.click2call', function (e) {
     $(this).addClass('text-danger');
     $(this).css('cursor', 'pointer');
   });
-  $('body').on('mouseout', '.click2call', function(e) {
+  $('body').on('mouseout', '.click2call', function (e) {
     $(this).removeClass('text-danger');
   });
-  $('body').on('click', '.click2call', function(e) {
+  $('body').on('click', '.click2call', function (e) {
     e.stopPropagation();
     $('#click2callnum').html($(this).text());
     $('#click2call').modal('toggle');
     return;
   });
-  $('body').on('click', '#startCall2Click', function(e) {
+  $('body').on('click', '#startCall2Click', function (e) {
     $('#click2call').modal('toggle');
     $.ajax({
       url: urlBase + '/ajax/makeClick2Call/',
@@ -258,21 +248,21 @@ $(document).ready(function() {
         'number2call': $('#click2callnum').text(),
       },
       dataType: "json",
-      success: function(data) {
+      success: function (data) {
         alert_popup("success", "L'appel téléphonique du " + data.calledNumber + " est lancé");
       },
-      error: function(data) {
+      error: function (data) {
         alert_popup("danger", "Une erreur s'est produite durant l'opération : " + data.statut);
       }
     });
   });
 
   //enregistrement de forms en ajax
-  $('body').on('click', ".ajaxForm input[type=submit],.ajaxForm button[type=submit]", function(e) {
+  $('body').on('click', ".ajaxForm input[type=submit],.ajaxForm button[type=submit]", function (e) {
     e.preventDefault();
     var reload = $(this).closest("form").hasClass('reload');
     var stop = false;
-    $(this).closest("form").find('input[required],textarea[required]').each(function(idx, el) {
+    $(this).closest("form").find('input[required],textarea[required]').each(function (idx, el) {
       if (el.value == '') {
         glow('danger', $(el));
         stop = true;
@@ -287,13 +277,13 @@ $(document).ready(function() {
       type: 'post',
       data: $(this).closest("form").serialize(),
       dataType: "json",
-      success: function(data) {
+      success: function (data) {
         if (reload)
           window.location.reload();
         else
           alert_popup("success", "Opération validée");
       },
-      error: function() {
+      error: function () {
         alert_popup("danger", "Une erreur s'est produite durant l'opération");
       }
     });
@@ -358,11 +348,11 @@ $(document).ready(function() {
     }
   }
 
-	// Évite que la liste ne dépasse l'écran quant la page est redimentionner
-	$(window).on('resize', function(){
-    $('#patientsOfTheDayMenu div.dropdown-menu').height(window.innerHeight*0.75);
-	});
-	$('#patientsOfTheDayMenu div.dropdown-menu').height(window.innerHeight*0.75);
+  // Évite que la liste ne dépasse l'écran quant la page est redimentionner
+  $(window).on('resize', function () {
+    $('#patientsOfTheDayMenu div.dropdown-menu').height(window.innerHeight * 0.75);
+  });
+  $('#patientsOfTheDayMenu div.dropdown-menu').height(window.innerHeight * 0.75);
 
 });
 
@@ -376,7 +366,7 @@ function flashBackgroundElement(el) {
   attrInitiaux = el.attr('class');
   el.removeClass('bg-light');
   el.css("background", "#efffe8");
-  el.delay(700).queue(function() {
+  el.delay(700).queue(function () {
     $(this).css("background", "").dequeue();
     $(this).attr('class', attrInitiaux);
   });
@@ -409,7 +399,7 @@ function glow(type, $el) {
     danger: "#f8d7da"
   };
   $el.css("background", colors[type]);
-  $el.delay(700).queue(function() {
+  $el.delay(700).queue(function () {
     $(this).css("background", "").dequeue();
   });
 }
@@ -427,14 +417,14 @@ function setPeopleData(value, patientID, typeID, source, instance) {
         instance: instance
       },
       dataType: "json",
-      success: function(data) {
-        dataTypeName = $('input[data-typeid='+typeID+']').attr('data-internalname');
+      success: function (data) {
+        dataTypeName = $('input[data-typeid=' + typeID + ']').attr('data-internalname');
         glow('success', $(source));
         if ($(source).hasClass('reloadAfterGlow')) {
           window.location.reload();
         }
       },
-      error: function() {
+      error: function () {
         //alert_popup("danger", 'Problème, rechargez la page !');
 
       }
@@ -461,13 +451,13 @@ function setPeopleDataByTypeName(value, patientID, typeName, source, instance) {
         instance: instance
       },
       dataType: "json",
-      success: function(data) {
+      success: function (data) {
         glow('success', $(source));
         if ($(source).hasClass('reloadAfterGlow')) {
           window.location.reload();
         }
       },
-      error: function() {
+      error: function () {
         //alert_popup("danger", 'Problème, rechargez la page !');
 
       }
@@ -491,7 +481,7 @@ function alert_popup(severity, message) {
       </button>\
     </div>');
   if (severity == 'info' || severity == 'success') {
-    setTimeout((function() {
+    setTimeout((function () {
       $('.alert-to-remove').remove()
     }), 4000);
   }
@@ -558,7 +548,7 @@ function tryParseJSON(jsonString) {
     if (o && typeof o === "object") {
       return o;
     }
-  } catch (e) {}
+  } catch (e) { }
   return false;
 };
 
@@ -593,8 +583,8 @@ function exportTableToCSV(table, filename) {
  * @return {string}     chaine convertie
  */
 function ucfirst(str) {
-  return str.toLowerCase().replace(/[^\s_'-]+/g, function(word) {
-    return word.replace(/^./, function(firstLetter) {
+  return str.toLowerCase().replace(/[^\s_'-]+/g, function (word) {
+    return word.replace(/^./, function (firstLetter) {
       return firstLetter.toUpperCase();
     });
   });
@@ -609,14 +599,14 @@ function ucfirst(str) {
  * Copyright (c) 2013 Loran Kloeze | Invetek
  * Licensed MIT
  */
-(function($) {
-  $.getScriptOnce = function(url, successhandler) {
+(function ($) {
+  $.getScriptOnce = function (url, successhandler) {
     if ($.getScriptOnce.loaded.indexOf(url) === -1) {
       $.getScriptOnce.loaded.push(url);
       if (successhandler === undefined) {
         return $.getScript(url);
       } else {
-        return $.getScript(url, function(script, textStatus, jqXHR) {
+        return $.getScript(url, function (script, textStatus, jqXHR) {
           successhandler(script, textStatus, jqXHR);
         });
       }

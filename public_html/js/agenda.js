@@ -40,37 +40,97 @@ var calendar_mode = $('#calendar').attr('data-mode');
 var targetMenuPOTD = '_blank';
 var canRefreshEvents = true;
 
-$(document).ready(function () {
-  $.datepicker.regional['fr'] = {
-    closeText: 'Fermer', prevText: 'Précédent', nextText: 'Suivant', currentText: 'Aujourd\'hui',
-    monthNames: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
-    monthNamesShort: ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'],
-    dayNames: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
-    dayNamesShort: ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'],
-    dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-    weekHeader: 'Sem.', dateFormat: 'dd/mm/yy', firstDay: 1, isRTL: false,
-    showMonthAfterYear: false, yearSuffix: ''
-  };
-  $.datepicker.setDefaults($.datepicker.regional['fr']);
+// ========================================
+// TEMPUS DOMINUS v6+ - CALENDRIER FRANÇAIS
+// ========================================
 
+// ========================================
+// 1. INITIALISATION CALENDRIER PETIT
+// ========================================
 
-  $('#smallCalendar').datepicker($.extend({}, $.datepicker.regional['fr'], {
-    numberOfMonths: [3, 4],
-    stepMonths: 12,
-    inline: true,
-    onSelect: function (dateText, inst) {
-      calendar.gotoDate(new Date(dateText.split('/').reverse().join('-')));
-      $('#smallCalendar').toggle();
+document.addEventListener('DOMContentLoaded', function() {
+    const smallCalendarDiv = document.getElementById('smallCalendar');
+    
+    if (smallCalendarDiv) {
+        const smallCalendarInstance = new tempusDominus.TempusDominus(smallCalendarDiv, {
+            localization: {
+                locale: 'fr',
+                format: 'dd/MM/yyyy',
+                startOfTheWeek: 1  // Lundi (0 = dimanche)
+            },
+            display: {
+                inline: true,
+                viewMode: 'months',
+                components: {
+                    clock: false,
+                    hours: false,
+                    minutes: false,
+                    seconds: false
+                }
+            }
+        });
+        
+        // Événement au changement de date
+        smallCalendarInstance.subscribe(
+            tempusDominus.Namespace.events.change,
+            function(e) {
+                if (e.date && typeof calendar !== 'undefined' && typeof calendar.gotoDate === 'function') {
+                    calendar.gotoDate(e.date);
+                }
+                smallCalendarDiv.style.display = 'none';
+            }
+        );
+        
+        // Toggle affichage calendrier
+        smallCalendarDiv.addEventListener('click', function(e) {
+            // Ne pas fermer si on clique à l'intérieur du picker
+            if (!e.target.closest('.tempus-dominus-widget')) {
+                smallCalendarDiv.style.display = smallCalendarDiv.style.display === 'none' ? 'block' : 'none';
+            }
+        });
     }
-  }));
+});
 
   // Autosize pour textarea
   autosize($('#id_notes_id'));
   autosize($('#motif'));
   autosize($('#motifOff'));
+  function initAgendaRdvDatepickerIfNeeded() {
+    var host = document.getElementById('datepicker');
+    if (!host || getTempusInstance('datepicker')) return;
+    var modalRdv = document.getElementById('creerNouveau');
+    var optRdv = {
+      localization: {
+        locale: 'fr',
+        format: 'dd/MM/yyyy HH:mm'
+      },
+      display: { sideBySide: true }
+    };
+    if (modalRdv) optRdv.container = modalRdv;
+    var picker = initTempusInstance(host, optRdv);
+    if (picker) {
+      picker.subscribe(
+        tempusDominus.Namespace.events.change,
+        function (ev) {
+          if (!ev.date) return;
+          var d = ev.date instanceof Date ? ev.date
+            : (typeof ev.date.toJSDate === 'function' ? ev.date.toJSDate() : new Date(ev.date));
+          if (!d || isNaN(d.getTime())) return;
+          selected_period.start = d;
+          selected_period.end = getEnd(d);
+          if (selected_event) {
+            selected_event.start = selected_period.start;
+            selected_event.end = selected_period.end;
+          }
+        }
+      );
+    }
+  }
+
   $('#creerNouveau').on('shown.bs.modal', function (e) {
     autosize.update($('#motif'));
     autosize.update($('#id_notes_id'));
+    initAgendaRdvDatepickerIfNeeded();
   })
   $('#editerOff').on('shown.bs.modal', function (e) {
     autosize.update($('#motifOff'));
@@ -299,7 +359,7 @@ $(document).ready(function () {
         $("#duree").html('<i class="far fa-clock mr-2"></i>' + $("#type").children("option:selected").attr("data-duree") + "mn");
         $("#eventColor").css('color', $("#type").children("option:selected").attr("data-color"));
         $('#datepicker input').val(
-          calendar.formatDate(eventClicked.start, { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' à ' +
+          calendar.formatDate(eventClicked.start, { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' +
           calendar.formatDate(eventClicked.start, { hour: '2-digit', minute: '2-digit', hour12: false })
         );
         $('#nettoyer').show();
@@ -425,7 +485,7 @@ $(document).ready(function () {
           $("#type").val($("#type option")[0].value);
 
           $('#datepicker input').val(
-            calendar.formatDate(start, { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' à ' +
+            calendar.formatDate(start, { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' +
             calendar.formatDate(start, { hour: '2-digit', minute: '2-digit', hour12: false })
           );
 
@@ -641,36 +701,6 @@ $(document).ready(function () {
     $('.lireCpsVitale').show();
   });
 
-  $("#datepicker").on("click", function (e) {
-    e.stopPropagation();
-    $("#datepicker").datetimepicker({
-      locale: 'fr',
-      format: 'DD/MM/YYYY à HH:mm',
-      sideBySide: true,
-      icons: {
-        time: 'far fa-clock',
-        date: 'fas fa-calendar',
-        up: 'fas fa-chevron-up',
-        down: 'fas fa-chevron-down',
-        previous: 'fas fa-chevron-left',
-        next: 'fas fa-chevron-right',
-        today: 'fas fa-crosshairs',
-        clear: 'fas fa-trash',
-        close: 'fas fa-times'
-      }
-    });
-    $("#datepicker").data("DateTimePicker").toggle();
-  });
-
-  $("#datepicker").on("dp.change", function (e) {
-    selected_period.start = e.date;
-    selected_period.end = getEnd(e.date);
-    if (selected_event) {
-      selected_event.start = selected_period.start;
-      selected_event.end = selected_period.end;
-    }
-  });
-
   $("#buttonCreer").on("click", function (e) {
     setEvent();
   });
@@ -790,8 +820,11 @@ $(document).ready(function () {
     }
     $(".fc-event").popover('hide');
     $(".fc-scrollgrid").removeClass("cursor-move").removeClass("cursor-copy").addClass("cursor-cell");
-    if ($("#datepicker").data("DateTimePicker"))
-      $("#datepicker").data("DateTimePicker").hide();
+    // Fermer le datepicker agenda sauf si le clic vient du champ ou du widget (souvent dans body)
+    if (!$target.closest('#datepicker, .tempus-dominus-widget').length) {
+      const picker = getTempusInstance('datepicker');
+      if (picker) picker.hide();
+    }
   });
 
   ////////////////////////////////////////////////////////////////////////
@@ -805,7 +838,7 @@ $(document).ready(function () {
   $("#patientInfo .col-md-4").removeClass("col-md-4").addClass("col-lg-4 pr-lg-1");
   $("#patientInfo .col-md-8").removeClass("col-md-8").addClass("col-lg-8 pl-lg-1");
 
-});
+  ////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////
 ///////// Fonctions
