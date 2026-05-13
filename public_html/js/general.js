@@ -24,21 +24,10 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://www.github.com/fr33z00>
+ * @contrib Michaël Val
  */
 $(document).ready(function () {
 
-  ////////////////////////////////////////////////////////////////////////
-  ///////// Bootstrap 5 initialization
-
-  // Initialize tooltips
-  document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (element) {
-    new bootstrap.Tooltip(element);
-  });
-
-  // Initialize popovers
-  document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function (element) {
-    new bootstrap.Popover(element);
-  });
 
   ////////////////////////////////////////////////////////////////////////
   ///////// Paramètrages pour momentjs
@@ -91,36 +80,8 @@ $(document).ready(function () {
   ////////////////////////////////////////////////////////////////////////
   ///////// Obesrvations générales pour formulaires
 
-  //// datepicker bootstrap
-  $("body").on("click", 'div.datepick', function () {
-    var $div = $(this).closest("div.datepick");
-    var viewMode = $div.hasClass("pick-year") ? 'years' : ($div.hasClass("pick-month") ? 'months' : 'days');
-    viewMode = $div.find("input").hasClass("pick-year") ? 'years' : ($div.find("input").hasClass("pick-month") ? 'months' : viewMode);
-
-    var min = $(this).find("input").is("[min]") ? $(this).find("input").attr('min') : false;
-    var max = $(this).find("input").is("[max]") ? $(this).find("input").attr('max') : false;
-
-    $(this).datetimepicker({
-      locale: 'fr',
-      viewMode: viewMode,
-      format: 'L',
-      useCurrent: false,
-      minDate: min,
-      maxDate: max,
-      icons: {
-        time: 'far fa-clock',
-        date: 'fa fa-calendar',
-        up: 'fa fa-chevron-up',
-        down: 'fa fa-chevron-down',
-        previous: 'fa fa-chevron-left',
-        next: 'fa fa-chevron-right',
-        today: 'fa fa-crosshairs',
-        clear: 'fa fa-trash',
-        close: 'fa fa-times'
-      }
-    });
-    $div.data("DateTimePicker").toggle();
-  });
+  //// Tempus Dominus : pas de délégué ici — le clic sur l’input remonte au div.datepick où TD
+  //// attache déjà toggle() ; un second toggle() (ancien code) ouvrait puis refermait tout de suite.
 
   /// copier vers au clic
   $("body").on("click", '.copyValueTo', function () {
@@ -135,11 +96,28 @@ $(document).ready(function () {
   });
 
   // age affiché en label de l'input date de naissance
-  $(".datepick[data-internalname='birthdate']").on("dp.change", function (e) {
-    bd = moment(e.date);
-    age = moment().diff(bd, 'years');
-    $(this).prev('label').find('span.ageDynamique').remove();
-    if (age > 0) $(this).prev('label').append('<span class="ageDynamique"> - ' + age + ' ans</span>');
+  $(".datepick[data-internalname='birthdate']").each(function () {
+    const container = $(this)[0];
+    const picker = getTempusInstance(container);
+
+    if (picker) {
+      // Subscribe to change events
+      picker.subscribe(
+        tempusDominus.Namespace.events.change,
+        (e) => {
+          var raw = e.date;
+          var birthDate = raw instanceof Date ? raw
+            : (raw && typeof raw.toJSDate === 'function' ? raw.toJSDate() : (raw ? new Date(raw) : null));
+          if (!birthDate || isNaN(birthDate.getTime())) return;
+          const age = getAgeDifference(birthDate);
+
+          $(container).prev('label').find('span.ageDynamique').remove();
+          if (age > 0) {
+            $(container).prev('label').append('<span class="ageDynamique"> - ' + age + ' ans</span>');
+          }
+        }
+      );
+    }
   });
 
   // autocomplete simple
@@ -234,26 +212,6 @@ $(document).ready(function () {
     }
   }
 
-
-  ////////////////////////////////////////////////////////////////////////
-  ///////// Re-initialize Bootstrap 5 components on AJAX responses
-
-  $(document).on('ajaxStop', function () {
-    // Re-initialize tooltips for dynamically added content
-    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (element) {
-      // Check if tooltip instance doesn't already exist
-      if (!bootstrap.Tooltip.getInstance(element)) {
-        new bootstrap.Tooltip(element);
-      }
-    });
-
-    // Re-initialize popovers for dynamically added content
-    document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function (element) {
-      if (!bootstrap.Popover.getInstance(element)) {
-        new bootstrap.Popover(element);
-      }
-    });
-  });
 
   ////////////////////////////////////////////////////////////////////////
   ///////// Observations générales pour éléments divers
@@ -516,9 +474,11 @@ function alert_popup(severity, message) {
     danger: 'Erreur: '
   }
   $("#alert_section").append('\
-    <div class="alert alert-' + severity + ' alert-to-remove fade show col-md-auto ps-4 d-flex justify-content-between align-items-center" role="alert">\
-      <div><strong>' + titre[severity] + ' </strong>' + message + '</div>\
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>\
+    <div class="alert alert-' + severity + ' alert-to-remove fade show col-md-auto pl-4" role="alert">\
+      <strong>' + titre[severity] + ' </strong>' + message +
+    '<button type="button" class="pl-2 close" data-dismiss="alert" aria-label="Close">\
+        <span aria-hidden="true">&times;</span>\
+      </button>\
     </div>');
   if (severity == 'info' || severity == 'success') {
     setTimeout((function () {

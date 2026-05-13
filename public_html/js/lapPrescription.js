@@ -23,6 +23,7 @@
  * Fonctions pour la presciption médic dans le lap
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val
  */
 
 /**
@@ -302,15 +303,35 @@ $(document).ready(function () {
 		}
 	});
 
-	//changement date début prescription
-	$("#beginPeriodeIDB").on("dp.change", function (e) {
-		var debut = moment($('#beginPeriodeID').val(), "DD-MM-YYYY");
-		if (ligneData['dureeTotaleMachineJoursAvecRenouv'] > 0) {
-			$('#endPeriodeID').val(debut.add(ligneData['dureeTotaleMachineJoursAvecRenouv'] - 1, 'days').format('DD/MM/YYYY'));
-		} else {
-			$('#endPeriodeID').val(debut.format('DD/MM/YYYY'));
+	// Setup period picker change events (migrate from eonasdan/datepicker to Tempus Dominus)
+	function setupPeriodePicker() {
+		const beginContainer = document.getElementById('beginPeriodeIDB');
+		if (!beginContainer) {
+			setTimeout(setupPeriodePicker, 100);
+			return;
 		}
-	});
+
+		const picker = getTempusInstance(beginContainer);
+		if (picker) {
+			picker.subscribe(
+				tempusDominus.Namespace.events.change,
+				(e) => {
+					var debut = moment($('#beginPeriodeID').val(), "DD/MM/YYYY");
+					if (ligneData['dureeTotaleMachineJoursAvecRenouv'] > 0) {
+						$('#endPeriodeID').val(debut.add(ligneData['dureeTotaleMachineJoursAvecRenouv'] - 1, 'days').format('DD/MM/YYYY'));
+					} else {
+						$('#endPeriodeID').val(debut.format('DD/MM/YYYY'));
+					}
+				}
+			);
+		} else {
+			setTimeout(setupPeriodePicker, 100);
+		}
+	}
+
+	// Initialize after DOM ready and pickers initialized
+	setupPeriodePicker();
+
 	// passer à demain au dblclick
 	$("#beginPeriodeID").on("dblclick", function (e) {
 		var debut = moment(new Date()).add(1, 'days');

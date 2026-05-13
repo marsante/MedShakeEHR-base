@@ -45,16 +45,17 @@
         <link href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/fortawesome/font-awesome/css/all.min.css?{{ modules.base }}" rel="stylesheet">
         <link type="text/css" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/scss/bs_custom.min.css?{{ modules.base }}" rel="stylesheet"/>
         <link type="text/css" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/eonasdan--tempus-dominus/dist/css/tempus-dominus.min.css?{{ modules.base }}" rel="stylesheet"/>
-        <link type="text/css" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/jquery-ui-1.14.1.custom/jquery-ui.min.css?{{ modules.base }}" rel="stylesheet"/>
+        <link type="text/css" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/jquery-ui/dist/themes/base/jquery-ui.min.css?{{ modules.base }}" rel="stylesheet"/>
         {% endblock %}
 
         {# js #}
         {% block jsFiles %}
-        <script src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/jquery/jquery/dist/jquery.min.js?{{ modules.base }}"></script>
+        <script src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/jquery/dist/jquery.min.js?{{ modules.base }}"></script>
         <script type="text/javascript" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/twbs/bootstrap/dist/js/bootstrap.bundle.min.js?{{ modules.base }}"></script>
         <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/moment/moment/min/moment.min.js?{{ modules.base }}"></script>
         <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/eonasdan--tempus-dominus/dist/js/tempus-dominus.min.js?{{ modules.base }}"></script>
-        <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/jquery-ui-1.14.1.custom/jquery-ui.min.js?{{ modules.base }}"></script>
+        <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/tempusDominusInit.js?{{ modules.base }}"></script>
+        <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/npm-asset/jquery-ui/dist/jquery-ui.min.js?{{ modules.base }}"></script>
         <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/general.js?{{ modules.base }}"></script>
         <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/general/modal-functions.js?{{ modules.base }}"></script>
         <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/general/modal-events.js?{{ modules.base }}"></script>

@@ -170,14 +170,30 @@ $(document).ready(function () {
   activeWatchChange('.changeObserv');
   activeWatchChange('.changeObservByTypeName');
 
-  $(".changeObserv .datepick, .changeObservByTypeName .datepick").on("dp.change", function (e) {
-    patientID = $('#identitePatient').attr("data-patientID");
-    typeID = $(this).children('input').attr("data-typeID");
-    if (e.date) value = e.date.format('L');
-    else value = '';
-    source = $(this).children('input');
-    instance = $(this).closest("form").attr("data-instance");
-    setPeopleData(value, patientID, typeID, source, instance);
+  $(".changeObserv .datepick, .changeObservByTypeName .datepick").each(function () {
+    const container = $(this)[0];
+    const picker = getTempusInstance(container);
+
+    if (picker) {
+      picker.subscribe(
+        tempusDominus.Namespace.events.change,
+        (e) => {
+          const patientID = $('#identitePatient').attr("data-patientID");
+          const typeID = $(container).children('input').attr("data-typeID");
+          let value = '';
+
+          if (e.date) {
+            var rd = e.date instanceof Date ? e.date
+              : (typeof e.date.toJSDate === 'function' ? e.date.toJSDate() : new Date(e.date));
+            if (rd && !isNaN(rd.getTime())) value = formatDateFR(rd);
+          }
+
+          const source = $(container).children('input');
+          const instance = $(container).closest("form").attr("data-instance");
+          setPeopleData(value, patientID, typeID, source, instance);
+        }
+      );
+    }
   });
 
   ////////////////////////////////////////////////////////////////////////
@@ -730,27 +746,22 @@ $(document).ready(function () {
   ////////////////////////////////////////////////////////////////////////
   ///////// Changer la date de création d'une ligne d'historique
 
-  // datepicker bootstrap
-  $('#datepickHisto')
-    .on("click", function () {
-      $(this).data("DateTimePicker").toggle();
-    })
-    .datetimepicker({
-      locale: 'fr',
-      format: 'Y-MM-DD HH:mm:ss',
-      sideBySide: true,
-      icons: {
-        time: 'far fa-clock',
-        date: 'fa fa-calendar',
-        up: 'fa fa-chevron-up',
-        down: 'fa fa-chevron-down',
-        previous: 'fa fa-chevron-left',
-        next: 'fa fa-chevron-right',
-        today: 'fa fa-crosshairs',
-        clear: 'fa fa-trash',
-        close: 'fa fa-times'
-      }
-    });
+  // Tempus Dominus : init au premier affichage (id modal = modalCreationDate, cf. inc-patientModal-changerDateEffet)
+  $('#modalCreationDate').on('show.bs.modal', function () {
+    let picker = getTempusInstance('datepickHisto');
+    if (!picker) {
+      var modalEl = document.getElementById('modalCreationDate');
+      var optHisto = {
+        localization: {
+          locale: 'fr',
+          format: 'yyyy-MM-dd HH:mm:ss'
+        },
+        display: { sideBySide: true }
+      };
+      if (modalEl) optHisto.container = modalEl;
+      picker = initTempusInstance(document.getElementById('datepickHisto'), optHisto);
+    }
+  });
 
   $('body').on('dblclick', '.trLigneExamen td:nth-child(2)', function (e) {
     e.preventDefault();
@@ -862,8 +873,8 @@ $(document).ready(function () {
             else
               $tr.after(data.html);
           } else {
-            $('#historique tbody').prepend('<tr class="anneeHistorique table-primary" data-bs-toggle="collapse" data-bs-target=".historiqueMedicalComplet .trLigneExamen[data-annee=' + moment().format("YYYY") + ']" aria-expanded="true" aria-controls="annee' + moment().format("YYYY") + '">\
-              <td class="ps-3">\
+            $('#historique tbody').prepend('<tr class="anneeHistorique table-primary" data-toggle="collapse" data-target=".historiqueMedicalComplet .trLigneExamen[data-annee=' + moment().format("YYYY") + ']" aria-expanded="true" aria-controls="annee' + moment().format("YYYY") + '">\
+              <td class="pl-3">\
                 <span class="far fa-minus-square"></span>\
                 <span class="far fa-plus-square" style="display:none"></span>\
               </td>\
@@ -896,24 +907,20 @@ $(document).ready(function () {
   ////////////////////////////////////////////////////////////////////////
   ///////// Gestion des mots suivi
 
-  // datepicker bootstrap
-  $('#datepickMotSuivi').on("click", function () {
-    $(this).data("DateTimePicker").toggle();
-  }).datetimepicker({
-    locale: 'fr',
-    format: 'DD/MM/Y HH:mm',
-    sideBySide: true,
-    icons: {
-      time: 'far fa-clock',
-      date: 'fa fa-calendar',
-      up: 'fa fa-chevron-up',
-      down: 'fa fa-chevron-down',
-      previous: 'fa fa-chevron-left',
-      next: 'fa fa-chevron-right',
-      today: 'fa fa-crosshairs',
-      clear: 'fa fa-trash',
-      close: 'fa fa-times',
-    },
+  $('#modalMotSuivi').on('show.bs.modal', function () {
+    let picker = getTempusInstance('datepickMotSuivi');
+    if (!picker) {
+      var modalMot = document.getElementById('modalMotSuivi');
+      var optMot = {
+        localization: {
+          locale: 'fr',
+          format: 'dd/MM/yyyy HH:mm'
+        },
+        display: { sideBySide: true }
+      };
+      if (modalMot) optMot.container = modalMot;
+      picker = initTempusInstance(document.getElementById('datepickMotSuivi'), optMot);
+    }
   });
 
   // Attape l'action de validation d'un nouveau mot suivi
@@ -1588,13 +1595,13 @@ function toogleImportant(el) {
     dataType: "html",
     success: function () {
       if (importanceActu == 'n') {
-        el.html('<i class="fas fa-exclamation-triangle fa-fw text-muted me-1"></i> Rendre non important');
+        el.html('<i class="fas fa-exclamation-triangle fa-fw text-muted mr-1"></i> Rendre non important');
         el.attr('data-importanceActu', 'y');
         el.closest('tr').addClass(el.closest('tr').hasClass('trReglement') ? 'table-danger' : 'table-info');
       }
       if (importanceActu == 'y') {
         el.closest('tr').removeClass('table-info').removeClass('table-danger');
-        el.html('<i class="fas fa-exclamation-triangle fa-fw text-muted me-1"></i> Marquer important');
+        el.html('<i class="fas fa-exclamation-triangle fa-fw text-muted mr-1"></i> Marquer important');
         el.attr('data-importanceActu', 'n');
       }
     },
@@ -1679,7 +1686,7 @@ function showObjetDet(element, timed) {
 
   if (destination.length == 0) {
     if (element.closest('tr').attr('data-typeName') == 'lapOrdonnance') {
-      ligne.after('<tr class="detObjet' + objetID + ' detObjet" style="background : transparent"><td></td><td colspan="4" class="placeForOrdoLap py-4"><div class="text-end"><button class="btn btn-secondary btn-sm renouvToutesLignes mb-1" type="button" title="Renouveler"><i class="fas fa-sync-alt" aria-hidden="true"></i> Tout renouveler</button></div><div class="alert alert-primary fw-bold" role="alert">Prescriptions ALD</div><div class="ald conteneurPrescriptionsALD"></div><div class="alert alert-dark fw-bold" role="alert">Prescriptions standards</div><div style="min-height:15px;" class="conteneurPrescriptionsG"></div></td></tr>');
+      ligne.after('<tr class="detObjet' + objetID + ' detObjet" style="background : transparent"><td></td><td colspan="4" class="placeForOrdoLap py-4"><div class="text-right"><button class="btn btn-secondary btn-sm renouvToutesLignes mb-1" type="button" title="Renouveler"><i class="fas fa-sync-alt" aria-hidden="true"></i> Tout renouveler</button></div><div class="alert alert-primary font-weight-bold" role="alert">Prescriptions ALD</div><div class="ald conteneurPrescriptionsALD"></div><div class="alert alert-dark font-weight-bold" role="alert">Prescriptions standards</div><div style="min-height:15px;" class="conteneurPrescriptionsG"></div></td></tr>');
       voirOrdonnanceMode = 'voirOrdonnance';
       getOrdonnance(objetID, "." + zone + " .detObjet" + objetID + ' td.placeForOrdoLap');
     } else {
