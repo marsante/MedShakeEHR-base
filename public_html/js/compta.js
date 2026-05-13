@@ -143,22 +143,48 @@ $(document).ready(function() {
 //    $('form#periodeForm').submit();
     });
 
-    $('#beginPeriodeIDB').on('dp.change', function(){
-        if (inhibdates)
-            return;
-        $("#periodeQuickSelectID")[0].selectedIndex = 0;
-        $('input[name=impayes]').val('');
-        getTable();
-    });
+  // Wait for tempus instances to be initialized
+  function setupPeriodePickers() {
+    const beginPicker = getTempusInstance('beginPeriodeIDB');
+    const endPicker = getTempusInstance('endPeriodeIDB');
 
+    if (beginPicker) {
+      beginPicker.subscribe(
+        tempusDominus.Namespace.events.change,
+        (e) => {
+          if (inhibdates) return;
+          $("#periodeQuickSelectID")[0].selectedIndex = 0;
+          $('input[name=impayes]').val('');
+          getTable();
+        }
+      );
+    }
 
-    $('#endPeriodeIDB').on('dp.change', function(){
-        if (inhibdates)
-            return;
-        $("#periodeQuickSelectID")[0].selectedIndex = 0;
-        $('input[name=impayes]').val('');
-        getTable();
-    });
+    if (endPicker) {
+      endPicker.subscribe(
+        tempusDominus.Namespace.events.change,
+        (e) => {
+          if (inhibdates) return;
+          $("#periodeQuickSelectID")[0].selectedIndex = 0;
+          $('input[name=impayes]').val('');
+          getTable();
+        }
+      );
+    }
+
+    // If pickers not ready yet, retry
+    if (!beginPicker || !endPicker) {
+      setTimeout(setupPeriodePickers, 100);
+    }
+  }
+
+  // Initialize after all pickers are ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupPeriodePickers);
+  } else {
+    setupPeriodePickers();
+  }
+
 
     $('select[name="prat"]').on('change', function(){
         getTable();
