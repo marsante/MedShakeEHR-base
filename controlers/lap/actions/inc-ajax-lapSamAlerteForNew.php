@@ -24,6 +24,7 @@
  * LAP : ajax > produire une alerte SAM
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 $debug = '';

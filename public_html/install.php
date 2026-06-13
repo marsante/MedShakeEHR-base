@@ -26,7 +26,7 @@
  *
  * @author fr33z00 <https://www.github.com/fr33z00>
  * @contrib Bertrand Boutillier <b.boutillier@gmail.com>
- * @contrib Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 ini_set('display_errors', 1);

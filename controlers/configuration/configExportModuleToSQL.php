@@ -24,7 +24,7 @@
  * Config > renvoyer le code SQL complet d'un module
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
- * @contrib Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 if (!msUser::checkUserIsAdmin()) {

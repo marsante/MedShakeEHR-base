@@ -24,7 +24,7 @@
  * Outils : export data -> retourner le csv
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
- * contrib Michaël Val
+ * contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 use OpenSpout\Writer\Common\Creator\WriterEntityFactory; // namespace is no longer "OpenSpout\Writer"

@@ -2,7 +2,7 @@
  * This file is part of MedShakeEHR.
  *
  * Copyright (c) 2026
- * Michaël Val
+ * Michaël Val <contact@brunoy-osteopathe.fr>
  * https://www.brunoy-osteopathe.fr/
  *
  * MedShakeEHR is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@
  * Init auto : uniquement les div.datepick (compta, roulette obst., champs datés formulaires).
  * Clic sur l’input ou l’icône : remonte au conteneur où TD appelle toggle() (allowInputToggle false).
  * 
- * @author Michaël Val
+ * @author Michaël Val <contact@brunoy-osteopathe.fr>
  * @version 6.0
  */
 

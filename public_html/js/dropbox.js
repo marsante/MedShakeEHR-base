@@ -23,6 +23,7 @@
  * Fonctions JS pour dropbox
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 $(document).ready(function() {

@@ -24,6 +24,7 @@
  #
  # @author fr33z00 <https://github.com/fr33z00>
  # @contrib Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  #}
 
 {% import "macroForm.html.twig" as f %}
@@ -37,7 +38,7 @@
       {% if config.optionGeActiverVitaleLecture =='true' %}
         <button id="lectureCpsVital" type="button" class="btn btn-success btn-sm lireCpsVitale" title="Créer à partir des données carte vitale" style="display: none;"><i class="fas fa-user"></i> Vitale</button>
       {% endif %}
-      <button id="nettoyer" class="btn btn-danger btn-sm" title="Revenir à l'état initial" style="display:none"><i class="fas fa-times fa-fw"></i></button>
+      <button id="nettoyer" class="btn btn-light btn-sm" title="Revenir à l'état initial" style="display:none"><i class="fas fa-times fa-fw"></i></button>
     </li>
   </ul>
   <div id="patientFormTab" class="border-end border-start border-bottom bg-light" style="background-color: #e9ecef;">

@@ -24,7 +24,7 @@
  * Relations d'un patient avec les autres et avec les praticiens
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
- * contrib Michaël Val
+ * contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 $debug = '';

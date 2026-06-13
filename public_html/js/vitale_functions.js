@@ -23,6 +23,7 @@
  * Fonctions JS pour la lecture vitale / CPS et la réalisation de FSE
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 var dataVitale = [];

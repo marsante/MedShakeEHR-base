@@ -24,7 +24,7 @@
  * Cron : sauvegarde de la base
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
- * @contrib Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 // pour le configurateur de cron

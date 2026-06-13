@@ -23,7 +23,7 @@
  * Fonctions JS pour les paramètres utilisateur : onglet agenda
  *
  * @author fr33z00 <https://www.github.com/fr33z00>
- * @contrib Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 var gotGroups = false;

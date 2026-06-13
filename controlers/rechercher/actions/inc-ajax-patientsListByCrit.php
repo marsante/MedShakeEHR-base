@@ -26,7 +26,7 @@
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://github.com/fr33z00>
  * @contrib DEMAREST Maxime  <maxime@indelog.fr>
- * @contrib Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  *
  * SQLPREPOK
  */

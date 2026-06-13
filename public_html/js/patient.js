@@ -24,7 +24,7 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://www.github.com/fr33z00>
- * @ Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 ////////////////////////////////////////////////////////////////////////

@@ -25,7 +25,7 @@
  * Outils pour les images
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
- * @contrib Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 

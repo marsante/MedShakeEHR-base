@@ -17,6 +17,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 

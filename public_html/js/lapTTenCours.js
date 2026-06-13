@@ -23,6 +23,7 @@
  * Fonctions JS autour du traitement en cours pour le lap
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 /**

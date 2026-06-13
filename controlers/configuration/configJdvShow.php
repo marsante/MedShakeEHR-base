@@ -25,7 +25,7 @@
  * Config : montrer les fichiers de jeu de valeurs installés et leur contenu
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
- * @contrib Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 $debug = '';

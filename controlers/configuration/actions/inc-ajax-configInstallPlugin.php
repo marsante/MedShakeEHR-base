@@ -24,7 +24,7 @@
  * Config : installer un plugin
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
- * @contrib Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 if (!msUser::checkUserIsAdmin()) {

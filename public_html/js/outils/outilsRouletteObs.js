@@ -23,7 +23,7 @@
  * Fonctions JS pour la gestion de la roulette obstétricale
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
- * @contrib Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 $(document).ready(function () {

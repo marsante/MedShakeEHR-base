@@ -24,7 +24,7 @@
  * Cron : sauvegarde de la base
  *
  * @author fr33z00 <https://www.github.com/fr33z00>
- * @contrib Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 // pour le configurateur de cron

@@ -23,6 +23,7 @@
  * Fonctions JS pour les pages dicom
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 $(document).ready(function() {

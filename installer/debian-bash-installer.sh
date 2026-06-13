@@ -19,7 +19,7 @@
 
 # Installateur de base
 #
-# @author Michaël Val
+# @author Michaël Val <contact@brunoy-osteopathe.fr>
 # @contrib B-Yasmina
 
 selectMsehrPath() {

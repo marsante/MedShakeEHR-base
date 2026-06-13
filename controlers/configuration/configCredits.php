@@ -25,7 +25,7 @@
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
  * @contrib fr33z00 <https://github.com/fr33z00>
- * @contrib Michaël Val
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 $template = 'configCredits';
@@ -54,9 +54,9 @@ $p['page']['thanks']['PHPMailer'] = array(
 	'description' => 'An email creation and transfer class for PHP',
 	'url' => 'https://github.com/PHPMailer/PHPMailer'
 );
-$p['page']['thanks']['Bootstrap 3 Datepicker v4'] = array(
+$p['page']['thanks']['Tempsu Dominus'] = array(
 	'description' => 'Datepicker for Bootstrap',
-	'url' => 'http://eonasdan.github.io/bootstrap-datetimepicker/'
+	'url' => 'https://getdatepicker.com/'
 );
 $p['page']['thanks']['Moment.js'] = array(
 	'description' => 'Parse, validate, manipulate, and display dates and times in JavaScript',
@@ -137,6 +137,34 @@ $p['page']['thanks']['Font Awesome'] = array(
 $p['page']['thanks']['Autosize'] = array(
 	'description' => 'A small, stand-alone script to automatically adjust textarea height',
 	'url' => 'http://www.jacklmoore.com/autosize/'
+);
+$p['page']['thanks']['OVH'] = array(
+	'description' => 'Lightweight PHP wrapper for OVH APIs.',
+	'url' => 'https://github.com/ovh/php-ovh'
+);
+$p['page']['thanks']['PHP Barcode Generator'] = array(
+	'description' => 'Barcode generator in PHP.',
+	'url' => 'https://github.com/picqer/php-barcode-generator'
+);
+$p['page']['thanks']['FPDI'] = array(
+	'description' => 'FPDI is a collection of PHP classes facilitating developers to read pages from existing PDF documents and use them as templates in FPDF.',
+	'url' => 'https://github.com/Setasign/FPDI'
+);
+$p['page']['thanks']['FPDF'] = array(
+	'description' => 'FPDF is a PHP class which allows to generate PDF files with pure PHP.',
+	'url' => 'https://github.com/Setasign/FPDF'
+);
+$p['page']['thanks']['OTPHP'] = array(
+	'description' => 'A PHP library for generating one time passwords according to RFC 4226 (HOTP) and the RFC 6238 (TOTP).',
+	'url' => 'https://github.com/Spomky-Labs/otphp'
+);
+$p['page']['thanks']['kjua'] = array(
+	'description' => 'Dynamically generated QR codes for modern browsers.',
+	'url' => 'https://github.com/lrsjng/kjua'
+);
+$p['page']['thanks']['chai'] = array(
+	'description' => 'BDD / TDD assertion framework for node.js and the browser that can be paired with any testing framework.',
+	'url' => 'https://github.com/chaijs/chai'
 );
 
 uksort($p['page']['thanks'], 'strcasecmp');

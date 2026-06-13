@@ -24,6 +24,7 @@
  * LAP : ajax > données brutes envoyées à Thériaque
  *
  * @author Bertrand Boutillier <b.boutillier@gmail.com>
+ * @contrib Michaël Val <contact@brunoy-osteopathe.fr>
  */
 
 
