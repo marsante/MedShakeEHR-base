@@ -1,0 +1,5 @@
+{$VIRTUAL_HOST} {
+	tls internal
+
+	reverse_proxy medshakeehr:80
+}

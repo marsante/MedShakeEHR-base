@@ -1,16 +1,15 @@
 services:
   medshakeehr:
     container_name: msehr
-    # image: marsante/msehr:latest
-    build: 
-      context: ./
-      tags:
-        - "marsante/msehr:master"
+    image: marsante/msehr:latest
+    # build:
+    #   context: ./
+    #   tags:
+    #     - "marsante/msehr:master"
     user: ${USER_ID}:${GROUP_ID}
     restart: unless-stopped
     environment:
       TZ: ${TZ}
-      VIRTUAL_HOST: ${VIRTUAL_HOST}
       MSEHR_HOST: ${MSEHR_HOST}
       SELF_SIGNED_HOST: ${VIRTUAL_HOST}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -19,26 +18,21 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       PORT: ${PORT}
       PROTO: ${PROTO}
-      # COOKIED: ${COOKIED}
-      # FINGERPRINT: ${FINGERPRINT}
-      # SQLVARPSWD: ${SQLVARPSWD}
     depends_on:
       - db
-      - proxy-companion
-    volumes: 
-      # - medshakeehr:/var/www/html
+    volumes:
+      - medshakeehr:/var/www/html
       # if you use bind volume with arbitrary user create first the folder with the good permissions
-      - ../../:/var/www/html
-      # # for custom php.ini
-      # - ./config/30-custom-php.ini:/usr/local/etc/php/30-custom-php.ini:ro
+      # - ../../:/var/www/html:Z
+      # for custom php.ini
+      # - ./config/30-custom-php.ini:/usr/local/etc/php/30-custom-php.ini:Z,ro
     networks:
       - proxy
       - db
       - dicom
     labels:
       - "com.centurylinklabs.watchtower.no-pull=true" # For allow update with watchtower and local image if you build the image. Comment if you use dockerhub image
-      - "com.github.nginx-proxy.nginx-proxy.ssl_verify_client=optional" # On production install the cetificate on your browser and set the option to on
-
+ 
   # https://hub.docker.com/_/mariadb
   db:
     image: mariadb:11.8
@@ -51,11 +45,11 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MARIADB_AUTO_UPGRADE: ${MARIADB_AUTO_UPGRADE}
     volumes: 
-      - db-data:/var/lib/mysql
+      - db-data:/var/lib/mysql:Z
       # If you would import database the first time or old database
-      # - ../../upgrade/base/sqlInstall.sql:/docker-entrypoint-initdb.d/sqlInstall.sql
+      # - ../../upgrade/base/sqlInstall.sql:/docker-entrypoint-initdb.d/sqlInstall.sql:Z,ro
       # # for custom mariadb conf file
-      # - ./config/custom-mariadb.cnf:/etc/mysql/conf.d/custom-mariadb.cnf:ro
+      # - ./config/custom-mariadb.cnf:/etc/mysql/conf.d/custom-mariadb.cnf:Z,ro
     networks:
       - db
 
@@ -88,37 +82,24 @@ services:
     profiles:
       - dicom
 
-  # https://hub.docker.com/r/nginxproxy/nginx-proxy
-  nginx-proxy:
-    image: nginxproxy/nginx-proxy:alpine
+  # https://hub.docker.com/_/caddy  
+  caddy:
+    image: caddy:2-alpine
     restart: unless-stopped
-    environment:
-      TZ: ${TZ}
-      # Uncomment for custom ports
-      # HTTP_PORT: 8080 
-      # HTTPS_PORT: 4433
+    depends_on:
+      - medshakeehr
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      TZ: ${TZ}
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
     volumes:
-      - certs:/etc/nginx/certs
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-      # rootless socket for user 1000
-      # - /run/user/1000/docker.sock:/tmp/docker.sock:ro
+      - ./config/Caddyfile:/etc/caddy/Caddyfile:Z,ro
+      - caddy-data:/data:Z
+      - caddy-config:/config:Z
     networks:
       - proxy
-      
-  # https://hub.docker.com/r/sebastienheyd/self-signed-proxy-companion
-  proxy-companion:
-    image: sebastienheyd/self-signed-proxy-companion
-    restart: unless-stopped
-    depends_on:
-      - nginx-proxy
-    volumes:
-      - certs:/etc/nginx/certs
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      # rootless socket for user 1000
-      # - /run/user/1000/docker.sock:/var/run/docker.sock:ro
 
   # https://hub.docker.com/r/containrrr/watchtower
   watchtower:
@@ -129,8 +110,8 @@ services:
       # WATCHTOWER_SCHEDULE: ${WATCHTOWER_SCHEDULE}
       WATCHTOWER_CLEANUP: ${WATCHTOWER_CLEANUP}
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      # - /run/user/1000/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock:Z,ro
+      # - /run/user/1000/docker.sock:/var/run/docker.sock:Z,ro
 
   # # https://hub.docker.com/r/linuxserver/wireguard
   vpn:
@@ -151,8 +132,8 @@ services:
       PERSISTENTKEEPALIVE_PEERS: #optional
       LOG_CONFS: true #optional
     volumes:
-      - ${VPN_CONFIG_PATH}:/config
-      - /lib/modules:/lib/modules #optional
+      - ${VPN_CONFIG_PATH}:/config:Z
+      - /lib/modules:/lib/modules:ro #optional
     ports:
       - 51820:51820/udp
     sysctls:
@@ -168,9 +149,11 @@ secrets:
     file: orthanc.json
 
 volumes:
+  medshakeehr:
   db-data:
   certs:
-  # medshakeehr:
+  caddy-data:
+  caddy-config:
 
 networks:
   proxy:

@@ -2,7 +2,7 @@
 ARG PHP_VERSION=8.4
 ARG COMPOSER_VERSION=2.8
 
-FROM php:${PHP_VERSION}-apache AS final-stage
+FROM docker.io/library/php:${PHP_VERSION}-apache AS final-stage
 
 ARG PHPSTAGE=production
 ARG DEBIAN_FRONTEND=noninteractive
@@ -64,13 +64,13 @@ RUN set -ex; \
     rm -r /tmp/pear; \
     a2enmod rewrite headers ssl; \
     mv "$PHP_INI_DIR/php.ini-$PHPSTAGE" "$PHP_INI_DIR/php.ini"; \
-    useradd -u 1000 -u 1000 -s /bin/bash medshakeehr
-
+    groupadd -g 1000 medshakeehr && \
+    useradd -u 1000 -g 1000 -s /bin/bash medshakeehr
 
 COPY config/30-custom-php.ini "$PHP_INI_DIR/conf.d"
 
 # Workaround for composer ARG in bake
-FROM composer:${COMPOSER_VERSION} AS composer-stage 
+FROM docker.io/library/composer:${COMPOSER_VERSION} AS composer-stage 
 
 FROM final-stage
 
